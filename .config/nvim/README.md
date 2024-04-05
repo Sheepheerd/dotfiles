@@ -6,10 +6,10 @@
 - [neovim](https://wiki.archlinux.org/title/Neovim)
 
 
-## Code
+## Why?
 
-- See [Mason](./README.md#Mason)
-- See [Java Setup](./README.md#Java-Setup)
+Neovim is a lighter and faster alternative to other IDEs. This setup aims at creating an IDE that is easily customizable, out of the box, and simple to use.
+
 
 ## Mason
 
