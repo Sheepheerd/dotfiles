@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+mic_status=$(amixer get Capture 0 | grep '\[on\]' | wc -l)
+
+if [ "$mic_status" -eq 2 ]; then
+    amixer set Capture 0 toggle
+else
+    amixer set Capture 0 toggle
+fi
