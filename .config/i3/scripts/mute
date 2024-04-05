@@ -1,10 +1,21 @@
 #!/bin/bash
 
-
+# Get the microphone status (on/off)
 mic_status=$(amixer get Capture 0 | grep '\[on\]' | wc -l)
 
+# Define colors
+mic_on_color="#00FF00"  # Green
+mic_off_color="#FF0000" # Red
+
+# Set the icon and color based on the microphone status
 if [ "$mic_status" -eq 2 ]; then
-    amixer set Capture 0 toggle
+    icon=""  # You can replace this with your microphone icon
+    color="$mic_on_color"
 else
-    amixer set Capture 0 toggle
+    icon=""  # You can replace this with your muted microphone icon
+    color="$mic_off_color"
 fi
+
+# Output the result in the i3 blocks format
+echo "$icon"
+echo "$color"
