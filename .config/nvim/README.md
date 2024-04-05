@@ -1,5 +1,6 @@
 # NeoVim
 
+![Neovim](./Neovim.png)
 ## Dependencies
 
 - [neovim](https://wiki.archlinux.org/title/Neovim)
@@ -7,7 +8,7 @@
 
 ## Code
 
-- See [Java Setup](./instructions.md#Java-Setup)
+- See [Java Setup](./README.md#Java-Setup)
 
 
 
