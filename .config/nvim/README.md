@@ -11,6 +11,28 @@
 - See [Mason](./README.md#Mason)
 - See [Java Setup](./README.md#Java-Setup)
 
+## Mason
+
+[Mason](https://github.com/williamboman/mason.nvim) is a package manager for Neovim. Using the [Masontools](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) we can auto
+install certain languages, linters, and debuggers.
+
+<details/>
+    <summary>Auto Installed Packages</summary>
+
+### Packages
+- vim-language-server
+- shellcheck 
+- beautysh 
+- lua-language-server
+- stylua 
+- luacheck 
+- clang-format 
+- clangd 
+- codelldb 
+- checkstyle 
+- jdtls
+
+</details>
 
 ## Java-Setup
 
