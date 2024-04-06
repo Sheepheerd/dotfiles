@@ -22,7 +22,7 @@
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text eendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Noto Sans Regular 10
+font pango: JetBrainsMono Nerd Font Mono Medium 10
 
 # set the mod key to the winkey:
 set $mod Mod4
@@ -274,7 +274,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec /usr/bin/brave
+bindsym $mod+w exec /usr/bin/librewolf
 bindsym $mod+n exec $HOME/.config/i3/scripts/start_nnn
 bindsym $mod+o exec $HOME/.config/i3/scripts/picom_switch
 
@@ -389,7 +389,7 @@ exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill "/home/sheep/Documents/Neytrix/dark.png"
+exec --no-startup-id sleep 1 && feh --bg-fill "~/.screenlayout/wallpaper/dark.png"
 
 # set powersavings for display:
 #exec --no-startup-id xset s 480 dpms 600 600 600
@@ -473,24 +473,24 @@ for_window [class="urxvt"] border pixel 1
 ######################################
 
 # Define colors variables:
-set $darkbluetrans	#08052be6
-set $darkblue		#08052b
-set $lightblue		#5294e2
-set $urgentred		#e53935
-set $white		#ffffff
-set $black		#000000
-set $purple		#e345ff
-set $darkgrey		#383c4a
-set $grey		#b0b5bd
-set $mediumgrey		#8b8b8b
-set $yellowbrown	#e1b700
+#set $darkbluetrans	#08052be6
+#set $darkblue		#08052b
+#set $lightblue		#5294e2
+#set $urgentred		#e53935
+#set $white		#ffffff
+#set $black		#000000
+#set $purple		#e345ff
+#set $darkgrey		#383c4a
+#set $grey		#b0b5bd
+#set $mediumgrey		#8b8b8b
+#set $yellowbrown	#e1b700
 
-# define colors for windows:
-#class		        	border		bground		text		indicator	child_border
-client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
-client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
-client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
-client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
+## define colors for windows:
+##class		        	border		bground		text		indicator	child_border
+#client.focused		    	$lightblue	$darkblue	$white		$mediumgrey	$mediumgrey
+#client.unfocused	    	$darkblue	$darkblue	$grey		$darkgrey	$darkgrey
+#client.focused_inactive		$darkblue	$darkblue	$grey		$black		$black
+#client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -499,73 +499,86 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 # Launch Polybar. Take a look at ~/.confi/polybar/config to
 # configure the bar.
-#exec_always  ~/.config/polybar/launch.sh
+# class                 border  backgr. text    indicator child_border
+client.focused          #00000000 #00000000 #D8DEE9 #00000000   #00000000
+client.focused_inactive #1e1e2e #1e1e2e #D8DEE9 #1e1e2e   #1e1e2e
+client.unfocused        #1e1e2e #1e1e2e #D8DEE9 #1e1e2e   #1e1e2e
+client.urgent           #1e1e2e #1e1e2e #D8DEE9 #1e1e2e   #1e1e2e
+client.placeholder      #1e1e2e #1e1e2e #D8DEE9 #1e1e2e   #1e1e2e
+
+client.background       #1e1e2e
+
+
+default_border none
+default_floating_border none
+
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
-bar {
-        font pango: JetBrainsMono Nerd Font Mono Medium 10
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-            position top
-        output DP-2
-            i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-            #tray_output primary
-            tray_padding 0
+#bar {
+        #font pango: JetBrainsMono Nerd Font Mono Medium 10
+        #status_command i3blocks -c ~/.config/i3/i3blocks.conf
+            #position top
+        #output DP-2
+            #i3bar_command i3bar --transparency
+## it could be that you have no primary display set: set one (xrandr --output <output> --primary)
+## reference: https://i3wm.org/docs/userguide.html#_tray_output
+            ##tray_output primary
+            #tray_padding 0
 
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-strip_workspace_numbers yes
-##strip_workspace_name no
-
-            colors {
-            separator          $purple
-            background         #00000000
-            #background         $darkgrey
-            statusline         $white
-#                          		border 		        bg		txt		indicator
-        #focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
-        focused_workspace #00000000     #00000000 $white   $purple
-        inactive_workspace    #00000000   #00000000   $lightblue  $purple
-        active_workspace	#00000000      	#00000000	$lightblue	$purple
-        #inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-        urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-    }
-}
-
-## you can add different bars for multidisplay setups on each display:
-## set output HDMI-0 to the display you want the bar, --transparency can be set.
-## Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
-## https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
-## #08052be6 --> e6=90%
-
- bar {
-        font pango: JetBrainsMono Nerd Font Mono Medium 10
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        i3bar_command i3bar --transparency
-        output DP-4
-        position top
-
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
+## When strip_workspace_numbers is set to yes,
+## any workspace that has a name of the form
+## “[n][:][NAME]” will display only the name.
 #strip_workspace_numbers yes
-##strip_workspace_name no
+###strip_workspace_name no
 
-            colors {
-            separator          $purple
-            background         #00000000
-            statusline         $white
-#                          		border 		        bg		txt		indicator
-        focused_workspace	#00000000	   	#00000000		$white	$purple
-        active_workspace	#00000000      	#00000000	$lightblue	$purple
-        inactive_workspace	#00000000   	#00000000	$lightblue		$purple
-        urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-    }
-}
+            #colors {
+            #separator          $purple
+            #background         #00000000
+            ##background         $darkgrey
+            #statusline         $white
+##                          		border 		        bg		txt		indicator
+        ##focused_workspace	$mediumgrey	   	$grey		$darkgrey	$purple
+        #focused_workspace #00000000     #00000000 $white   $purple
+        #inactive_workspace    #00000000   #00000000   $lightblue  $purple
+        #active_workspace	#00000000      	#00000000	$lightblue	$purple
+        ##inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
+        #urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+    #}
+#}
+
+### you can add different bars for multidisplay setups on each display:
+### set output HDMI-0 to the display you want the bar, --transparency can be set.
+### Transparency needs rgba color codes to be used where the last two letters are the transparency factor see here:
+### https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4
+### #08052be6 --> e6=90%
+
+ #bar {
+        #font pango: JetBrainsMono Nerd Font Mono Medium 10
+        #status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        #i3bar_command i3bar --transparency
+        #output DP-4
+        #position top
+
+## When strip_workspace_numbers is set to yes,
+## any workspace that has a name of the form
+## “[n][:][NAME]” will display only the name.
+##strip_workspace_numbers yes
+###strip_workspace_name no
+
+            #colors {
+            #separator          $purple
+            #background         #00000000
+            #statusline         $white
+##                          		border 		        bg		txt		indicator
+        #focused_workspace	#00000000	   	#00000000		$white	$purple
+        #active_workspace	#00000000      	#00000000	$lightblue	$purple
+        #inactive_workspace	#00000000   	#00000000	$lightblue		$purple
+        #urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+    #}
+#}
 
 
 
@@ -606,6 +619,6 @@ exec --no-startup-id discord
 
 exec --no-startup-id solaar --window=hide
 
-bindsym $mod+m exec $HOME/.config/i3/scripts/mute
+bindsym $mod+m exec "$HOME/Documents/Scripts/mute-mic"
 
 for_window [title="^.*"] border pixel 0

@@ -34,6 +34,9 @@ install certain languages, linters, and debuggers.
 
 </details>
 
+## LSP
+The java lsp (language-server-protocol) is set up with lsp-zero. To add a language server, download the package with mason and add it to the lsp.lua config file.
+
 ## Java-Setup
 
 If you are wanting to debug and test java with dap-ui, you will
