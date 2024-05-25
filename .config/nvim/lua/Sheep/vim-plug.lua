@@ -112,4 +112,7 @@ Plug("toppair/peek.nvim", { ["do"] = "deno task --quiet build:fast" })
 -- Vim-Fugitive
 Plug("tpope/vim-fugitive")
 
+-- Smooth Scrolling
+Plug("karb94/neoscroll.nvim")
+
 vim.call("plug#end")
