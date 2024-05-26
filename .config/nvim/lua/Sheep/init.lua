@@ -2,6 +2,7 @@
 require("Sheep.remaps")
 require("Sheep.vim-plug")
 require("after.harpoon")
+require("after.colors")
 require("nvim-tree").setup()
 require("mason").setup()
 require("after.set")

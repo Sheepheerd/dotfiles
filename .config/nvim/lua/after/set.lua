@@ -36,9 +36,7 @@ if has("persistent_undo")
 endif
 ]]
 
--- Color Scheme
-vim.o.background = "dark"
-vim.cmd.colorscheme("catppuccin")
+-- vim.o.background = "dark"
 
 -- Enable Keyboard
 vim.o.clipboard = "unnamedplus"
