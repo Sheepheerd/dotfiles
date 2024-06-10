@@ -37,20 +37,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
--- codeium
-
-vim.keymap.set("i", "<C-g>", function()
-	return vim.fn["codeium#Accept"]()
-end, { expr = true, silent = true })
-vim.keymap.set("i", "<C-]>", function()
-	return vim.fn["codeium#Clear"]()
-end, { expr = true, silent = true })
-vim.keymap.set("i", "<leader><C-n>", function()
-	return vim.fn["codeium#CycleCompletions"](1)
-end, { expr = true, silent = true })
-vim.keymap.set("i", "<leader><C-p>", function()
-	return vim.fn["codeium#CycleCompletions"](-1)
-end, { expr = true, silent = true })
 
 -- Ollama
 vim.keymap.set("n", "<leader>]", ":Gen<CR>")
