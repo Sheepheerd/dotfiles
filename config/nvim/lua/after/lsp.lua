@@ -44,6 +44,9 @@ require("mason-lspconfig").setup({
 		lua_ls = function()
 			require("lspconfig").lua_ls.setup({})
 		end,
+		bashls = function()
+			require("lspconfig").bashls.setup({})
+		end,
 		clangd = function()
 			require("lspconfig").clangd.setup({
 				capabilities = capabilities,
