@@ -22,17 +22,18 @@ require('nvim-treesitter.configs').setup {
         disable = {"c", "rust"},
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
         additional_vim_regex_highlighting = false
-    }
-    indent = {enable = true}
+    },
+    indent = {enable = true,},
 
     incremental_selection = {
-        enable = truekeymaps = {
+        enable = true,
+        keymaps = {
             init_selection = "<C-space>",
             node_incremental = "<C-space>",
             scope_incremental = false,
             node_decremental = "<bs>",
-        }
-    }
+        },
+    },
     textobjects = {
     move = {
       enable = true,
@@ -41,6 +42,6 @@ require('nvim-treesitter.configs').setup {
       goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
       goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
     }
-  }
+  },
 
 }
