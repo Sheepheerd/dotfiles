@@ -81,7 +81,7 @@ Plug("preservim/nerdcommenter")
 
 --Codeium
 Plug("nvim-lua/plenary.nvim")
-Plug("Exafunction/codeium.vim", { ["branch"] = "main" })
+--Plug("Exafunction/codeium.vim", { ["branch"] = "main" })
 
 --RRethy/vim-illuminate
 Plug("RRethy/vim-illuminate")
