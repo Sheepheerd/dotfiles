@@ -1,9 +1,10 @@
 local jdtls = require("jdtls")
-local root_markers = { "gradlew" }
+local root_markers = { "gradlew", ".javaroot" }
 
---local root_dir = require('jdtls.setup').find_root(root_markers)
-local current_file = vim.fn.expand("%:p")
-root_dir = vim.fn.fnamemodify(current_file, ":h")
+-- Setting Home Based off of rootmarker
+local root_dir = require('jdtls.setup').find_root(root_markers)
+--local current_file = vim.fn.expand("%:p")
+--root_dir = vim.fn.fnamemodify(current_file, ":h")
 
 local java_home = os.getenv("JAVA_HOME")
 local home = os.getenv("HOME")
@@ -14,7 +15,9 @@ end
 
 local workspace_folder = vim.fn.stdpath("cache") .. "/nvim-jdtls" .. "/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
-local java_agent = vim.fn.glob("/usr/lib/lombok-common/lombok.jar")
+--Set Lombok.jar File Location
+--local java_agent = vim.fn.glob("/usr/lib/lombok-common/lombok.jar")
+local java_agent = os.getenv("HOME") .. "/.local/lib/lombok.jar"
 
 jdtls.jol_path = os.getenv("HOME") .. "/apps/jol.jar"
 local config = {
