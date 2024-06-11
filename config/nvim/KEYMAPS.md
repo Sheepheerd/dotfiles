@@ -8,6 +8,7 @@
 - `<leader>d`   - Black Hole Delete
 - `<leader>e`   - Vim File Explorer
 </details>
+
 ## Plugin Related
 <details/>
     <summary>Telescope</summary>
