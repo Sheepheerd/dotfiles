@@ -63,8 +63,10 @@ install certain languages, linters, and debuggers.
 - [trouble](https://github.com/folke/trouble.nvim)
 - [neoscroll](https://github.com/karb94/neoscroll.nvim)
 <!--- [peek](https://github.com/toppair/peek.nvim)-->
-
+</details>
 ## Keymaps
+
+<!--[Config]()-->
 
 ## LSP
 The java lsp (language-server-protocol) is set up with lsp-zero. To add a language server, download the package with mason and add it to the lsp.lua config file.
