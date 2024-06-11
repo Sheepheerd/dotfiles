@@ -2,7 +2,7 @@
 
 ## Overview
 
-- [nvim](.config/nvim)
+- [nvim](config/nvim)
 - [alacritty](.config/alacritty)
 - [tmux](.tmux.conf)
 - [zsh](.zshrc)
