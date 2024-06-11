@@ -3,10 +3,10 @@
 ## Non-Plugin Related
 <details/>
     <summary>basic</summary>
-- ```<leader>t```   - Enter Terminal Mode
-- ```<Esc>```       - Escape Terminal Mode
-- ```<leader>d```   - Black Hole Delete
-- ```<leader>e```   - Vim File Explorer
+- ```<leader>t``` Enter Terminal Mode
+- ```<Esc>```     Escape Terminal Mode
+- ```<leader>d``` Black Hole Delete
+- ```<leader>e``` Vim File Explorer
 </details>
 
 ## Plugin Related
