@@ -12,7 +12,10 @@ Neovim is a lighter and faster alternative to other IDEs. This setup aims at cre
 
 ## How To Install
 
+Install [vim-plug](https://github.com/junegunn/vim-plug)
+
 Place the `nvim` folder in the `~/.config` folder. Open up neovim, skip through the errors, and execute `:PlugInstall`
+
 ## Mason
 
 [Mason](https://github.com/williamboman/mason.nvim) is a package manager for Neovim. Using the [Masontools](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) we can auto

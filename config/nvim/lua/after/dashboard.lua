@@ -21,7 +21,7 @@ require('dashboard').setup({
           key = 'd',
         },
       },
-    footer = {"Why? To Prove Nick Wrong"}
+    footer = {""}
     },
   })
 
