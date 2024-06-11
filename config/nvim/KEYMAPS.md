@@ -11,7 +11,7 @@
 
 ## Plugin Related
 <details/>
-    <summary>Telescope</summary>
+## Telescope
 - `<leader>y`   Copy to System Clipboard
 - `<leader>ff`  Toggle Telescope Find Files
 - `<leader>fg`  Toggle Telescope Live Grep
