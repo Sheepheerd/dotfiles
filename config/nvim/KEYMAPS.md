@@ -29,6 +29,7 @@
 <details/>
 
 <Summary>harpoon</summary>
+
 - `Ctrl-e`      - Open Stabbed Windows
 - `<leader>a`   - Stab Window
 - `Ctrl-t`      - Switch to Window 1
