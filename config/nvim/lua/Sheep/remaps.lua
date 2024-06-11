@@ -24,8 +24,6 @@ vim.keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>")
 -- Black Hole Delete
 vim.keymap.set("v", "<leader>d", '"_d<CR>')
 
--- nvim-dap-ui
-vim.keymap.set("n", "<leader>o", ':lua require("dapui").toggle()<CR> ')
 
 -- source
 vim.keymap.set("n", "<leader><Ctrl>s ", ":source $HOME/.config/nvim/init.lua<CR>")
