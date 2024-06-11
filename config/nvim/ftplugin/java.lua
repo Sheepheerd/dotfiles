@@ -15,9 +15,9 @@ end
 
 local workspace_folder = vim.fn.stdpath("cache") .. "/nvim-jdtls" .. "/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
---Set Lombok.jar File Location
 --local java_agent = vim.fn.glob("/usr/lib/lombok-common/lombok.jar")
 local java_agent = os.getenv("HOME") .. "/.local/lib/lombok.jar"
+
 
 jdtls.jol_path = os.getenv("HOME") .. "/apps/jol.jar"
 local config = {
@@ -126,11 +126,11 @@ config.on_attach = function(client, bufnr)
 	local set = vim.keymap.set
 	require("jdtls.dap").setup_dap_main_class_configs()
 
-	set("n", "<leader>df", "<cmd>lua require('jdtls').test_class()<cr>", opts)
-	set("n", "<leader>dn", "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
+    set("n", "<leader>df", "<cmd>lua require('jdtls').test_class()<cr>", opts)
+    set("n", "<leader>dn", "<cmd>lua require('jdtls').test_nearest_method()<cr>", opts)
 
-	set("n", "<leader>df", jdtls.test_class, opts)
-	set("n", "<leader>dn", jdtls.test_nearest_method, opts)
+	--set("n", "<leader>df", jdtls.test_class, opts)
+	--set("n", "<leader>dn", jdtls.test_nearest_method, opts)
 	set("n", "<A-o>", "<cmd>lua require('jdtls').organize_imports()<cr>", opts)
 	set("n", "crv", "<cmd>lua require('jdtls').extract_variable()<cr>", opts)
 	set("x", "crv", "<esc><cmd>lua require('jdtls').extract_variable(true)<cr>", opts)
