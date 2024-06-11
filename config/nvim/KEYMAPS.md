@@ -4,7 +4,7 @@
 
 <details/>
 
-<Summary>Plugins</Summary>
+<Summary>basic</Summary>
 
 - `<leader>t`   - Enter Terminal Mode
 - `<Esc>`       - Escape Terminal Mode
