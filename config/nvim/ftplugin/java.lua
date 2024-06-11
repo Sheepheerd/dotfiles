@@ -5,6 +5,7 @@ local root_markers = { "gradlew" }
 local current_file = vim.fn.expand("%:p")
 root_dir = vim.fn.fnamemodify(current_file, ":h")
 
+local java_home = os.getenv("JAVA_HOME")
 local home = os.getenv("HOME")
 if not root_dir then
 	print("Unable to determine project root.")
@@ -12,7 +13,6 @@ if not root_dir then
 end
 
 local workspace_folder = vim.fn.stdpath("cache") .. "/nvim-jdtls" .. "/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
---local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
 local java_agent = vim.fn.glob("/usr/lib/lombok-common/lombok.jar")
 
@@ -67,6 +67,9 @@ local config = {
 			},
 			useBlocks = true,
 		},
+
+
+        -- Configure for your Java Environment
 		configuration = {
 			updateBuildConfiguration = "interactive",
 			runtimes = {
@@ -79,7 +82,7 @@ local config = {
 	},
 }
 config.cmd = {
-	vim.fn.glob("/usr/lib/jvm/java-17-openjdk/bin/java"),
+	java_home .. vim.fn.glob("/bin/java"),
 	"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 	"-Dosgi.bundles.defaultStartLevel=4",
 	"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -93,6 +96,8 @@ config.cmd = {
 	"--add-opens",
 	"java.base/java.lang=ALL-UNNAMED",
 	"-jar",
+
+    -- Change dev to be change able like in jdtls script
 	vim.fn.glob(
 		home
 			.. "/dev/eclipse/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_*.jar"
@@ -131,6 +136,7 @@ config.on_attach = function(client, bufnr)
 	set("x", "crm", "<esc><Cmd>lua require('jdtls').extract_method(true)<cr>", opts)
 end
 
+-- Change dev to be changable like in jdtls script
 local jar_patterns = {
 	home .. "/dev/microsoft/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
 	home .. "/dev/dgileadi/vscode-java-decompiler/server/*.jar",
@@ -162,6 +168,8 @@ local plugin_path = home
 --"org.apiguardian*.jar",
 --})
 --vim.list_extend(jar_patterns, bundle_list)
+
+-- Change dev
 local bundles = {
 	vim.fn.glob(
 		home .. "/dev/microsoft/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
@@ -194,6 +202,5 @@ config["init_options"] = {
 	extendedClientCapabilities = extendedClientCapabilities,
 	bundles = bundles,
 }
--- mute; having progress reports is enough
 --config.handlers['language/status'] = function() end
 jdtls.start_or_attach(config)

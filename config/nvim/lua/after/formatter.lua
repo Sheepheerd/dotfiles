@@ -1,7 +1,7 @@
 -- Utilities for creating configurations
 local util = require("formatter.util")
 
-vim.keymap.set('n', '<Leader>F', ':FormatWrite<CR>')
+vim.keymap.set("n", "<Leader>F", ":FormatWrite<CR>")
 
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
@@ -16,14 +16,14 @@ require("formatter").setup({
 		java = {
 			require("formatter.filetypes.java").clangformat,
 
-            	on_attach = function()
-		vim.cmd([[
+			on_attach = function()
+				vim.cmd([[
 			augroup FormatAutogroup
 				autocmd!
 				autocmd BufWritePost * FormatWrite
 			augroup END
 		]])
-	end
+			end,
 		},
 
 		lua = {
@@ -53,15 +53,10 @@ require("formatter").setup({
 				}
 			end,
 		},
-        
-        cpp = {
-            require("formatter.filetypes.cpp").clangformat,
 
-
-
-
-
-        },
+		cpp = {
+			require("formatter.filetypes.cpp").clangformat,
+		},
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {

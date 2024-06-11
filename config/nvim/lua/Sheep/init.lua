@@ -24,5 +24,5 @@ require("after.indentscope")
 require("after.trouble")
 require("after.neoscroll")
 --require("vim-fugitive").setup()
-require("after.peek")
+--require("after.peek")
 
