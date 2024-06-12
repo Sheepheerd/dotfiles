@@ -1,4 +1,46 @@
 -- vim.cmd('lua require("dapui").setup()')
+return {
+  "mfussenegger/nvim-dap",
+  recommended = true,
+  desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
+
+  dependencies = {
+
+    -- fancy UI for the debugger
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" },
+      -- stylua: ignore
+      keys = {
+        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
+        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
+      },
+      opts = {},
+      config = function(_, opts)
+        local dap = require("dap")
+        local dapui = require("dapui")
+        dapui.setup(opts)
+        dap.listeners.after.event_initialized["dapui_config"] = function()
+          dapui.open({})
+        end
+        dap.listeners.before.event_terminated["dapui_config"] = function()
+          dapui.close({})
+        end
+        dap.listeners.before.event_exited["dapui_config"] = function()
+          dapui.close({})
+        end
+      end,
+    },
+
+    -- virtual text for the debugger
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      opts = {},
+    },
+  },
+
+  config = function()
+
 local dap, dapui = require("dap"), require("dapui")
 
 dap.adapters.python = {
@@ -91,3 +133,5 @@ local mappings = {
 for keys, mapping in pairs(mappings) do
 	vim.api.nvim_set_keymap("n", keys, "", { callback = mapping, noremap = true })
 end
+end,
+}

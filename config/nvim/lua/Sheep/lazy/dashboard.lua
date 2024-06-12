@@ -1,4 +1,8 @@
-require('dashboard').setup({
+return{
+      'nvimdev/dashboard-nvim',
+  event = 'VimEnter',
+  config = function()
+    require('dashboard').setup({
     theme = 'hyper',
     config = {
       week_header = {
@@ -23,5 +27,7 @@ require('dashboard').setup({
       },
     footer = {""}
     },
-  })
+  }) end,
+    dependencies = { {'nvim-tree/nvim-web-devicons'}}
+  }
 

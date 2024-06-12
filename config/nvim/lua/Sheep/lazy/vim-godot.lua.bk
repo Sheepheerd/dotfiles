@@ -1,0 +1,7 @@
+return {
+    "vim-godot",
+    config = function()
+
+require('vim-godot').setup()
+end,
+}
