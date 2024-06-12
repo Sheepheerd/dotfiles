@@ -23,7 +23,8 @@ return {
 			vim.lsp.protocol.make_client_capabilities(),
 			cmp_lsp.default_capabilities()
 		)
-		require("java").setup()
+		require("java").setup() -- must be set up before lsp
+		require("neoconf").setup({})
 		require("fidget").setup({})
 		require("lspconfig").jdtls.setup({
 			--  list of file that exists in root of the project
