@@ -151,10 +151,10 @@ function M.setup()
 				includeDecompiledSources = true,
 			},
 			format = {
-				enabled = false,
+				enabled = true,
 				settings = {
-					url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
-					profile = "GoogleStyle",
+					url = vim.fn.stdpath("config") .. "/lang_servers/steve-betts-eclipse-java.xml",
+					profile = "SteveEclipse",
 				},
 			},
 			eclipse = {

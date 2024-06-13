@@ -4,7 +4,7 @@ return {
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				"checkstyle",
-				"clang-format",
+				--				"clang-format",
 				"clangd",
 				"codelldb",
 				"google-java-format",
@@ -12,7 +12,7 @@ return {
 				"java-test",
 				"jdtls",
 				"lua-language-server",
-				"luacheck",
+				--				"luacheck",
 				"pyright",
 				"shellcheck",
 				"stylua",

@@ -3,7 +3,7 @@ return {
 	opts = {
 		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		linters_by_ft = {
-			java = { "checkstyle" },
+			--	java = { "checkstyle" },
 		},
 	},
 	config = function(_, opts)

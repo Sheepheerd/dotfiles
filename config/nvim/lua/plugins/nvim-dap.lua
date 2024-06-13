@@ -29,7 +29,7 @@ return {
 					mode = { "n" },
 				},
 				{
-					"<C-c>",
+					"<A-c>",
 					function()
 						require("dap").continue()
 					end,
