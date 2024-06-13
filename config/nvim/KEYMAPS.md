@@ -33,7 +33,7 @@
 - `Ctrl-e`      - Open Stabbed Windows
 - `<leader>a`   - Stab Window
 - `Ctrl-t`      - Switch to Window 1
-- `Ctrl-h`      - Swith to Window 2
+- `Ctrl-h`      - Switch to Window 2
 
 </details>
 
@@ -60,7 +60,7 @@
 - `Ctrl-w`      - Elements Watches Add
 - `Ctrl-m`      - Float Element
 - `Ctrl-v`      - Float Element Scopes
-- `Ctrl-r`      - Flaot Element Repl
+- `Ctrl-r`      - Float Element Repl
 - `Ctrl-q`      - Terminate
 
 </details>
@@ -69,13 +69,13 @@
 
 <Summary>lsp-zero.nvim</summary>
 
-- `gD`          - Goto Decleration
-- `gd`          - Goto Definition
+- `gD`          - Go to Declaration
+- `gd`          - Go to Definition
 - `K`           - Hover
 - `<leader>vws` - Workspace Symbol
 - `<leader>vd`  - Diagnostic Open Float
-- `[d`          - Diagnostic Goto Next
-- `]d`          - Diagnostic Goto Previous
+- `[d`          - Diagnostic Go to Next
+- `]d`          - Diagnostic Go to Previous
 - `<leader>vca` - Code Action
 - `<leader>vrr` - References
 - `Ctrl-h`      - Signature Help

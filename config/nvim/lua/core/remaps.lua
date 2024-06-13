@@ -19,11 +19,12 @@ vim.keymap.set("n", "<leader>t", ":terminal<CR>")
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
-vim.keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>")
+-- Nvim Tree
+
+vim.keymap.set("n", "<leader>f", ":Neotree toggle<CR>")
 
 -- Black Hole Delete
 vim.keymap.set("v", "<leader>d", '"_d<CR>')
-
 
 -- source
 vim.keymap.set("n", "<leader><Ctrl>s ", ":source $HOME/.config/nvim/init.lua<CR>")
@@ -35,12 +36,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
-
--- Ollama
-vim.keymap.set("n", "<leader>]", ":Gen<CR>")
-vim.keymap.set("v", "<leader>]", ":Gen<CR>")
-
 -- Neovim File Explorer Built init
 vim.keymap.set("n", "<leader>e", ":Explore<CR>")
 
-vim.g.codeium_disable_bindings = 1
+-- Nvim-treehopper
+vim.keymap.set("n", "m", "<cmd>lua require('tsht').nodes()<CR>")
+
+-- SPELL TOGGLE
+-- Pressing ,ss will toggle and untoggle spell checking
+vim.keymap.set("n", "<leader>ss", "<cmd>setlocal spell!<cr>", { desc = "Toggle Spell Checking" })

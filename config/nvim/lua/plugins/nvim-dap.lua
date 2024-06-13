@@ -1,137 +1,155 @@
--- vim.cmd('lua require("dapui").setup()')
+-- debug.lua
+--
+-- Shows how to use the DAP plugin to debug your code.
+--
+-- Primarily focused on configuring the debugger for Go, but can
+-- be extended to other languages as well. That's why it's called
+-- kickstart.nvim and not kitchen-sink.nvim ;)
+
 return {
-  "mfussenegger/nvim-dap",
-  recommended = true,
-  desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
-
-  dependencies = {
-
-    -- fancy UI for the debugger
-    {
-      "rcarriga/nvim-dap-ui",
-      dependencies = { "nvim-neotest/nvim-nio" },
-      -- stylua: ignore
-      keys = {
-        { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-        { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-      },
-      opts = {},
-      config = function(_, opts)
-        local dap = require("dap")
-        local dapui = require("dapui")
-        dapui.setup(opts)
-        dap.listeners.after.event_initialized["dapui_config"] = function()
-          dapui.open({})
-        end
-        dap.listeners.before.event_terminated["dapui_config"] = function()
-          dapui.close({})
-        end
-        dap.listeners.before.event_exited["dapui_config"] = function()
-          dapui.close({})
-        end
-      end,
-    },
-
-    -- virtual text for the debugger
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      opts = {},
-    },
-  },
-
-  config = function()
-
-local dap, dapui = require("dap"), require("dapui")
-
-dap.adapters.python = {
-	type = "executable",
-	-- command = os.getenv("HOME") .. '/.virtenv/debug_vert/bin/python',
-	command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
-	args = { "-m", "debugpy.adapter" },
-}
-
-dap.adapters.godot = { type = "server", host = "127.0.0.1", port = 6006 }
-
-dap.configurations.gdscript = {
-	{
-		type = "godot",
-		request = "launch",
-		name = "Launch scene",
-		project = "${workspaceFolder}",
-		launch_scene = true,
-	},
-}
-dap.configurations.python = {
-	{
-		type = "python",
-		request = "launch",
-		name = "Launch file",
-		program = "${file}",
-		pythonPath = function()
-			return "/usr/bin/python"
-		end,
-	},
-}
-
-dap.adapters.codelldb = {
-	type = "server",
-	port = "${port}",
-	executable = {
-		command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/codelldb/codelldb",
-		args = { "--port", "${port}" },
-	},
-}
-dap.configurations.cpp = {
-	{
-		name = "Launch",
-		type = "codelldb",
-		request = "launch",
-		program = function()
-			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-		end,
-		cwd = "${workspaceFolder}",
-		stopOnEntry = false,
-	},
-}
-dapui.setup({
-	force_buffers = false,
-	element_mappings = { scopes = { edit = "l" } },
-	layouts = {
+	"mfussenegger/nvim-dap",
+	dependencies = {
+		-- Creates a beautiful debugger UI
 		{
-			elements = { "scopes", "breakpoints", "stacks", "watches" },
-			size = 80,
-			position = "left",
+			"rcarriga/nvim-dap-ui",
+			keys = {
+				{
+					"<leader>du",
+					function()
+						require("dapui").toggle({})
+					end,
+					desc = "Dap UI",
+				},
+				{
+					"<leader>de",
+					function()
+						require("dapui").eval()
+					end,
+					desc = "Eval",
+					mode = { "n" },
+				},
+				{
+					"<C-c>",
+					function()
+						require("dap").continue()
+					end,
+					desc = "Dap Continue",
+					mode = { "n" },
+				},
+				{
+					"<C-x>",
+					function()
+						require("dap").toggle_breakpoint()
+					end,
+					desc = "Dap Toggle Breakpoint",
+					mode = { "n", "v" },
+				},
+			},
 		},
-		{ elements = { "repl", "console" }, size = 0.25, position = "bottom" },
+
+		-- Installs the debug adapters for you
+		"williamboman/mason.nvim",
+		"jay-babu/mason-nvim-dap.nvim",
+
+		-- Add your own debuggers here
+		"leoluz/nvim-dap-go",
 	},
-	render = { max_value_lines = 3 },
-	floating = { max_width = 0.9, max_height = 0.5, border = vim.g.border_chars },
-})
-require("mason-nvim-dap").setup({
-	ensure_installed = { "codelldb" },
-})
-local mappings = {
-	["<M-c>"] = dap.continue,
-	["<M-right>"] = dap.step_over,
-	["<M-down>"] = dap.step_into,
-	["<M-up>"] = dap.step_out,
-	["<M-x>"] = dap.toggle_breakpoint,
-	["<M-t>"] = function()
-		dapui.toggle({ reset = true })
+	lazy = true,
+	config = function()
+		local dap = require("dap")
+		local dapui = require("dapui")
+
+		require("mason-nvim-dap").setup({
+			-- Makes a best effort to setup the various debuggers with
+			-- reasonable debug configurations
+			automatic_setup = true,
+			-- You can provide additional configuration to the handlers,
+			-- see mason-nvim-dap README for more information
+			handlers = {},
+			-- You'll need to check that you have the required things installed
+			-- online, please don't ask me how to install them :)
+			ensure_installed = {
+				-- Update this to ensure that you have the debuggers for the langs you want
+				"jdtls",
+			},
+		})
+
+		-- Dap UI setup
+		-- For more information, see |:help nvim-dap-ui|
+		dapui.setup({
+			-- Set icons to characters that are more likely to work in every terminal.
+			--    Feel free to remove or use ones that you like more! :)
+			--    Don't feel like these are good choices.
+			icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
+			controls = {
+				icons = {
+					pause = "⏸",
+					play = "▶",
+					step_into = "⏎",
+					step_over = "⏭",
+					step_out = "⏮",
+					step_back = "b",
+					run_last = "▶▶",
+					terminate = "⏹",
+				},
+			},
+		})
+
+		-- Open and close dap-ui automatically when running debug session
+		--dap.listeners.after.event_initialized["dapui_config"] = dapui.open
+		--dap.listeners.before.event_terminated["dapui_config"] = dapui.close
+		--dap.listeners.before.event_exited["dapui_config"] = dapui.close
+
+		-- Adapters
+		dap.adapters.python = {
+			type = "executable",
+			-- command = os.getenv("HOME") .. '/.virtenv/debug_vert/bin/python',
+			command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
+			args = { "-m", "debugpy.adapter" },
+		}
+
+		dap.adapters.godot = { type = "server", host = "127.0.0.1", port = 6006 }
+
+		dap.configurations.gdscript = {
+			{
+				type = "godot",
+				request = "launch",
+				name = "Launch scene",
+				project = "${workspaceFolder}",
+				launch_scene = true,
+			},
+		}
+		dap.configurations.python = {
+			{
+				type = "python",
+				request = "launch",
+				name = "Launch file",
+				program = "${file}",
+				pythonPath = function()
+					return "/usr/bin/python"
+				end,
+			},
+		}
+
+		dap.adapters.codelldb = {
+			type = "server",
+			port = "${port}",
+			executable = {
+				command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/codelldb/codelldb",
+				args = { "--port", "${port}" },
+			},
+		}
+		dap.configurations.cpp = {
+			{
+				name = "Launch",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+				end,
+				cwd = "${workspaceFolder}",
+				stopOnEntry = false,
+			},
+		}
 	end,
-	["<M-k>"] = dapui.eval,
-	["<M-w>"] = dapui.elements.watches.add,
-	["<M-m>"] = dapui.float_element,
-	["<M-v>"] = function()
-		dapui.float_element("scopes")
-	end,
-	["<M-r>"] = function()
-		dapui.float_element("repl")
-	end,
-	["<M-q>"] = dap.terminate,
-}
-for keys, mapping in pairs(mappings) do
-	vim.api.nvim_set_keymap("n", keys, "", { callback = mapping, noremap = true })
-end
-end,
 }
