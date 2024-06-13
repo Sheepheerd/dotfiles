@@ -117,7 +117,7 @@ function M.setup()
 		"-Declipse.product=org.eclipse.jdt.ls.core.product",
 		"-Dlog.protocol=true",
 		"-Dlog.level=ALL",
-		"-Xmx1g",
+		"-Xmx8g",
 		"-javaagent:" .. lombok_path,
 		"--add-modules=ALL-SYSTEM",
 		"--add-opens",

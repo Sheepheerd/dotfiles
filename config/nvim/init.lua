@@ -146,6 +146,8 @@ for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
 	-- end
 end
 
+--require("sonarlint").setup({})
+
 require("fidget").setup()
 
 -- INFO: Mason END

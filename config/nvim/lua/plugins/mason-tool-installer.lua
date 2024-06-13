@@ -17,6 +17,7 @@ return {
 				"shellcheck",
 				"stylua",
 				"vim-language-server",
+				"sonarlint-language-server",
 			},
 		})
 	end,
