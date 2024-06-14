@@ -120,7 +120,7 @@
         <setting id="org.eclipse.jdt.core.formatter.alignment_for_bitwise_operator" value="16"/>
         <setting id="org.eclipse.jdt.core.formatter.brace_position_for_annotation_type_declaration" value="next_line"/>
         <setting id="org.eclipse.jdt.core.formatter.insert_space_before_colon_in_for" value="insert"/>
-        <setting id="org.eclipse.jdt.core.formatter.alignment_for_resources_in_try" value="17"/>
+        <setting id="org.eclipse.jdt.core.formatter.alignment_for_resources_in_try" value="16"/>
         <setting id="org.eclipse.jdt.core.formatter.alignment_for_selector_in_method_invocation" value="16"/>
         <setting id="org.eclipse.jdt.core.formatter.never_indent_block_comments_on_first_column" value="false"/>
         <setting id="org.eclipse.jdt.core.formatter.insert_space_after_opening_paren_in_synchronized" value="do not insert"/>
