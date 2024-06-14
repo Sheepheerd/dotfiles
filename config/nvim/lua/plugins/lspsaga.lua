@@ -6,7 +6,7 @@ return {
 		--Please make sure you install markdown and markdown_inline parser
 		{ "nvim-treesitter/nvim-treesitter" },
 	},
-	opts = {
+	config = {
 		preview = {
 			lines_above = 0,
 			lines_below = 10,
@@ -51,7 +51,7 @@ return {
 		lightbulb = {
 			enable = true,
 			enable_in_insert = true,
-			sign = false,
+			sign = true,
 			sign_priority = 40,
 			virtual_text = true,
 		},
@@ -61,6 +61,7 @@ return {
 			insert_winblend = 0,
 			show_virt_line = true,
 			show_code_action = true,
+			show_layout = "float",
 			show_source = true,
 			jump_num_shortcut = true,
 			--1 is max
@@ -83,7 +84,7 @@ return {
 			in_select = true,
 		},
 		outline = {
-			win_position = "right",
+			win_position = "left",
 			win_with = "",
 			win_width = 30,
 			show_detail = true,
@@ -134,8 +135,7 @@ return {
 			hover = " ",
 			kind = {},
 		},
+		vim.keymap.set("n", "<leader>r", ":Lspsaga rename<CR>", {}),
+		vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {}),
 	},
-	config = function()
-		vim.keymap.set("n", "<leader>r", ":Lspsaga rename<CR>", {})
-	end,
 }

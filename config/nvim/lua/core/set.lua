@@ -24,6 +24,7 @@ if vim.fn.has("persistent_undo") == 1 then
 	vim.o.undodir = target_path
 	vim.o.undofile = true
 end
+vim.opt.swapfile = false
 
 -- Set highlight on search
 set.hlsearch = false
@@ -50,9 +51,8 @@ end, {})
 
 -- Color Scheme
 --vim.o.background = "dark"
-vim.cmd("colorscheme material-deep-ocean")
 set.termguicolors = true
---vim.cmd("colorscheme catppuccin-frappe")
+vim.cmd("colorscheme catppuccin-frappe")
 
 -- Enable Keyboard
 vim.o.clipboard = "unnamedplus"
@@ -61,6 +61,8 @@ vim.o.clipboard = "unnamedplus"
 vim.api.nvim_create_user_command("Config", function()
 	require("telescope.builtin").find_files({ cwd = "~/.config/nvim" })
 end, {})
+
+vim.opt.updatetime = 50
 
 -- Peek for md files
 --vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})

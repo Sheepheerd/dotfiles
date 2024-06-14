@@ -1,20 +1,20 @@
 return {
 	-- NOTE: First, some plugins that don't require any configuration
-	--	{
-	--		-- Adds git releated signs to the gutter, as well as utilities for managing changes
-	--		"lewis6991/gitsigns.nvim",
-	--		-- event = "VeryLazy",
-	--		opts = {
-	--			-- See `:help gitsigns.txt`
-	--			signs = {
-	--				add = { text = "+" },
-	--				change = { text = "~" },
-	--				delete = { text = "_" },
-	--				topdelete = { text = "‾" },
-	--				changedelete = { text = "~" },
-	--			},
-	--		},
-	--	},
+	{
+		--		-- Adds git releated signs to the gutter, as well as utilities for managing changes
+		"lewis6991/gitsigns.nvim",
+		-- event = "VeryLazy",
+		opts = {
+			-- See `:help gitsigns.txt`
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
 
 	-- Git related plugins
 	"tpope/vim-fugitive",
