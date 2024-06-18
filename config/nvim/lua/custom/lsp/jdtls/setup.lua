@@ -153,8 +153,7 @@ function M.setup()
 			format = {
 				enabled = true,
 				settings = {
-					url = vim.fn.stdpath("config") .. "/lang_servers/steve-betts-eclipse-java.xml",
-					profile = "SteveEclipse",
+					url = vim.fn.stdpath("config") .. "/lang_servers/eclipse.xml",
 				},
 			},
 			eclipse = {
