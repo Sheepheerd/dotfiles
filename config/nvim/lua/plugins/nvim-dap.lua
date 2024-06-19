@@ -29,7 +29,7 @@ return {
 					mode = { "n" },
 				},
 				{
-					"<A-c>",
+					"<leader>dc",
 					function()
 						require("dap").continue()
 					end,
@@ -37,7 +37,7 @@ return {
 					mode = { "n" },
 				},
 				{
-					"<C-x>",
+					"<leader>dx",
 					function()
 						require("dap").toggle_breakpoint()
 					end,

@@ -73,7 +73,7 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		-- event = "VeryLazy",
-		key = "gc",
+		keys = { "gc" },
 		opts = {},
 	},
 }
