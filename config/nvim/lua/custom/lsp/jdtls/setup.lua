@@ -153,7 +153,7 @@ function M.setup()
 			format = {
 				enabled = true,
 				settings = {
-					url = vim.fn.stdpath("config") .. "/lang_servers/eclipse.xml",
+					url = "home/sgarrett/.config/nvim/lang_servers/FormatEclipse.xml",
 				},
 			},
 			eclipse = {

@@ -49,11 +49,11 @@ return {
 			},
 		},
 		lightbulb = {
-			enable = false,
-			enable_in_insert = true,
-			sign = true,
-			sign_priority = 40,
-			virtual_text = true,
+			enable = true,
+			enable_in_insert = false,
+			sign = false,
+			sign_priority = 0,
+			virtual_text = false,
 		},
 		diagnostic = {
 			on_insert = true,
