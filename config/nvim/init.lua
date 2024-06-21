@@ -146,8 +146,6 @@ for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
 	-- end
 end
 
---require("sonarlint").setup({})
-
 require("fidget").setup()
 
 -- INFO: Mason END
@@ -244,4 +242,27 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	group = jdtls_lsp,
 	pattern = "java",
+})
+
+-- Setup Sonar after LSP
+
+require("sonarlint").setup({
+	server = {
+		cmd = {
+			"sonarlint-language-server",
+			-- Ensure that sonarlint-language-server uses stdio channel
+			"-stdio",
+			"-analyzers",
+			-- paths to the analyzers you need, using those for python and java in this example
+			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+		},
+	},
+	filetypes = {
+		-- Tested and working
+		"python",
+		"cpp",
+		"java",
+	},
 })
