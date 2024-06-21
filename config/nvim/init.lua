@@ -53,9 +53,6 @@ autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>vd", function()
 			vim.diagnostic.open_float()
 		end, opts)
-		vim.keymap.set("n", "<leader>vca", function()
-			vim.lsp.buf.code_action()
-		end, opts)
 		vim.keymap.set("n", "<leader>vrr", function()
 			vim.lsp.buf.references()
 		end, opts)
@@ -244,8 +241,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "java",
 })
 
--- Setup Sonar after LSP
-
 require("sonarlint").setup({
 	server = {
 		cmd = {
@@ -254,9 +249,10 @@ require("sonarlint").setup({
 			"-stdio",
 			"-analyzers",
 			-- paths to the analyzers you need, using those for python and java in this example
-			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
-			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
-			vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
+			vim.fn.expand("/home/sgarrett/.config/nvim/mason/share/sonarlint-analyzers/sonarjava.jar"),
 		},
 	},
 	filetypes = {

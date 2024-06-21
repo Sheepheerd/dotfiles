@@ -70,10 +70,4 @@ return {
 			-- refer to the configuration section below
 		},
 	},
-	{
-		"numToStr/Comment.nvim",
-		-- event = "VeryLazy",
-		keys = { "gc" },
-		opts = {},
-	},
 }
