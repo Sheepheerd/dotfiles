@@ -1,26 +1,39 @@
 return {
 	"dsych/blanket.nvim",
 	config = function()
+		local api = vim.api
+		local path = require("plenary.path")
+
+		-- Define find_root function
+		local function find_root(markers)
+			local source = api.nvim_buf_get_name(api.nvim_get_current_buf())
+			local dirname = vim.fn.fnamemodify(source, ":p:h")
+			local getparent = function(p)
+				return vim.fn.fnamemodify(p, ":h")
+			end
+			while getparent(dirname) ~= dirname do
+				for _, marker in ipairs(markers) do
+					if path:new(dirname, marker):exists() then
+						return dirname
+					end
+				end
+				dirname = getparent(dirname)
+			end
+			return nil -- Handle case where no root is found
+		end
+
+		-- Configure blanket.nvim
 		require("blanket").setup({
-			-- can use env variables and anything that could be interpreted by expand(), see :h expandcmd()
-			-- OPTIONAL
-			report_path = vim.fn.getcwd() .. "/target/site/jacoco/jacoco.xml",
-			-- refresh gutter every time we enter java file
-			-- defauls to empty - no autocmd is created
+			report_path = find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+				.. "/target/site/jacoco/jacoco.xml",
 			filetypes = "java",
-			-- for debugging purposes to see whether current file is present inside the report
-			-- defaults to false
 			silent = true,
-			-- can set the signs as well
 			signs = {
 				priority = 10,
 				incomplete_branch = "█",
 				uncovered = "█",
 				covered = "█",
 				sign_group = "Blanket",
-
-				-- and the highlights for each sign!
-				-- useful for themes where below highlights are similar
 				incomplete_branch_color = "WarningMsg",
 				covered_color = "Statement",
 				uncovered_color = "Error",
