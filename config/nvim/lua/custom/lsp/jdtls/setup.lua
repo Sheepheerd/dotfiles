@@ -164,9 +164,9 @@ function M.setup()
 			},
 			signatureHelp = { enabled = true },
 			contentProvider = { preferred = "fernflower" },
-			-- eclipse = {
-			-- 	downloadSources = true,
-			-- },
+			eclipse = {
+				downloadSources = true,
+			},
 			-- implementationsCodeLens = {
 			-- 	enabled = true,
 			-- },
@@ -190,8 +190,8 @@ function M.setup()
 				importOrder = {
 					"java",
 					"javax",
-					"com",
 					"org",
+					"com",
 				},
 			},
 			sources = {

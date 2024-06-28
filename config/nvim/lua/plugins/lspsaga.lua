@@ -81,7 +81,8 @@ return {
 			exec = "<CR>",
 			mark = "x",
 			confirm = "<CR>",
-			in_select = true,
+			--in_select = true,
+			whole_project = false,
 		},
 		outline = {
 			win_position = "left",
