@@ -16,4 +16,8 @@ return {
 	keys = {
 		{ "<leader>FG", mode = "n", "<cmd>Fugit2<cr>" },
 	},
+	opts = {
+
+		libgit2_path = vim.fn.glob(os.getenv("HOME") .. "/.local/lib/libgit2.so.1.*"),
+	},
 }
