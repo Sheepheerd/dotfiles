@@ -8,27 +8,42 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="eastwood"
+#ZSH_THEM="eastwood"
 
-plugins=(
-  git
-  virtualenv
-)
+
+
 
 #Uncomment for OMzsh
 source $ZSH/oh-my-zsh.sh
 
 
+#Plugins
+source ${HOME}/.zshrc.d/antigen.zsh
+
+antigen use oh-my-zsh
+#antigen bundle git
+antigen bundle virtualenv
+antigen bundle vi-mode
+antigen bundle git
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle fzf
+
+antigen theme eastwood
+antigen apply
+
+
+
 
 #z fzf
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 alias t="tmux a"
 alias vim="nvim"
 alias nnn="nnn -e"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source /etc/profile
+#source /etc/profile
 export PATH="/home/sheep/.local/bin:$PATH"
 export PATH="/home/sheep/go/bin:$PATH"
 export PATH="/home/sheep/anaconda3/bin:$PATH"
@@ -40,8 +55,6 @@ export VISUAL="nvim"
 export BROWSER="chromium"
 
 
-#Ctrl-Space
-bindkey '^ ' autosuggest-accept
 
 #vi mode
 KEYTIMEOUT=.3
@@ -57,6 +70,6 @@ export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_TERMINAL="alacritty --embed"
 
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.zsh
+#Ctrl-Space
+bindkey '^ ' autosuggest-accept
+
