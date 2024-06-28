@@ -22,10 +22,18 @@ return {
 			return nil -- Handle case where no root is found
 		end
 
+		-- Get the root directory
+		local root = find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
+
+		-- Check if jacoco.xml exists in the expected path
+		local jacoco_xml_path = root and root .. "/target/site/jacoco/jacoco.xml"
+		if not jacoco_xml_path or not path:new(jacoco_xml_path):exists() then
+			return
+		end
+
 		-- Configure blanket.nvim
 		require("blanket").setup({
-			report_path = find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" })
-				.. "/target/site/jacoco/jacoco.xml",
+			report_path = jacoco_xml_path,
 			filetypes = "java",
 			silent = true,
 			signs = {
