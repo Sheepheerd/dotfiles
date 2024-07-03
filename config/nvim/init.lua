@@ -108,7 +108,7 @@ local servers = {
 		},
 	},
 	jdtls = {},
-	gradle_ls = {},
+	lemminx = {},
 }
 
 -- Setup neovim lua configuration

@@ -47,5 +47,8 @@ return {
 				uncovered_color = "Error",
 			},
 		})
+
+		-- Refresh the plugin
+		vim.keymap.set({ "n" }, "<leader>br", ":Lazy reload blanket.nvim<CR>")
 	end,
 }
