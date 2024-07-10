@@ -4,8 +4,8 @@ return {
 		"tpope/vim-repeat",
 	},
 	config = function()
-		vim.keymap.set({ "n", "x", "o" }, "<leader>l", "<Plug>(leap-forward)")
-		vim.keymap.set({ "n", "x", "o" }, "<leader>L", "<Plug>(leap-backward)")
-		vim.keymap.set({ "n", "x", "o" }, "<leader>lw", "<Plug>(leap-from-window)")
+		vim.keymap.set({ "n", "x", "o" }, "<Tab>", "<Plug>(leap-forward)")
+		vim.keymap.set({ "n", "x", "o" }, "<S-Tab>", "<Plug>(leap-backward)")
+		vim.keymap.set({ "n", "x", "o" }, "<Tab>w", "<Plug>(leap-from-window)")
 	end,
 }
