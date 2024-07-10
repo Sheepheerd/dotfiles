@@ -10,6 +10,7 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
@@ -18,7 +19,6 @@ require("core")
 
 local augroup = vim.api.nvim_create_augroup
 local SheepGroup = augroup("Sheep", {})
-
 local autocmd = vim.api.nvim_create_autocmd
 
 function R(name)
@@ -74,10 +74,6 @@ autocmd("LspAttach", {
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-	-- NOTE: Remember that lua is a real programming language, and as such it is possible
-	-- to define small helper and utility functions so you don't have to repeat yourself
-	-- many times.
-
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
 		vim.lsp.buf.format()
@@ -138,9 +134,6 @@ for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
 		}
 		require("lspconfig")[server_name].setup(config)
 	end
-	-- if server_name == "jdtls" then
-	--   vim.notify("jdtls encountered!", vim.log.levels.INFO)
-	-- end
 end
 
 require("fidget").setup()
@@ -173,8 +166,6 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -182,8 +173,6 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -197,7 +186,7 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "nvim_lua" },
 		{ name = "cmp_tabnine" },
-		-- { name = "cmdline" },
+		{ name = "cmdline" },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
@@ -213,8 +202,7 @@ cmp.setup({
 				path = "[PATH]",
 				nvim_lua = "[LUA]",
 				cmp_tabnine = "[TN]",
-				-- cmdline = "[CMD]",
-				-- treesitter = "",
+				cmdline = "[CMD]",
 			}
 
 			item.menu = menu_icon[entry.source.name]
@@ -222,14 +210,6 @@ cmp.setup({
 		end,
 	},
 })
-
--- INFO: Execute Java Language Server with autocommand to attach on every buffer (VimScript)
--- vim.cmd [[
--- augroup jdtls_lsp
---     autocmd!
---     autocmd FileType java lua require'jdtls.jdtls_setup'.setup()
--- augroup end
--- ]]
 
 -- INFO: Use lua instead of vimscript
 local jdtls_lsp = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
@@ -240,25 +220,3 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = jdtls_lsp,
 	pattern = "java",
 })
-
--- require("sonarlint").setup({
--- 	server = {
--- 		cmd = {
--- 			"sonarlint-language-server",
--- 			-- Ensure that sonarlint-language-server uses stdio channel
--- 			"-stdio",
--- 			"-analyzers",
--- 			-- paths to the analyzers you need, using those for python and java in this example
--- 			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
--- 			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
--- 			--vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjava.jar"),
--- 			vim.fn.expand("/home/sgarrett/.config/nvim/mason/share/sonarlint-analyzers/sonarjava.jar"),
--- 		},
--- 	},
--- 	filetypes = {
--- 		-- Tested and working
--- 		"python",
--- 		"cpp",
--- 		"java",
--- 	},
--- })
