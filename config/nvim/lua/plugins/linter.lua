@@ -4,6 +4,7 @@ return {
 		events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 		linters_by_ft = {
 			--java = { "checkstyle" },
+			python = { "ruff" },
 		},
 	},
 	config = function(_, opts)

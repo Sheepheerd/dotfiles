@@ -73,7 +73,7 @@ autocmd("LspAttach", {
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
 		vim.lsp.buf.format()
@@ -94,6 +94,8 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
 	-- clangd = {},
+	--
+	-- Required NodeJs > 18
 	pyright = {},
 	-- html = {},
 	bashls = {},
@@ -106,6 +108,11 @@ local servers = {
 	jdtls = {},
 	lemminx = {},
 }
+
+local function setup_lsp(server_name, config)
+	config.on_attach = function(client, bufnr) end
+	require("lspconfig")[server_name].setup(config)
+end
 
 -- Setup neovim lua configuration
 require("lazydev").setup()
@@ -125,16 +132,16 @@ mason_lspconfig.setup({
 })
 
 for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
-	-- if not excl_servers[server_name] then
 	if server_name ~= "jdtls" then
 		local config = {
 			capabilities = capabilities,
-			on_attach = on_attach,
 			settings = servers[server_name],
 		}
-		require("lspconfig")[server_name].setup(config)
+		setup_lsp(server_name, config)
 	end
 end
+
+require("lspconfig").pyright.setup({})
 
 require("fidget").setup()
 
@@ -166,6 +173,8 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
@@ -173,6 +182,8 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -186,7 +197,6 @@ cmp.setup({
 		{ name = "path" },
 		{ name = "nvim_lua" },
 		{ name = "cmp_tabnine" },
-		{ name = "cmdline" },
 	},
 	window = {
 		documentation = cmp.config.window.bordered(),
@@ -202,7 +212,6 @@ cmp.setup({
 				path = "[PATH]",
 				nvim_lua = "[LUA]",
 				cmp_tabnine = "[TN]",
-				cmdline = "[CMD]",
 			}
 
 			item.menu = menu_icon[entry.source.name]
@@ -211,7 +220,6 @@ cmp.setup({
 	},
 })
 
--- INFO: Use lua instead of vimscript
 local jdtls_lsp = vim.api.nvim_create_augroup("JdtlsGroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
