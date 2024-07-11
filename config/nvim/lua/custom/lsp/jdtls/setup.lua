@@ -156,9 +156,6 @@ function M.setup()
 					url = "home/sheep/.config/nvim/lang_servers/FormatEclipse.xml",
 				},
 			},
-			eclipse = {
-				downloadSources = true,
-			},
 			maven = {
 				downloadSources = true,
 			},

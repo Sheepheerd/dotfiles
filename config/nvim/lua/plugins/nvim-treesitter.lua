@@ -19,12 +19,11 @@ return {
 				"lua",
 				"python",
 				"vim",
-				"vimdoc",
 				"yaml",
 				"regex",
 				"markdown",
-				"markdown_inline",
 				"java",
+				"dockerfile",
 			},
 			autotag = {
 				enable = true,

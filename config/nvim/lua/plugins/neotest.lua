@@ -13,12 +13,6 @@ return {
 	config = function()
 		local opts = {
 			adapters = {
-				require("neotest-go")({
-					experimental = {
-						test_table = true,
-					},
-					args = { "-coverprofile cover.out" },
-				}),
 				require("neotest-python")({
 					dap = { justMyCode = false },
 					runner = "unittest",

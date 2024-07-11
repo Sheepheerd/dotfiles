@@ -49,6 +49,6 @@ return {
 		})
 
 		-- Refresh the plugin
-		vim.keymap.set({ "n" }, "<leader>br", ":Lazy reload blanket.nvim<CR>")
+		vim.keymap.set({ "n" }, "<leader>br", ":Lazy reload blanket.nvim | e<CR>")
 	end,
 }

@@ -49,6 +49,7 @@ return {
 
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
+		"mfussenegger/nvim-dap-python",
 		"jay-babu/mason-nvim-dap.nvim",
 
 		-- Add your own debuggers here
@@ -71,6 +72,7 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"jdtls",
+				"debugpy",
 			},
 		})
 
@@ -88,13 +90,18 @@ return {
 		--dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		--dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
+		local python_path = table
+			.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin", "python" }, "/")
+			:gsub("//+", "/")
+
+		require("dap-python").setup(python_path)
 		-- Adapters
-		dap.adapters.python = {
-			type = "executable",
-			-- command = os.getenv("HOME") .. '/.virtenv/debug_vert/bin/python',
-			command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
-			args = { "-m", "debugpy.adapter" },
-		}
+		-- dap.adapters.python = {
+		-- 	type = "executable",
+		-- 	-- command = os.getenv("HOME") .. '/.virtenv/debug_vert/bin/python',
+		-- 	command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
+		-- 	args = { "-m", "debugpy.adapter" },
+		-- }
 
 		dap.adapters.godot = { type = "server", host = "127.0.0.1", port = 6006 }
 
@@ -107,17 +114,18 @@ return {
 				launch_scene = true,
 			},
 		}
-		dap.configurations.python = {
-			{
-				type = "python",
-				request = "launch",
-				name = "Launch file",
-				program = "${file}",
-				pythonPath = function()
-					return "/usr/bin/python"
-				end,
-			},
-		}
+
+		-- dap.configurations.python = {
+		-- 	{
+		-- 		type = "python",
+		-- 		request = "launch",
+		-- 		name = "Launch file",
+		-- 		program = "${file}",
+		-- 		pythonPath = function()
+		-- 			return "/usr/bin/python"
+		-- 		end,
+		-- 	},
+		-- }
 
 		dap.adapters.codelldb = {
 			type = "server",

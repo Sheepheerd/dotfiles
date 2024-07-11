@@ -6,12 +6,19 @@ return {
 				--				"clang-format",
 				"clangd",
 				"codelldb",
+
+				"pyright",
+				"debugpy",
+				"ruff",
+
 				"java-debug-adapter",
 				"java-test",
 				"jdtls",
+
 				"lua-language-server",
-				--				"luacheck",
+				--"luacheck",
 				"stylua",
+
 				"xmlformatter",
 				"lemminx",
 				"gdtoolkit",
