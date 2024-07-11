@@ -1,0 +1,15 @@
+{"signed_in":false,"milliseconds_since_first_event":0,"type":"App","operation":"first open"}
+{"signed_in":false,"milliseconds_since_first_event":29,"type":"Setting","setting":"theme","value":"One Light"}
+{"signed_in":false,"milliseconds_since_first_event":29,"type":"Setting","setting":"keymap","value":"VSCode"}
+{"signed_in":true,"milliseconds_since_first_event":0,"type":"App","operation":"welcome page: change theme"}
+{"signed_in":true,"milliseconds_since_first_event":3069,"type":"Setting","setting":"theme","value":"Rosé Pine Dawn"}
+{"signed_in":true,"milliseconds_since_first_event":4647,"type":"App","operation":"welcome page: change theme"}
+{"signed_in":true,"milliseconds_since_first_event":6846,"type":"Setting","setting":"theme","value":"Atelier Cave Dark"}
+{"signed_in":true,"milliseconds_since_first_event":8363,"type":"App","operation":"welcome page: change keymap"}
+{"signed_in":true,"milliseconds_since_first_event":26822,"type":"App","operation":"welcome page: install cli"}
+{"signed_in":true,"milliseconds_since_first_event":30776,"type":"App","operation":"welcome page: install cli"}
+{"signed_in":true,"milliseconds_since_first_event":32858,"type":"App","operation":"welcome page: toggle vim"}
+{"signed_in":true,"milliseconds_since_first_event":36136,"type":"App","operation":"welcome page: toggle diagnostic telemetry"}
+{"signed_in":true,"milliseconds_since_first_event":36136,"type":"Setting","setting":"diagnostic telemetry","value":"false"}
+{"signed_in":true,"milliseconds_since_first_event":36663,"type":"App","operation":"welcome page: toggle metric telemetry"}
+{"signed_in":true,"milliseconds_since_first_event":36663,"type":"Setting","setting":"metric telemetry","value":"false"}
