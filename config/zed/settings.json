@@ -7,6 +7,9 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "features": {
+    "inline_completion_provider": "none"
+  },
   "telemetry": {
     "metrics": false,
     "diagnostics": false
@@ -27,6 +30,9 @@
   "tab_size": 2,
   "cursor_blink": true,
   "buffer_font_family": "JetBrainsMonoNFM-Medium",
+  "terminal": {
+    "font_family": "JetBrainsMonoNFM-Medium"
+  },
   "preferred_line_length": 80,
   "buffer_line_height": "comfortable",
   "ui_font_family": "JetBrainsMonoNFM-Medium",
@@ -44,5 +50,13 @@
     "autoFetchOnBuildEventsDelay": 1500,
     "autoFetchOnBuildDelay": 1500,
     "git_gutter": "tracked_files"
+  },
+
+  "auto_install_extensions": {
+    "java": true,
+    "gdscript": true,
+    "java-eclipse-jdtls": true,
+    "catppuccin": true,
+    "snippets": true
   }
 }
