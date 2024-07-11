@@ -14,6 +14,7 @@ return {
 				"stylua",
 				"xmlformatter",
 				"lemminx",
+				"gdtoolkit",
 			},
 		})
 	end,
