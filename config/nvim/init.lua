@@ -13,7 +13,11 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+	change_detection = {
+		notify = false,
+	},
+})
 
 require("core")
 
@@ -31,6 +35,34 @@ vim.filetype.add({
 	},
 })
 
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
+local ns = vim.api.nvim_create_namespace("CurlineDiag")
+vim.opt.updatetime = 100
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		vim.api.nvim_create_autocmd("CursorHold", {
+			buffer = args.buf,
+			callback = function()
+				pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
+				local hi = { "Error", "Warn", "Info", "Hint" }
+				local curline = vim.api.nvim_win_get_cursor(0)[1]
+				local diagnostics = vim.diagnostic.get(args.buf, { lnum = curline - 1 })
+				local virt_texts = { { (" "):rep(4) } }
+				for _, diag in ipairs(diagnostics) do
+					virt_texts[#virt_texts + 1] = { diag.message, "Diagnostic" .. hi[diag.severity] }
+				end
+				vim.api.nvim_buf_set_extmark(args.buf, ns, curline - 1, 0, {
+					virt_text = virt_texts,
+					hl_mode = "combine",
+				})
+			end,
+		})
+	end,
+})
+
 autocmd({ "BufWritePre" }, {
 	group = SheepGroup,
 	pattern = "*",
@@ -44,29 +76,35 @@ autocmd("LspAttach", {
 		vim.keymap.set("n", "gd", function()
 			vim.lsp.buf.definition()
 		end, opts)
+		vim.keymap.set("n", "gD", function()
+			vim.lsp.buf.declaration()
+		end, opts)
 		vim.keymap.set("n", "K", function()
 			vim.lsp.buf.hover()
 		end, opts)
-		vim.keymap.set("n", "<leader>vws", function()
-			vim.lsp.buf.workspace_symbol()
+		vim.keymap.set("n", "<leader>wa", function()
+			vim.lsp.buf.add_workspace_folder()
 		end, opts)
-		vim.keymap.set("n", "<leader>vd", function()
-			vim.diagnostic.open_float()
+		vim.keymap.set("n", "<leader>wr", function()
+			vim.lsp.buf.remove_workspace_folder()
 		end, opts)
-		vim.keymap.set("n", "<leader>vrr", function()
-			vim.lsp.buf.references()
+		vim.keymap.set("n", "<leader>D", function()
+			vim.lsp.buf.type_definition()
 		end, opts)
-		vim.keymap.set("n", "<leader>vrn", function()
+		vim.keymap.set("n", "<leader>rn", function()
 			vim.lsp.buf.rename()
-		end, opts)
-		vim.keymap.set("i", "<C-h>", function()
-			vim.lsp.buf.signature_help()
 		end, opts)
 		vim.keymap.set("n", "[d", function()
 			vim.diagnostic.goto_next()
 		end, opts)
 		vim.keymap.set("n", "]d", function()
 			vim.diagnostic.goto_prev()
+		end, opts)
+		vim.keymap.set("n", "<leader>ca", function()
+			vim.lsp.buf.code_action()
+		end, opts)
+		vim.keymap.set("n", "gr", function()
+			vim.lsp.buf.references()
 		end, opts)
 	end,
 })
@@ -87,30 +125,38 @@ local on_attach = function(client, bufnr)
 		hint_prefix = "󱄑 ",
 	}, bufnr)
 end
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
+	--C
 	-- clangd = {},
-	--
-	-- Required NodeJs > 18
+
+	--Python
+	--Required NodeJs > 18
 	pyright = {},
-	-- html = {},
+
+	--Bash
 	bashls = {},
+
+	--Lua
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
 			telemetry = { enable = false },
 		},
 	},
+
+	--Java
 	jdtls = {},
+
+	--XML
 	lemminx = {},
+
+	--Rust
+	--See Rustaceanvim.lua
 }
 
 local function setup_lsp(server_name, config)
-	config.on_attach = function(client, bufnr) end
+	config.on_attach = function(_, bufnr) end
 	require("lspconfig")[server_name].setup(config)
 end
 
@@ -143,8 +189,6 @@ end
 
 require("lspconfig").pyright.setup({})
 
-require("fidget").setup()
-
 -- INFO: Mason END
 
 -- INFO: nvim-cmp setup
@@ -163,31 +207,15 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-e>"] = cmp.mapping.abort(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
+		["<Tab>"] = nil,
+		["<S-Tab>"] = nil,
 	}),
 	sources = {
 		{ name = "luasnip" },

@@ -37,7 +37,7 @@ function M.setup()
 	local on_attach = function(_, bufnr)
 		jdtls.setup_dap({ hotcodereplace = "auto" })
 		jdtls_dap.setup_dap_main_class_configs()
-		jdtls_setup.add_commands()
+		--jdtls_setup.add_commands()
 
 		local nmap = function(keys, func, desc)
 			if desc then

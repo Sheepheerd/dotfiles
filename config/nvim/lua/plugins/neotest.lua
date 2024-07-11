@@ -21,7 +21,9 @@ return {
 				require("neotest-vim-test")({
 					ignore_file_types = { "python", "vim", "lua" },
 				}),
-				require("neotest-rust"),
+				require("neotest-rust")({
+					args = { "--no-capture" },
+				}),
 			},
 		}
 		-- get neotest namespace (api call creates or returns namespace)

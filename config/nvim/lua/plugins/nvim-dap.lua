@@ -95,13 +95,6 @@ return {
 			:gsub("//+", "/")
 
 		require("dap-python").setup(python_path)
-		-- Adapters
-		-- dap.adapters.python = {
-		-- 	type = "executable",
-		-- 	-- command = os.getenv("HOME") .. '/.virtenv/debug_vert/bin/python',
-		-- 	command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python",
-		-- 	args = { "-m", "debugpy.adapter" },
-		-- }
 
 		dap.adapters.godot = { type = "server", host = "127.0.0.1", port = 6006 }
 
@@ -114,18 +107,6 @@ return {
 				launch_scene = true,
 			},
 		}
-
-		-- dap.configurations.python = {
-		-- 	{
-		-- 		type = "python",
-		-- 		request = "launch",
-		-- 		name = "Launch file",
-		-- 		program = "${file}",
-		-- 		pythonPath = function()
-		-- 			return "/usr/bin/python"
-		-- 		end,
-		-- 	},
-		-- }
 
 		dap.adapters.codelldb = {
 			type = "server",

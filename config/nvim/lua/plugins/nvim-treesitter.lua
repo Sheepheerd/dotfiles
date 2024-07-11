@@ -24,6 +24,7 @@ return {
 				"markdown",
 				"java",
 				"dockerfile",
+				"rust",
 			},
 			autotag = {
 				enable = true,

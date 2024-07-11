@@ -21,6 +21,8 @@ return {
 			python = { "isort", "black" },
 			--java = { { "google-java-format" } },
 			xml = { "xmlformatter" },
+
+			rust = { "rustfmt" },
 		},
 		-- Set up format-on-save
 		format_on_save = { timeout_ms = 500, lsp_fallback = true },

@@ -22,6 +22,9 @@ return {
 				"xmlformatter",
 				"lemminx",
 				"gdtoolkit",
+
+				--Rust
+				"rustfmt",
 			},
 		})
 	end,

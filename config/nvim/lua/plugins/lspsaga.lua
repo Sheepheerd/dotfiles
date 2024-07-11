@@ -75,13 +75,16 @@ return {
 				quit = "q",
 				go_action = "g",
 			},
+			vim.diagnostic.config({
+				virtual_text = false,
+			}),
 		},
 		rename = {
 			quit = "<C-c>",
 			exec = "<CR>",
 			mark = "x",
 			confirm = "<CR>",
-			--in_select = true,
+			in_select = true,
 			whole_project = false,
 		},
 		outline = {
