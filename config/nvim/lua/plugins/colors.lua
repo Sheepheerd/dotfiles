@@ -53,6 +53,8 @@ return {
 				treesitter_context = true,
 				lsp_trouble = true,
 				which_key = true,
+				leap = true,
+				neogit = true,
 				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 			},
 		})
