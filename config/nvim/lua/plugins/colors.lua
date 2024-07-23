@@ -46,6 +46,7 @@ return {
 				dap = true,
 				--noice = true,
 				neotree = true,
+				neotest = true,
 				mason = true,
 				lsp_saga = true,
 				harpoon = true,
