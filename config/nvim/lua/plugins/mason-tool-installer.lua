@@ -25,6 +25,9 @@ return {
 
 				--Rust
 				"rustfmt",
+
+				--Sonar
+				"sonarlint-language-server",
 			},
 		})
 	end,
