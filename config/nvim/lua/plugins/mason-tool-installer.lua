@@ -9,7 +9,7 @@ return {
 
 				"pyright",
 				"debugpy",
-				"ruff",
+				--"ruff",
 
 				"java-debug-adapter",
 				"java-test",
