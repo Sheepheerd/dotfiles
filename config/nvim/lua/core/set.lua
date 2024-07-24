@@ -67,3 +67,6 @@ vim.opt.updatetime = 50
 -- Peek for md files
 --vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
 --vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
+
+set.shortmess = a
+set.cmdheight = 2

@@ -43,14 +43,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					-- init_selection = "<c-space>", -- c=ctrl
-					-- node_incremental = "<c-space>",
-					-- scope_incremental = "<c-s>",
-					-- node_decremental = "<M-space>", -- M=meta=alt
-					init_selection = "<C-n>", -- c=ctrl
-					node_incremental = "<C-n>",
+					init_selection = "<c-space>", -- c=ctrl
+					node_incremental = "<c-space>",
 					scope_incremental = "<c-s>",
-					node_decremental = "<C-p>", -- M=meta=alt
+					node_decremental = "<M-space>", -- M=meta=alt
 				},
 			},
 			textobjects = {
