@@ -150,9 +150,6 @@ local servers = {
 
 	--XML
 	lemminx = {},
-
-	--Rust
-	--See Rustaceanvim.lua
 }
 
 local function setup_lsp(server_name, config)
@@ -256,3 +253,5 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = jdtls_lsp,
 	pattern = "java",
 })
+
+require("lspconfig").gdscript.setup({})

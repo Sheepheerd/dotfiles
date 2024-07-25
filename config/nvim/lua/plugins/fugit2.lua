@@ -16,8 +16,18 @@ return {
 	keys = {
 		{ "<leader>FG", mode = "n", "<cmd>Fugit2<cr>" },
 	},
-	opts = {
-
-		libgit2_path = vim.fn.glob(os.getenv("HOME") .. "/.local/lib/libgit2.so.1.*"),
-	},
+	opts = (function()
+		local local_libgit2_path = vim.fn.glob(os.getenv("HOME") .. "/.local/lib/libgit2.so.1.*")
+		if local_libgit2_path == "" then
+			return {
+				libgit2_path = nil, -- or leave this out to use the global system's libgit2
+				width = 70,
+			}
+		else
+			return {
+				libgit2_path = local_libgit2_path,
+				width = 70,
+			}
+		end
+	end)(),
 }
