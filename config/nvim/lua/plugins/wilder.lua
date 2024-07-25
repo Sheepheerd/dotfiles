@@ -10,8 +10,8 @@ return {
 
 		wilder.set_option(
 			"renderer",
-			wilder.wildmenu_renderer({
-				highlighter = wilder.basic_highlighter(),
+			wilder.popupmenu_renderer({
+				pumblend = 20,
 			})
 		)
 	end,

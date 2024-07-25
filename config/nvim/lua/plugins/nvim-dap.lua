@@ -14,6 +14,27 @@ return {
 			"rcarriga/nvim-dap-ui",
 			keys = {
 				{
+					"<leader>bs",
+					function()
+						require("dap").terminate()
+					end,
+					desc = "Dap terminate",
+				},
+				{
+					"<C-l>",
+					function()
+						require("dap").step_over()
+					end,
+					desc = "Dap step over",
+				},
+				{
+					"<leader>br",
+					function()
+						require("dap").repl.toggle()
+					end,
+					desc = "Toggle Repl",
+				},
+				{
 					"<leader>bu",
 					function()
 						require("dapui").toggle({})

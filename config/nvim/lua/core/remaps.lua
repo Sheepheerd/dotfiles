@@ -31,10 +31,10 @@ vim.keymap.set("n", "<leader><C-s>", ":source $HOME/.config/nvim/init.lua<CR>")
 
 -- navigate windows
 -- Move to window using the <ctrl> hjkl keys
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+-- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Neovim File Explorer Built init
 vim.keymap.set("n", "<leader>e", ":Explore<CR>")
@@ -48,3 +48,6 @@ vim.keymap.set("n", "<leader>ss", "<cmd>setlocal spell!<cr>", { desc = "Toggle S
 
 -- Close buffer without losing split
 vim.keymap.set("n", "<leader>d", "<cmd>bp|bd #<CR>", { desc = "Close Buffer; Retain Split" })
+
+-- Format all blank lines to single blank lines
+vim.keymap.set("n", "<leader>fl", ":g/^$/,/./-j<CR>", { desc = "Format blank lines" })

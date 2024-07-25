@@ -52,7 +52,7 @@ end, {})
 -- Color Scheme
 --vim.o.background = "dark"
 set.termguicolors = true
-vim.cmd("colorscheme catppuccin-frappe")
+vim.cmd("colorscheme rose-pine")
 
 -- Enable Keyboard
 vim.o.clipboard = "unnamedplus"
