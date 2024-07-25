@@ -9,7 +9,7 @@ return {
 
 				"pyright",
 				"debugpy",
-				"ruff",
+				--"ruff",
 
 				"java-debug-adapter",
 				"java-test",
@@ -25,6 +25,9 @@ return {
 
 				--Rust
 				"rustfmt",
+
+				--Sonar
+				"sonarlint-language-server",
 			},
 		})
 	end,

@@ -39,8 +39,10 @@ local mappings = {
 		o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
 		v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
 		c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
-		t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
-		T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
+		m = { "<Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+
+		-- t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
+		-- T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
 		u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
 	},
 }
