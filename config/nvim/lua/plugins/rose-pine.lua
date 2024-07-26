@@ -10,7 +10,7 @@ return {
 				extend_background_behind_borders = true,
 
 				enable = {
-					terminal = true,
+					terminal = false,
 					legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
 					migrations = true, -- Handle deprecated options automatically
 				},
