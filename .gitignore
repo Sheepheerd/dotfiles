@@ -1,2 +1,1 @@
-/config/zed/.tmp*
-/config/nvim/lazy-lock.json
+config/zed/.tmp*
