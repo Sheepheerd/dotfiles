@@ -274,13 +274,14 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
-bindsym $mod+w exec /usr/bin/librewolf
+bindsym $mod+w exec /usr/bin/chromium
 bindsym $mod+n exec $HOME/.config/i3/scripts/start_nnn
 bindsym $mod+o exec $HOME/.config/i3/scripts/picom_switch
 
 
 bindsym Print exec scrot -M 0 ~/Documents/ScreenShots/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/Documents/ScreenShots/$(date +"%Y-%m-%d-%T")-screenshot.png"
-bindsym $mod+ctrl+s exec "env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify %U"
+# bindsym $mod+ctrl+s exec "env LD_PRELOAD=/usr/lib/spotify-adblock.so spotify %U"
+bindsym $mod+ctrl+s exec  spotify-launcher
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
@@ -318,7 +319,7 @@ focus_on_window_activation none
 assign [class="Discord"] $ws4
 
 no_focus [title=preview-tui]
-no_focus [class=(?i)chromium]
+# no_focus [class=(?i)chromium]
 no_focus [class="Godot_Engine"]
 # automatic set focus new window if it opens on another workspace than the current:
 #for_window [class=Terminator] focus
@@ -435,7 +436,7 @@ exec --no-startup-id dunst
 #exec --no-startup-id blueberry-tray
 
 # networkmanager-applet
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 
 # clipman-applet
 #exec --no-startup-id xfce4-clipman
@@ -614,8 +615,6 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 
 exec --no-startup-id firewall-applet
-
-exec --no-startup-id discord
 
 exec --no-startup-id solaar --window=hide
 
