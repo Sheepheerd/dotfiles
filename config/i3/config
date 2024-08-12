@@ -618,6 +618,6 @@ exec --no-startup-id firewall-applet
 
 exec --no-startup-id solaar --window=hide
 
-bindsym $mod+m exec "$HOME/Documents/Scripts/mute-mic"
+bindsym $mod+m exec "$HOME/scripts/mute-mic"
 
 for_window [title="^.*"] border pixel 0
