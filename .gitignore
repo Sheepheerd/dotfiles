@@ -1,3 +1,5 @@
 config/zed/.tmp*
-.local/share/nvim
-.local/state
+.local/*
+
+!.local/share/fonts
+!.local/share/rofi
