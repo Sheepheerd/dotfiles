@@ -318,7 +318,7 @@ set $ws10 "10"
 focus_on_window_activation none
 assign [class="Discord"] $ws4
 
-no_focus [title=preview-tui]
+# no_focus [title=alacritty --embed]
 # no_focus [class=(?i)chromium]
 no_focus [class="Godot_Engine"]
 # automatic set focus new window if it opens on another workspace than the current:

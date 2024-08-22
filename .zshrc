@@ -23,6 +23,8 @@ source ${HOME}/.zshrc.d/antigen.zsh
 antigen use oh-my-zsh
 #antigen bundle git
 antigen bundle virtualenv
+antigen bundle virtualenvwrapper
+antigen bundle pyenv
 antigen bundle vi-mode
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -63,13 +65,15 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 
 #NNN
 export NNN_EDITOR="nvim"
-export NNN_PLUG='t:nmount;m:mtpmount;j:autojump;d:dragdrop;x:xdgdefault;p:preview-tabbed;f:fzopen'
+export NNN_PLUG='t:nmount;m:mtpmount;j:autojump;d:dragdrop;x:xdgdefault;p:preview-tui;f:fzopen'
 export NNN_FIFO="/tmp/nnn.fifo"
-#export NNN_TERMINAL="alacritty --title=preview-tui"
-
-export NNN_TERMINAL="alacritty --embed"
+export NNN_TERMINAL="tmux"
 
 
 #Ctrl-Space
 bindkey '^ ' autosuggest-accept
 
+# Python env
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
