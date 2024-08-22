@@ -1,1 +1,3 @@
 config/zed/.tmp*
+.local/share/nvim
+.local/state
