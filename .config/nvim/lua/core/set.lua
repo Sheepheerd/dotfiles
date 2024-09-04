@@ -64,9 +64,9 @@ end, {})
 
 vim.opt.updatetime = 50
 
--- Peek for md files
---vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
---vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
-
 set.shortmess = a
 set.cmdheight = 2
+
+-- Markdown view config
+vim.g.mkdp_auto_start = 1
+vim.g.mkdp_preview_options = { disable_filename = 1 }

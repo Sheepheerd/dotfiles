@@ -1,19 +1,3 @@
-# This file is a modified version based on default i3-config-wizard config
-# source is available here:
-# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
-# Maintainer: joekamprad [joekamprad@endeavouros.com]
-# https://endeavouros.com
-#
-# iconic font icon search: https://fontawesome.com/v4.7/cheatsheet/
-#
-# --> to update this run the following command (will backup existing setup file)
-# wget --backups=1 https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/main/.config/i3/config -P ~/.config/i3/
-#
-# Endeavouros-i3 config file
-# Source for complete framework of our i3 config and theming here: https://github.com/endeavouros-team/endeavouros-i3wm-setup
-# EndeavourOS wiki holds some Information also: https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
-# Please see http://i3wm.org/docs/userguide.html for the official i3 reference!
-
 #######################
 # config starts here: #
 #######################
@@ -275,7 +259,7 @@ bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
 ## App shortcuts
 bindsym $mod+w exec /usr/bin/firefox
-bindsym $mod+n exec $HOME/.config/i3/scripts/start_nnn
+bindsym $mod+n exec /usr/bin/thunar
 bindsym $mod+o exec $HOME/.config/i3/scripts/picom_switch
 
 
@@ -323,7 +307,7 @@ assign [class="Discord"] $ws4
 no_focus [class="Godot_Engine"]
 # automatic set focus new window if it opens on another workspace than the current:
 #for_window [class=Terminator] focus
-for_window [class=(?i)brave] focus
+for_window [class=Firefox] focus
 for_window [class=Thunar] focus
 for_window [class=Discord] focus
 for_window [class=Spotify] focus
