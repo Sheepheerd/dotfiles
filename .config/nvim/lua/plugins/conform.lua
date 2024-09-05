@@ -22,6 +22,8 @@ return {
 			--java = { { "google-java-format" } },
 			xml = { "xmlformatter" },
 
+			markdown = { "mdformat" },
+
 			rust = { "rustfmt" },
 		},
 		-- Set up format-on-save

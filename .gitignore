@@ -1,1 +1,5 @@
 config/zed/.tmp*
+.local/*
+
+!.local/share/fonts
+!.local/share/rofi
