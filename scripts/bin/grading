@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Define the Downloads directory and the temporary extraction directory
+DOWNLOADS_DIR="$HOME/Downloads"
+TEMP_DIR="$HOME/temp/grading"
+
+# Create a temporary directory for extraction
+mkdir -p "$TEMP_DIR"
+
+# Find the most recent zip file in the Downloads directory
+ZIP_FILE=$(find "$DOWNLOADS_DIR" -maxdepth 1 -name "*.zip" -print0 | xargs -0 ls -t | head -n 1)
+
+# Check if a zip file was found
+if [ -z "$ZIP_FILE" ]; then
+    echo "No zip file found in $DOWNLOADS_DIR"
+    exit 1
+fi
+
+echo "Found zip file: $ZIP_FILE"
+
+# Extract the zip file to the temporary directory
+unzip "$ZIP_FILE" -d "$TEMP_DIR"
+
+# Find the first Java file in the extracted contents
+JAVA_FILE=$(find "$TEMP_DIR" -name "*.java" | head -n 1)
+
+# Check if a Java file was found
+if [ -z "$JAVA_FILE" ]; then
+    echo "No Java file found in the extracted contents"
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
+
+echo "Found Java file: $JAVA_FILE"
+
+# Open the Java file with a text editor (e.g., nano, vim, or gedit)
+alacritty -e nvim "$JAVA_FILE" # Replace nano with your preferred editor
+java "$JAVA_FILE"
+
+# Clean up: Delete the zip file and the temporary extraction directory
+rm -f "$ZIP_FILE"
+rm -rf "$TEMP_DIR"
+
+echo "Process completed."

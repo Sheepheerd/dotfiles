@@ -54,7 +54,7 @@ export TERMINAL="alacritty --embed"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export BROWSER="chromium"
+export BROWSER="firefox"
 
 
 
@@ -79,3 +79,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 export PATH=$PATH:/home/sheep/.spicetify
+export PATH=$PATH:/home/sheep/scripts/bin
