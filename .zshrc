@@ -4,35 +4,17 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEM="eastwood"
-
-
-
+ZSH_THEME="eastwood"
 
 #Uncomment for OMzsh
 source $ZSH/oh-my-zsh.sh
 
 
 #Plugins
-source ${HOME}/.zshrc.d/antigen.zsh
+#git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
+source ${HOME}/.antidote/antidote.zsh
 
-antigen use oh-my-zsh
-#antigen bundle git
-antigen bundle virtualenv
-antigen bundle virtualenvwrapper
-antigen bundle pyenv
-antigen bundle vi-mode
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle fzf
-
-antigen theme eastwood
-antigen apply
+antidote load
 
 
 
@@ -41,6 +23,7 @@ antigen apply
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#aliases
 alias t="tmux a"
 alias vim="nvim"
 alias nnn="nnn -e"

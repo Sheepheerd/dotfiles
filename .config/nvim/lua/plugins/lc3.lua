@@ -1,3 +1,3 @@
 return {
-	"zacharied/lc3.vim",
+	"Sheepheerd/lc3.vim",
 }
