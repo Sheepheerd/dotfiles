@@ -1,8 +1,7 @@
 return {
-    'echasnovski/mini.indentscope', 
-    version = false,
-    config = function()
-        require('mini.indentscope').setup()
-    end,
-
+	"echasnovski/mini.indentscope",
+	version = false,
+	config = function()
+		require("mini.indentscope").setup()
+	end,
 }

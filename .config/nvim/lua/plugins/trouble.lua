@@ -1,6 +1,17 @@
 return {
 	"folke/trouble.nvim",
-	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	opts = {
+		modes = {
+			diagnostics = { -- Configure symbols mode
+				win = {
+					type = "split", -- split window
+					relative = "win", -- relative to current window
+					position = "bottom", -- right side
+					size = 0.25, -- 30% of the window
+				},
+			}, -- for default options, refer to the configuration section for custom setup.
+		},
+	},
 	cmd = "Trouble",
 	keys = {
 		{

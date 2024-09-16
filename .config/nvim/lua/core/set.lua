@@ -51,6 +51,8 @@ end, {})
 
 -- Color Scheme
 --vim.o.background = "dark"
+
+vim.opt.pumblend = 0
 set.termguicolors = true
 vim.cmd("colorscheme rose-pine")
 
@@ -65,7 +67,7 @@ end, {})
 vim.opt.updatetime = 50
 
 set.shortmess = a
-set.cmdheight = 2
+set.cmdheight = 0
 
 -- Markdown view config
 vim.g.mkdp_auto_start = 1
