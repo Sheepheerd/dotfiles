@@ -77,6 +77,7 @@ autocmd("LspAttach", {
 		vim.keymap.set("n", "gD", function()
 			vim.lsp.buf.declaration()
 		end, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 		vim.keymap.set("n", "K", ":Lspsaga hover_doc<CR>", opts)
 		vim.keymap.set("n", "<leader>wa", function()
 			vim.lsp.buf.add_workspace_folder()
@@ -96,6 +97,15 @@ autocmd("LspAttach", {
 		end, opts)
 	end,
 })
+
+--- Signature
+vim.keymap.set({ "n" }, "<C-k>", function()
+	require("lsp_signature").toggle_float_win()
+end, { silent = true, noremap = true, desc = "toggle signature" })
+
+vim.keymap.set({ "n" }, "<Leader>k", function()
+	vim.lsp.buf.signature_help()
+end, { silent = true, noremap = true, desc = "toggle signature" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.

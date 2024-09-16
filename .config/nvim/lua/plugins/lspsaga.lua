@@ -141,5 +141,9 @@ return {
 		},
 		vim.keymap.set("n", "<leader>r", ":Lspsaga rename<CR>", {}),
 		vim.keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", {}),
+		vim.keymap.set("n", "<leader>pd", ":Lspsaga peek_definition<CR>", {}),
+		vim.keymap.set("n", "<leader>lf", ":Lspsaga finder<CR>", {}),
+		vim.keymap.set("t", "<A-t>", ":Lspsaga term_toggle<CR>", {}),
+		vim.keymap.set("n", "<A-t>", ":Lspsaga term_toggle<CR>", {}),
 	},
 }
