@@ -10,6 +10,7 @@
 - `<Esc>`       - Escape Terminal Mode
 - `<leader>d`   - Black Hole Delete
 - `<leader>e`   - Vim File Explorer
+- `<leader>y`   - Copy to System Clipboard
 
 </details>
 
@@ -19,7 +20,6 @@
 
 <Summary>telescope</summary>
 
-- `<leader>y`   - Copy to System Clipboard
 - `<leader>ff`  - Toggle Telescope Find Files
 - `<leader>fg`  - Toggle Telescope Live Grep
 - `<leader>fh`  - Toggle Telescope Help Tags
@@ -31,7 +31,7 @@
 <Summary>harpoon</summary>
 
 - `Ctrl-e`      - Open Stabbed Windows
-- `<leader>a`   - Stab Window
+- `<leader>-a`   - Stab Window
 - `Ctrl-t`      - Switch to Window 1
 - `Ctrl-h`      - Switch to Window 2
 

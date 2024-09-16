@@ -14,7 +14,7 @@ return {
 			"rcarriga/nvim-dap-ui",
 			keys = {
 				{
-					"<leader>bs",
+					"<leader>ds",
 					function()
 						require("dap").terminate()
 					end,
@@ -28,21 +28,21 @@ return {
 					desc = "Dap step over",
 				},
 				{
-					"<leader>br",
+					"<leader>dr",
 					function()
 						require("dap").repl.toggle()
 					end,
 					desc = "Toggle Repl",
 				},
 				{
-					"<leader>bu",
+					"<leader>du",
 					function()
 						require("dapui").toggle({})
 					end,
 					desc = "Dap UI",
 				},
 				{
-					"<leader>be",
+					"<leader>de",
 					function()
 						require("dapui").eval()
 					end,
@@ -50,7 +50,7 @@ return {
 					mode = { "n" },
 				},
 				{
-					"<leader>bc",
+					"<leader>dc",
 					function()
 						require("dap").continue()
 					end,
@@ -58,7 +58,7 @@ return {
 					mode = { "n" },
 				},
 				{
-					"<leader>bx",
+					"<leader>dx",
 					function()
 						require("dap").toggle_breakpoint()
 					end,

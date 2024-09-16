@@ -24,7 +24,7 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set("n", "<leader>f", ":Neotree toggle<CR>")
 
 -- Black Hole Delete
-vim.keymap.set("v", "<leader>d", '"_d<CR>')
+vim.keymap.set("v", "<leader>0", '"_d<CR>')
 
 -- source
 vim.keymap.set("n", "<leader><C-s>", ":source $HOME/.config/nvim/init.lua<CR>")
@@ -47,7 +47,7 @@ vim.keymap.set("n", "m", "<cmd>lua require('tsht').nodes()<CR>")
 vim.keymap.set("n", "<leader>ss", "<cmd>setlocal spell!<cr>", { desc = "Toggle Spell Checking" })
 
 -- Close buffer without losing split
-vim.keymap.set("n", "<leader>d", "<cmd>bp|bd #<CR>", { desc = "Close Buffer; Retain Split" })
+vim.keymap.set("n", "<leader>0", "<cmd>bp|bd #<CR>", { desc = "Close Buffer; Retain Split" })
 
 -- Format all blank lines to single blank lines
 vim.keymap.set("n", "<leader>fl", ":g/^$/,/./-j<CR>", { desc = "Format blank lines" })
