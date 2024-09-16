@@ -17,7 +17,18 @@ return {
 			"Git files",
 		},
 		{
-			"<leader>pws",
+			"<leader>pb",
+			"<cmd>lua require('telescope.builtin').buffers()<cr>",
+			"Preview buffers",
+		},
+
+		{
+			"<leader>pg",
+			"<cmd>lua require('telescope.builtin').live_grep()<cr>",
+			"Live Grep",
+		},
+		{
+			"<leader>pwg",
 			"<cmd>lua require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') })<cr>",
 			"Grep string under cursor",
 		},
@@ -52,7 +63,7 @@ return {
 			"Show git status",
 		},
 		{
-			"<leader>dg",
+			"<leader>df",
 			"<cmd>Telescope dap frames<CR>",
 			"Dap Frames",
 		},
@@ -83,10 +94,10 @@ return {
 		local builtin = require("telescope.builtin")
 
 		-- Setup which-key integration
-		local wk = require("which-key")
-		wk.setup({
-			-- your which-key setup options here
-		})
+		-- local wk = require("which-key")
+		-- wk.setup({
+		-- 	-- your which-key setup options here
+		-- })
 
 		-- Define key mappings with descriptions for which-key
 	end,
