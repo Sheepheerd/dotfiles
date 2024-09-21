@@ -25,6 +25,7 @@ antidote load
 
 #aliases
 alias t="tmux a"
+alias open="xdg-open"
 alias vim="nvim"
 alias nnn="nnn -e"
 
