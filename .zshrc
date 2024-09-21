@@ -33,6 +33,7 @@ alias nnn="nnn -e"
 export PATH="/home/sheep/.local/bin:$PATH"
 export PATH="/home/sheep/go/bin:$PATH"
 export PATH="/home/sheep/anaconda3/bin:$PATH"
+export PATH="/home/sheep/.cargo/bin:$PATH"
 export TERMINAL="alacritty --embed"
 
 

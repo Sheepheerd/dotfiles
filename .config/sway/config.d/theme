@@ -1,0 +1,53 @@
+# Apply gtk theming
+exec_always ~/.config/sway/scripts/import-gsettings
+
+# Set inner/outer gaps
+gaps inner 7
+gaps outer 5
+
+default_border pixel 3
+# Hide titlebar on windows:
+default_border pixel 2
+
+# Default Font
+font pango:JetBrainsMono Nerd Font Mono Regular 11
+
+smart_borders on
+
+### Thinner borders
+default_floating_border none
+
+
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+#   You can get the names of your outputs by running: swaymsg -t get_outputs
+
+set $background   #282a36
+set $current_line #44475a
+set $selection    #44475a
+set $foreground	  #f8f8f2
+set $comment      #6272a4
+set $cyan         #8be9fd
+set $green        #50fa7b
+set $orange       #ffb86c
+set $pink         #ff79c6
+set $purple       #bd93f9
+set $red          #ff5555
+set $yellow       #f1fa8c
+
+### Output configuration
+output "*" bg "~/Downloads/bird.jpg" fill
+
+
+# Colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #999999 #5f676a #999999 #999999   #999999
+client.focused_inactive #999999 #5f676a #999999 #999999   #999999
+client.unfocused        #333333 #222222 #888888 #292d2e   #1f1e1e
+client.urgent           #999999 #5f676a #999999 #999999   #999999
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff

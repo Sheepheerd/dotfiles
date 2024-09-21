@@ -1,0 +1,16 @@
+@import '../colors.css';
+
+window {
+    background-color: alpha(@bg, 0.6);
+}
+
+#box-outer {
+    background-color: alpha(@bg, 0.6);
+}
+
+#box-inner {
+    border-radius: 5px;
+	border-width: 0px;
+	padding: 20px;
+    font-family: "Hack";
+}
