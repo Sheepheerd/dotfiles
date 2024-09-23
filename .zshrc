@@ -64,4 +64,4 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 export PATH=$PATH:/home/sheep/.spicetify
-export PATH=$PATH:/home/sheep/scripts/bin
+export PATH=$PATH:/home/sheep/.scripts/bin

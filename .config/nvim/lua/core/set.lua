@@ -50,11 +50,10 @@ vim.api.nvim_create_user_command("Config", function()
 end, {})
 
 -- Color Scheme
---vim.o.background = "dark"
 
 vim.opt.pumblend = 0
 set.termguicolors = true
-vim.cmd("colorscheme rose-pine")
+vim.cmd("colorscheme catppuccin-mocha")
 
 -- Enable Keyboard
 vim.o.clipboard = "unnamedplus"

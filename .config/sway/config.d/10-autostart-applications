@@ -1,3 +1,6 @@
+# Start opacity
+exec exec /usr/share/sway-contrib/inactive-windows-transparency.py
+
 # Auth with polkit-gnome:
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 

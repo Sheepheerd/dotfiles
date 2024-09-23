@@ -3,3 +3,4 @@ config/zed/.tmp*
 
 !.local/share/fonts
 !.local/share/rofi
+!.local/bin/startw

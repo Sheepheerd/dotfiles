@@ -2,11 +2,11 @@
  *
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
- * 
+ *
  * Fonts
  *
  **/
 
 * {
-    font: "IBM Plex Sans Medium 10";
+    font: "JetBrainsMono Nerd Font Mono Medium 10";
 }
