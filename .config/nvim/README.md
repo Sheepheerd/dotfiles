@@ -68,9 +68,6 @@ install certain languages, linters, and debuggers.
 <!--- [peek](https://github.com/toppair/peek.nvim)-->
 </details>
 
-## Keymaps
-
-[link](KEYMAPS.md)
 
 ## LSP
 The java lsp (language-server-protocol) is set up with lsp-zero. To add a language server, download the package with mason and add it to the lsp.lua config file.
