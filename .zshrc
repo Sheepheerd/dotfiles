@@ -35,7 +35,8 @@ export PATH="/home/sheep/go/bin:$PATH"
 export PATH="/home/sheep/anaconda3/bin:$PATH"
 export PATH="/home/sheep/.cargo/bin:$PATH"
 export TERMINAL="alacritty --embed"
-
+export ANDROID_HOME=$HOME/android-sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export EDITOR="nvim"
 export VISUAL="nvim"
