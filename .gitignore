@@ -1,6 +1,8 @@
-config/zed/.tmp*
+.config/zed/.tmp*
+.config/winapps/winapps.conf
 .local/*
 
 !.local/share/fonts
 !.local/share/rofi
 !.local/bin/startw
+

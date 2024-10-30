@@ -130,6 +130,7 @@ local servers = {
 
 	--Python
 	--Required NodeJs > 18
+
 	pyright = {},
 
 	--Bash
@@ -142,6 +143,9 @@ local servers = {
 			telemetry = { enable = false },
 		},
 	},
+
+	--
+	-- gopls = {},
 
 	--Java
 	jdtls = {},
