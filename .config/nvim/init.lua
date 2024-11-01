@@ -144,9 +144,6 @@ local servers = {
 		},
 	},
 
-	--
-	-- gopls = {},
-
 	--Java
 	jdtls = {},
 
