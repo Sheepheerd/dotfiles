@@ -1,13 +1,6 @@
 { pkgs, ... }:
 
 {
-  programs.git = {
-  enable = true;
-  package = pkgs.gitFull;
-  config = {
-      credential.helper = "libsecret";
-  };
-};
 
   programs.zsh.enable = true;
   environment.systemPackages = with pkgs; [
