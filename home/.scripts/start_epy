@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+
+/usr/bin/alacritty -e epy
+

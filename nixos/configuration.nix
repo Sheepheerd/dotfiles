@@ -8,7 +8,10 @@
 	];
 
   # Enable touchpad support (enabled default in most desktopManager).
-   services.libinput.enable = true;
+services.libinput.enable = true;
+#services.xserver.synaptics.enable = true;
+
+
 nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11"; # Did you read the comment?
 

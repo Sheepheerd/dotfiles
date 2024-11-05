@@ -11,17 +11,19 @@ syntaxHighlighting.enable = true;
 
 shellInit =''
 bindkey '^ ' autosuggest-accept
+
+eval "$(zoxide init zsh)"
 '';
 
 shellAliases = {
     t = "tmux a";
 open="xdg-open";
 vim="nvim";
-fd="z";
+fd="zoxide";
 update = "sudo nixos-rebuild switch";
   };
 
-  oh-my-zsh = {
+  ohMyZsh = {
     enable = true;
     plugins = [  "git" "magic-enter" "fzf" "pyenv" "sudo" "tldr" ];
     theme = "eastwood";

@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }:
 
 {
+
   # Enable Hyprland
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true; 
@@ -13,7 +14,7 @@
     hyprlock
     hypridle
     hyprpaper
-
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     alacritty 
     neovim
 	

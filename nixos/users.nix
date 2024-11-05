@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+nixpkgs.overlays = [(final: prev: {
+  rofi-calc = prev.rofi-calc.override { rofi-unwrapped = prev.rofi-wayland-unwrapped; };
+})];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     isNormalUser = true;
@@ -8,7 +12,7 @@
     extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" "tss" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-      unzip 
+      unzip
       vim
       stow
       vesktop
@@ -17,8 +21,9 @@
       libreoffice-fresh
       libqalculate
       xclip
-      rofi-calc
-    ];
+      dmenu
+      ulauncher
+];
   };
 
 }

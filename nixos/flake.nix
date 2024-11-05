@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-	
+    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +17,7 @@ outputs = { nixpkgs, ... } @ inputs:
       modules = [
         ./configuration.nix
         ./hardware-configuration.nix
-	./firewall.nix        
+	./firewall.nix
 	#./fingerprint-scanner.nix
         ./sound.nix
         #./usb.nix
@@ -42,7 +42,7 @@ outputs = { nixpkgs, ... } @ inputs:
         ./users.nix
         ./virtualisation.nix
         ./programming-languages.nix
-	./zsh.nix      
+	./zsh.nix
 ];
     };
   };

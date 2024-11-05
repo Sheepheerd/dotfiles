@@ -5,7 +5,7 @@
   systemd.packages = with pkgs; [
     auto-cpufreq
   ];
-  
+
   # Enable Services
   programs.dconf.enable = true;
   services.dbus = {
@@ -16,13 +16,13 @@
   };
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
-  services.tumbler.enable = true; 
+  services.tumbler.enable = true;
   services.fwupd.enable = true;
-  services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.enable = true;
   services.zerotierone.enable = true;
 
   environment.systemPackages = with pkgs; [
-    zerotierone 
+    zerotierone
     at-spi2-atk
     qt6.qtwayland
     poweralertd
