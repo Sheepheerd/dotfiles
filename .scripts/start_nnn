@@ -1,6 +1,0 @@
-#!/bin/zsh
-source ~/.zshrc
-
-#/usr/bin/alacritty -e /usr/bin/zsh --rcfile /home/$USER/.zshrc - c '/bin/nnn -e'
-
-/usr/bin/alacritty -e nnn -ea

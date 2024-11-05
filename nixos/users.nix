@@ -1,0 +1,24 @@
+{ pkgs, ... }:
+
+{
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.sheep = {
+    isNormalUser = true;
+    description = "Mr. Big Steppa";
+    extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" "tss" ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      unzip 
+      vim
+      stow
+      vesktop
+      neovim
+      firefox
+      libreoffice-fresh
+      libqalculate
+      xclip
+      rofi-calc
+    ];
+  };
+
+}
