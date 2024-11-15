@@ -1,11 +1,11 @@
 {inputs, pkgs, lib, nixvim, ... }: {
 
-  imports = [
-    # Importing the NixVim module for NixOS
-    inputs.nixvim.nixosModules.nixvim
-  ];
 
   programs.nixvim = {
+  imports = [
+    # Importing the NixVim module for NixOS
+    inputs.nixvim.nixosModule
+  ];
     enable = true;
     # other configurations
   };

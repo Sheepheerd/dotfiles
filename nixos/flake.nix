@@ -12,7 +12,7 @@ spicetify-nix = {
 
 };
 
-outputs = { self, nixpkgs, nixvim, ... } @ inputs: let
+outputs = { self, nixpkgs, ... } @ inputs: let
   inherit (self) outputs;
 
  systems = [
@@ -30,8 +30,7 @@ in {
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/configuration.nix
-     	nixvim.nixosModules.nixvim 
-      ];
+];
     };
     };
   };
