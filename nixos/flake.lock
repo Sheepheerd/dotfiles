@@ -301,11 +301,11 @@
         "nixvim": "nixvim_2"
       },
       "locked": {
-        "lastModified": 1731644254,
-        "narHash": "sha256-ud7znqpSgYmnS3yqqP+vwVY3m1NZkBaXgRhPwfS0/1Y=",
+        "lastModified": 1731644346,
+        "narHash": "sha256-Xt6VJi9/oR5aarhsoABn7AoEgwU0pD03C5eI8Wzd/J4=",
         "owner": "Sheepheerd",
         "repo": "nixvim",
-        "rev": "7c6daf8ded3f066b567636a13bf467f62bd1baa9",
+        "rev": "bb3363ea75adc7c85634476748f996c784ddeb14",
         "type": "github"
       },
       "original": {
