@@ -1,5 +1,8 @@
 return {
 	"gelguy/wilder.nvim",
+	dependencies = {
+		"roxma/nvim-yarp",
+	},
 	config = function()
 		local wilder = require("wilder")
 		wilder.setup({ modes = { ":", "/", "?" } })

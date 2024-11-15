@@ -8,7 +8,9 @@ spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
+	
+nixvim.url = "github:Sheepheerd/nixvim";
+    };
 
 outputs = { nixpkgs, ... } @ inputs:
   {
@@ -42,6 +44,7 @@ outputs = { nixpkgs, ... } @ inputs:
         ./users.nix
         ./virtualisation.nix
         ./programming-languages.nix
+	./vim.nix
 	./zsh.nix
 ];
     };

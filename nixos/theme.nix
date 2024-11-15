@@ -2,11 +2,7 @@
 
 {
   # Enable Theme
-  environment.variables.GTK_THEME = "catppuccin-macchiato-teal-standard";
-  environment.variables.XCURSOR_THEME = "Catppuccin-Macchiato-Teal";
-  environment.variables.XCURSOR_SIZE = "24";
-  environment.variables.HYPRCURSOR_THEME = "Catppuccin-Macchiato-Teal";
-  environment.variables.HYPRCURSOR_SIZE = "24";
+  #environment.variables.GTK_THEME = "catppuccin-macchiato-teal-standard";
   qt.enable = true;
   qt.platformTheme = "gtk2";
   qt.style = "gtk2";

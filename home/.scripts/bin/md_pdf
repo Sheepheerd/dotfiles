@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-pandoc $1 \
+pandoc --pdf-engine tectonic $1 \
 -V geometry:paperwidth=8.5in \
 -V gemoetry:paperheight=11in \
 -V geometry:margin=1in \

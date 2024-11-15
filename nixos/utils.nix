@@ -7,5 +7,6 @@
     lld
     lldb
     jdk11
-  ];
+    libinput
+];
 }

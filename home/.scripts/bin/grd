@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define directories
 DOWNLOADS_DIR="$HOME/Downloads"

@@ -3,8 +3,10 @@
 {
 
   # Enable Hyprland
+  environment.sessionVariables.HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+
   programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true; 
+  programs.hyprland.xwayland.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
@@ -15,9 +17,9 @@
     hypridle
     hyprpaper
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-    alacritty 
+    alacritty
     neovim
-	
+
     firefox
     zathura
     mpv

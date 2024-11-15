@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define file_exists function
 file_exists() {
@@ -10,7 +10,7 @@ file_exists() {
 }
 
 # Kill already running processes
-_ps=(waybar rofi swaync)
+_ps=(waybar)
 for _prs in "${_ps[@]}"; do
     if pidof "${_prs}" >/dev/null; then
         pkill "${_prs}"
@@ -21,6 +21,3 @@ sleep 0.3
 # Relaunch waybar
 waybar &
 
-# relaunch swaync
-sleep 0.5
-swaync >/dev/null 2>&1 &

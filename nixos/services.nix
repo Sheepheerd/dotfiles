@@ -20,6 +20,26 @@
   services.fwupd.enable = true;
   #services.auto-cpufreq.enable = true;
   services.zerotierone.enable = true;
+  services.power-profiles-daemon.enable = true;
+
+
+#   evdev:name:SynPS/2 Synaptics TouchPad:dmi:*svnLENOVO:*pvrThinkPadT14Gen2a**
+#  EVDEV_ABS_00=::44
+#  EVDEV_ABS_01=::50
+#  EVDEV_ABS_35=::44
+#  EVDEV_ABS_36=::50
+#
+#
+#
+   services.udev.extraHwdb = ''
+evdev:name:SynPS/2 Synaptics TouchPad:dmi:*:svnLENOVO*:pvrThinkPadT14Gen2a*:
+ EVDEV_ABS_00=:::8
+ EVDEV_ABS_01=:::8
+ EVDEV_ABS_35=:::8
+ EVDEV_ABS_36=:::8
+
+'';
+
 
   environment.systemPackages = with pkgs; [
     zerotierone
