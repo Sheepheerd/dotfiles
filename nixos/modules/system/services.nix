@@ -20,8 +20,9 @@
   services.fwupd.enable = true;
   #services.auto-cpufreq.enable = true;
   services.zerotierone.enable = true;
-  services.power-profiles-daemon.enable = true;
+  #services.power-profiles-daemon.enable = true;
 
+  powerManagement.powertop.enable = true;
 
 #   evdev:name:SynPS/2 Synaptics TouchPad:dmi:*svnLENOVO:*pvrThinkPadT14Gen2a**
 #  EVDEV_ABS_00=::44
@@ -59,5 +60,6 @@ evdev:name:SynPS/2 Synaptics TouchPad:dmi:*:svnLENOVO*:pvrThinkPadT14Gen2a*:
     rofi-wayland
     dunst
     wlogout
-  ];
+    powertop
+];
 }
