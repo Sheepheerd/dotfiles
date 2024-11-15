@@ -6,7 +6,6 @@
       ./hardware-configuration.nix
       inputs.spicetify-nix.nixosModules.default
 ../modules/default.nix
-	inputs.Neve.nixosModules.nixvim
 ];
 
 
