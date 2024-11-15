@@ -23,6 +23,18 @@ outputs = { self, nixpkgs, ... } @ inputs: let
       "x86_64-darwin"
     ];
 
+   perSystem = {
+        pkgs,
+        system,
+        ...
+      }: let       nixvim' = nixvim.legacyPackages."${system}";
+        nvim = nixvim'.makeNixvim config;
+      in {
+        packages = {
+          inherit nvim;
+          default = nvim;
+        };
+      };
 in {
 
     nixosConfigurations = {
