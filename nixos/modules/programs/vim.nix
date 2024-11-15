@@ -1,15 +1,13 @@
-{config, pkgs, inputs, lib, ...}:
-{
+{inputs, pkgs, lib, nixvim, ... }: {
 
-imports = [ inputs.nixvim.nixvimModule ];
+  imports = [
+    # Importing the NixVim module for NixOS
+    inputs.nixvim.nixosModules.nixvim
+  ];
 
-environment.systemPackages = with pkgs; [
-  inputs.nixvim.packages.${pkgs.system}.default
-];
-
-programs.nixvim = {
-  enable = true;
-# Then configure Nixvim as usual, you might have to lib.mkForce some of the settings
-};
-
+  programs.nixvim = {
+    enable = true;
+    # other configurations
+  };
 }
+

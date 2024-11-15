@@ -30,6 +30,7 @@ in {
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/configuration.nix
+     	nixvim.nixosModules.nixvim 
       ];
     };
     };
