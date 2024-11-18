@@ -6,20 +6,20 @@ nixpkgs.overlays = [(final: prev: {
 })];
 
 
-programs.spicetify =
-   let
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-   in
-   {
-     enable = true;
-     enabledExtensions = with spicePkgs.extensions; [
-       adblock
-       hidePodcasts
-       shuffle # shuffle+ (special characters are sanitized out of extension names)
-     ];
-     theme = spicePkgs.themes.catppuccin;
-     colorScheme = "mocha";
-   };
+#programs.spicetify =
+#   let
+#     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+#   in
+#   {
+#     enable = true;
+#     enabledExtensions = with spicePkgs.extensions; [
+#       adblock
+#       hidePodcasts
+#       shuffle # shuffle+ (special characters are sanitized out of extension names)
+#     ];
+#     #theme = spicePkgs.themes.catppuccin;
+#     #colorScheme = "mocha";
+#   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
@@ -34,7 +34,7 @@ programs.spicetify =
       vesktop
       neovim
       firefox
-      libreoffice-fresh
+#      libreoffice-fresh
       hunspell
       hunspellDicts.en_US
       xclip
@@ -43,7 +43,8 @@ programs.spicetify =
       tectonic
       grimblast
       grim
-      ];
+      kitty
+];
     };
 
 }

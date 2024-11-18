@@ -9,7 +9,6 @@
     ./firewall.nix
     ./fonts.nix
     ./internationalisation.nix
-    ./linux-kernel.nix
     ./networking.nix
     ./printing.nix
     ./screen.nix

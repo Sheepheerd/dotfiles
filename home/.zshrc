@@ -1,2 +1,1 @@
-
-export PATH=$PATH:/home/sheep/.spicetify
+# Created by newuser for 5.9

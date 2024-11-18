@@ -5,10 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
 #    Neve.url = "github:Sheepheerd/nixvim";
-spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+#spicetify-nix = {
+#      url = "github:Gerg-L/spicetify-nix";
+#      inputs.nixpkgs.follows = "nixpkgs";
+#    };
 
 };
 
