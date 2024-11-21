@@ -6,7 +6,7 @@
     clang
     lld
     lldb
-    jdk11
+    jdk
     libinput
 ];
 }

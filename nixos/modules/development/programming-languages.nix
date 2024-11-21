@@ -9,5 +9,7 @@
     yarn
     lua
     jdk
-  ];
+
+    uv
+];
 }

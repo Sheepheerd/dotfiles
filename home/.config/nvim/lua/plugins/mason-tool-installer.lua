@@ -4,7 +4,7 @@ return {
 		require("mason-tool-installer").setup({
 			ensure_installed = {
 				--				"clang-format",
-				"clangd",
+				-- "clangd",
 				"codelldb",
 
 				"pyright",
@@ -20,11 +20,11 @@ return {
 				"stylua",
 
 				"xmlformatter",
-				"lemminx",
+				-- "lemminx",
 				"gdtoolkit",
 
 				--Rust
-				"rustfmt",
+				-- "rustfmt",
 
 				--Sonar
 				"sonarlint-language-server",

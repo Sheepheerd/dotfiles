@@ -34,12 +34,13 @@ nixpkgs.overlays = [(final: prev: {
       vesktop
       neovim
       firefox
-#      libreoffice-fresh
+      logisim
+      libreoffice
       hunspell
       hunspellDicts.en_US
       xclip
       dmenu
-      ulauncher
+      rofi-wayland
       tectonic
       grimblast
       grim

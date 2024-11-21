@@ -5,7 +5,7 @@
 
 programs.zsh = {
 enable = true;
-enableCompletion = true;
+# enableCompletion = true;
 autosuggestions.enable = true;
 syntaxHighlighting.enable = true;
 
@@ -21,12 +21,12 @@ shellAliases = {
 open="xdg-open";
 vim="nvim";
 fd="zoxide";
-update = "sudo nixos-rebuild switch";
-  };
+update = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#novastar";
+};
 
   ohMyZsh = {
     enable = true;
-    plugins = [  "git" "magic-enter" "fzf" "pyenv" "sudo" "tldr" ];
+    plugins = [  "git" "magic-enter" "fzf" "pyenv" "sudo" "tldr"  ];
     theme = "eastwood";
   };
 };

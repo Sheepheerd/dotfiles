@@ -7,6 +7,7 @@
     ./display-manager.nix
     ./environment-variables.nix
     ./firewall.nix
+#    ./fingerprint-scanner.nix
     ./fonts.nix
     ./internationalisation.nix
     ./networking.nix

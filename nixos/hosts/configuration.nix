@@ -11,7 +11,7 @@
 
 
 hardware.asahi.peripheralFirmwareDirectory = ../firmware;
-environment.systemPackages = with pkgs; [ mesa mesa.drivers ];
+environment.systemPackages = with pkgs; [ mesa mesa.drivers inputs.home-manager.packages.${pkgs.system}.default];
 hardware.asahi.useExperimentalGPUDriver = true;
 programs.nix-ld.enable = true;
 

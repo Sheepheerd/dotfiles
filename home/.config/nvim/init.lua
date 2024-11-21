@@ -148,7 +148,7 @@ local servers = {
 	jdtls = {},
 
 	--XML
-	lemminx = {},
+	-- lemminx = {},
 }
 
 local function setup_lsp(server_name, config)

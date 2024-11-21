@@ -19,6 +19,7 @@
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   #services.auto-cpufreq.enable = true;
+  services.tlp.enable = true;
   services.zerotierone.enable = true;
   #services.power-profiles-daemon.enable = true;
 

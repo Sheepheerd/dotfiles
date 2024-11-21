@@ -6,5 +6,7 @@
 #  ./spicetify.nix
   ./zsh.nix
   ./vim.nix
+#  ./waydroid.nix
+./yt_music.nix
 ];
 }

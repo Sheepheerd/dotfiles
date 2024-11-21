@@ -4,7 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-#    Neve.url = "github:Sheepheerd/nixvim";
+    wide-vine.url =  "github:heywoodlh/flakes";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
 #spicetify-nix = {
 #      url = "github:Gerg-L/spicetify-nix";
 #      inputs.nixpkgs.follows = "nixpkgs";
@@ -12,7 +18,7 @@
 
 };
 
-outputs = { self, nixpkgs, ... } @ inputs: let
+outputs = { self, nixpkgs, wide-vine, home-manager,  ... } @ inputs: let
   inherit (self) outputs;
 
  systems = [
@@ -24,6 +30,8 @@ outputs = { self, nixpkgs, ... } @ inputs: let
     ];
 
 in {
+    homeManagerModules = import ./home;
+
 
     nixosConfigurations = {
       novastar = nixpkgs.lib.nixosSystem {
@@ -33,5 +41,18 @@ in {
 ];
     };
     };
+
+
+
+   homeConfigurations = {
+      # Used in CI
+      "sheep@novastar" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          ./home-manager/home.nix # Base desktop config
+          ];
+      };
+   };
   };
 }
