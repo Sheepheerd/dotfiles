@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    wide-vine.url =  "github:heywoodlh/flakes";
+    misterioFlake.url =  "github:heywoodlh/flakes";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +18,7 @@
 
 };
 
-outputs = { self, nixpkgs, wide-vine, home-manager,  ... } @ inputs: let
+outputs = { self, nixpkgs, misterioFlake, home-manager,  ... } @ inputs: let
   inherit (self) outputs;
 
  systems = [
@@ -30,7 +30,7 @@ outputs = { self, nixpkgs, wide-vine, home-manager,  ... } @ inputs: let
     ];
 
 in {
-    homeManagerModules = import ./home;
+    homeManagerModules = import ./modules/home-manager;
 
 
     nixosConfigurations = {
@@ -38,6 +38,7 @@ in {
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/configuration.nix
+
 ];
     };
     };
@@ -48,10 +49,21 @@ in {
       # Used in CI
       "sheep@novastar" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          ./home-manager/home.nix # Base desktop config
-          ];
+          ./modules/home-manager/desktop.nix # Base desktop config
+          # ./home-manager/home.nix # Base desktop config
+         {
+           home = {
+              username = "sheep";
+              homeDirectory = "/home/sheep";
+            };
+          programs.home-manager.enable = true;
+          targets.genericLinux.enable = true;
+          home.stateVersion = "23.05";
+}
+     ];
+     extraSpecialArgs = inputs;
+
       };
    };
   };

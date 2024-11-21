@@ -1,4 +1,4 @@
-{ config, pkgs, home-manager, wide-vine, ... }:
+{ config, pkgs, home-manager, misterioFlake, ... }:
 
 let
   system = pkgs.system;
@@ -12,7 +12,7 @@ in {
       Name=Chromium
       GenericName=browser
       Comment=Chromium browser with Widevine
-      Exec=${wide-vine.packages.aarch64-linux.chromium-widevine}/bin/chromium
+      Exec=${misterioFlake.packages.aarch64-linux.chromium-widevine}/bin/chromium
       Terminal=false
       Type=Application
       Keywords=browser;internet;
@@ -27,7 +27,7 @@ in {
       Name=Spotify
       GenericName=music
       Comment=Listen to Spotify
-      Exec=${wide-vine.packages.aarch64-linux.chromium-widevine}/bin/chromium --app=https://open.spotify.com
+      Exec=${misterioFlake.packages.aarch64-linux.chromium-widevine}/bin/chromium --app=https://open.spotify.com
       Terminal=false
       Type=Application
       Keywords=music;
