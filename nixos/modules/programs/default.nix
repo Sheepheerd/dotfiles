@@ -1,12 +1,11 @@
-
-{pkgs, inputs, ...}:
-{
+{ pkgs, inputs, ... }: {
   imports = [
-  ./hyprland.nix
-#  ./spicetify.nix
-  ./zsh.nix
-  ./vim.nix
-#  ./waydroid.nix
-./yt_music.nix
-];
+    ./hyprland.nix
+    #  ./spicetify.nix
+    ./zsh.nix
+    ./vim.nix
+    #  ./waydroid.nix
+    #    ./yt_music.nix
+    #./steam.nix
+  ];
 }

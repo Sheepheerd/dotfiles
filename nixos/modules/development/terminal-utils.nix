@@ -16,7 +16,7 @@
     just
     ripgrep
     procs
-    macchina #neofetch alternative in rust
+    macchina # neofetch alternative in rust
     du-dust
     jq
     zoxide
@@ -24,6 +24,6 @@
     bat
     mdcat
     pandoc
-
+    lc3tools
   ];
 }

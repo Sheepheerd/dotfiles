@@ -7,6 +7,10 @@ return {
 				-- "clangd",
 				"codelldb",
 
+				"nil",
+
+				"clojure-lsp",
+				"cljfmt",
 				"pyright",
 				"debugpy",
 				--"ruff",

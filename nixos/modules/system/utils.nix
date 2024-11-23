@@ -8,5 +8,7 @@
     lldb
     jdk
     libinput
-];
+    btop
+    gvfs
+  ];
 }

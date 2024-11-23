@@ -3,7 +3,7 @@
 {
   # Linux Kernel
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-  boot.kernelParams = [ 
+  boot.kernelParams = [
     "splash"
     "quiet"
     "fbcon=nodefer"
@@ -18,7 +18,7 @@
   # boot.kernelPatches = [ {
   #      name = "selinux-config";
   #      patch = null;
-  #      extraConfig = '' 
+  #      extraConfig = ''
   #              SECURITY_SELINUX y
   #              SECURITY_SELINUX_BOOTPARAM n
   #              SECURITY_SELINUX_DEVELOP y
@@ -29,7 +29,5 @@
 
   systemd.package = pkgs.systemd.override { withSelinux = true; };
 
-  environment.systemPackages = with pkgs; [
-    policycoreutils
-  ];
+  environment.systemPackages = with pkgs; [ policycoreutils ];
 }

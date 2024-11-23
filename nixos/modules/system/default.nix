@@ -1,5 +1,4 @@
-{pkgs, inputs, ...}:
-{
+{ pkgs, inputs, ... }: {
   imports = [
     ./auto-upgrade.nix
     ./bluetooth.nix
@@ -7,7 +6,7 @@
     ./display-manager.nix
     ./environment-variables.nix
     ./firewall.nix
-#    ./fingerprint-scanner.nix
+    #    ./fingerprint-scanner.nix
     ./fonts.nix
     ./internationalisation.nix
     ./networking.nix
@@ -21,5 +20,5 @@
     ./users.nix
     ./utils.nix
     ./virtualisation.nix
-    ];
+  ];
 }

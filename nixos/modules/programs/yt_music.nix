@@ -1,9 +1,8 @@
-{inputs, pkgs, ...}:
-{
+{ inputs, pkgs, ... }: {
 
-
-  environment.systemPackages = with pkgs; [
-    # (chromium.override { enableWideVine = true; })
-    youtube-music
-];
+  environment.systemPackages = with pkgs;
+    [
+      # (chromium.override { enableWideVine = true; })
+      youtube-music
+    ];
 }

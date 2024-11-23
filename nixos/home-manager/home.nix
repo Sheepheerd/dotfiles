@@ -1,18 +1,8 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  misterioFlake,
-  ...
-}: {
+{ inputs, outputs, lib, config, pkgs, misterioFlake, ... }: {
   # You can import other home-manager modules here
-  imports = [
-    ../modules/home-manager/desktop.nix
- ];
+  imports = [ ../modules/home-manager/desktop.nix ];
 
   nixpkgs = {
     # You can add overlays here

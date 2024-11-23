@@ -19,7 +19,5 @@
   };
 
   # Enable USB-specific packages
-  environment.systemPackages = with pkgs; [
-    usbutils
-  ];
+  environment.systemPackages = with pkgs; [ usbutils ];
 }

@@ -136,6 +136,12 @@ local servers = {
 	--Bash
 	bashls = {},
 
+	-- Nix
+	nil_ls = {},
+
+	-- Clojure
+	clojure_lsp = {},
+
 	--Lua
 	lua_ls = {
 		Lua = {

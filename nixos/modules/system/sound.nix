@@ -18,8 +18,5 @@
     # media-session.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    pamixer
-    pavucontrol
-  ];
+  environment.systemPackages = with pkgs; [ pamixer pavucontrol ];
 }
