@@ -5,6 +5,8 @@
   systemd.packages = with pkgs; [ auto-cpufreq ];
 
   # Enable Services
+  services.blueman.enable = true;
+
   programs.dconf.enable = true;
   services.dbus = {
     enable = true;
@@ -18,6 +20,15 @@
   #services.auto-cpufreq.enable = true;
   services.tlp.enable = true;
   services.zerotierone.enable = true;
+
+  programs.adb.enable = true;
+  users.users.sheep.extraGroups = [ "adbusers" ];
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
   #services.power-profiles-daemon.enable = true;
 
   powerManagement.powertop.enable = true;

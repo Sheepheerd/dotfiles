@@ -29,7 +29,6 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "sheep";
     homeDirectory = "/home/sheep";
@@ -37,7 +36,14 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ ];
+
+  packageOverrides = pkgs:
+    with pkgs; {
+      nerdfonts = pkgs.nerdfonts.override {
+        fonts = [ "JetBrainsMono" "Cascadia Code" "Symbols" ];
+      };
+    };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

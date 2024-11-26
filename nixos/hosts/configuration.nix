@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ apple-silicon, config, lib, pkgs, inputs, outputs, ... }:
 
 {
   imports = [
@@ -7,6 +7,7 @@
     #      inputs.spicetify-nix.nixosModules.default
     ../modules/default.nix
     ../apple-silicon-support
+    # <apple-silicon-support/apple-silicon-support>
   ];
 
   hardware.asahi.peripheralFirmwareDirectory = ../firmware;
@@ -15,6 +16,8 @@
     mesa.drivers
     inputs.home-manager.packages.${pkgs.system}.default
   ];
+  environment.sessionVariables = { WLR_DRM_DEVICES = "/dev/dri/card0"; };
+  hardware.graphics.enable = true;
   hardware.asahi.useExperimentalGPUDriver = true;
   programs.nix-ld.enable = true;
 

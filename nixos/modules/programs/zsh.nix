@@ -18,7 +18,8 @@
       open = "xdg-open";
       vim = "nvim";
       fd = "zoxide";
-      update = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#novastar";
+      update =
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
     };
 
     ohMyZsh = {
