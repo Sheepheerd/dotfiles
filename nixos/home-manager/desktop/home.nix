@@ -1,10 +1,6 @@
 { inputs, outputs, lib, config, pkgs, misterioFlake, ... }: {
   # You can import other home-manager modules here
-  imports = [
-    ../../modules/home-manager/desktop.nix
-    ../../modules/home-manager/gtk.nix
-    ../../modules/home-manager/tmux.nix
-  ];
+  imports = [ ./desktop.nix ./gtk.nix ./tmux.nix ./easyeffects.nix ];
 
   nixpkgs = {
     # You can add overlays here
@@ -39,8 +35,10 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   fonts.fontconfig.enable = true;
-  home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+    # (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
   ];
 
   programs.home-manager.enable = true;

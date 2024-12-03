@@ -15,10 +15,10 @@
       # this line prevents me from fetching two versions of nixpkgs:
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # spicetify-nix = {
-    #   url = "github:Gerg-L/spicetify-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
@@ -27,13 +27,7 @@
     let
       inherit (self) outputs;
 
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
+      systems = [ "x86_64-linux" ];
 
     in {
       homeManagerModules = import ./modules/home-manager;
@@ -80,7 +74,6 @@
           pkgs =
             nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           modules = [
-            #./modules/home-manager/desktop.nix # Base desktop config
             ./home-manager/desktop/home.nix # Base desktop config
             {
               home = {
@@ -89,7 +82,7 @@
               };
               programs.home-manager.enable = true;
               targets.genericLinux.enable = true;
-              home.stateVersion = "24.11";
+              home.stateVersion = "25.05";
             }
           ];
           extraSpecialArgs = inputs;

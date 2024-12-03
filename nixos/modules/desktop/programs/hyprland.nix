@@ -3,7 +3,7 @@
 {
 
   # Enable Hyprland
-  #environment.sessionVariables.HYPRCURSOR_THEME = "rose-pine-hyprcursor";
+  environment.sessionVariables.HYPRCURSOR_THEME = "rose-pine-hyprcursor";
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
@@ -16,7 +16,7 @@
     hyprlock
     hypridle
     hyprpaper
-    #    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     alacritty
     neovim
 

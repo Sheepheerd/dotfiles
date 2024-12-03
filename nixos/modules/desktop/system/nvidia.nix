@@ -1,8 +1,9 @@
 { pkgs, inputs, config, ... }: {
 
   hardware.graphics = { enable = true; };
+  hardware.nvidia.package =
+    config.boot.kernelPackages.nvidiaPackages.production;
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   hardware.nvidia = {
 

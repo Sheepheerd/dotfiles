@@ -21,5 +21,6 @@
     ./utils.nix
     ./virtualisation.nix
     ./linux-kernel.nix
+    ./nvidia.nix
   ];
 }
