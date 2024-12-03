@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Detect the system type (you can modify this condition based on your specific requirements)
 if [[ "$(hostname)" == "deathstar" ]]; then
     export LIBVA_DRIVER_NAME=nvidia
