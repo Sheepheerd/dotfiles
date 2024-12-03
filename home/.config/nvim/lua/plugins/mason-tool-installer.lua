@@ -27,9 +27,6 @@ return {
 				-- "lemminx",
 				"gdtoolkit",
 
-				--Rust
-				-- "rustfmt",
-
 				--Sonar
 				"sonarlint-language-server",
 			},
