@@ -10,7 +10,7 @@
     # <apple-silicon-support/apple-silicon-support>
   ];
 
-  hardware.asahi.peripheralFirmwareDirectory = ../firmware;
+  hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
   environment.systemPackages = with pkgs; [
     mesa
     mesa.drivers
