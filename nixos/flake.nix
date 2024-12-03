@@ -15,15 +15,15 @@
       # this line prevents me from fetching two versions of nixpkgs:
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # spicetify-nix = {
+    #   url = "github:Gerg-L/spicetify-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
   };
 
-  outputs = { self, nixpkgs, misterioFlake, home-manager, apple-silicon
-    , spicetify-nix, ... }@inputs:
+  outputs =
+    { self, nixpkgs, misterioFlake, home-manager, apple-silicon, ... }@inputs:
     let
       inherit (self) outputs;
 

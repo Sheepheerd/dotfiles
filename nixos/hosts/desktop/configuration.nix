@@ -4,12 +4,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.spicetify-nix.nixosModules.default
+    #    inputs.spicetify-nix.nixosModules.default
     ../../modules/desktop/default.nix
   ];
 
-  environment.systemPackages = with pkgs;
-    [ inputs.home-manager.packages.${pkgs.system}.default ];
+  # environment.systemPackages = with pkgs;
+  #   [ inputs.home-manager.packages.${pkgs.system}.default ];
   #environment.sessionVariables = { WLR_DRM_DEVICES = "/dev/dri/card0"; };
   programs.nix-ld.enable = true;
 

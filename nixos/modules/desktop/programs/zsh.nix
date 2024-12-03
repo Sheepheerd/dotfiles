@@ -19,7 +19,7 @@
       vim = "nvim";
       fd = "zoxide";
       update =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#deathstar";
     };
 
     ohMyZsh = {
