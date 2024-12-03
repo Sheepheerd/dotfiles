@@ -4,6 +4,16 @@ let
   homeDir = config.home.homeDirectory;
 in {
 
+  home.packages = with pkgs; [ easyeffects ];
+  systemd.user.services.easyeffects = {
+    Service = {
+      Type = "dbus";
+      BusName = "com.github.wwmm.easyeffects";
+      ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
+      Restart = "on-failure";
+    };
+
+  };
   home.file.".config/easyeffects/output/input.json" = {
     enable = system == "x86_64-linux";
     text = ''

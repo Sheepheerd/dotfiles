@@ -32,7 +32,7 @@
       grimblast
       grim
       kitty
-      easyeffects
+      # easyeffects
       gvfs
     ];
   };
