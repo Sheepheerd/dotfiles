@@ -1,0 +1,34 @@
+[
+  // Toggle File Tree
+  {
+    "context": "Workspace",
+    "bindings": {
+      "\\ f": "workspace::ToggleLeftDock"
+    }
+  },
+
+  // Terminal
+  {
+    "context": "Workspace",
+    "bindings": {
+      "\\ t": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "\\ n": "workspace::NewTerminal",
+      "\\ d": "pane::CloseActiveItem",
+      "\\ shift f": "workspace::ToggleZoom",
+      "escape": "workspace::ToggleBottomDock"
+    }
+  },
+
+  // LazyGit
+{
+  "context": "Workspace",
+  "bindings": {
+    "\\ F": ["task::Spawn", { "lazygit": "Open lazygit" }]
+  }
+}
+]

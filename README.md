@@ -1,6 +1,6 @@
 # dotfiles
 
-## Overview
+## Overvie
 
 - [nvim](.config/nvim)
 - [alacritty](.config/alacritty)

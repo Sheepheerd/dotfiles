@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+
+# Define directories
+DOWNLOADS_DIR="$HOME/Downloads"
+TEMP_DIR="$HOME/Downloads/temp_extracted"
+
+# Create temp directory
+mkdir -p "$TEMP_DIR"
+
+# Initialize variables
+EDITOR=nvim
+KEEP_ZIP=false
+OPEN_ONLY=false
+RUN_ONLY=false
+
+# Function to display help
+show_help() {
+    echo "Usage: $0 [ARG] [input_file]"
+    echo
+    echo "Options:"
+    echo "  -k              Keep the zip file after execution."
+    echo "  -o              Open the Java file in $EDITOR without running it."
+    echo "  -r              Run the Java file without opening it."
+    echo "  --help          Display this help message."
+    echo
+    echo "Arguments:"
+    echo "  input_file      Optional path to test file"
+}
+
+# Parse command-line arguments
+while getopts ":korh" opt; do
+    case ${opt} in
+    k)
+        KEEP_ZIP=true
+        ;;
+    o)
+        OPEN_ONLY=true
+        ;;
+    r)
+        RUN_ONLY=true
+        ;;
+    h)
+        show_help
+        exit 0
+        ;;
+    \?)
+        echo "Invalid option: -$OPTARG" 1>&2
+        show_help
+        exit 1
+        ;;
+    esac
+done
+
+# Shift away the processed options
+shift $((OPTIND - 1))
+
+# Find the most recent zip file in the Downloads
+ZIP_FILE=$(find "$DOWNLOADS_DIR" -maxdepth 1 -name "*.zip" -print0 | xargs -0 ls -t | head -n 1)
+
+# Check if a zip file was found
+if [ -z "$ZIP_FILE" ]; then
+    echo "No zip file found in $DOWNLOADS_DIR"
+    exit 1
+fi
+
+echo "Found zip file: $ZIP_FILE"
+
+# Extract the zip file to the temp directory
+unzip "$ZIP_FILE" -d "$TEMP_DIR"
+
+# Find all Java files in the extracted contents
+JAVA_FILES=($(find "$TEMP_DIR" -name "*.java"))
+
+# Check if any Java files were found
+if [ ${#JAVA_FILES[@]} -eq 0 ]; then
+    echo "No Java files found in the extracted contents"
+    rm -rf "$TEMP_DIR"
+    exit 1
+fi
+
+# If there are multiple Java files, ask the user to select one
+if [ ${#JAVA_FILES[@]} -gt 1 ]; then
+    echo "Multiple Java files found. Please select one to execute:"
+
+    # Print relative paths
+    for i in "${!JAVA_FILES[@]}"; do
+        RELATIVE_PATH="${JAVA_FILES[i]#$TEMP_DIR/}" # Get relative path
+        echo "$((i + 1)). $RELATIVE_PATH"
+    done
+
+    # User selection
+    select JAVA_FILE in "${JAVA_FILES[@]}"; do
+        if [[ -n "$JAVA_FILE" ]]; then
+            echo "You selected: $JAVA_FILE"
+            break
+        else
+            echo "Invalid selection. Please try again."
+        fi
+    done
+else
+    JAVA_FILE=${JAVA_FILES[0]}
+    echo "Found Java file: ${JAVA_FILE#$TEMP_DIR/}"
+fi
+
+# Check for a text file argument
+INPUT_FILE="$1"
+
+# Open the Java file in the editor if -o is set
+if $OPEN_ONLY; then
+    $EDITOR -n "$JAVA_FILE"
+    sleep 2
+    # Delete everything except the zip file if -k was not provided
+    if ! $KEEP_ZIP; then
+        rm -f "$ZIP_FILE"
+    fi
+    rm -rf "$TEMP_DIR"
+    exit 0
+fi
+
+# If -r is set, just run the Java program
+if $RUN_ONLY; then
+    if [[ -n "$INPUT_FILE" ]]; then
+        java "$JAVA_FILE" <"$INPUT_FILE"
+    else
+        java "$JAVA_FILE"
+    fi
+    rm -rf "$TEMP_DIR"
+    if ! $KEEP_ZIP; then
+        rm -f "$ZIP_FILE"
+    fi
+    exit 0
+fi
+
+# Open the Java file in Codium. Fix if necessary
+$EDITOR -n "$JAVA_FILE"
+
+# Pause for 2 seconds to allow the editor to open
+sleep 2
+
+# Run the Java program and feed the text file to it if provided
+if [[ -n "$INPUT_FILE" ]]; then
+    java "$JAVA_FILE" <"$INPUT_FILE"
+else
+    java "$JAVA_FILE"
+fi
+
+# Delete everything except the zip file if -k was not provided
+if ! $KEEP_ZIP; then
+    rm -f "$ZIP_FILE"
+fi
+rm -rf "$TEMP_DIR"
