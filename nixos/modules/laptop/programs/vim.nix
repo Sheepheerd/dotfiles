@@ -1,13 +1,11 @@
-{ inputs, pkgs, lib, ... }:
-{
+{ inputs, pkgs, lib, northstar, ... }: {
 
-  #  programs.nixvim = {
-  #    enable = true;
-  #  imports = [
-  # Importing the NixVim module for NixOS
-  #	inputs.Neve.nixosModules.nixvim
-  #  ];
-  # other configurations
-  #  };
+  environment.systemPackages = with pkgs;
+    [ inputs.northstar.packages.${pkgs.system}.default ];
+  programs.nixvim = {
+    enable = true;
+    imports = [ inputs.northstar.nixvimModule ];
+    # Then configure Nixvim as usual, you might have to lib.mkForce some of the settings
+  };
 }
 

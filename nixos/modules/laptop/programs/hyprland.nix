@@ -18,7 +18,6 @@
     hyprpaper
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
     alacritty
-    neovim
 
     firefox
     zathura

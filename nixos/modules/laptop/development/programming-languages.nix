@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
+
   environment.systemPackages = with pkgs; [
     go
     (python312Full.withPackages
@@ -11,7 +12,7 @@
     lua
     jdk
     cargo
-
+    jdt-language-server
     uv
     nixfmt
     rustfmt

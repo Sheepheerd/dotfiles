@@ -4,14 +4,15 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #      inputs.spicetify-nix.nixosModules.default
+    inputs.nixvim.nixosModules.default
     ../../modules/laptop/default.nix
-    ../../apple-silicon-support
-    # <apple-silicon-support/apple-silicon-support>
+    #../../apple-silicon-support
+    <apple-silicon-support/apple-silicon-support>
   ];
 
   hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
   environment.systemPackages = with pkgs; [
+
     mesa
     mesa.drivers
     inputs.home-manager.packages.${pkgs.system}.default

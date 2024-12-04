@@ -34,7 +34,6 @@
       vim
       stow
       vesktop
-      neovim
       firefox
       logisim
       libreoffice
