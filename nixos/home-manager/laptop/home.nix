@@ -35,8 +35,11 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   fonts.fontconfig.enable = true;
-  home.packages = [
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+
+    # (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
   ];
 
   programs.home-manager.enable = true;
