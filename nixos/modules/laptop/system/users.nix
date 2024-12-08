@@ -9,20 +9,6 @@
     })
   ];
 
-  #programs.spicetify =
-  #   let
-  #     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  #   in
-  #   {
-  #     enable = true;
-  #     enabledExtensions = with spicePkgs.extensions; [
-  #       adblock
-  #       hidePodcasts
-  #       shuffle # shuffle+ (special characters are sanitized out of extension names)
-  #     ];
-  #     #theme = spicePkgs.themes.catppuccin;
-  #     #colorScheme = "mocha";
-  #   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     isNormalUser = true;
@@ -33,12 +19,6 @@
       unzip
       vim
       stow
-      vesktop
-      firefox
-      logisim
-      libreoffice
-      hunspell
-      hunspellDicts.en_US
       xclip
       dmenu
       rofi-wayland

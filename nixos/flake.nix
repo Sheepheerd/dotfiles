@@ -5,7 +5,7 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/master";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    misterioFlake.url = "github:heywoodlh/flakes";
+    # misterioFlake.url = "github:heywoodlh/flakes";
     northstar.url = "github:Sheepheerd/northstar";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -30,10 +30,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
+
   };
 
-  outputs = { self, nixpkgs, unstable, misterioFlake, home-manager
-    , apple-silicon, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, apple-silicon, nixvim
+    , nixos-aarch64-widevine, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -56,7 +58,7 @@
           };
           modules = [
             ./hosts/laptop/configuration.nix
-
+            { nixpkgs.overlays = [ nixos-aarch64-widevine.overlays.default ]; }
           ];
         };
         deathstar = nixpkgs.lib.nixosSystem {

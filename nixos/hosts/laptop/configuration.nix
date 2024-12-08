@@ -1,6 +1,7 @@
 { apple-silicon, config, lib, pkgs, inputs, outputs, ... }:
 
 {
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -34,6 +35,9 @@
 
       };
   };
+
+  environment.sessionVariables.MOZ_GMP_PATH =
+    [ "${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.11"; # Did you read the comment?
 
