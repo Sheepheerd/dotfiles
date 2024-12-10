@@ -9,6 +9,7 @@
     })
   ];
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     isNormalUser = true;
     description = "Mr. Big Steppa";
@@ -18,13 +19,6 @@
       unzip
       vim
       stow
-      vesktop
-      neovim
-      firefox
-      logisim
-      libreoffice
-      hunspell
-      hunspellDicts.en_US
       xclip
       dmenu
       rofi-wayland
@@ -32,9 +26,8 @@
       grimblast
       grim
       kitty
-      # easyeffects
-      gvfs
     ];
   };
 
 }
+

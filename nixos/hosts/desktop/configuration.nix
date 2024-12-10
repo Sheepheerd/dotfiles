@@ -5,6 +5,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.spicetify-nix.nixosModules.default
+    inputs.nixvim.nixosModules.default
     ../../modules/desktop/default.nix
   ];
 
