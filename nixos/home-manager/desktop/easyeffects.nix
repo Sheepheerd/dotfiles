@@ -3,16 +3,23 @@ let
   system = pkgs.system;
   homeDir = config.home.homeDirectory;
 in {
-
   home.packages = with pkgs; [ easyeffects ];
   systemd.user.services.easyeffects = {
-    Service = {
-      Type = "dbus";
-      BusName = "com.github.wwmm.easyeffects";
-      ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
-      Restart = "on-failure";
+    Unit = {
+      Description = "Easyeffects daemon";
+      Requires = [ "dbus.service" ];
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" "pipewire.service" ];
     };
 
+    Install.WantedBy = [ "graphical-session.target" ];
+
+    Service = {
+      ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
+      ExecStop = "${pkgs.easyeffects}/bin/easyeffects --quit";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
   };
   home.file.".config/easyeffects/output/input.json" = {
     enable = system == "x86_64-linux";

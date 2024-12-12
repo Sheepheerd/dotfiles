@@ -22,5 +22,6 @@
     ./virtualisation.nix
     ./linux-kernel.nix
     ./nvidia.nix
+    ./filesystems.nix
   ];
 }

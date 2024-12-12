@@ -13,12 +13,23 @@
     implementation = "broker";
     packages = with pkgs; [ ];
   };
+  # systemd.user.services.easyeffects = {
+  #   enable = true;
+  #   description = "Sound go good";
+  #   unitConfig = { Type = "simple"; };
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
+  #     Restart = "always";
+  #   };
+  #   wantedBy = [ "default.target" ];
+  # };
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   #services.auto-cpufreq.enable = true;
-  services.tlp.enable = true;
+  # services.tlp.enable = true;
   services.zerotierone.enable = true;
 
   programs.adb.enable = true;
@@ -31,7 +42,7 @@
   };
   #services.power-profiles-daemon.enable = true;
 
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
 
   #   evdev:name:SynPS/2 Synaptics TouchPad:dmi:*svnLENOVO:*pvrThinkPadT14Gen2a**
   #  EVDEV_ABS_00=::44
@@ -41,14 +52,6 @@
   #
   #
   #
-  services.udev.extraHwdb = ''
-    evdev:name:SynPS/2 Synaptics TouchPad:dmi:*:svnLENOVO*:pvrThinkPadT14Gen2a*:
-     EVDEV_ABS_00=:::8
-     EVDEV_ABS_01=:::8
-     EVDEV_ABS_35=:::8
-     EVDEV_ABS_36=:::8
-
-  '';
 
   environment.systemPackages = with pkgs; [
     zerotierone
