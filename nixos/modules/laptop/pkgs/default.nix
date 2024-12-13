@@ -8,7 +8,7 @@
       vesktop
       firefox
       logisim
-      libreoffice
+      # libreoffice
       hunspell
       hunspellDicts.en_US
     ];
