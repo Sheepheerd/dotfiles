@@ -8,9 +8,12 @@
       vesktop
       firefox
       logisim
-      libreoffice
+      #libreoffice-still
+      texlive.combined.scheme-full
       hunspell
-      hunspellDicts.en_US
+      hunspellDicts.uk_UA
+      hunspellDicts.th_TH
+      joplin-desktop
     ];
   };
 

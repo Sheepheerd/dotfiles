@@ -3,7 +3,7 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     # misterioFlake.url = "github:heywoodlh/flakes";
     northstar.url = "github:Sheepheerd/northstar";

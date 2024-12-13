@@ -50,7 +50,6 @@
     colloid-icon-theme
     catppuccin-gtk
     catppuccin-kvantum
-    catppuccin-cursors.macchiatoTeal
 
     # gnome.gnome-tweaks
     # gnome.gnome-shell

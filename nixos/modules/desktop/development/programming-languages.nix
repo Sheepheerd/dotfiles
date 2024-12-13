@@ -18,5 +18,12 @@
     rust-analyzer
     #    vscode-extensions.vadimcn.vscode-lldb.adapter
     clojure
+    love
+    selene
+    stylua
+    nodePackages.jsonlint
+    shellcheck
+    cpplint
+    golangci-lint
   ];
 }
