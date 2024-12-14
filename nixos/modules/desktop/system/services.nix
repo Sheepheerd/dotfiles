@@ -7,6 +7,11 @@
   # Enable Services
   services.blueman.enable = true;
 
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   programs.dconf.enable = true;
   services.dbus = {
     enable = true;

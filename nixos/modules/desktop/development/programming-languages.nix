@@ -23,7 +23,8 @@
     stylua
     nodePackages.jsonlint
     shellcheck
-    cpplint
+    cppcheck
     golangci-lint
+    clang-tools
   ];
 }
