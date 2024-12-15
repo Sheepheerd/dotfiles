@@ -11,6 +11,7 @@
     lua
     jdk
     cargo
+    jdt-language-server
 
     uv
     nixfmt

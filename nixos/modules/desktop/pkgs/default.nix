@@ -1,7 +1,7 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, pkgs-unstable, ... }:
 
 {
-
+  programs.ydotool.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     packages = with pkgs; [
@@ -15,6 +15,8 @@
       hunspellDicts.th_TH
       joplin-desktop
       localsend
+      bambu-studio
+      # pkgs-unstable.cura
     ];
   };
 

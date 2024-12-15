@@ -84,7 +84,7 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 
 # Source Bash completion definitions for tab completion on commands
 alias ..='cd ..'
-alias vim='${HOME}/.local/application/nvim/bin/nvim'
+alias vim='nvim'
 alias ls='ls --color=auto'
 alias ll='ls -lh --color=auto'
 alias dir='dir --color=auto'
@@ -134,9 +134,6 @@ then
   __git_complete gd _git_diff
 fi
 
-alias python="python3.11"
-alias python3="python3.11"
-
 function fdrm {
   if [[ -n "${1}" ]]
   then
@@ -184,3 +181,7 @@ bind -x '"\C-f": fzf_bash_completion'
 set -o vi
 
 set ttimeoutlen 2
+
+if [ ! -z ${SIMPLE_ZSH_NIX_SHELL_BASH+x} ] ;
+  then source $SIMPLE_ZSH_NIX_SHELL_BASH
+fi
