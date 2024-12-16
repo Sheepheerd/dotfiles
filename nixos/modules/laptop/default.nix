@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
-    ./development/default.nix
+    ../shared/default.nix
     ./system/default.nix
     ./programs/default.nix
     ./pkgs/default.nix

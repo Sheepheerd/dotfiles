@@ -1,6 +1,12 @@
 { inputs, outputs, lib, config, pkgs, misterioFlake, ... }: {
   # You can import other home-manager modules here
-  imports = [ ./desktop.nix ./gtk.nix ./tmux.nix ./easyeffects.nix ];
+  imports = [
+    ./desktop.nix
+    ./gtk.nix
+    ./tmux.nix
+    ./easyeffects.nix
+    ../shared/default.nix
+  ];
 
   nixpkgs = {
     # You can add overlays here

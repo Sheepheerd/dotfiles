@@ -25,5 +25,6 @@
     mdcat
     pandoc
     lc3tools
+    zsh-nix-shell
   ];
 }
