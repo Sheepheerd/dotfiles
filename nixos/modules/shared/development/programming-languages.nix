@@ -13,6 +13,9 @@
     cargo
     jdt-language-server
 
+    direnv
+    any-nix-shell
+    devenv
     uv
     nixfmt
     rustfmt
