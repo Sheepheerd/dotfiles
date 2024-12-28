@@ -1,2 +1,2 @@
-{ pkgs, inputs, ... }: { imports = [ ]; }
+{ pkgs, inputs, ... }: { imports = [ ./random.nix ]; }
 
