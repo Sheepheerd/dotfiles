@@ -11,6 +11,7 @@
       # libreoffice
       hunspell
       hunspellDicts.en_US
+      # sommelier
     ];
   };
 
