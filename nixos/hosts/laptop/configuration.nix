@@ -18,6 +18,9 @@
     mesa.drivers
     inputs.home-manager.packages.${pkgs.system}.default
   ];
+
+  environment.shells = with pkgs; [ zsh ];
+
   environment.sessionVariables = { WLR_DRM_DEVICES = "/dev/dri/card0"; };
   hardware.graphics.enable = true;
   hardware.asahi.useExperimentalGPUDriver = true;
