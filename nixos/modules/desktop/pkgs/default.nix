@@ -16,6 +16,7 @@
       joplin-desktop
       localsend
       bambu-studio
+      blender
       # pkgs-unstable.cura
     ];
   };
