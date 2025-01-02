@@ -27,7 +27,9 @@
       open = "xdg-open";
       vim = "nvim";
       fd = "zoxide";
-      update =
+      update-ds =
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#deathstar";
+      update-ns =
         "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
     };
 
