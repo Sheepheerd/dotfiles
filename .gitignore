@@ -1,7 +1,5 @@
-.config/zed/.tmp*
-.config/winapps/winapps.conf
-.local/*
 
+./home/.config/nvim/lazy-lock.json
 !.local/share/fonts
 !.local/share/rofi
 !.local/bin/startw
