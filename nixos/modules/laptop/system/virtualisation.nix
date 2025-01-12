@@ -39,5 +39,6 @@
 
     # lazydocker
     # docker-credential-helpers
+
   ];
 }

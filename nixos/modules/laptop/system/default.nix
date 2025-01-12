@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }: {
   imports = [
-    ./auto-upgrade.nix
+    #./auto-upgrade.nix
     ./bluetooth.nix
     ./bootloader.nix
     ./display-manager.nix
