@@ -1,0 +1,25 @@
+{pkgs, ...}:
+{
+  programs.nixvim = {
+    extraPackages = with pkgs; [ checkstyle statix pylint cpplint ];
+    plugins.lint = {
+      enable = true;
+      lintersByFt = {
+        c = [ "cpplint" ];
+        cpp = [ "cpplint" ];
+        go = [ "golangci-lint" ];
+        nix = [ "statix" ];
+        lua = [ "selene" ];
+        python = [ "pylint" ];
+        javascript = [ "eslint_d" ];
+        javascriptreact = [ "eslint_d" ];
+        typescript = [ "eslint_d" ];
+        typescriptreact = [ "eslint_d" ];
+        json = [ "jsonlint" ];
+        java = [ "checkstyle" ];
+        haskell = [ "hlint" ];
+        bash = [ "shellcheck" ];
+      };
+    };
+  };
+}

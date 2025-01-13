@@ -1,51 +1,62 @@
-{ inputs, outputs, lib, config, pkgs, misterioFlake, ... }: {
-  # You can import other home-manager modules here
-  imports = [ ./desktop.nix ./gtk.nix ./tmux.nix ../shared/default.nix ];
+{ pkgs, outputs, lib, config, ... }:
+let
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    ref = "main";
+  });
+in {
+  imports = [
+    nixvim.homeManagerModules.nixvim
+    ./desktop.nix
+    ./gtk.nix
+    ./tmux.nix
+    ../shared/default.nix
+  ];
+  # Define the state version, which corresponds to the version of Home Manager
+  # you are using. This should be updated whenever you update Home Manager.
+  home.stateVersion = "25.05";
 
-  nixpkgs = {
-    # You can add overlays here
-    # overlays = [
-    #   # Add overlays your own flake exports (from overlays and pkgs dir):
-    #   outputs.overlays.additions
-    #   outputs.overlays.modifications
-    #   outputs.overlays.unstable-packages
-    #
-    #   # You can also add overlays exported from other flakes:
-    #   # neovim-nightly-overlay.overlays.default
-    #
-    #   # Or define it inline, for example:
-    #   # (final: prev: {
-    #   #   hi = final.hello.overrideAttrs (oldAttrs: {
-    #   #     patches = [ ./change-hello-to-hi.patch ];
-    #   #   });
-    #   # })
-    # ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
+  # Set up some basic settings for the home environment.
+  home.username = "sheep";
+  home.homeDirectory = "/home/sheep";
+
+  # Define the Home Manager environment variables.
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    TERMINAL = "alacritty";
+    LANG = "en_US.UTF-8";
   };
 
-  home = {
-    username = "sheep";
-    homeDirectory = "/home/sheep";
-  };
-
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
+  # Enable custom fonts
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs;
-    [
-      # nerd-fonts.jetbrains-mono
-      # nerd-fonts.caskaydia-cove
 
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
-    ];
+  # Specify the desired packages to install in the user environment.
+  home.packages = with pkgs; [
+    vim
+    git
+    curl
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+    zoxide
+  ];
 
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs = {
+    # Enable Home Manager to manage your home directory.
+    home-manager.enable = true;
 
-  systemd.user.startServices = "sd-switch";
+    # direnv
+    direnv.enable = true;
 
+    # Neovim
+    nixvim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+
+      luaLoader.enable = true;
+    };
+
+  };
 }

@@ -3,7 +3,12 @@ let
   system = pkgs.system;
   homeDir = config.home.homeDirectory;
 in {
-
+  programs = {
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+  };
   home.file.".zshthemes/eastwood.zsh-theme" = {
     text = ''
         # RVM settings
@@ -82,8 +87,6 @@ in {
     syntaxHighlighting.enable = true;
     initExtra = ''
       source /home/sheep/.zshthemes/eastwood.zsh-theme;
-    '';
-    envExtra = ''
       bindkey '^ ' autosuggest-accept
       export PATH="$PATH:$HOME/.scripts/bin"
       eval "$(zoxide init zsh)"
@@ -118,4 +121,3 @@ in {
     };
   };
 }
-

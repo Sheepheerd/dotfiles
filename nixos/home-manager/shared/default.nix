@@ -1,2 +1,1 @@
-{ pkgs, inputs, ... }: { imports = [ ./zsh.nix ]; }
-
+{ pkgs, inputs, ... }: { imports = [ ./zsh.nix ./nvim/plugins]; }
