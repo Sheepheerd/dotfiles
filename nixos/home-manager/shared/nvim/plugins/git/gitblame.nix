@@ -1,5 +1,1 @@
-{
-  programs.nixvim.plugins.gitblame = {
-    enable = true;
-  };
-}
+{ programs.nixvim.plugins.gitblame = { enable = false; }; }

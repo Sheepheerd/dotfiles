@@ -1,6 +1,6 @@
 {
   programs.nixvim = {
-        plugins.neocord = {
+    plugins.neocord = {
       enable = true;
       settings = {
         auto_update = true;

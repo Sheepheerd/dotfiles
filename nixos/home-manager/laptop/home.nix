@@ -14,7 +14,6 @@ in {
   ];
   # Define the state version, which corresponds to the version of Home Manager
   # you are using. This should be updated whenever you update Home Manager.
-  home.stateVersion = "25.05";
 
   # Set up some basic settings for the home environment.
   home.username = "sheep";
@@ -34,11 +33,16 @@ in {
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
     vim
+    rustfmt
     git
+    cargo
     curl
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
+    noto-fonts
     zoxide
+    vesktop
+
   ];
 
   programs = {
@@ -47,6 +51,15 @@ in {
 
     # direnv
     direnv.enable = true;
+
+    ghostty = {
+      enable = false;
+      enableZshIntegration = true;
+      settings = {
+        theme = "catppuccin-mocha";
+        font-size = 10;
+      };
+    };
 
     # Neovim
     nixvim = {

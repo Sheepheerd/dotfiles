@@ -20,10 +20,10 @@
       relativenumber = true;
 
       # Set tabs to 2 spaces
-      tabstop = 2;
-      softtabstop = 2;
-      showtabline = 2;
-      expandtab = true;
+      # tabstop = 2;
+      # softtabstop = 2;
+      # showtabline = 2;
+      # expandtab = true;
 
       # Enable auto indenting and set it to spaces
       smartindent = true;
@@ -54,9 +54,6 @@
 
       # Decrease updatetime
       updatetime = 50; # faster completion (4000ms default)
-
-      # Set completeopt to have a better completion experience
-      completeopt = [ "menuone" "noselect" "noinsert" ]; # mostly just for cmp
 
       # Enable persistent undo history
       swapfile = false;

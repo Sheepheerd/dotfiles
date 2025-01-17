@@ -4,10 +4,13 @@
     ./harpoon.nix
     ./which-key.nix
     ./markdown-preview.nix
-    #./neotest.nix
+    ./neotest.nix
     ./neocord.nix
     ./persistence.nix
     ./project-nvim.nix
     ./plenary.nix
+    ./compiler.nix
+    ./refactoring.nix
+    ./wilder.nix
   ];
 }

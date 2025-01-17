@@ -9,6 +9,16 @@
     keymaps = [
       # Disable arrow keys
       {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>Explore<cr>";
+        options = {
+          silent = true;
+          desc = "Filebrowser";
+        };
+      }
+
+      {
         mode = [ "n" "i" ];
         key = "<Up>";
         action = "<Nop>";

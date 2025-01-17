@@ -8,7 +8,7 @@
     # misterioFlake.url = "github:heywoodlh/flakes";
     northstar.url = "github:Sheepheerd/northstar";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     apple-silicon = {
@@ -29,23 +29,18 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = { url = "github:ghostty-org/ghostty"; };
 
     nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
 
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, apple-silicon, nixvim
-    , nixos-aarch64-widevine, ... }@inputs:
+    , nixos-aarch64-widevine, ghostty, ... }@inputs:
     let
       inherit (self) outputs;
 
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
+      systems = [ "aarch64-linux" "x86_64-linux" ];
       pkgs-unstable = unstable.legacyPackages.x86_64-linux;
     in {
       homeManagerModules = import ./modules/home-manager;
@@ -91,7 +86,7 @@
               home.stateVersion = "25.05";
             }
           ];
-          extraSpecialArgs = inputs;
+          # extraSpecialArgs = inputs;
 
         };
         "sheep@deathstar" = home-manager.lib.homeManagerConfiguration {

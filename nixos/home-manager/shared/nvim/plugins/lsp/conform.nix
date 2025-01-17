@@ -7,6 +7,7 @@
       prettierd
       clang-tools
       nixfmt
+      astyle
     ];
     plugins.conform-nvim = {
       enable = true;
@@ -57,7 +58,7 @@
           python = [ "ruff" "black" ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
-          cpp = [ "clang-format" ];
+          cpp = [ "astyle" ];
           markdown = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";

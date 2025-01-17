@@ -1,12 +1,11 @@
-{pkgs, ...}:
-{
+{ pkgs, ... }: {
   programs.nixvim = {
-    extraPackages = with pkgs; [ checkstyle statix pylint cpplint ];
+    extraPackages = with pkgs; [ statix checkstyle statix pylint cpplint ];
     plugins.lint = {
       enable = true;
       lintersByFt = {
-        c = [ "cpplint" ];
-        cpp = [ "cpplint" ];
+        c = [ "clangtidy" ];
+        cpp = [ "clangtidy" ];
         go = [ "golangci-lint" ];
         nix = [ "statix" ];
         lua = [ "selene" ];

@@ -1,4 +1,1 @@
-{
-  imports = [
-    ./nvim-dap.nix ];
-}
+{ imports = [ ./nvim-dap.nix ./dap-lldb.nix ]; }
