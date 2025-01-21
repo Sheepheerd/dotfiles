@@ -30,20 +30,6 @@ in {
   # Enable custom fonts
   fonts.fontconfig.enable = true;
 
-  # Specify the desired packages to install in the user environment.
-  home.packages = with pkgs; [
-    vim
-    rustfmt
-    git
-    cargo
-    curl
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.caskaydia-cove
-    noto-fonts
-    zoxide
-    vesktop
-  ];
-
   programs = {
     # Enable Home Manager to manage your home directory.
     home-manager.enable = true;

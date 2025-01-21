@@ -5,7 +5,7 @@
         enable = true;
         inlayHints = true;
         capabilities = ''
-          --require('blink.cmp').get_lsp_capabilities()
+          require('blink.cmp').get_lsp_capabilities()
         '';
         keymaps = {
           silent = true;

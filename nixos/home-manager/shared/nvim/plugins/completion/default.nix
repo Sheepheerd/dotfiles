@@ -1,7 +1,7 @@
 {
   imports = [
-    ./cmp.nix
+    # ./cmp.nix
     ./copilot.nix
-    # ./blink.nix
+    ./blink.nix
   ];
 }

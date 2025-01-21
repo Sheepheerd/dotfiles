@@ -7,7 +7,7 @@
     keyMode = "vi";
     mouse = true;
     newSession = true;
-    prefix = "C-Space";
+    prefix = "C-a";
     shortcut = "Space";
     shell = "${pkgs.zsh}/bin/zsh";
     terminal = "tmux-256color";
@@ -31,4 +31,3 @@
   programs.fzf.tmux = { enableShellIntegration = true; };
 
 }
-
