@@ -1,6 +1,14 @@
-{ inputs, outputs, lib, config, pkgs, misterioFlake, ... }: {
-  # You can import other home-manager modules here
+{ inputs, outputs, lib, config, pkgs, misterioFlake, ... }:
+# You can import other home-manager modules here
+let
+  nixvim = import (builtins.fetchGit {
+    url = "https://github.com/nix-community/nixvim";
+    ref = "main";
+  });
+in {
+
   imports = [
+    nixvim.homeManagerModules.nixvim
     ./desktop.nix
     ./gtk.nix
     ./tmux.nix
@@ -43,14 +51,23 @@
   fonts.fontconfig.enable = true;
   home.packages = with pkgs;
     [
-      # nerd-fonts.jetbrains-mono
-      # nerd-fonts.caskaydia-cove
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "CascadiaCode" ]; })
+    vim
+       nerd-fonts.jetbrains-mono
+       nerd-fonts.caskaydia-cove
     ];
 
   programs.home-manager.enable = true;
   programs.git.enable = true;
 
   systemd.user.startServices = "sd-switch";
+  # Neovim
+  programs.nixvim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+
+    luaLoader.enable = true;
+  };
 
 }

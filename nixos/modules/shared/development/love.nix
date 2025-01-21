@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ love aseprite ];
+  environment.systemPackages = with pkgs; [ love ];
 }
 

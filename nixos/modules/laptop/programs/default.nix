@@ -1,3 +1,1 @@
-{ pkgs, inputs, ... }: {
-  imports = [ ./hyprland.nix ./vim.nix ./appimage.nix ];
-}
+{ pkgs, inputs, ... }: { imports = [ ./hyprland.nix ./appimage.nix ]; }
