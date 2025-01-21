@@ -1,8 +1,3 @@
-{
-  imports = [
-    ./lsp.nix
-    ./conform.nix
-    ./lspsaga.nix
-    ./trouble.nix
-  ];
+{ config, ... }: {
+  imports = [ ./lsp.nix ./conform.nix ./lspsaga.nix ./trouble.nix ];
 }

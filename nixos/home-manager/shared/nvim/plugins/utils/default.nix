@@ -12,5 +12,6 @@
     ./compiler.nix
     ./refactoring.nix
     ./wilder.nix
+    ./oil.nix
   ];
 }

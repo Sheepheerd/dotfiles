@@ -1,6 +1,6 @@
 {
   programs.nixvim = {
-    opts.completeopt = ["menu" "menuone" "noselect"];
+    opts.completeopt = [ "menu" "menuone" "noselect" ];
 
     plugins = {
       cmp-nvim-lsp = { enable = true; }; # lsp
@@ -9,6 +9,7 @@
       cmp-cmdline = { enable = true; }; # autocomplete for cmdline
       cmp_luasnip = { enable = true; }; # snippets
       copilot-cmp = { enable = true; }; # copilot suggestions
+      cmp-treesitter = { enable = true; };
       cmp = {
         enable = true;
         autoEnableSources = false;

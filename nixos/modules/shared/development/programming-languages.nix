@@ -29,6 +29,6 @@
     shellcheck
     cppcheck
     golangci-lint
-    clang-tools
+    # clang-tools
   ];
 }

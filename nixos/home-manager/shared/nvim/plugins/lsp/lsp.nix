@@ -1,12 +1,11 @@
-{
+{ config, ... }: {
   programs.nixvim = {
     plugins = {
-      clangd-extensions = { enable = true; };
       lsp = {
         enable = true;
         inlayHints = true;
         capabilities = ''
-          offsetEncoding = {'utf-16' , 'utf-8'};
+          --require('blink.cmp').get_lsp_capabilities()
         '';
         keymaps = {
           silent = true;
@@ -17,23 +16,35 @@
           };
 
           lspBuf = {
-            gd = "definition";
+            # gd = "definition";
             gD = "references";
-            gt = "type_definition";
-            gi = "implementation";
-            K = "hover";
-            "<F2>" = "rename";
+            # gt = "type_definition";
+            # gi = "implementation";
+            # K = "hover";
+            # "<F2>" = "rename";
           };
         };
 
         servers = {
           clangd = {
             enable = true;
-            cmd = [ "clangd" "--offset-encoding=utf-16" ];
+            # cmd = [ "clangd" "--offset-encoding=utf-16" ];
           };
           gopls.enable = true;
           golangci_lint_ls.enable = true;
-          lua_ls.enable = true;
+          lua_ls = {
+            enable = true;
+            extraOptions = {
+              settings = {
+                workspace = { checkThirdParty = "false"; };
+                Lua = {
+                  diagnostics = { globals = [ "love" ]; };
+                  telemetry = { enabled = false; };
+                  hint = { enable = true; };
+                };
+              };
+            };
+          };
           nixd.enable = true;
           pyright.enable = true;
           pylsp.enable = true;

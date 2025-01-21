@@ -3,7 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     gcc
-    clang
+    # clang
     lld
     lldb
     jdk

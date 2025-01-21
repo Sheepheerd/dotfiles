@@ -5,9 +5,10 @@
       ruff
       google-java-format
       prettierd
-      clang-tools
+      # clang-tools
       nixfmt
       astyle
+      stylua
     ];
     plugins.conform-nvim = {
       enable = true;

@@ -1,47 +1,12 @@
-{
+{ pkgs, ... }: {
   programs.nixvim = {
     plugins.treesitter = {
       enable = true;
       settings = {
-        highlight = {
-          enable = true;
-        };
-        indent = {
-          enable = true;
-        };
-        autopairs = {
-          enable = true;
-        };
-        folding = {
-          enable = true;
-        };
-        ensure_installed = [
-          "bash"
-          "c"
-          "html"
-          "css"
-          "javascript"
-          "jsdoc"
-          "json"
-          "lua"
-          "luadoc"
-          "luap"
-          "nix"
-          "rust"
-          "java"
-          "markdown"
-          "markdown_inline"
-          "python"
-          "query"
-          "regex"
-          "tsx"
-          "typescript"
-          "vim"
-          "vimdoc"
-          "toml"
-          "yaml"
-        ];
-        auto_install = true;
+        highlight = { enable = true; };
+        indent = { enable = true; };
+        autopairs = { enable = true; };
+
         incremental_selection = {
           enable = true;
           keymaps = {
@@ -95,26 +60,12 @@
       };
       swap = {
         enable = true;
-        swapNext = {
-          "<leader>a" = "@parameters.inner";
-        };
-        swapPrevious = {
-          "<leader>A" = "@parameter.outer";
-        };
+        swapNext = { "<leader>a" = "@parameters.inner"; };
+        swapPrevious = { "<leader>A" = "@parameter.outer"; };
       };
     };
 
-    plugins.ts-autotag = {
-      enable = true;
-    };
+    plugins.treesitter-context = { enable = false; };
 
-    plugins.treesitter-context = {
-      enable = true;
-    };
-
-    plugins.ts-context-commentstring = {
-      enable = true;
-      disableAutoInitialization = false;
-    };
   };
 }

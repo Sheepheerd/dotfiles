@@ -65,7 +65,7 @@
       {
         mode = "n";
         key = "gd";
-        action = "<cmd>Lspsaga finder def<CR>";
+        action = "<cmd>Lspsaga goto_definition<CR>";
         options = {
           desc = "Goto Definition";
           silent = true;
@@ -73,10 +73,10 @@
       }
       {
         mode = "n";
-        key = "gr";
-        action = "<cmd>Lspsaga finder ref<CR>";
+        key = "ggd";
+        action = "<cmd>Lspsaga peek_definition<CR>";
         options = {
-          desc = "Goto References";
+          desc = "Peek Definition";
           silent = true;
         };
       }
@@ -84,7 +84,7 @@
       # {
       #   mode = "n";
       #   key = "gD";
-      #   action = "<cmd>Lspsaga show_line_diagnostics<CR>";
+      #   action = "<cmd>Lspsaga peek_type_definition<CR>";
       #   options = {
       #     desc = "Goto Declaration";
       #     silent = true;
@@ -123,7 +123,7 @@
 
       {
         mode = "n";
-        key = "<leader>cw";
+        key = "<leader>o";
         action = "<cmd>Lspsaga outline<CR>";
         options = {
           desc = "Outline";

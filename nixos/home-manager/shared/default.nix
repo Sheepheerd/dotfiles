@@ -1,1 +1,1 @@
-{ pkgs, inputs, ... }: { imports = [ ./zsh.nix ./nvim/plugins]; }
+{ config, pkgs, inputs, ... }: { imports = [ ./zsh.nix ./nvim/plugins ]; }

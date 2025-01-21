@@ -42,7 +42,6 @@ in {
     noto-fonts
     zoxide
     vesktop
-
   ];
 
   programs = {
