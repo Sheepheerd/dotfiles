@@ -30,6 +30,8 @@
             enable = true;
             # cmd = [ "clangd" "--offset-encoding=utf-16" ];
           };
+          dockerls = { enable = true; };
+          docker_compose_language_service = { enable = true; };
           gopls.enable = true;
           golangci_lint_ls.enable = true;
           lua_ls = {

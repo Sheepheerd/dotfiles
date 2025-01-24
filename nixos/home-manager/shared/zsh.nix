@@ -116,8 +116,16 @@ in {
 
     oh-my-zsh = {
       enable = true;
-      plugins =
-        [ "git" "magic-enter" "fzf" "sudo" "tldr" "direnv" "virtualenv" ];
+      plugins = [
+        "git"
+        "magic-enter"
+        "fzf"
+        "sudo"
+        "tldr"
+        "direnv"
+        "virtualenv"
+        "docker"
+      ];
     };
   };
 }

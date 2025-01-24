@@ -6,7 +6,7 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": [ "hyprland/workspaces", "custom/playerctl", "battery", "custom/playerlabel"],
+    "modules-left": [ "hyprland/workspaces", "battery", "custom/playerlabel"],
     "modules-center": ["cpu", "memory", "disk"],
     "modules-right": ["tray",  "custom/hyprpicker", "bluetooth", "network", "pulseaudio", "clock"],
     // Modules configuration
@@ -34,33 +34,33 @@
     },
     },
 
-    "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
+    // "custom/playerctl": {
+    //   "format": "{icon}",
+    //   "return-type": "json",
+    //   "max-length": 64,
+    //   "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    //   "on-click-middle": "playerctl play-pause",
+    //   "on-click": "playerctl previous",
+    //   "on-click-right": "playerctl next",
+    //   "format-icons": {
+    //     "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+    //     "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+    //   },
+    // },
 
-    "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      },
-    },
+    // "custom/playerlabel": {
+    //   "format": "<span>{}</span>",
+    //   "return-type": "json",
+    //   "max-length": 48,
+    //   "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    //   "on-click-middle": "playerctl play-pause",
+    //   "on-click": "playerctl previous",
+    //   "on-click-right": "playerctl next",
+    //   "format-icons": {
+    //     "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+    //     "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+    //   },
+    // },
 
 	"battery": {
         "states": {
