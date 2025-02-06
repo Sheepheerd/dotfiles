@@ -1,12 +1,12 @@
 {
   programs.nixvim = {
     plugins.harpoon = {
-      enable = true;
+      enable = false;
       enableTelescope = true;
       keymapsSilent = true;
 
       keymaps = {
-        addFile = "<leader>h";
+        addFile = "<leader>ha";
         toggleQuickMenu = "<C-e>";
         navFile = {
           "1" = "<C-j>";

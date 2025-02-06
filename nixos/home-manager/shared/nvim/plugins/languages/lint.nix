@@ -6,6 +6,7 @@
       statix
       pylint
       cpplint
+      eslint_d
       # selene
     ];
     plugins.lint = {

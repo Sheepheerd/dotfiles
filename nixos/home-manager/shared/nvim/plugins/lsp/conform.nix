@@ -9,6 +9,8 @@
       nixfmt
       astyle
       stylua
+      typescript
+      typescript-language-server
     ];
     plugins.conform-nvim = {
       enable = true;

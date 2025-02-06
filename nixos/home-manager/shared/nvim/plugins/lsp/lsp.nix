@@ -7,6 +7,10 @@
         capabilities = ''
           require('blink.cmp').get_lsp_capabilities()
         '';
+        # capabilities = ''
+        #   require('cmp_nvim_lsp').default_capabilities()
+        #
+        # '';
         keymaps = {
           silent = true;
           diagnostic = {
@@ -26,6 +30,8 @@
         };
 
         servers = {
+          jsonls = { enable = true; };
+          # cssls = { enable = true; };
           clangd = {
             enable = true;
             # cmd = [ "clangd" "--offset-encoding=utf-16" ];
@@ -48,13 +54,18 @@
             };
           };
           nixd.enable = true;
-          pyright.enable = true;
-          pylsp.enable = true;
+
+          basedpyright.enable = true;
+          #pylsp.enable = true;
           tflint.enable = true;
           templ.enable = true;
           html.enable = true;
-          htmx.enable = true;
-          tailwindcss.enable = true;
+          # rust_analyzer = {
+          #   enable = true;
+          #   installCargo = true;
+          # };
+          # htmx.enable = true;
+          # tailwindcss.enable = true;
         };
       };
     };

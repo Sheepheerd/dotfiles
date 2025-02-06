@@ -1,25 +1,56 @@
-{
+{ pkgs, ... }:
+
+let
+  javaDebugPath = pkgs.vscode-extensions.vscjava.vscode-java-debug;
+  javaTestPath = pkgs.vscode-extensions.vscjava.vscode-java-test;
+
+  # Get all .jar files in the java-debug and java-test directories
+  debugJarFiles = builtins.attrNames (builtins.readDir
+    "${javaDebugPath}/share/vscode/extensions/vscjava.vscode-java-debug/server");
+  debugJarPaths = map (name:
+    "${javaDebugPath}/share/vscode/extensions/vscjava.vscode-java-debug/server/${name}")
+    debugJarFiles;
+
+  testJarFiles = builtins.attrNames (builtins.readDir
+    "${javaTestPath}/share/vscode/extensions/vscjava.vscode-java-test/server");
+  testJarPaths = map (name:
+    "${javaTestPath}/share/vscode/extensions/vscjava.vscode-java-test/server/${name}")
+    testJarFiles;
+
+  # Merge both lists
+  allBundles = debugJarPaths ++ testJarPaths;
+in {
   programs.nixvim = {
-        plugins.nvim-jdtls = {
+
+    extraPackages = with pkgs; [
+      java-language-server
+      vscode-extensions.vscjava.vscode-java-test
+      vscode-extensions.vscjava.vscode-java-debug
+    ];
+    plugins.nvim-jdtls = {
       enable = true;
-      cmd = [
-        "/nix/store/cm709rzqzdqwqf6smap8m8q1adi8lfiw-jdt-language-server-1.40.0/bin/jdtls"
-      ];
+      cmd = [ "jdtls" ];
       configuration =
-        "/nix/store/cm709rzqzdqwqf6smap8m8q1adi8lfiw-jdt-language-server-1.40.0/share/java/jdtls/config_linux/config.ini";
+        "{pkgs.java-language-server}/share/java/jdtls/config_linux/config.ini";
       data = "~/.cache/jdtls/workspace";
       settings = {
         java = {
+          maven = { downloadSource = true; };
           signatureHelp = true;
-          completion = true;
+          completion = {
+            favortieStaticMemebers = [
+              "org.hamcrest.MatcherAssert.assertThat"
+              "org.hamcrest.Matchers.*"
+              "org.hamcrest.CoreMatchers.*"
+              "org.junit.jupiter.api.Assertions.*"
+              "java.util.Objects.requireNonNull"
+              "java.util.Objects.requireNonNullElse"
+              "org.mockito.Mockito.*"
+            ];
+          };
         };
       };
-      initOptions = {
-        # bundles = [
-        #   "/nix/store/b9ib40q36wxjl4xs5lng263lflz1fsi7-vscode-extension-vscjava-vscode-java-debug-0.49.2023032407/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-0.44.0.jar"
-        #   "${javaTestPath}"
-        # ];
-      };
+      initOptions = { bundles = allBundles; };
     };
   };
 }

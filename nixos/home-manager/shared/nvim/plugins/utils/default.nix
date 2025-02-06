@@ -11,7 +11,7 @@
     ./plenary.nix
     ./compiler.nix
     ./refactoring.nix
-    ./wilder.nix
     ./oil.nix
+    ./fugitive.nix
   ];
 }

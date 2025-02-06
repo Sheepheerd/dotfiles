@@ -130,7 +130,11 @@ in {
 
     plugins = {
 
+      dap-ui = { enable = true; };
+
+      dap-virtual-text = { enable = true; };
       dap = {
+
         enable = true;
         # TODO: # TODO: upgrade to mkNeovimPlugin
         # lazyLoad.enable = true;
@@ -194,12 +198,6 @@ in {
             ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config codelldb-config ];
 
           sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
-        };
-
-        extensions = {
-          dap-ui = { enable = true; };
-
-          dap-virtual-text = { enable = true; };
         };
 
         signs = {
