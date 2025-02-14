@@ -9,9 +9,7 @@
     ./persistence.nix
     ./project-nvim.nix
     ./plenary.nix
-    ./compiler.nix
     ./refactoring.nix
     ./oil.nix
-    ./fugitive.nix
   ];
 }

@@ -16,14 +16,14 @@
         file_explorer_text = "Browsing...";
         git_commit_text = "Committing changes...";
         global_timer = true;
-        line_number_text = "Line %s out of %s";
+        line_number_text = "No";
         log_level = null;
         main_image = "logo";
         plugin_manager_text = "Managing plugins...";
         reading_text = "Reading...";
         show_time = true;
         terminal_text = "Using Terminal...";
-        workspace_text = "Working on %s";
+        workspace_text = "Working on Code";
       };
     };
   };

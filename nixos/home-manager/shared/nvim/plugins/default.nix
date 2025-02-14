@@ -7,12 +7,10 @@
     ./lsp
     ./utils
     ./snippets
-    ./filetrees
     ./languages
     ./telescope
     ./completion
     ./statusline
-    ./pluginmanager
     ./autocommands.nix
     ./keymappings.nix
   ];

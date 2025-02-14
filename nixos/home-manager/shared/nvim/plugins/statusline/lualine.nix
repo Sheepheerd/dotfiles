@@ -5,7 +5,6 @@
       settings = {
         alwaysDivideMiddle = true;
         globalstatus = true;
-        ignoreFocus = [ "neo-tree" ];
         extensions = [ "fzf" ];
         theme = "auto";
         componentSeparators = {

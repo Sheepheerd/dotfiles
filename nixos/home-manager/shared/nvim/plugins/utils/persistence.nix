@@ -1,7 +1,1 @@
-{
-  programs.nixvim = {
-        plugins.persistence = {
-      enable = true;
-    };
-  };
-}
+{ programs.nixvim = { plugins.persistence = { enable = true; }; }; }
