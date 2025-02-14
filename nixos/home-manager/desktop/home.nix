@@ -51,7 +51,6 @@ in {
   fonts.fontconfig.enable = true;
   home.packages = with pkgs;
     [
-    vim
        nerd-fonts.jetbrains-mono
        nerd-fonts.caskaydia-cove
     ];
