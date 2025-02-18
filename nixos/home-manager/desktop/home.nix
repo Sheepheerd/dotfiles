@@ -49,11 +49,12 @@ in {
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   fonts.fontconfig.enable = true;
-  home.packages = with pkgs;
-    [
-       nerd-fonts.jetbrains-mono
-       nerd-fonts.caskaydia-cove
-    ];
+  home.packages = with pkgs; [
+    prismlauncher
+    glfw3-minecraft
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.caskaydia-cove
+  ];
 
   programs.home-manager.enable = true;
   programs.git.enable = true;
