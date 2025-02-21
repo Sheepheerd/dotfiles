@@ -5,7 +5,6 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    # misterioFlake.url = "github:heywoodlh/flakes";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +15,7 @@
       # this line prevents me from fetching two versions of nixpkgs:
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";

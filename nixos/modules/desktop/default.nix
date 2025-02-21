@@ -5,5 +5,5 @@
     ./pkgs/default.nix
     ../shared/default.nix
   ];
-}
 
+}
