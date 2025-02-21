@@ -1,5 +1,0 @@
-{ pkgs, ... }:
-
-{
-  # Setup Env Variables
-}
