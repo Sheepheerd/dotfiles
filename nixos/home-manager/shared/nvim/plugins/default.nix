@@ -13,6 +13,7 @@
     ./statusline
     ./autocommands.nix
     ./keymappings.nix
+    ./extra
   ];
 
   programs.nixvim = {

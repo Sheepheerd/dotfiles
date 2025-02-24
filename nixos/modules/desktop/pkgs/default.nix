@@ -5,6 +5,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     packages = with pkgs; [
+      vscode
       vesktop
       firefox
       logisim
@@ -22,4 +23,3 @@
   };
 
 }
-

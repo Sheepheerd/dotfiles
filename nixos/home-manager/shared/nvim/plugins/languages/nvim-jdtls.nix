@@ -30,8 +30,8 @@ in {
     plugins.nvim-jdtls = {
       enable = true;
       cmd = [ "jdtls" ];
-      configuration =
-        "{pkgs.java-language-server}/share/java/jdtls/config_linux/config.ini";
+      # configuration =
+      #   "${pkgs.java-language-server}/share/java/jdtls/config_linux/config.ini";
       data = "~/.cache/jdtls/workspace";
       settings = {
         java = {

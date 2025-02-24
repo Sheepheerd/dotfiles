@@ -7,10 +7,9 @@
         blacklist = [ ];
         # client_id = "1157438221865717891";
         debounce_timeout = 10;
-        editing_text = "Editing...";
+        editing_text = "Editing %s";
         enable_line_number = true;
-        logo =
-          "https://repository-images.githubusercontent.com/325421844/ecb73f47-cb89-4ee0-a0fd-9743c2f3569a";
+        logo = "auto";
         logo_tooltip = "NeoVim";
         file_assets = null;
         file_explorer_text = "Browsing...";
@@ -18,7 +17,7 @@
         global_timer = true;
         line_number_text = "No";
         log_level = null;
-        main_image = "logo";
+        main_image = "language";
         plugin_manager_text = "Managing plugins...";
         reading_text = "Reading...";
         show_time = true;
