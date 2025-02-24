@@ -14,11 +14,7 @@
         };
         ui-select = {
           enable = true;
-          settings = {
-            specific_opts = {
-              codeactions = true;
-            };
-          };
+          settings = { specific_opts = { codeactions = true; }; };
         };
       };
       # If you'd prefer Telescope not to enter a normal-like mode when hitting escape (and instead exiting), you can map <Esc> to do so via:
@@ -36,9 +32,7 @@
           };
         };
         pickers = {
-          colorscheme = {
-            enable_preview = true;
-          };
+          colorscheme = { enable_preview = true; };
           # find_files = {
           #   theme = "ivy";
           # };
@@ -148,6 +142,34 @@
         "<leader>st" = {
           action = "todo-comments";
           options.desc = "Todo (Telescope)";
+        };
+
+        # LSP
+
+        "gr" = {
+          action = "lsp_references";
+          options.desc = "Go to References";
+        };
+        "gd" = {
+          action = "lsp_definitions";
+          options.desc = "Go to definitions";
+        };
+        "gT" = {
+          action = "lsp_type_definitions";
+          options.desc = "Type definitions";
+        };
+        "gI" = {
+          action = "lsp_implementations";
+          options.desc = "Implementations";
+        };
+        "<leader>o" = {
+          action = "lsp_document_symbols";
+          options.desc = "Document Symbols";
+        };
+
+        "<leader>wo" = {
+          action = "lsp_workspace_symbols";
+          options.desc = "Workspace Symbols";
         };
       };
     };

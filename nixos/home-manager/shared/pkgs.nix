@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     #vim
     maven
+    valgrind
     ripgrep
     rustfmt
     git

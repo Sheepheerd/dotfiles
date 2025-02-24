@@ -12,14 +12,10 @@ in {
     ./tmux.nix
     ../shared/default.nix
   ];
-  # Define the state version, which corresponds to the version of Home Manager
-  # you are using. This should be updated whenever you update Home Manager.
 
-  # Set up some basic settings for the home environment.
   home.username = "sheep";
   home.homeDirectory = "/home/sheep";
 
-  # Define the Home Manager environment variables.
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
@@ -27,14 +23,11 @@ in {
     LANG = "en_US.UTF-8";
   };
 
-  # Enable custom fonts
   fonts.fontconfig.enable = true;
 
   programs = {
-    # Enable Home Manager to manage your home directory.
     home-manager.enable = true;
 
-    # direnv
     direnv.enable = true;
 
     ghostty = {
@@ -46,7 +39,6 @@ in {
       };
     };
 
-    # Neovim
     nixvim = {
       enable = true;
       defaultEditor = true;
