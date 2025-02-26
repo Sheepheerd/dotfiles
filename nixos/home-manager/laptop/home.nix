@@ -21,6 +21,7 @@ in {
     VISUAL = "nvim";
     TERMINAL = "alacritty";
     LANG = "en_US.UTF-8";
+
   };
 
   fonts.fontconfig.enable = true;

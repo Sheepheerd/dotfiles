@@ -5,6 +5,7 @@
     [
       # prismlauncher
 
-      glfw-wayland-minecraft
+      glfw3
+      #glfw-wayland-minecraft
     ];
 }
