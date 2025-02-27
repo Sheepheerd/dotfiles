@@ -1,3 +1,9 @@
 { config, pkgs, inputs, ... }: {
-  imports = [ ./zsh.nix ./nvim/plugins ./pkgs.nix ./ghostty.nix ];
+  imports = [ # ./hyprland.nix
+    ./zsh.nix
+    ./nvim/plugins
+    ./pkgs.nix
+    ./ghostty.nix
+    ./desktop
+  ];
 }
