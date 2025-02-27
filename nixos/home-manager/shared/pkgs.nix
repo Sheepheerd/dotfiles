@@ -2,20 +2,31 @@
 
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
+    #Utils
     #vim
     compose2nix
     maven
     valgrind
     ripgrep
-    rustfmt
-    git
-    cargo
     curl
+    zoxide
+    bat
+    ouch
+    zoxide
+    tailscale
+
+    #Basic Language Development
+    openjdk
+
+    #Fonts
+    noto-fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
-    noto-fonts
-    zoxide
+
+    #Programs
     vesktop
-    openjdk
+    firefox
+    # logisim
+    localsend
   ];
 }

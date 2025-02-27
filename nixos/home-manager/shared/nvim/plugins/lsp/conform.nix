@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   programs.nixvim = {
     extraPackages = with pkgs; [
-      black
       ruff
       google-java-format
       prettierd
