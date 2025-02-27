@@ -15,6 +15,7 @@
       # this line prevents me from fetching two versions of nixpkgs:
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixgl.url = "github:nix-community/nixGL";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -31,15 +32,16 @@
     ghostty = { url = "github:ghostty-org/ghostty"; };
 
     nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
-
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, apple-silicon, nixvim
-    , nixos-aarch64-widevine, ghostty, ... }@inputs:
+    , nixos-aarch64-widevine, ghostty, alacritty-theme, nixgl, ... }@inputs:
     let
       inherit (self) outputs;
 
       systems = [ "aarch64-linux" "x86_64-linux" ];
+      pkgs = import nixpkgs { overlays = [ nixgl.overlay ]; };
       pkgs-unstable = unstable.legacyPackages.x86_64-linux;
     in {
       homeManagerModules = import ./modules/home-manager;
@@ -52,7 +54,12 @@
           };
           modules = [
             ./hosts/laptop/configuration.nix
-            { nixpkgs.overlays = [ nixos-aarch64-widevine.overlays.default ]; }
+            {
+              nixpkgs.overlays = [
+                nixos-aarch64-widevine.overlays.default
+                alacritty-theme.overlays.default
+              ];
+            }
           ];
         };
         deathstar = nixpkgs.lib.nixosSystem {
@@ -76,6 +83,12 @@
             #./modules/home-manager/desktop.nix # Base desktop config
             ./home-manager/laptop/home.nix # Base desktop config
             {
+              nixpkgs.overlays = [
+                nixos-aarch64-widevine.overlays.default
+                alacritty-theme.overlays.default
+              ];
+
+              home.packages = [ pkgs.nixgl.nixGLIntel ];
               home = {
                 username = "sheep";
                 homeDirectory = "/home/sheep";
@@ -94,6 +107,7 @@
           modules = [
             ./home-manager/desktop/home.nix # Base desktop config
             {
+              nixpkgs.overlays = [ alacritty-theme.overlays.default ];
               home = {
                 username = "sheep";
                 homeDirectory = "/home/sheep";

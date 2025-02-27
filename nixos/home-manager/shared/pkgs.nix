@@ -2,7 +2,9 @@
 
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
+
     #Utils
+    alacritty
     #vim
     compose2nix
     maven
@@ -25,7 +27,7 @@
 
     #Programs
     vesktop
-    firefox
+    #firefox
     # logisim
     localsend
   ];
