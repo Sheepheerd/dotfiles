@@ -10,6 +10,7 @@
       stylua
       typescript
       typescript-language-server
+      rustfmt
     ];
     plugins.conform-nvim = {
       enable = true;

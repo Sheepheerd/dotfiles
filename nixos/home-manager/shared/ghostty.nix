@@ -3,6 +3,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      term = "xterm-256color";
       theme = "catppuccin-mocha";
       font-size = 12;
       font-family = "JetBrainsMono Nerd Font Mono";

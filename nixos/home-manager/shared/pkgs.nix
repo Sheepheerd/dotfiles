@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
 
     #Utils
+    cargo
     alacritty
     #vim
     compose2nix
@@ -16,6 +17,9 @@
     ouch
     zoxide
     tailscale
+    docker-compose
+    glade
+    devenv
 
     #Basic Language Development
     openjdk
@@ -26,6 +30,7 @@
     nerd-fonts.caskaydia-cove
 
     #Programs
+    joplin
     vesktop
     #firefox
     # logisim
