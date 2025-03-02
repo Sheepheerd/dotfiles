@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.nixvim = {
     extraPackages = with pkgs; [
+      black
       ruff
       google-java-format
       prettierd
@@ -58,7 +59,7 @@
             stop_after_first = true;
           };
           java = [ "google-java-format" ];
-          python = [ "ruff" "black" ];
+          python = [ "black" ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
           cpp = [ "astyle" ];

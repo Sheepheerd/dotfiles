@@ -4,5 +4,6 @@
     ./conform.nix
     # ./lspsaga.nix
     ./trouble.nix
+    ./lint.nix
   ];
 }
