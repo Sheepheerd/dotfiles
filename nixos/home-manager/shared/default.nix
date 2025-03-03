@@ -5,5 +5,6 @@
     ./pkgs.nix
     ./ghostty.nix
     ./desktop
+    ./programs
   ];
 }
