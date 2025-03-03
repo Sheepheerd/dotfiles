@@ -149,13 +149,29 @@
   systemd.packages = with pkgs; [ auto-cpufreq ];
 
   # Enable Services
-  services.blueman.enable = true;
+  programs.xfconf.enable = true;
+  services = {
+    tailscale.enable = true;
+    blueman.enable = true;
 
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
+    gvfs.enable = true;
+    tumbler.enable = true;
+    fwupd.enable = true;
+    #auto-cpufreq.enable = true;
+    # tlp.enable = true;
+    zerotierone.enable = true;
 
+  };
+
+  systemd = {
+    targets = {
+      sleep.enable = false;
+      suspend.enable = false;
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+
+    };
+  };
   programs.dconf.enable = true;
   services.dbus = {
     enable = true;
@@ -177,13 +193,6 @@
     enable = true;
     plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
   };
-  services.gvfs.enable = true;
-  programs.xfconf.enable = true;
-  services.tumbler.enable = true;
-  services.fwupd.enable = true;
-  #services.auto-cpufreq.enable = true;
-  # services.tlp.enable = true;
-  services.zerotierone.enable = true;
 
   programs.adb.enable = true;
   users.users.sheep.extraGroups = [ "adbusers" ];

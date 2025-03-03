@@ -32,8 +32,8 @@
     #Programs
     joplin
     vesktop
+    ungoogled-chromium
     #firefox
-    chromium
     # logisim
     localsend
   ];
