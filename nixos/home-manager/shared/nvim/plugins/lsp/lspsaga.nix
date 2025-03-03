@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     plugins.lspsaga = {
-      enable = true;
+      enable = false;
       beacon = { enable = true; };
       ui = {
         border =
