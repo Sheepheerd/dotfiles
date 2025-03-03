@@ -59,7 +59,7 @@ in {
       Name=Spotify
       GenericName=music
       Comment=Listen to Spotify
-      Exec=firefox --new-window  https://open.spotify.com
+      Exec=chromium --new-window  https://open.spotify.com
       Terminal=false
       Type=Application
       Keywords=music;

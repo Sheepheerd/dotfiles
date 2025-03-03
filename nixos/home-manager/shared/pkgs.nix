@@ -33,6 +33,7 @@
     joplin
     vesktop
     #firefox
+    chromium
     # logisim
     localsend
   ];

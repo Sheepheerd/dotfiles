@@ -4,7 +4,7 @@
       enable = true;
 
       settings = {
-        browser = "firefox";
+        browser = "chromium";
         port = "8080";
         auto_close = 1;
         theme = "dark";

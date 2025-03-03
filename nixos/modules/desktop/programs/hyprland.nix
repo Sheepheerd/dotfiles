@@ -20,7 +20,6 @@
     alacritty
     neovim
 
-    firefox
     zathura
     mpv
     imv
