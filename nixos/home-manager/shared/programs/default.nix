@@ -1,1 +1,1 @@
-{ imports = [ ./ungoogled-chromium.nix ]; }
+{ imports = [ ./browser.nix ]; }

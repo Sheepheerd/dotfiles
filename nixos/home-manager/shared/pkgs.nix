@@ -25,6 +25,8 @@
     openjdk
 
     #Fonts
+    liberation_ttf
+
     noto-fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
