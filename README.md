@@ -1,16 +1,14 @@
-# 🖥️ NixOS Dotfiles
-
-Welcome to my **NixOS dotfiles** repository! This setup is finely tuned for both **desktop** and **laptop** environments, leveraging **Home Manager**, **Hyprland**, and a well-structured **NixOS flake**.
+# Solar System
 
 ---
 
-## 📁 Directory Structure
+## Directory Structure
 
 ### 🔹 NixOS Configuration (`nixos/`)
 
 - **`flake.nix`** – Core Nix flake definition.
 - **`hosts/`** – Per-device configurations:
-  - `desktop/` 🖥️ & `laptop/` 💻 each contain:
+  - `desktop/` & `laptop/` each contain:
     - `configuration.nix` – System-wide configuration.
     - `hardware-configuration.nix` – Auto-generated hardware setup.
 - **`modules/`** – Modular system configuration:
@@ -22,13 +20,12 @@ Welcome to my **NixOS dotfiles** repository! This setup is finely tuned for both
 - **`desktop/` & `laptop/`** – Device-specific user configurations.
 - **`shared/`** – Unified settings for:
   - **Neovim** (`nvim/`): Plugins, LSP, DAP, UI, and more.
-  - **Hyprland** (`hyprland.nix`): Wayland window manager setup.
   - **Terminal** (`alacritty.nix`, `ghostty.nix`, `zsh.nix`).
   - **Utilities** (`dunst.nix`, `waybar.nix`, `fuzzel.nix`).
 
 ---
 
-## 🔧 Installation
+## Installation
 
 To set up the system:
 
