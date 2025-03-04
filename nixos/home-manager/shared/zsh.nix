@@ -11,12 +11,12 @@ in {
   };
   home.file.".zshthemes/eastwood.zsh-theme" = {
     text = ''
-          # RVM settings (keeping your existing code)
+      # RVM settings (keeping your existing code)
       if [[ -s ~/.rvm/scripts/rvm ]] ; then
         RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%} $EPS1"
       else
         if which rbenv &> /dev/null; then
-          RPS1="%{$fg[yellow]%}rbenv:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
+          RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
         fi
       fi
 
@@ -43,30 +43,37 @@ in {
         fi
       }
 
-      # Nix-shell prompt function
-      prompt_nix_shell() {
+      # Prompt function combining repo and nix-shell info
+      prompt_custom() {
+        local prompt=""
+        local repo_name=$(git_repo_name)
+
+        # Add repo name if it exists
+        if [ -n "$repo_name" ]; then
+          prompt+="%{$fg[yellow]%}$repo_name%{$reset_color%}"
+        fi
+
+        # Add nix-shell or git branch info
         if [[ -n "$IN_NIX_SHELL" ]]; then
-          local nix_prompt
-          local repo_name=$(git_repo_name)
-          if [ -n "$repo_name" ]; then
-            nix_prompt="%{$fg[yellow]%}$repo_name%{$reset_color%}"
-          else
-            nix_prompt="%{$fg[yellow]%}nix-shell%{$reset_color%}"
-          fi
-          # Add git branch info if in a git repo
+          # Add branch info if in a git repo
           local cb=$(git_current_branch)
           if [ -n "$cb" ]; then
-            nix_prompt+="$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(git_current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+            prompt+=" $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(git_current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
           fi
-          echo -n "$nix_prompt"
+
+          if [ -z "$repo_name" ]; then
+            prompt+="%{$fg[yellow]%}nix-shell%{$reset_color%} "
+          fi
         else
-          # Return git status when not in nix-shell
-          echo -n "$(git_custom_status)"
+          # Outside nix-shell, just show git branch
+          prompt+="$(git_custom_status)"
         fi
+
+        echo -n "$prompt"
       }
 
       # Prompt construction
-      PROMPT='$(prompt_nix_shell)%{$fg[cyan]%}[%~]%{$reset_color%}$ ';
+      PROMPT='$(prompt_custom)%{$fg[cyan]%}[%~]%{$reset_color%}$ '
     '';
   };
 
