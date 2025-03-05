@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-direnv
+    direnv
     gcc
     clang
     lld
@@ -11,5 +11,6 @@ direnv
     libinput
     btop
     gvfs
+
   ];
 }
