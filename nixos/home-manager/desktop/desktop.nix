@@ -27,7 +27,7 @@ in {
       Name=Spotify
       GenericName=music
       Comment=Listen to Spotify
-      Exec=${misterioFlake.packages.aarch64-linux.chromium-widevine}/bin/chromium --app=https://open.spotify.com
+      Exec=firefox --app=https://open.spotify.com
       Terminal=false
       Type=Application
       Keywords=music;

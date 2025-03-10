@@ -2,20 +2,21 @@
   programs.nixvim = {
     plugins = {
       blink-ripgrep.enable = true;
-      blink-cmp-copilot.enable = true;
+      # blink-cmp-copilot.enable = true;
       blink-cmp = {
         enable = true;
         settings = {
 
           sources.default =
-            [ "lsp" "path" "snippets" "buffer" "copilot" "ripgrep" ];
+            # [ "lsp" "path" "snippets" "buffer" "copilot" "ripgrep" ];
+            [ "lsp" "path" "snippets" "buffer" "ripgrep" ];
           sources.providers = {
-            copilot = {
-              async = true;
-              module = "blink-cmp-copilot";
-              name = "copilot";
-              score_offset = 100;
-            };
+            # copilot = {
+            #   async = true;
+            #   module = "blink-cmp-copilot";
+            #   name = "copilot";
+            #   score_offset = 100;
+            # };
             ripgrep = {
               async = true;
               module = "blink-ripgrep";
