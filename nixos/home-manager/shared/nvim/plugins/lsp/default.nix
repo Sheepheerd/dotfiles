@@ -2,7 +2,7 @@
   imports = [
     ./lsp.nix
     ./conform.nix
-     ./lspsaga.nix
+    # ./lspsaga.nix
     ./trouble.nix
     ./lint.nix
   ];

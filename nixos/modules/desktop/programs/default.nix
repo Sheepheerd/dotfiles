@@ -6,5 +6,6 @@
     ./waydroid.nix
     ./steam.nix
     ./rom.nix
+    ./minecraft.nix
   ];
 }

@@ -4,6 +4,16 @@
   home.packages = with pkgs; [
 
     #Utils
+    pkg-config
+    gtk3
+    glib
+    gtk4
+
+    pkg-config
+    clippy
+    rustc
+    ra-multiplex
+    rust-analyzer
     cargo
     alacritty
     #vim
@@ -20,6 +30,8 @@
     docker-compose
     glade
     devenv
+    gnumake
+    cmake
 
     #Basic Language Development
     openjdk

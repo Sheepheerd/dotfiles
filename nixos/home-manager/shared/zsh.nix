@@ -11,12 +11,12 @@ in {
   };
   home.file.".zshthemes/eastwood.zsh-theme" = {
     text = ''
-      # RVM settings (keeping your existing code)
+        # RVM settings
       if [[ -s ~/.rvm/scripts/rvm ]] ; then
         RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%} $EPS1"
       else
         if which rbenv &> /dev/null; then
-          RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
+          RPS1="%{$fg[yellow]%}rbenv:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
         fi
       fi
 
@@ -25,55 +25,58 @@ in {
       ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
       ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-      # Customized git status (for outside nix-shell)
+      # Customized git status, oh-my-zsh currently does not allow render dirty status before branch
       git_custom_status() {
         local cb=$(git_current_branch)
         if [ -n "$cb" ]; then
           echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(git_current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
         fi
       }
-
-      # Get git repository name
-      git_repo_name() {
-        local repo_name=$(git rev-parse --show-toplevel 2>/dev/null)
-        if [ -n "$repo_name" ]; then
-          echo "$(basename "$repo_name")"
-        else
-          echo ""
-        fi
-      }
-
-      # Prompt function combining repo and nix-shell info
-      prompt_custom() {
-        local prompt=""
-        local repo_name=$(git_repo_name)
-
-        # Add repo name if it exists
-        if [ -n "$repo_name" ]; then
-          prompt+="%{$fg[yellow]%}$repo_name%{$reset_color%}"
-        fi
-
-        # Add nix-shell or git branch info
+      # nix-shell: Display nix-shell environment if running, with transparent background
+      prompt_nix_shell() {
         if [[ -n "$IN_NIX_SHELL" ]]; then
-          # Add branch info if in a git repo
-          local cb=$(git_current_branch)
-          if [ -n "$cb" ]; then
-            prompt+=" $(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(git_current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+          if [[ -n $NIX_SHELL_PACKAGES ]]; then
+            local package_names=""
+            local packages=($NIX_SHELL_PACKAGES)
+            for package in $packages; do
+              package_names+="'$'{package##*.}"  # No space between package names
+            done
+            # Transparent background and encapsulated in []
+            prompt_segment NONE yellow "[$package_names]"
+          elif [[ -n $name ]]; then
+            local cleanName='$'{name#interactive-}
+            cleanName='$'{cleanName#lorri-keep-env-hack-}
+            cleanName='$'{cleanName%-environment}
+            prompt_segment NONE yellow "[$cleanName]"
+          else
+            prompt_segment NONE yellow "[]"
           fi
-
-          if [ -z "$repo_name" ]; then
-            prompt+="%{$fg[yellow]%}nix-shell%{$reset_color%} "
-          fi
-        else
-          # Outside nix-shell, just show git branch
-          prompt+="$(git_custom_status)"
         fi
-
-        echo -n "$prompt"
       }
 
-      # Prompt construction
-      PROMPT='$(prompt_custom)%{$fg[cyan]%}[%~]%{$reset_color%}$ '
+      # Override prompt_segment to allow transparent backgrounds
+      prompt_segment() {
+        local bg fg
+        [[ -n $1 && $1 != 'NONE' ]] && bg="%K{$1}" || bg=""  # No background if 'NONE' is passed
+        [[ -n $2 ]] && fg="%F{$2}" || fg="%f"               # Set foreground color
+        if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+          echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%}"  # Removed trailing space
+        else
+          echo -n "%{$bg%}%{$fg%}"
+        fi
+        CURRENT_BG=$1
+        [[ -n $3 ]] && echo -n $3
+      }
+
+      # End the prompt with no background
+      prompt_end() {
+        echo -n "%{%k%f%}"  # Reset both background and foreground to default
+        CURRENT_BG=""
+      }
+
+      # PROMPT with correct spacing
+      PROMPT='$(git_custom_status)$(prompt_nix_shell)%{$fg[cyan]%}[%~]%{$reset_color%}%B$ %b'
+
     '';
   };
 

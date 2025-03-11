@@ -62,6 +62,7 @@
           # rust_analyzer = {
           #   enable = true;
           #   installCargo = true;
+          #   installRustc = true;
           # };
           # htmx.enable = true;
           # tailwindcss.enable = true;
