@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
   imports = [
     ./hyprland.nix
-    ./spicetify.nix
+    # ./spicetify.nix
     ./appimage.nix
     ./waydroid.nix
     ./steam.nix

@@ -44,7 +44,7 @@
     nerd-fonts.caskaydia-cove
 
     #Programs
-    joplin
+    youtube-music
     vesktop
     # ungoogled-chromium
     #firefox
