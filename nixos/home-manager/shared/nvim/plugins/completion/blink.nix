@@ -40,14 +40,20 @@
           };
           completion = {
             documentation = {
-              auto_show = true;
+              auto_show = false;
               auto_show_delay_ms = 200;
               window = { border = "rounded"; };
             };
             menu = { border = "rounded"; };
           };
           snippets = { preset = "luasnip"; };
-          signature = { enabled = true; };
+          signature = {
+            enabled = true;
+            window = {
+              border = "rounded";
+              show_documentation = false;
+            };
+          };
           appearance = {
             nerd_font_variant = "mono";
             # kind_icons = {
