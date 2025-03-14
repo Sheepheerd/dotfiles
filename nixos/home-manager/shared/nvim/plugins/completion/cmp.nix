@@ -1,18 +1,15 @@
 {
   programs.nixvim = {
     opts.completeopt = [ "menu" "menuone" "noselect" ];
-
     plugins = {
-      cmp-nvim-lsp = { enable = true; }; # lsp
-      cmp-buffer = { enable = true; };
-      cmp-path = { enable = true; }; # file system paths
-      cmp-cmdline = { enable = true; }; # autocomplete for cmdline
-      cmp_luasnip = { enable = true; }; # snippets
+      cmp-nvim-lsp-signature-help.enable = true;
+      # cmp-cmdline = { enable = true; }; # autocomplete for cmdline
+      # cmp_luasnip = { enable = true; }; # snippets
       copilot-cmp = { enable = true; }; # copilot suggestions
       cmp-treesitter = { enable = true; };
       cmp = {
         enable = true;
-        autoEnableSources = false;
+        autoEnableSources = true;
         settings = {
           experimental = { ghost_text = true; };
           mapping = {
@@ -51,7 +48,7 @@
             "<C-f>" = "cmp.mapping.scroll_docs(4)";
             "<C-b>" = "cmp.mapping.scroll_docs(-4)";
             "<C-Space>" = "cmp.mapping.complete()";
-            "<CR>" =
+            "<C-y>" =
               "cmp.mapping.confirm({ select = false })"; # Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
             "<S-CR>" =
               "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })";
@@ -71,6 +68,8 @@
               name = "luasnip";
               keyword_length = 3;
             }
+            { name = "treesitter"; }
+            { name = "nvim_lsp_signature_help"; }
           ];
 
           # Enable pictogram icons for lsp/autocompletion
@@ -81,8 +80,9 @@
           performance = {
             debounce = 60;
             fetching_timeout = 200;
-            max_view_entries = 30;
+            max_view_entries = 20;
           };
+          view.docs.auto_open = false;
           window = {
             completion = {
               border = "rounded";

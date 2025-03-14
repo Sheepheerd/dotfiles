@@ -1,6 +1,8 @@
 { config, ... }: {
   programs.nixvim = {
     plugins = {
+      # lsp-signature.enable = true;
+      # lsp-lines.enable = true;
       lsp = {
         enable = true;
         inlayHints = true;
@@ -9,7 +11,9 @@
         '';
         # capabilities = ''
         #   require('cmp_nvim_lsp').default_capabilities()
-        #
+        # '';
+        # capabilities = ''
+        #   require('coq').lsp_ensure_capabilities()
         # '';
         keymaps = {
           silent = true;
@@ -26,6 +30,7 @@
             # gi = "implementation";
             # K = "hover";
             "<leader>cr" = "rename";
+            "<leader>ca" = "code_action";
           };
         };
 
@@ -53,9 +58,11 @@
               };
             };
           };
-          nixd.enable = true;
-
-          pyright.enable = true;
+          nil_ls = {
+            enable = true;
+            settings.nix.flake.autoArchive = true;
+          };
+          basedpyright.enable = true;
           tflint.enable = true;
           templ.enable = true;
           html.enable = true;

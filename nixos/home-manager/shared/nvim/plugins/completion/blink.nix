@@ -2,7 +2,7 @@
   programs.nixvim = {
     plugins = {
       blink-ripgrep.enable = true;
-      blink-cmp-copilot.enable = true;
+      blink-copilot.enable = true;
       blink-cmp = {
         enable = true;
         settings = {
@@ -13,9 +13,19 @@
           sources.providers = {
             copilot = {
               async = true;
-              module = "blink-cmp-copilot";
+              module = "blink-copilot";
               name = "copilot";
               score_offset = 100;
+              opts = {
+                max_completions = 3;
+                max_attempts = 4;
+                kind = "Copilot";
+                debounce = 750;
+                auto_refresh = {
+                  backward = true;
+                  forward = true;
+                };
+              };
             };
             ripgrep = {
               async = true;
@@ -39,6 +49,7 @@
             };
           };
           completion = {
+            accept = { auto_brackets.enabled = true; };
             ghost_text = { enabled = true; };
             documentation = {
               auto_show = false;
@@ -63,38 +74,38 @@
             nerd_font_variant = "mono";
             kind_icons = {
               Copilot = "";
-              #   Text = "󰉿";
-              #   Method = "󰊕";
-              #   Function = "󰊕";
-              #   Constructor = "󰒓";
-              #
-              #   Field = "󰜢";
-              #   Variable = "󰆦";
-              #   Property = "󰖷";
-              #
-              #   Class = "󱡠";
-              #   Interface = "󱡠";
-              #   Struct = "󱡠";
-              #   Module = "󰅩";
-              #
-              #   Unit = "󰪚";
-              #   Value = "󰦨";
-              #   Enum = "󰦨";
-              #   EnumMember = "󰦨";
-              #
-              #   Keyword = "󰻾";
-              #   Constant = "󰏿";
-              #
-              #   Snippet = "󱄽";
-              #   Color = "󰏘";
-              #   File = "󰈔";
-              #   Reference = "󰬲";
-              #   Folder = "󰉋";
-              #   Event = "󱐋";
-              #   Operator = "󰪚";
-              #   TypeParameter = "󰬛";
+              Text = "󰉿";
+              Method = "󰊕";
+              Function = "󰊕";
+              Constructor = "󰒓";
+
+              Field = "󰜢";
+              Variable = "󰆦";
+              Property = "󰖷";
+
+              Class = "󱡠";
+              Interface = "󱡠";
+              Struct = "󱡠";
+              Module = "󰅩";
+
+              Unit = "󰪚";
+              Value = "󰦨";
+              Enum = "󰦨";
+              EnumMember = "󰦨";
+
+              Keyword = "󰻾";
+              Constant = "󰏿";
+
+              Snippet = "󱄽";
+              Color = "󰏘";
+              File = "󰈔";
+              Reference = "󰬲";
+              Folder = "󰉋";
+              Event = "󱐋";
+              Operator = "󰪚";
+              TypeParameter = "󰬛";
             };
-            use_nvim_cmp_as_default = false;
+            use_nvim_cmp_as_default = true;
           };
 
         };

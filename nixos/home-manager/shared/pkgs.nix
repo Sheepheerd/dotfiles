@@ -32,6 +32,7 @@
     devenv
     gnumake
     cmake
+    python3
 
     #Basic Language Development
     openjdk

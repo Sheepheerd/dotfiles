@@ -4,5 +4,6 @@
     ./copilot.nix
     ./blink.nix
     # ./codecompanion.nix
+    # ./coq.nix
   ];
 }
