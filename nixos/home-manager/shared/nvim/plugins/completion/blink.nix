@@ -2,21 +2,21 @@
   programs.nixvim = {
     plugins = {
       blink-ripgrep.enable = true;
-      # blink-cmp-copilot.enable = true;
+      blink-cmp-copilot.enable = true;
       blink-cmp = {
         enable = true;
         settings = {
 
           sources.default =
-            # [ "lsp" "path" "snippets" "buffer" "copilot" "ripgrep" ];
-            [ "lsp" "path" "snippets" "buffer" "ripgrep" ];
+            [ "lsp" "path" "snippets" "buffer" "copilot" "ripgrep" ];
+          # [ "lsp" "path" "snippets" "buffer" "ripgrep" ];
           sources.providers = {
-            # copilot = {
-            #   async = true;
-            #   module = "blink-cmp-copilot";
-            #   name = "copilot";
-            #   score_offset = 100;
-            # };
+            copilot = {
+              async = true;
+              module = "blink-cmp-copilot";
+              name = "copilot";
+              score_offset = 100;
+            };
             ripgrep = {
               async = true;
               module = "blink-ripgrep";
@@ -39,12 +39,17 @@
             };
           };
           completion = {
+            ghost_text = { enabled = true; };
             documentation = {
               auto_show = false;
               auto_show_delay_ms = 200;
               window = { border = "rounded"; };
             };
-            menu = { border = "rounded"; };
+            menu = {
+              draw = { treesitter = [ "lsp" ]; };
+              border = "rounded";
+              # auto_show = true;
+            };
           };
           snippets = { preset = "luasnip"; };
           signature = {
@@ -56,39 +61,39 @@
           };
           appearance = {
             nerd_font_variant = "mono";
-            # kind_icons = {
-            #   Copilot = "";
-            #   Text = "󰉿";
-            #   Method = "󰊕";
-            #   Function = "󰊕";
-            #   Constructor = "󰒓";
-            #
-            #   Field = "󰜢";
-            #   Variable = "󰆦";
-            #   Property = "󰖷";
-            #
-            #   Class = "󱡠";
-            #   Interface = "󱡠";
-            #   Struct = "󱡠";
-            #   Module = "󰅩";
-            #
-            #   Unit = "󰪚";
-            #   Value = "󰦨";
-            #   Enum = "󰦨";
-            #   EnumMember = "󰦨";
-            #
-            #   Keyword = "󰻾";
-            #   Constant = "󰏿";
-            #
-            #   Snippet = "󱄽";
-            #   Color = "󰏘";
-            #   File = "󰈔";
-            #   Reference = "󰬲";
-            #   Folder = "󰉋";
-            #   Event = "󱐋";
-            #   Operator = "󰪚";
-            #   TypeParameter = "󰬛";
-            # };
+            kind_icons = {
+              Copilot = "";
+              #   Text = "󰉿";
+              #   Method = "󰊕";
+              #   Function = "󰊕";
+              #   Constructor = "󰒓";
+              #
+              #   Field = "󰜢";
+              #   Variable = "󰆦";
+              #   Property = "󰖷";
+              #
+              #   Class = "󱡠";
+              #   Interface = "󱡠";
+              #   Struct = "󱡠";
+              #   Module = "󰅩";
+              #
+              #   Unit = "󰪚";
+              #   Value = "󰦨";
+              #   Enum = "󰦨";
+              #   EnumMember = "󰦨";
+              #
+              #   Keyword = "󰻾";
+              #   Constant = "󰏿";
+              #
+              #   Snippet = "󱄽";
+              #   Color = "󰏘";
+              #   File = "󰈔";
+              #   Reference = "󰬲";
+              #   Folder = "󰉋";
+              #   Event = "󱐋";
+              #   Operator = "󰪚";
+              #   TypeParameter = "󰬛";
+            };
             use_nvim_cmp_as_default = false;
           };
 
