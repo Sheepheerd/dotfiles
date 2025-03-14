@@ -4,7 +4,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.spicetify-nix.nixosModules.default
     ../../modules/desktop/default.nix
   ];
 
