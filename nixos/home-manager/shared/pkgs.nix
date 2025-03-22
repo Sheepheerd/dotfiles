@@ -26,7 +26,6 @@
     bat
     ouch
     zoxide
-    tailscale
     docker-compose
     glade
     devenv
