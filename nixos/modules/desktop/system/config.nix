@@ -84,8 +84,10 @@
   # };
 
   #Firewall
-  networking.firewall.enable = true;
-
+  networking = {
+    nameservers = [ "8.8.8.8" ];
+    firewall.enable = true;
+  };
   #Fonts
   fonts.packages = with pkgs; [
     jetbrains-mono
@@ -160,6 +162,14 @@
     # tlp.enable = true;
     zerotierone.enable = true;
 
+    resolved = {
+      enable = true;
+      dnssec = "true";
+      domains = [ "~." ];
+      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+      dnsovertls = "true";
+    };
+
   };
 
   systemd = {
@@ -196,11 +206,11 @@
   programs.adb.enable = true;
   users.users.sheep.extraGroups = [ "adbusers" ];
 
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  # services.avahi = {
+  #   enable = true;
+  #   nssmdns4 = true;
+  #   openFirewall = true;
+  # };
   #services.power-profiles-daemon.enable = true;
 
   # powerManagement.powertop.enable = true;
