@@ -100,7 +100,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs;
-            inherit pkgs-unstable;
+            # inherit pkgs-unstable;
           };
         };
       };
