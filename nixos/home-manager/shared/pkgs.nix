@@ -1,7 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
 
   # Specify the desired packages to install in the user environment.
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
 
     #Utils
     pkg-config
@@ -9,7 +9,6 @@
     glib
     gtk4
 
-    pkg-config
     clippy
     rustc
     ra-multiplex

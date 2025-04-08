@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
 {
+  hardware.keyboard.qmk.enable = true;
   environment.systemPackages = with pkgs; [
-
+    via
     direnv
     gcc
     clang
@@ -14,4 +15,5 @@
     gvfs
 
   ];
+  services.udev.packages = [ pkgs.via ];
 }

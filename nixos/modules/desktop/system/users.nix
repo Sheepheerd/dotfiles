@@ -23,7 +23,7 @@
       xclip
       dmenu
       rofi-wayland
-      tectonic
+      # tectonic
       grimblast
       grim
       kitty
@@ -31,4 +31,3 @@
   };
 
 }
-

@@ -2,8 +2,10 @@
 
 {
   #Pkgs
+  security.polkit.enable = true;
 
   environment.systemPackages = with pkgs; [
+    lxqt.lxqt-policykit
     zerotierone
     at-spi2-atk
     qt6.qtwayland
@@ -147,7 +149,6 @@
   programs.light.enable = true;
 
   # Systemd services setup
-  systemd.packages = with pkgs; [ auto-cpufreq ];
 
   # Enable Services
   programs.xfconf.enable = true;
@@ -206,11 +207,11 @@
   programs.adb.enable = true;
   users.users.sheep.extraGroups = [ "adbusers" ];
 
-  # services.avahi = {
-  #   enable = true;
-  #   nssmdns4 = true;
-  #   openFirewall = true;
-  # };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
   #services.power-profiles-daemon.enable = true;
 
   # powerManagement.powertop.enable = true;

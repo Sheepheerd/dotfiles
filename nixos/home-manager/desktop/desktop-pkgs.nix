@@ -1,16 +1,15 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, inputs, ... }: {
   home.packages = with pkgs; [
-
+    inputs.zen-browser.packages."x86_64-linux".default
+    qmk
     texlive.combined.scheme-full
     hunspell
     hunspellDicts.uk_UA
     hunspellDicts.th_TH
     joplin-desktop
-    localsend
     gimp
-
-    #bambu-studio
+    orca-slicer
+    bambu-studio
     #blender
-    # pkgs-unstable.cura
   ];
 }

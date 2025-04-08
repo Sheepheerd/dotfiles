@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, misterioFlake, ... }:
+{ inputs, outputs, lib, config, pkgs, pkgs-unstable, ... }:
 # You can import other home-manager modules here
 let
   nixvim = import (builtins.fetchGit {
