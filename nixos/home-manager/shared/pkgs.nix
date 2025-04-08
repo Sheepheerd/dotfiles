@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
 
     #Utils
+    miktex
     pkg-config
     gtk3
     glib
