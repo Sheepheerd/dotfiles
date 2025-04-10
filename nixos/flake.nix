@@ -4,6 +4,7 @@
   inputs = {
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/release-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     home-manager = {
@@ -17,16 +18,16 @@
     nixgl.url = "github:nix-community/nixGL";
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "stable";
     };
     ghostty = { url = "github:ghostty-org/ghostty"; };
     nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, apple-silicon, nixvim
-    , nixos-aarch64-widevine, ghostty, alacritty-theme, nixgl, zen-browser, ...
-    }@inputs:
+  outputs = { self, nixpkgs, unstable, stable, home-manager, apple-silicon
+    , nixvim, nixos-aarch64-widevine, ghostty, alacritty-theme, nixgl
+    , zen-browser, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -72,7 +73,10 @@
                 nixos-aarch64-widevine.overlays.default
                 alacritty-theme.overlays.default
               ];
-              home.packages = [ pkgs.nixgl.nixGLIntel ];
+              home.packages = [
+                pkgs.nixgl.nixGLIntel
+                stable.legacyPackages.aarch64-linux.texpresso
+              ]; # Full TeX Live suite
               home = {
                 username = "sheep";
                 homeDirectory = "/home/sheep";
@@ -82,6 +86,10 @@
               home.stateVersion = "25.05";
             }
           ];
+          extraSpecialArgs = {
+
+            inherit stable;
+          };
         };
         "sheep@deathstar" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;

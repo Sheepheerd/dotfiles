@@ -5,6 +5,7 @@
     ./nvim-jdtls.nix
     ./rustaceanvim.nix
     ./js.nix
+    ./texpresso.nix
     ./vimtex.nix
   ];
 }

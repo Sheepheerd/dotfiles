@@ -591,7 +591,7 @@
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
         "nixpkgs": [
-          "nixpkgs"
+          "stable"
         ],
         "nuschtosSearch": "nuschtosSearch",
         "treefmt-nix": "treefmt-nix"
@@ -644,6 +644,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixvim": "nixvim",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
+        "stable": "stable",
         "unstable": "unstable",
         "zen-browser": "zen-browser"
       }
@@ -681,6 +682,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "stable": {
+      "locked": {
+        "lastModified": 1744232197,
+        "narHash": "sha256-dGkTIwxR58w6DTiCV7AD/YlSZMz5en/IwnvW8mQq36A=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "300cf356fb3aca28d3d73bfd0276ddf6b21dd0c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-24.11",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
