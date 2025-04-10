@@ -3,9 +3,9 @@
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
     #Utils
-    pdflatex
-    latexmk
-    miktex
+    texlivePackages.ifsym
+    texliveFull
+    latexrun
     pkg-config
     gtk3
     glib

@@ -76,6 +76,7 @@
               home.packages = [
                 pkgs.nixgl.nixGLIntel
                 stable.legacyPackages.aarch64-linux.texpresso
+                stable.legacyPackages.aarch64-linux.tectonic
               ]; # Full TeX Live suite
               home = {
                 username = "sheep";
