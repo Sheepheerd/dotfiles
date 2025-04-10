@@ -1,6 +1,7 @@
 { config, ... }: {
   programs.nixvim = {
     plugins = {
+      ltex-extra.enable = true;
       # lsp-signature.enable = true;
       # lsp-lines.enable = true;
       lsp = {
@@ -35,7 +36,8 @@
         };
 
         servers = {
-          texlab.enable = true;
+          # texlab.enable = true;
+          ltex.enable = true;
           jsonls = { enable = true; };
           # cssls = { enable = true; };
           clangd = {
