@@ -35,6 +35,7 @@
         };
 
         servers = {
+          texlab.enable = true;
           jsonls = { enable = true; };
           # cssls = { enable = true; };
           clangd = {

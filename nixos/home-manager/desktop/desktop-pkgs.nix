@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     inputs.zen-browser.packages."x86_64-linux".default
     qmk
-    texlive.combined.scheme-full
     hunspell
     hunspellDicts.uk_UA
     hunspellDicts.th_TH

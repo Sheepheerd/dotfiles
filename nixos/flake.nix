@@ -102,6 +102,10 @@
                 username = "sheep";
                 homeDirectory = "/home/sheep";
               };
+              home.packages = [
+                stable.legacyPackages.x86_64-linux.texpresso
+                stable.legacyPackages.x86_64-linux.tectonic
+              ]; # Full TeX Live suite
               programs.home-manager.enable = true;
               targets.genericLinux.enable = true;
               home.stateVersion = "25.05";
