@@ -2,6 +2,12 @@
 
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
+
+    #Flutter
+    # flutter
+    xz
+    libGLU
+
     #Utils
     texlivePackages.ifsym
     texliveFull

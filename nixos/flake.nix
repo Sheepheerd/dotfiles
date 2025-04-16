@@ -23,6 +23,7 @@
     ghostty = { url = "github:ghostty-org/ghostty"; };
     nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
+
   };
 
   outputs = { self, nixpkgs, unstable, stable, home-manager, apple-silicon
@@ -77,6 +78,7 @@
                 pkgs.nixgl.nixGLIntel
                 stable.legacyPackages.aarch64-linux.texpresso
                 stable.legacyPackages.aarch64-linux.tectonic
+
               ]; # Full TeX Live suite
               home = {
                 username = "sheep";
