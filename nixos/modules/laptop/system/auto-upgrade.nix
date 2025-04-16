@@ -9,14 +9,13 @@
     enable = true;
     operation =
       "switch"; # If you don't want to apply updates immediately, only after rebooting, use `boot` option in this case
-    flake = "$HOME/github/dotfiles/nixos";
+    flake = "/etc/nixos";
     flags = [
-      "--impure"
-      # "--update-input"
-      # "nixpkgs"
-      # "--update-input"
-      # "rust-overlay"
-      # "--commit-lock-file"
+      "--update-input"
+      "nixpkgs"
+      "--update-input"
+      "rust-overlay"
+      "--commit-lock-file"
     ];
     dates = "weekly";
     # channel = "https://nixos.org/channels/nixos-unstable";
