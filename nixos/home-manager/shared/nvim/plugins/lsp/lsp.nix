@@ -1,6 +1,9 @@
 { config, ... }: {
   programs.nixvim = {
     plugins = {
+      java = {enable = true;
+      settings = {
+      spring_boot_tools.enable = false;};};
       ltex-extra.enable = true;
       # lsp-signature.enable = true;
       # lsp-lines.enable = true;
@@ -37,6 +40,7 @@
 
         servers = {
           # texlab.enable = true;
+          jdtls.enable = true;
           ltex.enable = true;
           jsonls = { enable = true; };
           # cssls = { enable = true; };

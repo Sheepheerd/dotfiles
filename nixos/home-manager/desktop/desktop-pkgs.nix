@@ -10,5 +10,7 @@
     orca-slicer
     bambu-studio
     #blender
+    vesktop
+    youtube-music
   ];
 }

@@ -1,5 +1,8 @@
 { pkgs, ... }: {
   programs.nixvim = {
+    extraPlugins = with pkgs.vimPlugins; [ ];
+    extraConfigLua = "";
+
     #       require("supermaven-nvim").setup({
     #     keymaps = {
     #       accept_suggestion = "<Tab>",
