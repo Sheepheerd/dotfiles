@@ -5,8 +5,6 @@
 
     #Flutter
     # flutter
-    xz
-    libGLU
 
     #Utils
     texlivePackages.ifsym
@@ -22,7 +20,6 @@
     ra-multiplex
     rust-analyzer
     cargo
-    alacritty
     #vim
     compose2nix
     maven
@@ -38,7 +35,6 @@
     devenv
     gnumake
     cmake
-    python3
 
     #Basic Language Development
     openjdk
@@ -51,10 +47,6 @@
     nerd-fonts.caskaydia-cove
 
     #Programs
-    youtube-music
-    vesktop
-    # ungoogled-chromium
-    #firefox
     # logisim
     localsend
   ];
