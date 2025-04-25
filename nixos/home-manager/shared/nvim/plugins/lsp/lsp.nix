@@ -1,9 +1,13 @@
 { config, ... }: {
   programs.nixvim = {
     plugins = {
-      java = {enable = true;
-      settings = {
-      spring_boot_tools.enable = false;};};
+      java = {
+        enable = true;
+        settings = {
+          spring_boot_tools.enable = false;
+          java_debug_adapter = { enable = true; };
+        };
+      };
       ltex-extra.enable = true;
       # lsp-signature.enable = true;
       # lsp-lines.enable = true;

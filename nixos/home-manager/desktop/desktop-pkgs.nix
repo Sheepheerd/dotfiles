@@ -1,6 +1,7 @@
 { pkgs, pkgs-unstable, inputs, ... }: {
   home.packages = with pkgs; [
     inputs.zen-browser.packages."x86_64-linux".default
+    vial
     qmk
     hunspell
     hunspellDicts.uk_UA

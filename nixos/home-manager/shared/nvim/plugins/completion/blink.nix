@@ -11,11 +11,14 @@
             [ "lsp" "path" "snippets" "buffer" "copilot" "ripgrep" ];
           # [ "lsp" "path" "snippets" "buffer" "ripgrep" ];
           sources.providers = {
+            lsp = { score_offset = 10; };
+            buffer = { score_offset = 4; };
+            path = { score_offset = 3; };
             copilot = {
               async = true;
               module = "blink-copilot";
               name = "copilot";
-              score_offset = 100;
+              score_offset = 8;
               opts = {
                 max_completions = 3;
                 max_attempts = 4;
@@ -31,7 +34,7 @@
               async = true;
               module = "blink-ripgrep";
               name = "Ripgrep";
-              score_offset = 100;
+              score_offset = 3;
               opts = {
                 prefix_min_len = 3;
                 context_size = 5;
