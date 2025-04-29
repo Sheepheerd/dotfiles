@@ -1,20 +1,15 @@
-{ pkgs, stable, ... }: {
+{ pkgs, inputs, ... }: {
 
   # Specify the desired packages to install in the user environment.
   home.packages = with pkgs; [
-
-    #Flutter
-    # flutter
 
     #Utils
     texlivePackages.ifsym
     texliveFull
     latexrun
-    pkg-config
-    gtk3
-    glib
-    gtk4
 
+    inputs.northstar.packages.${system}.default
+    croc
     clippy
     rustc
     ra-multiplex

@@ -1,17 +1,7 @@
 { pkgs, outputs, lib, config, nixgl, ... }:
-let
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    ref = "main";
-  });
-in {
-  imports = [
-    nixvim.homeManagerModules.nixvim
-    ./desktop.nix
-    ./gtk.nix
-    ./tmux.nix
-    ../shared/default.nix
-  ];
+
+{
+  imports = [ ./desktop.nix ./gtk.nix ./tmux.nix ../shared/default.nix ];
 
   home.username = "sheep";
   home.homeDirectory = "/home/sheep";
@@ -30,14 +20,6 @@ in {
 
     direnv.enable = true;
 
-    nixvim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-
-      luaLoader.enable = true;
-    };
   };
 
 }

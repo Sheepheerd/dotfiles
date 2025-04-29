@@ -2,7 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/release-24.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -16,10 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:nix-community/nixGL";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "stable";
-    };
+    northstar.url = "github:Sheepheerd/northstar";
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "stable";
+    # };
     ghostty = { url = "github:ghostty-org/ghostty"; };
     nixos-aarch64-widevine.url = "github:epetousis/nixos-aarch64-widevine";
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
@@ -27,8 +29,8 @@
   };
 
   outputs = { self, nixpkgs, unstable, stable, home-manager, apple-silicon
-    , nixvim, nixos-aarch64-widevine, ghostty, alacritty-theme, nixgl
-    , zen-browser, ... }@inputs:
+    , nixos-aarch64-widevine, ghostty, alacritty-theme, nixgl, zen-browser, ...
+    }@inputs:
     let
       inherit (self) outputs;
 

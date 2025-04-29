@@ -1,14 +1,15 @@
-{ inputs, outputs, lib, config, pkgs, pkgs-unstable, ... }:
+{ inputs, outputs, lib, config, pkgs, pkgs-unstable, nixvim, ... }:
 # You can import other home-manager modules here
-let
-  nixvim = import (builtins.fetchGit {
-    url = "https://github.com/nix-community/nixvim";
-    ref = "main";
-  });
-in {
+# let
+#   nixvim = import (builtins.fetchGit {
+#     url = "https://github.com/nix-community/nixvim";
+#     ref = "main";
+#   });
+# in
+{
 
   imports = [
-    nixvim.homeManagerModules.nixvim
+    # nixvim.homeManagerModules.nixvim
     ./desktop.nix
     ./gtk.nix
     ./tmux.nix
@@ -38,13 +39,13 @@ in {
 
   systemd.user.startServices = "sd-switch";
   # Neovim
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-
-    luaLoader.enable = true;
-  };
+  # programs.nixvim = {
+  #   enable = true;
+  #   defaultEditor = true;
+  #   viAlias = true;
+  #   vimAlias = true;
+  #
+  #   luaLoader.enable = true;
+  # };
 
 }

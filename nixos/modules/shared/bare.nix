@@ -12,6 +12,5 @@
     git-credential-manager
     pass-git-helper
     macchina # neofetch alternative in rust
-    jq
   ];
 }
