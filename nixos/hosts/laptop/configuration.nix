@@ -5,13 +5,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.nixvim.nixosModules.default
     ../../modules/laptop/default.nix
     #../../apple-silicon-support
-    <apple-silicon-support/apple-silicon-support>
+    # <apple-silicon-support/apple-silicon-support>
   ];
 
-  hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
+  # hardware.asahi.peripheralFirmwareDirectory = ../../firmware;
   environment.systemPackages = with pkgs; [
 
     mesa
@@ -22,8 +21,8 @@
   environment.shells = with pkgs; [ zsh ];
 
   environment.sessionVariables = { WLR_DRM_DEVICES = "/dev/dri/card0"; };
-  hardware.graphics.enable = true;
-  hardware.asahi.useExperimentalGPUDriver = true;
+  # hardware.graphics.enable = true;
+  # hardware.asahi.useExperimentalGPUDriver = true;
   programs.nix-ld.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -45,4 +44,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-
