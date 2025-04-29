@@ -13,5 +13,6 @@
     #blender
     vesktop
     youtube-music
+    rpi-imager
   ];
 }
