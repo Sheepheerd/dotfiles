@@ -10,6 +10,7 @@
     gimp
     orca-slicer
     bambu-studio
+    python3
     #blender
     vesktop
     youtube-music

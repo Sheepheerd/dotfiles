@@ -38,7 +38,7 @@
       pkgs = import nixpkgs { overlays = [ nixgl.overlay ]; };
       pkgs-unstable = unstable.legacyPackages.x86_64-linux;
     in {
-      homeManagerModules = import ./modules/home-manager;
+      # homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
         novastar = nixpkgs.lib.nixosSystem {
@@ -68,7 +68,8 @@
       homeConfigurations = {
         # Used in CI
         "sheep@novastar" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+
+          pkgs = import nixpkgs { system = "aarch64-linux"; };
           modules = [
             ./home-manager/laptop/home.nix
             {
@@ -77,7 +78,7 @@
                 alacritty-theme.overlays.default
               ];
               home.packages = [
-                pkgs.nixgl.nixGLIntel
+                # pkgs.nixgl.nixGLIntel
                 stable.legacyPackages.aarch64-linux.texpresso
                 stable.legacyPackages.aarch64-linux.tectonic
 
@@ -92,6 +93,7 @@
             }
           ];
           extraSpecialArgs = {
+            inherit inputs;
 
             inherit stable;
           };
