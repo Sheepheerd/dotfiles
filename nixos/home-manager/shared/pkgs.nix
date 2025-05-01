@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
 
     #Utils
+    distrobox
+    nurl
     texlivePackages.ifsym
     texliveFull
     latexrun

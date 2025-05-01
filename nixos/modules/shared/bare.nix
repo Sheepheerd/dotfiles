@@ -2,7 +2,8 @@
 
 {
 
-  programs.zsh.enable = true;
+  programs.zsh.enable = false;
+  programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
 
     git

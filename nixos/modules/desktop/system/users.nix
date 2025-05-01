@@ -15,7 +15,7 @@
     description = "Mr. Big Steppa";
     extraGroups =
       [ "networkmanager" "input" "wheel" "ydotool" "video" "audio" "tss" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     packages = with pkgs; [
       unzip
       vim

@@ -9,7 +9,7 @@
     newSession = true;
     prefix = "C-Space";
     shortcut = "Space";
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${pkgs.fish}/bin/fish";
     terminal = "tmux-256color";
     plugins = with pkgs; [
 
@@ -31,4 +31,3 @@
   programs.fzf.tmux = { enableShellIntegration = true; };
 
 }
-

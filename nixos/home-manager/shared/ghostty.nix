@@ -1,7 +1,8 @@
 {
   programs.ghostty = {
     enable = true;
-    enableZshIntegration = true;
+    # enableZshIntegration = true;
+    enableFishIntegration = true;
     settings = {
       term = "xterm-256color";
       theme = "catppuccin-mocha";
@@ -11,7 +12,8 @@
       cursor-style = "block";
       cursor-style-blink = false;
 
-      shell-integration = "zsh";
+      # shell-integration = "zsh";
+      # shell-integration = "fish";
       shell-integration-features = "no-cursor";
 
       window-decoration = false;
