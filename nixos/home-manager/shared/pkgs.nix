@@ -13,10 +13,6 @@
     inputs.northstar.packages.${system}.default
     croc
     clippy
-    rustc
-    ra-multiplex
-    rust-analyzer
-    cargo
     #vim
     compose2nix
     maven
