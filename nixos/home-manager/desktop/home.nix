@@ -12,7 +12,6 @@
     # nixvim.homeManagerModules.nixvim
     ./desktop.nix
     ./gtk.nix
-    ./tmux.nix
     ./easyeffects.nix
     ../shared/default.nix
     ./desktop-pkgs.nix

@@ -6,5 +6,6 @@
     ./ghostty.nix
     ./desktop
     ./programs
+    ./tmux.nix
   ];
 }
