@@ -35,13 +35,17 @@
       inherit (self) outputs;
 
       systems = [ "aarch64-linux" "x86_64-linux" ];
-      pkgs = import nixpkgs { overlays = [ nixgl.overlay ]; };
+      desktop-pkgs = import nixpkgs;
+      laptop-pkgs = import nixpkgs {
+        system = "aarch64-linux";
+        overlays = [ nixgl.overlay ];
+      };
       pkgs-unstable = unstable.legacyPackages.x86_64-linux;
     in {
       # homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        novastar = nixpkgs.lib.nixosSystem {
+        novastar = laptop-pkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit pkgs-unstable;
@@ -69,7 +73,7 @@
         # Used in CI
         "sheep@novastar" = home-manager.lib.homeManagerConfiguration {
 
-          pkgs = import nixpkgs { system = "aarch64-linux"; };
+          pkgs = laptop-pkgs;
           modules = [
             ./home-manager/laptop/home.nix
             {
@@ -78,7 +82,7 @@
                 alacritty-theme.overlays.default
               ];
               home.packages = [
-                # pkgs.nixgl.nixGLIntel
+                laptop-pkgs.nixgl.nixGLIntel
                 stable.legacyPackages.aarch64-linux.texpresso
                 stable.legacyPackages.aarch64-linux.tectonic
 

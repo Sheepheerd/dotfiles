@@ -1,7 +1,7 @@
 { pkgs, outputs, lib, config, nixgl, ... }:
 
 {
-  imports = [ ./desktop.nix ./gtk.nix ./tmux.nix ../shared/default.nix ];
+  imports = [ ./desktop.nix ./gtk.nix ../shared/default.nix ];
 
   home.username = "sheep";
   home.homeDirectory = "/home/sheep";
