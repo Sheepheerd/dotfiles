@@ -25,11 +25,6 @@
     };
   };
 
-  home = {
-    username = "sheep";
-    homeDirectory = "/home/sheep";
-  };
-
   # programs.neovim.enable = true;
   fonts.fontconfig.enable = true;
 

@@ -3,9 +3,6 @@
 {
   imports = [ ./desktop.nix ./gtk.nix ../shared/default.nix ];
 
-  home.username = "sheep";
-  home.homeDirectory = "/home/sheep";
-
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
