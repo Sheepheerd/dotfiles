@@ -3,9 +3,8 @@
     # ./zsh.nix
     ./terminal.nix
     ./pkgs.nix
-    ./ghostty.nix
-    ./desktop
-    ./programs
-    ./tmux.nix
+    # ./ghostty.nix
+    # ./tmux.nix
+    ./nvim/plugins
   ];
 }
