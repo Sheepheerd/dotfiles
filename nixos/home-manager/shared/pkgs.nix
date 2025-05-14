@@ -4,26 +4,15 @@
   home.packages = with pkgs; [
 
     #Utils
-    distrobox
-    nurl
-    texlivePackages.ifsym
-    texliveFull
-    latexrun
-
-    inputs.northstar.packages.${system}.default
-    croc
-    clippy
     #vim
-    compose2nix
     maven
-    valgrind
     ripgrep
     curl
     zoxide
     bat
     ouch
     zoxide
-    docker-compose
+    # docker-compose
     glade
     devenv
     gnumake
@@ -40,7 +29,5 @@
     nerd-fonts.caskaydia-cove
 
     #Programs
-    # logisim
-    localsend
   ];
 }
