@@ -11,14 +11,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # nixgl.url = "github:nix-community/nixGL";
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "stable";
-    # };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
-  outputs = { self, nixpkgs, unstable, stable, home-manager,
+  outputs = { self, nixpkgs, unstable, stable, home-manager, nixvim,
     # nixgl
     ... }@inputs:
     let

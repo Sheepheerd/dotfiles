@@ -2,7 +2,7 @@
   programs.nixvim = {
     plugins = {
       java = {
-        enable = true;
+        enable = false;
         settings = {
           spring_boot_tools.enable = false;
           java_debug_adapter = { enable = true; };

@@ -1,16 +1,15 @@
 { pkgs, ... }: {
   programs.nixvim = {
     extraPackages = with pkgs; [
-      black
-      ruff
-      google-java-format
+      # black
+      # ruff
+      # google-java-format
       prettierd
       # clang-tools
       nixfmt
       astyle
       stylua
-      typescript
-      typescript-language-server
+      # typescript-language-server
       rustfmt
     ];
     plugins.conform-nvim = {
