@@ -4,7 +4,7 @@
     clock24 = true;
     keyMode = "vi";
     newSession = true;
-    shell = "${pkgs.fish}/bin/fish";
+    shell = "${pkgs.zsh}/bin/zsh";
     terminal = "tmux-256color";
 
     extraConfig = "";

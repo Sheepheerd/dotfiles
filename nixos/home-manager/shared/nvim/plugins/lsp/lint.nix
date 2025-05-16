@@ -8,6 +8,7 @@
       cpplint
       eslint_d
       # selene
+      golangci-lint
     ];
     plugins.lint = {
       enable = true;

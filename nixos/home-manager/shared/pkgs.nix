@@ -5,6 +5,7 @@
 
     #Utils
     #vim
+    zsh
     maven
     ripgrep
     curl

@@ -1,12 +1,4 @@
-{ pkgs, outputs, lib, config, nixgl, inputs, ... }:
-
-# let
-#   nixvim = import (builtins.fetchGit {
-#     url = "https://github.com/nix-community/nixvim";
-#     ref = "main";
-#   });
-# in
-{
+{ pkgs, outputs, lib, config, nixgl, inputs, ... }: {
 
   imports = [ inputs.nixvim.homeManagerModules.nixvim ../shared/default.nix ];
 
