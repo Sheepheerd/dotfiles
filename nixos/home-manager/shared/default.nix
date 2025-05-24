@@ -5,6 +5,6 @@
     ./pkgs.nix
     # ./ghostty.nix
     # ./tmux.nix
-    ./nvim/plugins
+    ./nvim
   ];
 }

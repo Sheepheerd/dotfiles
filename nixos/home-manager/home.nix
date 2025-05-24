@@ -1,4 +1,4 @@
-{ pkgs, outputs, lib, config, nixgl, inputs, ... }: {
+{ inputs, ... }: {
 
   imports = [ inputs.nixvim.homeManagerModules.nixvim ../shared/default.nix ];
 
