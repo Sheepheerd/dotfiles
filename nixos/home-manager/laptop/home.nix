@@ -1,7 +1,7 @@
-{ pkgs, outputs, lib, config, nixgl, ... }:
+{ inputs, ... }:
 
 {
-  imports = [ ./desktop.nix ./gtk.nix ../shared/default.nix ];
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ../shared/default.nix ];
 
   home.sessionVariables = {
     EDITOR = "nvim";

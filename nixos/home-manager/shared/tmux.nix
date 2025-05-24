@@ -1,12 +1,13 @@
 { config, pkgs, ... }: {
   programs.tmux = {
     enable = true;
-    baseIndex = 0;
     clock24 = true;
     keyMode = "vi";
-    mouse = true;
-    shell = "${pkgs.fish}/bin/fish";
+    newSession = true;
+    shell = "${pkgs.zsh}/bin/zsh";
     terminal = "tmux-256color";
+
+    extraConfig = "";
 
   };
 

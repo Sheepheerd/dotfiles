@@ -91,7 +91,6 @@ in {
       export PATH="$PATH:$HOME/.scripts/bin"
       export PATH="$PATH:$HOME/.local/bin"
       eval "$(zoxide init zsh)"
-      export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
     '';
     plugins = [{
       name = "zsh-nix-shell";

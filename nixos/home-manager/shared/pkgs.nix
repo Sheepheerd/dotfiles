@@ -6,11 +6,10 @@
     #Utils
     distrobox
     nurl
-    texlivePackages.ifsym
-    texliveFull
-    latexrun
+    # texlivePackages.ifsym
+    # texliveFull
+    # latexrun
 
-    inputs.northstar.packages.${system}.default
     croc
     clippy
     #vim

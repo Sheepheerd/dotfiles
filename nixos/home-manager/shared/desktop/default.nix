@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./waybar.nix ./fuzzel.nix ./dunst.nix ]; }
+{ ... }: { imports = [ ./waybar.nix ./fuzzel.nix ./dunst.nix ./gtk.nix ]; }
