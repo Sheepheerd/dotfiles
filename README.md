@@ -2,7 +2,7 @@
 
 ---
 
-## Directory Structure
+## How it be set-up
 
 ### 🔹 NixOS Configuration (`nixos/`)
 
@@ -25,7 +25,7 @@
 
 ---
 
-## Installation
+## How make work
 
 To set up the system:
 
