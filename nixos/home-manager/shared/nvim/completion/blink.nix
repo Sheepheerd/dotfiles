@@ -55,6 +55,7 @@
               show_documentation = false;
             };
           };
+          keymap = { preset = "default"; };
           appearance = {
             nerd_font_variant = "mono";
             kind_icons = {

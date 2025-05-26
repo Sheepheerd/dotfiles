@@ -6,7 +6,6 @@
     ./gtk.nix
     ./easyeffects.nix
     ../shared/default.nix
-    ./desktop-pkgs.nix
     # ./minecraft.nix
   ];
 

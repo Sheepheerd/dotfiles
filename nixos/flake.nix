@@ -3,7 +3,7 @@
 
   inputs = {
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/release-24.11";
+    stable.url = "github:nixos/nixpkgs/release-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -60,7 +60,7 @@
 
           pkgs = laptop-pkgs;
           modules = [
-            ./home-manager/laptop/home.nix
+            ./home-manager/devbox/home.nix
             {
               home = {
                 packages = [
@@ -84,6 +84,7 @@
             inherit inputs;
 
             inherit stable;
+            host = "novastar";
           };
         };
         "deathstar" = home-manager.lib.homeManagerConfiguration {
@@ -107,7 +108,10 @@
               targets.genericLinux.enable = true;
             }
           ];
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            host = "deathstar";
+          };
         };
         "starcraft" = home-manager.lib.homeManagerConfiguration {
           pkgs = desktop-pkgs;
@@ -123,7 +127,10 @@
               targets.genericLinux.enable = true;
             }
           ];
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {
+            inherit inputs;
+            host = "starcraft";
+          };
         };
       };
     };

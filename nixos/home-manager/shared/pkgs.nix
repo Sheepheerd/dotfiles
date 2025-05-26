@@ -1,45 +1,82 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, lib, inputs, host, ... }:
+let isDeathstar = host == "deathstar";
+in {
 
   # Specify the desired packages to install in the user environment.
-  home.packages = with pkgs; [
 
-    #Utils
-    distrobox
-    nurl
-    # texlivePackages.ifsym
-    # texliveFull
-    # latexrun
+  programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-    croc
-    clippy
-    #vim
-    compose2nix
-    maven
-    valgrind
-    ripgrep
-    curl
-    zoxide
-    bat
-    ouch
-    zoxide
-    docker-compose
-    glade
-    devenv
-    gnumake
-    cmake
+    nix-your-shell = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-    #Basic Language Development
-    openjdk
+    ripgrep.enable = true;
 
-    #Fonts
-    liberation_ttf
+    eza.enable = true;
 
-    noto-fonts
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.caskaydia-cove
+    zoxide.enable = true;
 
-    #Programs
-    # logisim
-    localsend
-  ];
+    bat.enable = true;
+
+    yazi.enable = true;
+  };
+
+  home.packages = with pkgs;
+    [
+
+      #Utils
+
+      distrobox
+      nurl
+      croc
+      clippy
+      maven
+      valgrind
+      curl
+
+      #Oxidization
+      presenterm # power point in terminal
+      wiki-tui # Wiki in the terminal
+      mask # Command Runner like make. Will run 'sh' markdown patterns in readme
+
+      gnumake
+      cmake
+      uutils-coreutils-noprefix
+      docker-compose
+
+      #Fonts
+      liberation_ttf
+
+      noto-fonts
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.caskaydia-cove
+
+    ] ++ lib.optionals isDeathstar [
+
+      compose2nix
+      localsend
+      # texlivePackages.ifsym
+      # texliveFull
+      # latexrun
+      ra-multiplex
+      vial
+      qmk
+      hunspell
+      hunspellDicts.uk_UA
+      hunspellDicts.th_TH
+      joplin-desktop
+      gimp
+      orca-slicer
+      python3
+      #blender
+      vesktop
+      youtube-music
+      rpi-imager
+
+    ];
 }

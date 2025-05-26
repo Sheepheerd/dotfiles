@@ -82,7 +82,7 @@ in {
 
   programs.zsh = {
     enable = true;
-    # enableCompletion = true;
+    enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtra = ''
@@ -92,6 +92,17 @@ in {
       export PATH="$PATH:$HOME/.local/bin"
       eval "$(zoxide init zsh)"
     '';
+    shellAliases = {
+      t = "tmux a";
+      open = "xdg-open";
+      vim = "nvim";
+      ls = "eza";
+
+      update-ds =
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#deathstar";
+      update-ns =
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
+    };
     plugins = [{
       name = "zsh-nix-shell";
       file = "nix-shell.plugin.zsh";
@@ -102,17 +113,6 @@ in {
         sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
       };
     }];
-
-    shellAliases = {
-      t = "tmux a";
-      open = "xdg-open";
-      vim = "nvim";
-      fd = "zoxide";
-      update-ds =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#deathstar";
-      update-ns =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
-    };
 
     oh-my-zsh = {
       enable = true;

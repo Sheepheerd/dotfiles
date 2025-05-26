@@ -1,1 +1,6 @@
-{ programs.nixvim.plugins.gitblame = { enable = false; }; }
+{
+  programs.nixvim.plugins.gitblame = {
+    enable = true;
+    settings = { enabled = false; };
+  };
+}

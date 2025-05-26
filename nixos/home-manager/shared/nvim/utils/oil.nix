@@ -1,10 +1,11 @@
 {
   programs.nixvim = {
     plugins = {
-
+      oil-git-status.enable = true;
       oil = {
         enable = true;
         settings = {
+          win_options = { signcolumn = "yes:2"; };
           skip_confirm_for_simple_edits = true;
           keymaps = {
             "<C-l>" = false;
