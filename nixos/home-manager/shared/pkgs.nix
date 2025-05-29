@@ -1,5 +1,9 @@
-{ pkgs, lib, inputs, host, ... }:
-let isDeathstar = host == "deathstar";
+{ pkgs, lib, host, ... }:
+let
+
+  isNovastar = host == "novastar";
+  isDeathstar = host == "deathstar";
+  isHomeMachine = isNovastar || isDeathstar;
 in {
 
   # Specify the desired packages to install in the user environment.
@@ -40,6 +44,7 @@ in {
       curl
 
       #Oxidization
+      ouch # Decompressing at its finest
       presenterm # power point in terminal
       wiki-tui # Wiki in the terminal
       mask # Command Runner like make. Will run 'sh' markdown patterns in readme
@@ -72,11 +77,10 @@ in {
       joplin-desktop
       gimp
       orca-slicer
-      python3
       #blender
-      vesktop
-      youtube-music
       rpi-imager
 
-    ];
+    ]
+
+    ++ lib.optionals isHomeMachine [ vesktop youtube-music ];
 }

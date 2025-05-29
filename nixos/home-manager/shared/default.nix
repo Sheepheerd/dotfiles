@@ -3,7 +3,7 @@
     ./zsh.nix
     ./pkgs.nix
     ./ghostty.nix
-    ./desktop
+    ./rice
     ./tmux.nix
     ./nvim
   ];
