@@ -61,6 +61,9 @@ in {
       nerd-fonts.jetbrains-mono
       nerd-fonts.caskaydia-cove
 
+      #python
+      pyenv
+
     ] ++ lib.optionals isDeathstar [
 
       compose2nix
@@ -82,5 +85,5 @@ in {
 
     ]
 
-    ++ lib.optionals isHomeMachine [ vesktop youtube-music ];
+    ++ lib.optionals isHomeMachine [ vesktop youtube-music grimblast ];
 }

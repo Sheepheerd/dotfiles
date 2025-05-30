@@ -1,5 +1,6 @@
 {
   imports = [
+    ./image.nix
     ./comment.nix
     ./harpoon.nix
     ./which-key.nix

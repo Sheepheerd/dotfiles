@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
@@ -25,6 +25,9 @@
     vimAlias = true;
 
     luaLoader.enable = true;
+
+    extraLuaPackages = ps: [ ps.magick ];
+    extraPackages = [ pkgs.imagemagick ];
   };
 
 }

@@ -4,5 +4,6 @@
     ./tree-sitter.nix
     ./rustaceanvim.nix
     ./js.nix # ./texpresso.nix
+    ./whichpy.nix
   ];
 }

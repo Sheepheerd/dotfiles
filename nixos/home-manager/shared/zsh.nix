@@ -11,13 +11,18 @@ in {
   };
   home.file.".zshthemes/eastwood.zsh-theme" = {
     text = ''
-        # RVM settings
-      if [[ -s ~/.rvm/scripts/rvm ]] ; then
-        RPS1="%{$fg[yellow]%}rvm:%{$reset_color%}%{$fg[red]%}\$(~/.rvm/bin/rvm-prompt)%{$reset_color%} $EPS1"
-      else
-        if which rbenv &> /dev/null; then
-          RPS1="%{$fg[yellow]%}rbenv:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
+      # Python virtual environment detection
+      prompt_python_env() {
+        if [[ -n "$VIRTUAL_ENV" ]]; then
+          prompt_segment NONE magenta "[venv]"
+        elif [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+          prompt_segment NONE magenta "[conda:$CONDA_DEFAULT_ENV]"
         fi
+      }
+
+      # rbenv support
+      if command -v rbenv &> /dev/null; then
+        RPS1="%{$fg[yellow]%}rbenv:%{$reset_color%}%{$fg[red]%}\$(rbenv version | sed -e 's/ (set.*$//')%{$reset_color%} $EPS1"
       fi
 
       ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}["
@@ -25,28 +30,28 @@ in {
       ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*%{$reset_color%}"
       ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-      # Customized git status, oh-my-zsh currently does not allow render dirty status before branch
+      # Customized git status
       git_custom_status() {
         local cb=$(git_current_branch)
         if [ -n "$cb" ]; then
           echo "$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_PREFIX$(git_current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX"
         fi
       }
-      # nix-shell: Display nix-shell environment if running, with transparent background
+
+      # nix-shell: Display nix-shell environment if running
       prompt_nix_shell() {
         if [[ -n "$IN_NIX_SHELL" ]]; then
           if [[ -n $NIX_SHELL_PACKAGES ]]; then
             local package_names=""
             local packages=($NIX_SHELL_PACKAGES)
             for package in $packages; do
-              package_names+="'$'{package##*.}"  # No space between package names
+              package_names+="'$\{package##*.}"
             done
-            # Transparent background and encapsulated in []
             prompt_segment NONE yellow "[$package_names]"
           elif [[ -n $name ]]; then
-            local cleanName='$'{name#interactive-}
-            cleanName='$'{cleanName#lorri-keep-env-hack-}
-            cleanName='$'{cleanName%-environment}
+            local cleanName="$\{name#interactive-}"
+            cleanName="$\{cleanName#lorri-keep-env-hack-}"
+            cleanName="$\{cleanName%-environment}"
             prompt_segment NONE yellow "[$cleanName]"
           else
             prompt_segment NONE yellow "[]"
@@ -54,13 +59,13 @@ in {
         fi
       }
 
-      # Override prompt_segment to allow transparent backgrounds
+      # Transparent prompt segments
       prompt_segment() {
         local bg fg
-        [[ -n $1 && $1 != 'NONE' ]] && bg="%K{$1}" || bg=""  # No background if 'NONE' is passed
-        [[ -n $2 ]] && fg="%F{$2}" || fg="%f"               # Set foreground color
+        [[ -n $1 && $1 != 'NONE' ]] && bg="%K{$1}" || bg=""
+        [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
         if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-          echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%}"  # Removed trailing space
+          echo -n "%{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%}"
         else
           echo -n "%{$bg%}%{$fg%}"
         fi
@@ -68,14 +73,14 @@ in {
         [[ -n $3 ]] && echo -n $3
       }
 
-      # End the prompt with no background
+      # Reset prompt colors
       prompt_end() {
-        echo -n "%{%k%f%}"  # Reset both background and foreground to default
+        echo -n "%{%k%f%}"
         CURRENT_BG=""
       }
 
-      # PROMPT with correct spacing
-      PROMPT='$(git_custom_status)$(prompt_nix_shell)%{$fg[cyan]%}[%~]%{$reset_color%}%B$ %b'
+      # PROMPT with git, nix-shell, and python environment
+      PROMPT='$(git_custom_status)$(prompt_nix_shell)$(prompt_python_env)%{$fg[cyan]%}[%~]%{$reset_color%}%B$ %b'
 
     '';
   };
@@ -97,11 +102,15 @@ in {
       open = "xdg-open";
       vim = "nvim";
       ls = "eza";
+      cat = "bat";
+      grep = "rg";
 
       update-ds =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#deathstar";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#deathstar";
       update-ns =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos#novastar";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#novastar";
+      update-sc =
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#starcraft";
     };
     plugins = [{
       name = "zsh-nix-shell";
@@ -116,6 +125,7 @@ in {
 
     oh-my-zsh = {
       enable = true;
+      # theme = "eastwood";
       plugins =
         [ "git" "magic-enter" "fzf" "sudo" "tldr" "direnv" "virtualenv" ];
     };

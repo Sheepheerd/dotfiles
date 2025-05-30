@@ -1,6 +1,7 @@
 {
   programs.nixvim = {
     plugins = {
+      colorful-menu.enable = true;
       blink-ripgrep.enable = true;
       blink-cmp = {
         enable = true;
