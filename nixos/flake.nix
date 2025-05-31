@@ -21,11 +21,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ghostty = { url = "github:ghostty-org/ghostty"; };
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
   outputs = { self, nixpkgs, unstable, stable, home-manager, ghostty, nixgl
-    , zen-browser, ... }@inputs:
+    , nix-darwin, zen-browser, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -36,6 +38,27 @@
       };
       pkgs-unstable = unstable.legacyPackages.x86_64-linux;
     in {
+
+      darwinConfigurations = {
+        # I have couple computers, but one config per
+        "gooberstar" = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [
+            # include the darwin module
+            ./darwin.nix
+            # setup home-manager
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                # include the home-manager module
+                users.evan = import ./home-manager/devbox/home.nix;
+              };
+              users.users.sheep.home = "/Users/sheep";
+            }
+          ];
+          specialArgs = { inherit inputs; };
+        };
+      };
 
       nixosConfigurations = {
         novastar = laptop-pkgs.lib.nixosSystem {
