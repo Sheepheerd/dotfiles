@@ -137,7 +137,7 @@
           };
         };
         "starcraft" = home-manager.lib.homeManagerConfiguration {
-          pkgs = desktop-pkgs;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./home-manager/devbox/home.nix
             {

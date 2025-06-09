@@ -44,7 +44,7 @@
 
         servers = {
           # texlab.enable = true;
-          jdtls.enable = true;
+          jdtls.enable = false;
           ltex.enable = true;
           jsonls = { enable = true; };
           # cssls = { enable = true; };
@@ -55,7 +55,7 @@
           dockerls = { enable = true; };
           docker_compose_language_service = { enable = true; };
           gopls.enable = true;
-          golangci_lint_ls.enable = true;
+          golangci_lint_ls.enable = false;
           lua_ls = {
             enable = true;
             extraOptions = {
@@ -68,6 +68,10 @@
                 };
               };
             };
+          };
+          hls = {
+            enable = true;
+            installGhc = false;
           };
           nil_ls = {
             enable = true;
