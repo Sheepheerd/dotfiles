@@ -34,7 +34,7 @@ in {
     [
 
       #Utils
-
+      typst
       distrobox
       nurl
       croc
