@@ -1,10 +1,3 @@
-{ config, pkgs, inputs, ... }: {
-  imports = [ # ./hyprland.nix
-    ./zsh.nix
-    ./pkgs.nix
-    ./ghostty.nix
-    ./rice
-    ./tmux.nix
-    ./nvim
-  ];
+{ config, pkgs, inputs, host, ... }: {
+  imports = [ ./zsh.nix ./pkgs.nix ./ghostty.nix ./rice ./tmux.nix ./nvim ];
 }

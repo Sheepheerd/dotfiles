@@ -1,5 +1,12 @@
-{ pkgs, lib, host, ... }:
+{ config, pkgs, lib, host, specialArgs, ... }:
 let
+
+  helpers = import ./helpers.nix {
+    inherit pkgs;
+    inherit lib;
+    inherit config;
+    inherit specialArgs;
+  };
 
   isNovastar = host == "novastar";
   isDeathstar = host == "deathstar";
@@ -85,5 +92,6 @@ in {
 
     ]
 
-    ++ lib.optionals isHomeMachine [ vesktop youtube-music grimblast ];
+    ++ lib.optionals isHomeMachine [ vesktop youtube-music ]
+    ++ lib.optionals isNovastar [ ];
 }

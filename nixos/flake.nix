@@ -20,14 +20,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ghostty = { url = "github:ghostty-org/ghostty"; };
+    # ghostty = { url = "github:ghostty-org/ghostty"; };
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 
-  outputs = { self, nixpkgs, unstable, stable, home-manager, ghostty, nixgl
-    , nix-darwin, zen-browser, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, stable, home-manager, nixgl, nix-darwin
+    , zen-browser, ... }@inputs:
     let
       inherit (self) outputs;
 
