@@ -8,7 +8,14 @@ let
     "monitor = eDP-1 ,2560x1600@60, 0x0, 1.25"
   else
   #fix this for dual monitors
-    "monitor = auto,2560x1600@60, 0x0, 1.25";
+    "monitor = DP-3,1920x1080@144, 0x0, 1";
+
+  extraEnv = if host == "novastar" then ''
+    env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
+    env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
+    env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile
+  '' else
+    "";
 in {
   wayland.windowManager.hyprland = {
     settings = {
@@ -24,7 +31,7 @@ in {
         "wl-clip-persist --clipboard both &"
         "wl-paste --watch cliphist store &"
         "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-
+        "hyprctl setcursor Dracula-cursors 24"
         "${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
         "[workspace 1 silent] ${browser}"
         "[workspace 2 silent] ${terminal}"
@@ -35,7 +42,7 @@ in {
         kb_options = [ "shift:both_capslock" "caps:ctrl_modifier" ];
         numlock_by_default = true;
         repeat_delay = 300;
-        follow_mouse = 0;
+        follow_mouse = 1;
         sensitivity = 0.5;
         touchpad = {
           disable_while_typing = true;
@@ -237,44 +244,14 @@ in {
 
     };
     extraConfig = ''
-            ${monitor}
-
-            env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
-
-            env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
-
-            env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile"
+          ${monitor}
 
 
-      env =      _JAVA_AWT_WM_NONEREPARENTING , 1
-      env =      # SSH_AUTH_SOCK , "/run/user/1000/ssh-agent"
-      env =      DISABLE_QT5_COMPAT , 0
-      env =      GDK_BACKEND , "wayland"
-      env =      DIRENV_LOG_FORMAT , ""
-      env =      QT_AUTO_SCREEN_SCALE_FACTOR , 1
-      env =      QT_WAYLAND_DISABLE_WINDOWDECORATION , 1
-      env =      QT_QPA_PLATFORM , "xcb"
-      env =      QT_QPA_PLATFORMTHEME , "qt5ct"
-      env =      QT_STYLE_OVERRIDE , "kvantum"
-      env =      MOZ_ENABLE_WAYLAND , 1
-      env =      # WLR_BACKEND , "vulkan"
-      env =      # WLR_RENDERER , "vulkan"
-      env =      WLR_NO_HARDWARE_CURSORS , 1
-      env =      XDG_CURRENT_DESKTOP , "Hyprland"
-      env =      XDG_SESSION_TYPE , "wayland"
-      env =      XDG_SESSION_DESKTOP , "Hyprland"
-      env =      SDL_VIDEODRIVER , "wayland"
-      env =      CLUTTER_BACKEND , "wayland"
-      env =      # GTK_THEME , "Colloid-Green-Dark-Gruvbox"
-      env =      GRIMBLAST_HIDE_CURSOR , 0
-      env =      ELECTRON_OZONE_PLATFORM_HINT , "wayland"
-      env =      OZONE_PLATFORM , "wayland"
+      ${extraEnv}
 
 
     '';
-    #
 
-    # xwayland {        force_zero_scaling = true      }    ";
     systemd.enable = true;
   };
 

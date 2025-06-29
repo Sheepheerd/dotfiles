@@ -6,5 +6,6 @@
     ./steam.nix
     ./rom.nix
     ./minecraft.nix
+    ./hyprland.nix
   ];
 }

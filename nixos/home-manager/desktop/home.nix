@@ -2,8 +2,6 @@
 
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./desktop.nix
-    ./gtk.nix
     ./easyeffects.nix
     ../shared/default.nix
     # ./minecraft.nix

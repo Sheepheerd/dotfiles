@@ -1,4 +1,10 @@
-{ pkgs, inputs, lib, host, ... }: {
+{ pkgs, inputs, lib, host, ... }:
+let
+
+  package = if host == "novastar" then pkgs.hyprland else null;
+  portal =
+    if host == "novastar" then pkgs.xdg-desktop-portal-hyprland else null;
+in {
 
   home.packages = with pkgs; [
     swww
@@ -23,7 +29,8 @@
   wayland.windowManager.hyprland = {
 
     enable = true;
-
+    package = package;
+    portalPackage = portal;
     xwayland = { enable = true; };
 
   };

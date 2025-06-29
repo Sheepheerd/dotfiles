@@ -8,14 +8,14 @@
       };
     })
   ];
-
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sheep = {
     isNormalUser = true;
     description = "Mr. Big Steppa";
     extraGroups =
       [ "networkmanager" "input" "wheel" "ydotool" "video" "audio" "tss" ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
     packages = with pkgs; [
       unzip
       vim

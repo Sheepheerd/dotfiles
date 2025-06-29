@@ -31,7 +31,7 @@
     let
       inherit (self) outputs;
 
-      desktop-pkgs = import nixpkgs;
+      desktop-pkgs = import nixpkgs { system = "x86_64-linux"; };
       laptop-pkgs = import nixpkgs {
         system = "aarch64-linux";
         overlays = [ nixgl.overlay ];
@@ -111,7 +111,7 @@
           };
         };
         "deathstar" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = desktop-pkgs;
           modules = [
             ./home-manager/desktop/home.nix
             {
