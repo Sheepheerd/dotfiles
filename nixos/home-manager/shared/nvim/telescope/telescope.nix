@@ -39,10 +39,6 @@
         };
       };
       keymaps = {
-        "<leader><space>" = {
-          action = "find_files";
-          options.desc = "Find project files";
-        };
         "<leader>/" = {
           action = "live_grep";
           options.desc = "Grep (root dir)";
@@ -67,7 +63,7 @@
           action = "buffers";
           options.desc = "Buffers";
         };
-        "<C-p>" = {
+        "<leader>fp" = {
           action = "git_files";
           options.desc = "Search git files";
         };
@@ -131,10 +127,10 @@
           action = "colorscheme";
           options.desc = "Colorscheme preview";
         };
-        "<leader>fp" = {
-          action = "projects";
-          options.desc = "Projects";
-        };
+        # "<leader>fp" = {
+        #   action = "projects";
+        #   options.desc = "Projects";
+        # };
         "<leader>sd" = {
           action = "diagnostics bufnr=0";
           options.desc = "Document Diagnostics";

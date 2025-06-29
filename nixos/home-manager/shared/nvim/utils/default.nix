@@ -2,7 +2,6 @@
   imports = [
     ./image.nix
     ./comment.nix
-    ./typst-preview.nix
     ./harpoon.nix
     ./which-key.nix
     ./markdown-preview.nix

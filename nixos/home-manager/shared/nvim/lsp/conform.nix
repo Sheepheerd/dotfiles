@@ -9,7 +9,6 @@
       nixfmt
       astyle
       stylua
-      # typescript-language-server
       rustfmt
     ];
     plugins.conform-nvim = {

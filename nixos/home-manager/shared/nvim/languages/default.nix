@@ -3,7 +3,8 @@
     ./nix.nix
     ./tree-sitter.nix
     ./rustaceanvim.nix
-    ./js.nix # ./texpresso.nix
+    ./js.nix
     ./whichpy.nix
+    ./typst-preview.nix
   ];
 }
