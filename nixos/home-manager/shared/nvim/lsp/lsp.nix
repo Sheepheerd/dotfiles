@@ -44,6 +44,7 @@
 
         servers = {
           # texlab.enable = true;
+          tinymist.enable = true;
           jdtls.enable = false;
           ltex.enable = true;
           jsonls = { enable = true; };
