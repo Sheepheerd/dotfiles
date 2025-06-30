@@ -24,10 +24,15 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, unstable, stable, home-manager, nixgl, nix-darwin
-    , zen-browser, ... }@inputs:
+    , zen-browser, firefox-addons, ... }@inputs:
     let
       inherit (self) outputs;
 

@@ -92,6 +92,6 @@ in {
 
     ]
 
-    ++ lib.optionals isHomeMachine [ vesktop youtube-music firefox ]
+    ++ lib.optionals isHomeMachine [ vesktop youtube-music ]
     ++ lib.optionals isNovastar [ ];
 }
