@@ -56,8 +56,11 @@
               show_documentation = false;
             };
           };
-          keymap = { preset = "default"; };
-          appearance = {
+          akeymap = {
+            preset = "default";
+            "<TAB>" = [ "null" ];
+          };
+          ppearance = {
             nerd_font_variant = "mono";
             kind_icons = {
               Text = "󰉿";

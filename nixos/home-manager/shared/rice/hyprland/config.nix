@@ -219,10 +219,9 @@ in {
         # # binds that repeat when held
 
         # screenshot
-        ",Print, exec, screenshot --copy"
-        "$mainMod, Print, exec, screenshot --save"
-        "$mainMod SHIFT, Print, exec, screenshot --swappy"
-
+        # ",Print, exec, screenshot --copy"
+        # "$mainMod, Print, exec, screenshot --save"
+        ''$mainMod SHIFT, S, exec, grim -g "$(slurp)"''
       ];
       binde = [
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"

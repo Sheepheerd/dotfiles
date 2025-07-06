@@ -1,17 +1,19 @@
 { pkgs, inputs, ... }: {
+  imports = [ inputs.nix-firefox-addons.homeManagerModules.default ];
   programs.firefox = {
     enable = true;
     profiles.default = {
       id = 0;
       name = "Default";
       search.default = "DuckDuckGo";
-      extensions.packages =
-        with inputs.firefox-addons.packages.${pkgs.system}; [
-          ublock-origin
-          bitwarden
-          darkreader
-          vimium
-        ];
+      extensions.packages = with pkgs.firefoxAddons; [
+        ublock-origin
+        bitwarden-password-manager
+        darkreader
+        vimium-ff
+        adblock-for-youtube
+        dearrow
+      ];
 
       extraConfig = ''
 

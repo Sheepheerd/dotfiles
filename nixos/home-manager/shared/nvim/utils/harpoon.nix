@@ -1,7 +1,7 @@
 {
   programs.nixvim = {
     plugins.harpoon = {
-      enable = true;
+      enable = false;
       enableTelescope = true;
 
     };
