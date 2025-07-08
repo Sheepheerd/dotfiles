@@ -10,6 +10,7 @@
       astyle
       stylua
       rustfmt
+      yamlfix
     ];
     plugins.conform-nvim = {
       enable = true;
@@ -67,6 +68,7 @@
             stop_after_first = true;
           };
           rust = [ "rustfmt" ];
+          # yaml = [ "yamlfix" ];
         };
       };
     };

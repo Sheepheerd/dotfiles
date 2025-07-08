@@ -25,6 +25,7 @@ in {
       font-size = 12;
       font-family = "JetBrainsMono Nerd Font Mono";
 
+      confirm-close-surface = false;
       cursor-style = "block";
       cursor-style-blink = false;
 
@@ -37,7 +38,7 @@ in {
       background-opacity = 0;
       window-padding-x = 10;
       window-padding-y = 10;
-      gtk-titlebar = true;
+      # gtk-titlebar = true;
       keybind = [ "ctrl+h=goto_split:left" "ctrl+l=goto_split:right" ];
     };
   };
