@@ -1,4 +1,21 @@
-{ pkgs, inputs, ... }: {
+{ inputs, config, pkgs, lib, host, specialArgs, ... }:
+let
+
+  helpers = import ../helpers.nix {
+    inherit pkgs;
+    inherit lib;
+    inherit config;
+    inherit specialArgs;
+  };
+
+  isNovastar = host == "novastar";
+
+in {
+
+  home.shellAliases.firefox = if isNovastar then
+    "${helpers.nixGLMesaWrap pkgs.firefox}/bin/firefox"
+  else
+    "firefox";
   imports = [ inputs.nix-firefox-addons.homeManagerModules.default ];
   programs.firefox = {
     enable = true;

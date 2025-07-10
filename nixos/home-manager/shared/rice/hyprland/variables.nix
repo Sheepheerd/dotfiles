@@ -25,6 +25,7 @@
       ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       OZONE_PLATFORM = "wayland";
     }
-    (lib.mkIf (host == "deathstar") { LIBVA_DRIVER_NAME = "nvidia"; })
+    (lib.mkIf (host == "deathstar") { libva_driver_name = "nvidia"; })
+    (lib.mkIf (host == "novastar") { GSK_RENDERER = "gl"; })
   ];
 }

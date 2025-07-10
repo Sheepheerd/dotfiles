@@ -5,7 +5,6 @@
       # ruff
       # google-java-format
       prettierd
-      # clang-tools
       nixfmt
       astyle
       stylua
