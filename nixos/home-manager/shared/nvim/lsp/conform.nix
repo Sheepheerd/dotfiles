@@ -60,8 +60,8 @@
           python = [ "black" ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
-          cpp = [ "clangtidy" ];
-          c = [ "clangtidy" ];
+          cpp = [ "astyle" ];
+          c = [ "astyle" ];
           markdown = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";
