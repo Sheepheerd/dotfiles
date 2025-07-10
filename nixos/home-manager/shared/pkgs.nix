@@ -34,7 +34,6 @@ in {
 
     bat.enable = true;
 
-    yazi.enable = true;
   };
 
   home.packages = with pkgs;
