@@ -86,7 +86,6 @@ in {
       hunspellDicts.th_TH
       joplin-desktop
       gimp
-      orca-slicer
       #blender
       rpi-imager
 

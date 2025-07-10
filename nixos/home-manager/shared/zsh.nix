@@ -106,11 +106,11 @@ in {
       grep = "rg";
 
       update-ds =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#deathstar";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#deathstar";
       update-ns =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#novastar";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#novastar";
       update-sc =
-        "sudo nixos-rebuild switch --flake ~/github/dotfiles/#starcraft";
+        "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#starcraft";
     };
     plugins = [{
       name = "zsh-nix-shell";
