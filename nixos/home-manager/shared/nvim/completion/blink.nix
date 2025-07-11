@@ -56,11 +56,11 @@
               show_documentation = false;
             };
           };
-          akeymap = {
+          keymap = {
             preset = "default";
             "<TAB>" = [ "null" ];
           };
-          ppearance = {
+          appearance = {
             nerd_font_variant = "mono";
             kind_icons = {
               Text = "󰉿";
