@@ -58,7 +58,7 @@
           };
           keymap = {
             preset = "default";
-            "<TAB>" = [ "null" ];
+            "<TAB>" = [ "fallback" ];
           };
           appearance = {
             nerd_font_variant = "mono";
