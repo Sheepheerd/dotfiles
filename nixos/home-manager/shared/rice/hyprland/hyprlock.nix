@@ -1,14 +1,6 @@
-{ host, pkgs, ... }:
-let
-
-  isNovastar = host == "novastar";
-
-  hyprlock = if isNovastar then null else pkgs.hyprlock;
-in {
-
+{ ... }: {
   programs.hyprlock = {
     enable = true;
-    package = hyprlock;
     sourceFirst = true;
     extraConfig = ''
 

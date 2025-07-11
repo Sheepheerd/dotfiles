@@ -11,9 +11,9 @@ let
     "monitor = DP-3,1920x1080@144, 0x0, 1";
 
   extraEnv = if host == "novastar" then ''
-    env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
-    env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
-    env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile
+    # env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
+    # env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
+    # env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile
   '' else
     "";
 in {

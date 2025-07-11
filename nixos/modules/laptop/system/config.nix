@@ -77,7 +77,7 @@
 
   # Kernel
   # Linux Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelParams = [
   #   "splash"
   #   "quiet"
@@ -102,14 +102,28 @@
   # networking.networkmanager.wifi.backend = "iwd";
 
   # Graphics
-  hardware.graphics = { enable = true; };
+  # hardware.graphics = { enable = true; };
 
   #Printing
   services.printing.enable = true;
 
   #Screen
   programs.light.enable = true;
-
+  services.actkbd = {
+    enable = true;
+    bindings = [
+      {
+        keys = [ 225 ];
+        events = [ "key" ];
+        command = "/run/current-system/sw/bin/light -A 5";
+      }
+      {
+        keys = [ 224 ];
+        events = [ "key" ];
+        command = "/run/current-system/sw/bin/light -U 5";
+      }
+    ];
+  };
   # Systemd services setup
 
   # Enable Services

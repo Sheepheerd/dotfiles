@@ -29,10 +29,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+
+      # this line prevents me from fetching two versions of nixpkgs:
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = { self, nixpkgs, unstable, stable, home-manager, nixgl, nix-darwin
-    , zen-browser, nix-firefox-addons, ... }@inputs:
+    , zen-browser, nix-firefox-addons, apple-silicon, ... }@inputs:
     let
       inherit (self) outputs;
 
@@ -66,7 +73,7 @@
       };
 
       nixosConfigurations = {
-        novastar = laptop-pkgs.lib.nixosSystem {
+        novastar = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs;
             inherit pkgs-unstable;

@@ -17,10 +17,11 @@ in {
     wf-recorder
     glib
     wayland
+    hyprland-qtutils
   ];
 
   programs = {
-    hyprlock = { enable = true; };
+    # hyprlock = { enable = true; };
     # hyprlidle = { enable = true; };
     # hyprpolkitagent.enable = true;
     # hyprsunset.enable = true;
