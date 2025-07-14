@@ -1,10 +1,16 @@
-{ pkgs, inputs, lib, host, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  host,
+  ...
+}:
 let
 
   package = if host == "novastar" then pkgs.hyprland else null;
-  portal =
-    if host == "novastar" then pkgs.xdg-desktop-portal-hyprland else null;
-in {
+  portal = if host == "novastar" then pkgs.xdg-desktop-portal-hyprland else null;
+in
+{
 
   home.packages = with pkgs; [
     swww
@@ -18,6 +24,7 @@ in {
     glib
     wayland
     hyprland-qtutils
+    wl-clipboard
   ];
 
   programs = {
@@ -32,7 +39,9 @@ in {
     enable = true;
     package = package;
     portalPackage = portal;
-    xwayland = { enable = true; };
+    xwayland = {
+      enable = true;
+    };
 
   };
 

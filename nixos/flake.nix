@@ -11,9 +11,9 @@
   };
 
   inputs = {
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/release-25.05";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +47,18 @@
   };
 
   outputs =
-    inputs:
+    rawInputs:
+    let
+      lib = import ./modules/lib.nix {
+        inputs = rawInputs;
+        nixpkgs = rawInputs.nixpkgs;
+        nixpkgs-stable = rawInputs.nixpkgs-stable;
+      };
+
+      inputs = rawInputs // {
+        lib = lib;
+      };
+    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./nix/hosts.nix
@@ -59,5 +70,9 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
+
+      flake = {
+        inherit lib;
+      };
     };
 }

@@ -1,14 +1,8 @@
 { ... }:
 {
-  flake = {
-    homeManagerModules = {
-      default =
-        { ... }:
-        {
-          imports = [
-            ../shared/options.nix
-          ];
-        };
+  flake.homeManagerModules.default =
+    { ... }:
+    {
+      imports = [ ../shared/options.nix ];
     };
-  };
 }

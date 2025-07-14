@@ -2,19 +2,8 @@
   inputs,
   ...
 }:
-
-let
-  lib = import ../modules/lib.nix {
-    inherit inputs;
-    nixpkgs = inputs.nixpkgs;
-    nixpkgs-stable = inputs.nixpkgs-stable;
-  };
-in
 {
-
   flake = {
-    inherit lib;
-
     darwinConfigurations.gooberstar = inputs.nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [
@@ -27,47 +16,40 @@ in
           users.users.sheep.home = "/Users/sheep";
         }
       ];
-      specialArgs = lib.commonSpecialArgs;
+      specialArgs = inputs.lib.commonSpecialArgs;
     };
 
     nixosConfigurations = {
       novastar = inputs.nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-        specialArgs = lib.commonSpecialArgs;
+        specialArgs = inputs.lib.commonSpecialArgs;
         modules = [ ../hosts/laptop/configuration.nix ];
       };
       deathstar = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = lib.commonSpecialArgs;
+        specialArgs = inputs.lib.commonSpecialArgs;
         modules = [ ../hosts/desktop/configuration.nix ];
       };
     };
 
     homeConfigurations = {
-      novastar = lib.mkHomeConfig {
+      novastar = inputs.lib.mkHomeConfig {
         system = "aarch64-linux";
         host = "novastar";
-        modules = [
-          ../home-manager/devbox/home.nix
-        ];
+        modules = [ ../home-manager/devbox/home.nix ];
       };
-      deathstar = lib.mkHomeConfig {
+      deathstar = inputs.lib.mkHomeConfig {
         system = "x86_64-linux";
         host = "deathstar";
         modules = [
           ../home-manager/desktop/home.nix
-          {
-            home.packages = with lib; [
-            ];
-          }
+          { home.packages = with inputs.lib; [ ]; }
         ];
       };
-      starcraft = lib.mkHomeConfig {
+      starcraft = inputs.lib.mkHomeConfig {
         system = "x86_64-linux";
         host = "starcraft";
-        modules = [
-          ../home-manager/devbox/home.nix
-        ];
+        modules = [ ../home-manager/devbox/home.nix ];
       };
     };
   };

@@ -3,6 +3,7 @@
   nixpkgs,
   nixpkgs-stable,
 }:
+
 let
   commonSpecialArgs = {
     inherit inputs;
@@ -41,6 +42,7 @@ let
         }
       ];
     };
+
 in
 {
   inherit commonSpecialArgs mkHomeConfig;
