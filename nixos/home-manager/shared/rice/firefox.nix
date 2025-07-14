@@ -1,11 +1,12 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [ inputs.nix-firefox-addons.homeManagerModules.default ];
   programs.firefox = {
     enable = true;
     profiles.default = {
       id = 0;
       name = "Default";
-      search.default = "DuckDuckGo";
+      search.default = "ddg";
       extensions.packages = with pkgs.firefoxAddons; [
         ublock-origin
         bitwarden-password-manager

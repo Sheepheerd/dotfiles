@@ -1,3 +1,7 @@
-{ pkgs, inputs, ... }: {
-  imports = [ ./config.nix ./users.nix ./utils.nix ./virtualisation.nix ];
+{ pkgs, inputs, ... }:
+{
+  imports = [
+    ./config.nix
+    ./virtualisation.nix
+  ];
 }

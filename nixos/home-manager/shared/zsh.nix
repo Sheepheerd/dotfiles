@@ -90,7 +90,7 @@ in {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initExtra = ''
+    initContent = ''
       source /home/sheep/.zshthemes/eastwood.zsh-theme;
       bindkey '^ ' autosuggest-accept
       export PATH="$PATH:$HOME/.scripts/bin"

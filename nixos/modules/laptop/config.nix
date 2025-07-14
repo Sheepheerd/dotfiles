@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 
 {
   #Pkgs
@@ -6,40 +6,13 @@
 
   environment.systemPackages = with pkgs; [
     lxqt.lxqt-policykit
-    zerotierone
-    at-spi2-atk
-    qt6.qtwayland
-    poweralertd
-    playerctl
-    psmisc
-    grim
-    slurp
-    imagemagick
-    wl-clipboard
-    wl-clip-persist
-    cliphist
-    xdg-utils
-    waybar
-    rofi-wayland
-    dunst
-    wlogout
-    powertop
 
-    wlsunset
     brightnessctl
     pamixer
     pavucontrol
 
-    numix-icon-theme-circle
-    colloid-icon-theme
     catppuccin-gtk
     catppuccin-kvantum
-
-    # Enable USB-specific packages
-    usbutils
-
-    overskride
-
   ];
 
   # Bootloader.
@@ -51,8 +24,7 @@
   boot.consoleLogLevel = 3;
   boot.plymouth = {
     enable = true;
-    font =
-      "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
     themePackages = [ pkgs.catppuccin-plymouth ];
     theme = "catppuccin-macchiato";
   };
@@ -97,8 +69,7 @@
 
   # Enable networking
   networking.hostName = "novastar"; # Define your hostname.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   # networking.networkmanager.wifi.backend = "iwd";
 
   # Graphics
@@ -143,7 +114,10 @@
       enable = true;
       dnssec = "true";
       domains = [ "~." ];
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+      fallbackDns = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+      ];
       dnsovertls = "true";
     };
 
@@ -178,7 +152,10 @@
   # };
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
   };
 
   programs.adb.enable = true;
@@ -249,8 +226,7 @@
 
   # Override packages
   nixpkgs.config.packageOverrides = pkgs: {
-    colloid-icon-theme =
-      pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
+    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [
         "teal"

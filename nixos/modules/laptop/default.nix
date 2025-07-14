@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
-  imports =
-    [ ../shared/default.nix ./system/default.nix ./programs/default.nix ];
+{ ... }:
+{
+  imports = [
+    ./config.nix
+    ./virtualisation.nix
+    ../shared/default.nix
+  ];
 }

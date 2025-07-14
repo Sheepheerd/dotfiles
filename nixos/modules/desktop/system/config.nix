@@ -6,45 +6,12 @@
 
   environment.systemPackages = with pkgs; [
     lxqt.lxqt-policykit
-    zerotierone
-    at-spi2-atk
-    qt6.qtwayland
-    poweralertd
-    playerctl
-    psmisc
-    grim
-    slurp
-    imagemagick
-    wl-clipboard
-    wl-clip-persist
-    cliphist
-    xdg-utils
-    waybar
-    rofi-wayland
-    dunst
-    wlogout
-    powertop
 
-    wlsunset
     brightnessctl
     pamixer
     pavucontrol
 
-    numix-icon-theme-circle
-    colloid-icon-theme
     catppuccin-gtk
-    catppuccin-kvantum
-
-    # gnome.gnome-tweaks
-    # gnome.gnome-shell
-    # gnome.gnome-shell-extensions
-    # xsettingsd
-    # themechanger
-
-    # Enable USB-specific packages
-    usbutils
-
-    overskride
 
   ];
 
@@ -57,8 +24,7 @@
   boot.consoleLogLevel = 3;
   boot.plymouth = {
     enable = true;
-    font =
-      "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
     themePackages = [ pkgs.catppuccin-plymouth ];
     theme = "catppuccin-macchiato";
   };
@@ -76,6 +42,7 @@
     options = [ "nofail" ];
 
   };
+
   # fileSystems."/mnt/movies" = {
   #   device = "10.147.17.9:/hdd/Plex/media";
   #   fsType = "nfs";
@@ -119,12 +86,13 @@
 
   # Enable networking
   networking.hostName = "deathstar"; # Define your hostname.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   # networking.networkmanager.wifi.backend = "iwd";
 
   # Nvidia
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {
+    enable = true;
+  };
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -167,7 +135,10 @@
       enable = true;
       dnssec = "true";
       domains = [ "~." ];
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+      fallbackDns = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+      ];
       dnsovertls = "true";
     };
 
@@ -201,7 +172,10 @@
   # };
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
   };
 
   programs.adb.enable = true;
@@ -272,8 +246,7 @@
 
   # Override packages
   nixpkgs.config.packageOverrides = pkgs: {
-    colloid-icon-theme =
-      pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
+    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [
         "teal"

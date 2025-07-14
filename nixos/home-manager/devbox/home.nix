@@ -1,25 +1,30 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
 
-  imports = [ inputs.nixvim.homeManagerModules.nixvim ../shared/default.nix ];
-
-  nixpkgs = { config = { allowUnfree = true; }; };
+  imports = [
+    inputs.nixvim.homeManagerModules.nixvim
+    ../shared
+  ];
 
   fonts.fontconfig.enable = true;
 
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs = {
 
-  # Neovim
-  programs.nixvim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+    home-manager.enable = true;
+    git.enable = true;
 
-    luaLoader.enable = true;
+    # Neovim
+    nixvim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
 
-    extraLuaPackages = ps: [ ps.magick ];
-    extraPackages = [ pkgs.imagemagick ];
+      luaLoader.enable = true;
+
+      extraLuaPackages = ps: [ ps.magick ];
+      extraPackages = [ pkgs.imagemagick ];
+    };
   };
 
 }

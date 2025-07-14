@@ -1,24 +1,11 @@
-{ config, pkgs, lib, host, specialArgs, ... }:
-let
-
-  helpers = import ./helpers.nix {
-    inherit pkgs;
-    inherit lib;
-    inherit config;
-    inherit specialArgs;
-  };
-
-  isNovastar = host == "novastar";
-
-  ghostty =
-    if isNovastar then (helpers.nixGLMesaWrap pkgs.ghostty) else pkgs.ghostty;
-in {
+{
+  ...
+}:
+{
 
   programs.ghostty = {
     enable = true;
-    package = ghostty;
     enableZshIntegration = true;
-    #enableFishIntegration = true;
     settings = {
       term = "xterm-256color";
       theme = "catppuccin-mocha";
@@ -39,7 +26,10 @@ in {
       window-padding-x = 10;
       window-padding-y = 10;
       # gtk-titlebar = true;
-      keybind = [ "ctrl+h=goto_split:left" "ctrl+l=goto_split:right" ];
+      keybind = [
+        "ctrl+h=goto_split:left"
+        "ctrl+l=goto_split:right"
+      ];
     };
   };
 

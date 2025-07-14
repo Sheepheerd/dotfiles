@@ -1,1 +1,7 @@
-{ pkgs, inputs, ... }: { imports = [ ./bare.nix ]; }
+{ ... }:
+{
+  imports = [
+    ./bare.nix
+    ./hyprland.nix
+  ];
+}

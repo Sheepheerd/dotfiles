@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
   imports = [
     # ./spicetify.nix
     ./orca-slicer.nix
@@ -7,6 +8,5 @@
     ./steam.nix
     ./rom.nix
     ./minecraft.nix
-    ./hyprland.nix
   ];
 }

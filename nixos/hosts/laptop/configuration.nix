@@ -1,15 +1,14 @@
-{ pkgs, inputs, apple-silicon, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    # ./apple-silicon-support
+  imports = [
     ./hardware-configuration.nix
     ../../modules/laptop/default.nix
+    ../users.nix
     inputs.apple-silicon.nixosModules.apple-silicon-support
   ];
 
-  environment.systemPackages = with pkgs;
-    [ inputs.home-manager.packages.${pkgs.system}.default ];
+  environment.systemPackages = with pkgs; [ inputs.home-manager.packages.${pkgs.system}.default ];
   programs.nix-ld.enable = true;
   nixpkgs.overlays = [ inputs.apple-silicon.overlays.apple-silicon-overlay ];
   hardware = {
@@ -24,11 +23,15 @@
   boot.loader.efi.canTouchEfiVariables = false;
   hardware.asahi.peripheralFirmwareDirectory = ./firmware;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  services.libinput = { enable = true; };
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  services.libinput = {
+    enable = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
-  system.stateVersion = "25.11"; # Did you read the comment?
-
+  system.stateVersion = "25.11";
 }

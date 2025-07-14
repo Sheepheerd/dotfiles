@@ -5,7 +5,7 @@
       # ruff
       # google-java-format
       prettierd
-      nixfmt
+      nixfmt-rfc-style
       astyle
       stylua
       rustfmt

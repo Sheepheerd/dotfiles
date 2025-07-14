@@ -1,172 +1,62 @@
 {
   description = "Gooberhead dotfiles";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/release-25.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-25.05";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    nixgl.url = "github:nix-community/nixGL";
-    # northstar.url = "github:Sheepheerd/northstar";
-
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # ghostty = { url = "github:ghostty-org/ghostty"; };
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-firefox-addons = {
       url = "github:osipog/nix-firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
-
-      # this line prevents me from fetching two versions of nixpkgs:
+    rose-pine-hyprcursor = {
+      url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = { self, nixpkgs, unstable, stable, home-manager, nixgl, nix-darwin
-    , zen-browser, nix-firefox-addons, apple-silicon, ... }@inputs:
-    let
-      inherit (self) outputs;
+  outputs =
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./nix/hosts.nix
+        ./nix/modules.nix
+      ];
 
-      desktop-pkgs = import nixpkgs { system = "x86_64-linux"; };
-      laptop-pkgs = import nixpkgs {
-        system = "aarch64-linux";
-        overlays = [ nixgl.overlay ];
-      };
-      pkgs-unstable = unstable.legacyPackages.x86_64-linux;
-    in {
-
-      darwinConfigurations = {
-        # I have couple computers, but one config per
-        "gooberstar" = nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          modules = [
-            # include the darwin module
-            ./darwin.nix
-            # setup home-manager
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                # include the home-manager module
-                users.evan = import ./home-manager/devbox/home.nix;
-              };
-              users.users.sheep.home = "/Users/sheep";
-            }
-          ];
-          specialArgs = { inherit inputs; };
-        };
-      };
-
-      nixosConfigurations = {
-        novastar = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./hosts/laptop/configuration.nix ];
-        };
-        deathstar = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit pkgs-unstable;
-          };
-          modules = [ ./hosts/desktop/configuration.nix ];
-        };
-      };
-
-      homeConfigurations = {
-        # Used in CI
-        "novastar" = home-manager.lib.homeManagerConfiguration {
-
-          pkgs = laptop-pkgs;
-          modules = [
-            ./home-manager/devbox/home.nix
-            {
-              home = {
-                packages = [
-                  laptop-pkgs.nixgl.nixGLIntel
-                  stable.legacyPackages.aarch64-linux.texpresso
-                  stable.legacyPackages.aarch64-linux.tectonic
-                  # Full TeX Live suite
-                ];
-
-                username = "sheep";
-                homeDirectory = "/home/sheep";
-
-                stateVersion = "25.05";
-              };
-
-              programs.home-manager.enable = true;
-              targets.genericLinux.enable = true;
-            }
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-
-            inherit stable;
-            host = "novastar";
-          };
-        };
-        "deathstar" = home-manager.lib.homeManagerConfiguration {
-          pkgs = desktop-pkgs;
-          modules = [
-            ./home-manager/desktop/home.nix
-            {
-              home = {
-                username = "sheep";
-                homeDirectory = "/home/sheep";
-
-                packages = [
-                  stable.legacyPackages.x86_64-linux.texpresso
-                  stable.legacyPackages.x86_64-linux.tectonic
-                  # Full TeX Live suite
-
-                ];
-                stateVersion = "25.05";
-              };
-              programs.home-manager.enable = true;
-              targets.genericLinux.enable = true;
-            }
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            host = "deathstar";
-          };
-        };
-        "starcraft" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [
-            ./home-manager/devbox/home.nix
-            {
-              home = {
-                username = "sheep";
-                homeDirectory = "/home/sheep";
-                stateVersion = "25.05";
-              };
-              programs.home-manager.enable = true;
-              targets.genericLinux.enable = true;
-            }
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            host = "starcraft";
-          };
-        };
-      };
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
     };
 }
