@@ -13,7 +13,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/release-25.05";
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,14 +48,23 @@
   outputs =
     rawInputs:
     let
-      lib = import ./modules/lib.nix {
+      # Import the custom library
+      solarsystem = import ./nix/lib.nix {
         inputs = rawInputs;
         nixpkgs = rawInputs.nixpkgs;
         nixpkgs-stable = rawInputs.nixpkgs-stable;
       };
 
+      # Extend nixpkgs.lib and home-manager.lib with solarsystem
+      lib = (rawInputs.nixpkgs.lib // rawInputs.home-manager.lib).extend (
+        _: _: {
+          inherit solarsystem;
+        }
+      );
+
+      # Update inputs to include the extended lib
       inputs = rawInputs // {
-        lib = lib;
+        inherit lib;
       };
     in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
@@ -71,8 +79,14 @@
         "aarch64-darwin"
       ];
 
+      perSystem =
+        { system, ... }:
+        {
+          _module.args.lib = lib; # Ensure the extended lib is passed to all modules
+        };
+
       flake = {
-        inherit lib;
+        inherit lib solarsystem; # Expose both lib and solarsystem for convenience
       };
     };
 }
