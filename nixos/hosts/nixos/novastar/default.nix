@@ -1,0 +1,52 @@
+{
+  self,
+  config,
+  inputs,
+  lib,
+  minimal,
+  ...
+}:
+let
+  mainUser = "sheep";
+  # primaryUser = config.solarsystem.mainUser;
+  sharedOptions = {
+    inherit mainUser;
+    isLaptop = true;
+    isNixos = true;
+    isLinux = true;
+    sharescreen = "eDP-1";
+    profiles = {
+      reduced = lib.mkIf (!minimal) true;
+      minimal = lib.mkIf minimal true;
+    };
+  };
+in
+{
+
+  imports = [
+    ./hardware-configuration.nix
+
+  ];
+
+  solarsystem = lib.recursiveUpdate {
+    # info = "Apple M1";
+    # firewall = lib.mkForce true;
+    # wallpaper = self + /files/wallpaper/lenovowp.png;
+    hasBluetooth = true;
+    # rootDisk = "/dev/nvme0n1";
+
+    # FIX
+    modules.networking.hostName = "novastar";
+    profiles = {
+      # btrfs = true;
+    };
+  } sharedOptions;
+
+  home-manager.users."${mainUser}" = {
+    home.stateVersion = lib.mkForce "23.05";
+    solarsystem = lib.recursiveUpdate {
+      # lowResolution = "1280x800";
+      # highResolution = "1920x1080";
+    } sharedOptions;
+  };
+}

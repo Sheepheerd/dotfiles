@@ -1,84 +1,121 @@
-{ inputs, lib, ... }:
-let
-  # Helper function to define Darwin configurations
-  mkDarwinHost =
-    configName:
-    inputs.nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        ../darwin.nix
-        inputs.home-manager.darwinModules.home-manager
-        {
-          home-manager.users.sheep = {
-            imports = [ ../home-manager/devbox/home.nix ];
-          };
-          users.users.sheep.home = "/Users/sheep";
-        }
-      ];
-      specialArgs = { inherit inputs lib; };
-    };
-
-  # Helper function to define NixOS configurations
-  mkNixosHost =
-    { system, configPath }:
-    inputs.nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs lib; };
-      modules = [ configPath ];
-    };
-
-  # Helper function to define Home Manager configurations
-  mkHomeConfig =
-    {
-      system,
-      host,
-      modules,
-    }:
-    inputs.lib.solarsystem.mkHomeConfig {
-      inherit system host modules;
-    };
-
-  # Define hosts
-  darwinHosts = {
-    gooberstar = mkDarwinHost "gooberstar";
-  };
-
-  nixosHosts = {
-    novastar = mkNixosHost {
-      system = "aarch64-linux";
-      configPath = ../hosts/laptop/configuration.nix;
-    };
-    deathstar = mkNixosHost {
-      system = "x86_64-linux";
-      configPath = ../hosts/desktop/configuration.nix;
-    };
-  };
-
-  homeHosts = {
-    novastar = mkHomeConfig {
-      system = "aarch64-linux";
-      host = "novastar";
-      modules = [ ../home-manager/devbox/home.nix ];
-    };
-    deathstar = mkHomeConfig {
-      system = "x86_64-linux";
-      host = "deathstar";
-      modules = [
-        ../home-manager/desktop/home.nix
-        { home.packages = with inputs.lib.solarsystem; [ ]; }
-      ];
-    };
-    starcraft = mkHomeConfig {
-      system = "x86_64-linux";
-      host = "starcraft";
-      modules = [ ../home-manager/devbox/home.nix ];
-    };
-  };
-in
+{ self, inputs, ... }:
 {
-  flake = {
-    darwinConfigurations = darwinHosts;
-    nixosConfigurations = nixosHosts;
-    homeConfigurations = homeHosts;
-  };
+  flake =
+    { config, ... }:
+    let
+      inherit (self) outputs;
+      inherit (outputs) lib;
+
+      mkNixosHost =
+        { minimal }:
+        configName:
+        lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              lib
+              self
+              minimal
+              configName
+              ;
+            inherit (config) globals;
+          };
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            inputs.apple-silicon.nixosModules.apple-silicon-support
+            "${self}/hosts/nixos/${configName}"
+            "${self}/profiles/nixos"
+            "${self}/modules/nixos"
+          ];
+        };
+
+      # mkDarwinHost =
+      #   { minimal }:
+      #   configName:
+      #   inputs.nix-darwin.lib.darwinSystem {
+      #     specialArgs = {
+      #       inherit
+      #         inputs
+      #         outputs
+      #         lib
+      #         self
+      #         minimal
+      #         configName
+      #         ;
+      #       inherit (config) globals nodes;
+      #     };
+      #     modules = [
+      #       # inputs.disko.nixosModules.disko
+      #       # inputs.sops-nix.nixosModules.sops
+      #       # inputs.impermanence.nixosModules.impermanence
+      #       # inputs.lanzaboote.nixosModules.lanzaboote
+      #       # inputs.fw-fanctrl.nixosModules.default
+      #       # inputs.nix-topology.nixosModules.default
+      #       inputs.home-manager.darwinModules.home-manager
+      #       "${self}/hosts/darwin/${configName}"
+      #       "${self}/modules/nixos/darwin"
+      #       # needed for infrastructure
+      #       "${self}/modules/nixos/common/meta.nix"
+      #       "${self}/modules/nixos/common/globals.nix"
+      #       {
+      #         node.name = configName;
+      #         node.secretsDir = ../hosts/darwin/${configName}/secrets;
+      #       }
+      #     ];
+      #   };
+
+      mkHalfHost = configName: type: pkgs: {
+        ${configName} =
+          let
+            systemFunc = inputs.home-manager.lib.homeManagerConfiguration;
+          in
+          systemFunc {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit
+                inputs
+                outputs
+                lib
+                self
+                configName
+                ;
+            };
+            modules = [ "${self}/hosts/${type}/${configName}" ];
+          };
+      };
+
+      mkHalfHostConfigs =
+        hosts: type: pkgs:
+        lib.foldl (acc: set: acc // set) { } (lib.map (name: mkHalfHost name type pkgs) hosts);
+
+      nixosHosts = builtins.attrNames (
+        lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/hosts/nixos")
+      );
+      darwinHosts = builtins.attrNames (
+        lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/hosts/darwin")
+      );
+    in
+    {
+      nixosConfigurations = lib.genAttrs nixosHosts (mkNixosHost {
+        minimal = false;
+      });
+      nixosConfigurationsMinimal = lib.genAttrs nixosHosts (mkNixosHost {
+        minimal = true;
+      });
+      # darwinConfigurations = lib.genAttrs darwinHosts (mkDarwinHost {
+      #   minimal = false;
+      # });
+      # darwinConfigurationsMinimal = lib.genAttrs darwinHosts (mkDarwinHost {
+      #   minimal = true;
+      # });
+
+      # TODO: Build these for all architectures
+      homeConfigurations =
+        mkHalfHostConfigs (lib.solarsystem.readHosts "home") "home"
+          lib.solarsystem.pkgsFor.x86_64-linux;
+
+      # nodes = config.nixosConfigurations // config.darwinConfigurations;
+
+    };
 }

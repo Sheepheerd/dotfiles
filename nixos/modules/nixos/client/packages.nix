@@ -1,0 +1,40 @@
+{
+  lib,
+  config,
+  pkgs,
+  minimal,
+  ...
+}:
+
+let
+  cfg = config.solarsystem.modules;
+in
+{
+  options.solarsystem.modules.packages = lib.mkEnableOption "Install packages";
+
+  config = lib.mkIf cfg.packages {
+    environment.systemPackages =
+      with pkgs;
+      lib.optionals (!minimal) [
+
+        # better make for general tasks
+        just
+
+        # keyboards
+        qmk
+
+        # theme related
+        adwaita-icon-theme
+
+        # bluetooth
+        bluez
+        ghostscript_headless
+        wireguard-tools
+        nixd
+        zig
+        zls
+        ansible-language-server
+
+      ];
+  };
+}

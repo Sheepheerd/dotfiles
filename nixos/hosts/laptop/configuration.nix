@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/laptop/default.nix
-    ../users.nix
     inputs.apple-silicon.nixosModules.apple-silicon-support
   ];
 

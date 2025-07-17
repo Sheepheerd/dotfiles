@@ -1,8 +1,12 @@
-{ ... }:
+{ self, ... }:
 {
-  flake.homeManagerModules.default =
-    { ... }:
+  flake =
+    _:
+    let
+      inherit (self.outputs) lib;
+    in
     {
-      imports = [ ../shared/options.nix ];
+      nixosModules.default = import "${self}/modules/nixos" { inherit lib; };
+      homeModules = import "${self}/modules/home" { inherit lib; };
     };
 }
