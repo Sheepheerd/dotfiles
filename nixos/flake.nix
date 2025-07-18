@@ -28,7 +28,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixgl.url = "github:guibou/nixGL";
     nix-firefox-addons = {
       url = "github:osipog/nix-firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
