@@ -3,6 +3,7 @@
   inputs,
   outputs,
   minimal,
+  lib,
   ...
 }:
 let
@@ -30,9 +31,7 @@ in
     };
   };
 
-  solarsystem =
-    {
-    }
-      sharedOptions;
+  solarsystem = lib.recursiveUpdate {
+  } sharedOptions;
 
 }

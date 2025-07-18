@@ -98,7 +98,9 @@
           pkgs,
           minimal,
         }:
-        lib.foldl (acc: set: acc // set) { } (lib.map (name: mkHalfHost minimal name type pkgs) hosts);
+        lib.foldl (acc: set: acc // set) { } (
+          lib.map (name: mkHalfHost ({ minimal = minimal; }) name type pkgs) hosts
+        );
 
       nixosHosts = builtins.attrNames (
         lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/hosts/nixos")

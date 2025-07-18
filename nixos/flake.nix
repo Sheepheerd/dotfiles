@@ -60,7 +60,7 @@
         ./nix/globals.nix
         ./nix/hosts.nix
         # ./nix/packages.nix
-        # ./nix/overlays.nix
+        ./nix/overlays.nix
         ./nix/lib.nix
         # ./nix/templates.nix
         ./nix/formatter.nix
