@@ -11,12 +11,6 @@ in
         default =
           final: prev:
           let
-            additions =
-              final: _:
-              import "${self}/pkgs" {
-                pkgs = final;
-                inherit self lib;
-              };
 
             nixpkgs-stable = final: _: {
               stable = import inputs.nixpkgs-stable {
@@ -26,9 +20,8 @@ in
             };
 
           in
-          (additions final prev)
           # // (modifications final prev)
-          // (nixpkgs-stable final prev)
+          (nixpkgs-stable final prev)
           # // (nixpkgs-kernel final prev)
           // (inputs.nixgl.overlay final prev);
       };
