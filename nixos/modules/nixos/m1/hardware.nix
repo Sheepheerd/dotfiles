@@ -7,7 +7,7 @@
 }:
 
 let
-  cfg = config.solarsystem.modules;
+  cfg = config.solarsystem;
 in
 {
 
@@ -15,12 +15,13 @@ in
     inputs.apple-silicon.nixosModules.apple-silicon-support
   ];
   options.solarsystem = {
-    modules.asahi = lib.mkEnableOption "Asahi Linux and Apple Silicon support";
+    asahi = lib.mkEnableOption "Asahi Linux and Apple Silicon support";
   };
 
-  config = lib.mkIf cfg.asahi {
+  config = lib.mkIf config.solarsystem.isLaptop {
     hardware.asahi = {
-      enable = false;
+      # enable = config.solarsystem.isLaptop;
+      enable = cfg.asahi;
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;

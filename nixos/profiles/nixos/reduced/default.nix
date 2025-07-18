@@ -21,7 +21,9 @@
       # # xdg-portal = lib.mkDefault true;
       distrobox = lib.mkDefault true;
       appimage = lib.mkDefault true;
-      asahi = lib.mkDefault true;
+      hyprland = lib.mkDefault true;
+      nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
+      tailscale = lib.mkDefault true;
       # server = {
       #   ssh = lib.mkDefault true;
       # };

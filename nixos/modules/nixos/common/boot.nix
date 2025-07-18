@@ -4,6 +4,7 @@
   pkgs,
   ...
 }:
+
 {
   options.solarsystem.modules.bootloader = lib.mkEnableOption "bootloader configuration";
 
@@ -14,7 +15,8 @@
         efi.canTouchEfiVariables = false;
         timeout = 2;
       };
-      kernelPackages = pkgs.linuxPackages_latest;
+
+      kernelPackages = lib.mkIf (!config.solarsystem.asahi) (lib.mkDefault pkgs.linuxPackages_latest);
 
       initrd.enable = true;
       initrd.systemd.enable = true;

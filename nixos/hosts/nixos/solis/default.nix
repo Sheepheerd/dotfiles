@@ -11,13 +11,12 @@ let
   # primaryUser = config.solarsystem.mainUser;
   sharedOptions = {
     inherit mainUser;
-    isLaptop = true;
+    isLaptop = false;
     isNixos = true;
     isLinux = true;
-    sharescreen = "eDP-1";
+    # sharescreen = "eDP-1";
     profiles = {
-      reduced = lib.mkIf (!minimal) true;
-      minimal = lib.mkIf minimal true;
+      server = lib.mkIf minimal true;
     };
   };
 in
@@ -29,15 +28,13 @@ in
   ];
 
   networking = {
-    hostName = "novastar";
+    hostName = "solis";
   };
 
   solarsystem = lib.recursiveUpdate {
-    # info = "Apple M1";
     # firewall = lib.mkForce true;
     # wallpaper = self + /files/wallpaper/lenovowp.png;
-    hasBluetooth = true;
-    asahi = true;
+    hasBluetooth = false;
     # rootDisk = "/dev/nvme0n1";
 
     # FIX
@@ -47,7 +44,7 @@ in
   } sharedOptions;
 
   home-manager.users."${mainUser}" = {
-    home.stateVersion = lib.mkForce "25.05";
+    home.stateVersion = lib.mkForce "25.11";
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";

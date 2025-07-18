@@ -19,25 +19,22 @@ in
   config = lib.mkIf config.solarsystem.modules.network {
 
     networking = {
-      wireless.iwd = {
-        enable = true;
-        settings = {
-          IPv6 = {
-            Enabled = true;
-          };
-          Settings = {
-            AutoConnect = true;
-          };
-          DriverQuirks = {
-            UseDefaultInterface = true;
-          };
-        };
-      };
-      nftables.enable = lib.mkDefault true;
+      # wireless.iwd = {
+      #   enable = true;
+      #   settings = {
+      #     IPv6 = {
+      #       Enabled = true;
+      #     };
+      #     Settings = {
+      #       AutoConnect = true;
+      #     };
+      #   };
+      # };
+      # nftables.enable = lib.mkDefault true;
       enableIPv6 = lib.mkDefault true;
       firewall = {
         enable = lib.solarsystem.mkStrong config.solarsystem.firewall;
-        checkReversePath = lib.mkDefault false;
+        # checkReversePath = lib.mkDefault false;
         # allowedUDPPorts = [ 51820 ]; # 51820: wireguard
         # allowedTCPPortRanges = [
         #   {
@@ -55,7 +52,7 @@ in
 
       networkmanager = {
         enable = true;
-        wifi.backend = "iwd";
+        # wifi.backend = "iwd";
       };
     };
 

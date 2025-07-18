@@ -22,6 +22,7 @@
             inherit (config) globals;
           };
           modules = [
+            inputs.nix-firefox-addons.homeManagerModules.default
             inputs.home-manager.nixosModules.home-manager
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"

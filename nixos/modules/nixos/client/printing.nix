@@ -19,10 +19,6 @@ in
 
     services.printing = {
       enable = true;
-      drivers = [
-        pkgs.gutenprint
-        pkgs.gutenprintBin
-      ];
       browsedConf = ''
         BrowseDNSSDSubTypes _cups,_print
         BrowseLocalProtocols all
