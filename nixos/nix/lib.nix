@@ -21,7 +21,7 @@ let
         system:
         import inputs.nixpkgs {
           inherit system;
-          overlays = [ self.overlays.default ];
+          # overlays = [ self.overlays.default ];
           config.allowUnfree = true;
         }
       );
