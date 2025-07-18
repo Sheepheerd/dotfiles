@@ -2,8 +2,21 @@
   self,
   inputs,
   outputs,
+  minimal,
   ...
 }:
+let
+  mainUser = "sheep";
+  sharedOptions = {
+    inherit mainUser;
+    isLaptop = false;
+    isNixos = false;
+    isLinux = true;
+    profiles = {
+      minimal = true;
+    };
+  };
+in
 {
 
   imports = [
@@ -17,13 +30,9 @@
     };
   };
 
-  solarsystem = {
-    isLaptop = false;
-    isNixos = false;
-    profiles = {
-      minimal = true;
-    };
-    # wallpaper = self + /files/wallpaper/surfacewp.png;
-  };
+  solarsystem =
+    {
+    }
+      sharedOptions;
 
 }
