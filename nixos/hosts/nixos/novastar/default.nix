@@ -28,6 +28,10 @@ in
 
   ];
 
+  networking = {
+    hostName = "novastar";
+  };
+
   solarsystem = lib.recursiveUpdate {
     # info = "Apple M1";
     # firewall = lib.mkForce true;
@@ -36,14 +40,13 @@ in
     # rootDisk = "/dev/nvme0n1";
 
     # FIX
-    modules.networking.hostName = "novastar";
     profiles = {
       # btrfs = true;
     };
   } sharedOptions;
 
   home-manager.users."${mainUser}" = {
-    home.stateVersion = lib.mkForce "23.05";
+    home.stateVersion = lib.mkForce "25.05";
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";
