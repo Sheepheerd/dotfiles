@@ -62,7 +62,7 @@ in
     lib = inputs.nixpkgs.lib.extend (
       _: _: {
         solarsystem = solarsystem;
-        hm = inputs.hoome-managerlib.hm;
+        hm = inputs.home-manager.lib.hm;
       }
     );
   };
