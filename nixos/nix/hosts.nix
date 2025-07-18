@@ -77,12 +77,15 @@
               inherit
                 inputs
                 outputs
-                lib
                 self
                 configName
                 ;
+              lib = self.lib;
             };
-            modules = [ "${self}/hosts/${type}/${configName}" ];
+            modules = [
+              "${self}/hosts/${type}/${configName}"
+              "${self}/profiles/home"
+            ];
           };
       };
 

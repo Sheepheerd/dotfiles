@@ -59,9 +59,10 @@ let
 in
 {
   flake = _: {
-    lib = (inputs.nixpkgs.lib // inputs.home-manager.lib).extend (
+    lib = inputs.nixpkgs.lib.extend (
       _: _: {
-        inherit solarsystem;
+        solarsystem = solarsystem;
+        hm = inputs.hoome-managerlib.hm;
       }
     );
   };

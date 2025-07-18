@@ -34,7 +34,6 @@ in
         zig
         zls
         ansible-language-server
-
       ];
   };
 }
