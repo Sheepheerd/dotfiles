@@ -1,29 +1,10 @@
 { lib, config, ... }:
-
-let
-  cfg = config.solarsystem.modules.time;
-in
 {
-  options.solarsystem.modules.time = {
-    enable = lib.mkEnableOption "Enable time and locale configuration";
-
-    timeZone = lib.mkOption {
-      type = lib.types.str;
-      default = "America/New_York";
-      description = "The system time zone.";
-    };
-
-    hardwareClockInLocalTime = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Whether the hardware clock is set to local time.";
-    };
-  };
-
-  config = lib.mkIf cfg.enable {
+  options.solarsystem.modules.time = lib.mkEnableOption "time config";
+  config = lib.mkIf config.solarsystem.modules.time {
     time = {
-      timeZone = cfg.timeZone;
-      hardwareClockInLocalTime = cfg.hardwareClockInLocalTime;
+      timeZone = "America/New_York";
+      # hardwareClockInLocalTime = true;
     };
 
     i18n = {

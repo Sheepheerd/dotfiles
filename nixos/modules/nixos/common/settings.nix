@@ -44,9 +44,7 @@ let
         channel.enable = false;
         registry = rec {
           nixpkgs.flake = inputs.nixpkgs;
-          sheep.flake = inputs.sheep;
           n = nixpkgs;
-          s = sheep;
         };
         nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
       };

@@ -8,14 +8,18 @@
   options.solarsystem.modules.bootloader = lib.mkEnableOption "bootloader configuration";
 
   config = lib.mkIf config.solarsystem.modules.bootloader {
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = false;
-    boot.loader.timeout = 2;
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot = {
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = false;
+        timeout = 2;
+      };
+      kernelPackages = pkgs.linuxPackages_latest;
 
-    boot.initrd.enable = true;
-    boot.initrd.systemd.enable = true;
+      initrd.enable = true;
+      initrd.systemd.enable = true;
 
-    boot.consoleLogLevel = 3;
+      consoleLogLevel = 3;
+    };
   };
 }

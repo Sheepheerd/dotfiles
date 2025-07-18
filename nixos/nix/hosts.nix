@@ -23,11 +23,11 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.apple-silicon.nixosModules.apple-silicon-support
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"
             "${self}/modules/nixos"
           ];
+
         };
 
       # mkDarwinHost =

@@ -24,7 +24,7 @@
         }
       ];
       extraSpecialArgs = {
-        inherit (inputs) self nixgl;
+        inherit (inputs) self;
         inherit
           inputs
           outputs

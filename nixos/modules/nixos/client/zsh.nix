@@ -9,7 +9,9 @@ let
   cfg = config.solarsystem.modules;
 in
 {
-  options.solarsystem.modules.zsh = lib.mkEnableOption "Enable zsh base config";
+  options.solarsystem.modules = {
+    zsh = lib.mkEnableOption "Enable zsh base config";
+  };
 
   config = lib.mkIf cfg.zsh {
     programs.zsh = {

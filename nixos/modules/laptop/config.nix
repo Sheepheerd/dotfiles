@@ -22,12 +22,6 @@
   boot.initrd.enable = true;
   boot.initrd.systemd.enable = true;
   boot.consoleLogLevel = 3;
-  boot.plymouth = {
-    enable = true;
-    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-    themePackages = [ pkgs.catppuccin-plymouth ];
-    theme = "catppuccin-macchiato";
-  };
 
   # Display manager
   services.displayManager.enable = true;
@@ -40,43 +34,11 @@
     nameservers = [ "8.8.8.8" ];
     firewall.enable = true;
   };
-  #Fonts
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    nerd-font-patcher
-    noto-fonts-color-emoji
-  ];
-
-  # Kernel
-  # Linux Kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelParams = [
-  #   "splash"
-  #   "quiet"
-  #   "fbcon=nodefer"
-  #   "vt.global_cursor_default=0"
-  #   "kernel.modules_disabled=1"
-  #   "lsm=landlock,lockdown,yama,integrity,apparmor,bpf,tomoyo,selinux"
-  #   "usbcore.autosuspend=-1"
-  #   "video4linux"
-  #   "acpi_rev_override=5"
-  #   "security=selinux"
-  # ];
-
-  # systemd.package = pkgs.systemd.override { withSelinux = true; };
-
-  # environment.systemPackages = with pkgs; [ policycoreutils ];
 
   # Enable networking
   networking.hostName = "novastar"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   # networking.networkmanager.wifi.backend = "iwd";
-
-  # Graphics
-  # hardware.graphics = { enable = true; };
-
-  #Printing
-  services.printing.enable = true;
 
   #Screen
   programs.light.enable = true;
@@ -97,8 +59,6 @@
   };
   # Systemd services setup
 
-  # Enable Services
-  programs.xfconf.enable = true;
   services = {
     tailscale.enable = true;
     blueman.enable = true;
@@ -123,33 +83,6 @@
 
   };
 
-  # systemd = {
-  #   targets = {
-  #     sleep.enable = false;
-  #     suspend.enable = false;
-  #     hibernate.enable = false;
-  #     hybrid-sleep.enable = false;
-  #
-  #   };
-  # };
-
-  programs.dconf.enable = true;
-  services.dbus = {
-    enable = true;
-    implementation = "broker";
-    packages = with pkgs; [ ];
-  };
-  # systemd.user.services.easyeffects = {
-  #   enable = true;
-  #   description = "Sound go good";
-  #   unitConfig = { Type = "simple"; };
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     ExecStart = "${pkgs.easyeffects}/bin/easyeffects --gapplication-service";
-  #     Restart = "always";
-  #   };
-  #   wantedBy = [ "default.target" ];
-  # };
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -157,27 +90,6 @@
       thunar-volman
     ];
   };
-
-  programs.adb.enable = true;
-  users.users.sheep.extraGroups = [ "adbusers" ];
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  #services.power-profiles-daemon.enable = true;
-
-  # powerManagement.powertop.enable = true;
-
-  #   evdev:name:SynPS/2 Synaptics TouchPad:dmi:*svnLENOVO:*pvrThinkPadT14Gen2a**
-  #  EVDEV_ABS_00=::44
-  #  EVDEV_ABS_01=::50
-  #  EVDEV_ABS_35=::44
-  #  EVDEV_ABS_36=::50
-  #
-  #
-  #
 
   # Sound
   # Enable sound with pipewire.
@@ -239,26 +151,5 @@
       withTTS = true;
     };
   };
-
-  # Set your time zone.
-  time.hardwareClockInLocalTime = true;
-  time.timeZone = "America/New_York";
-
-  #USB
-  # Enable USB Guard
-  # services.usbguard = {
-  #   enable = true;
-  #   dbus.enable = true;
-  #   implicitPolicyTarget = "block";
-  #   # FIXME: set yours pref USB devices (change {id} to your trusted USB device), use `lsusb` command (from usbutils package) to get list of all connected USB devices including integrated devices like camera, bluetooth, wifi, etc. with their IDs or just disable `usbguard`
-  #   rules = ''
-  #     allow id {id} # device 1
-  #     allow id {id} # device 2
-  #   '';
-  # };
-
-  # Enable Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = false;
 
 }
