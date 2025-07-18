@@ -66,32 +66,39 @@
       #     ];
       #   };
 
-      mkHalfHost = configName: type: pkgs: {
-        ${configName} =
-          let
-            systemFunc = inputs.home-manager.lib.homeManagerConfiguration;
-          in
-          systemFunc {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit
-                inputs
-                outputs
-                self
-                configName
-                ;
-              lib = self.lib;
+      mkHalfHost =
+        { minimal }:
+        configName: type: pkgs: {
+          ${configName} =
+            let
+              systemFunc = inputs.home-manager.lib.homeManagerConfiguration;
+            in
+            systemFunc {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit
+                  inputs
+                  outputs
+                  self
+                  configName
+                  ;
+                lib = self.lib;
+              };
+              modules = [
+                "${self}/hosts/${type}/${configName}"
+                "${self}/profiles/home"
+              ];
             };
-            modules = [
-              "${self}/hosts/${type}/${configName}"
-              "${self}/profiles/home"
-            ];
-          };
-      };
+        };
 
       mkHalfHostConfigs =
-        hosts: type: pkgs:
-        lib.foldl (acc: set: acc // set) { } (lib.map (name: mkHalfHost name type pkgs) hosts);
+        {
+          hosts,
+          type,
+          pkgs,
+          minimal,
+        }:
+        lib.foldl (acc: set: acc // set) { } (lib.map (name: mkHalfHost minimal name type pkgs) hosts);
 
       nixosHosts = builtins.attrNames (
         lib.filterAttrs (_: type: type == "directory") (builtins.readDir "${self}/hosts/nixos")
@@ -115,9 +122,12 @@
       # });
 
       # TODO: Build these for all architectures
-      homeConfigurations =
-        mkHalfHostConfigs (lib.solarsystem.readHosts "home") "home"
-          lib.solarsystem.pkgsFor.x86_64-linux;
+      homeConfigurations = mkHalfHostConfigs {
+        hosts = lib.solarsystem.readHosts "home";
+        type = "home";
+        pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
+        minimal = true;
+      };
 
       # nodes = config.nixosConfigurations // config.darwinConfigurations;
 

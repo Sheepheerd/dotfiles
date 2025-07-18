@@ -4,7 +4,6 @@
   lib,
   pkgs,
   globals,
-  minimal,
   ...
 }:
 {
@@ -17,7 +16,7 @@
     # isBtrfs = lib.mkEnableOption "use btrfs filesystem";
     mainUser = lib.mkOption {
       type = lib.types.str;
-      default = if (!minimal) then globals.user.name else "sheep";
+      default = if (!config.solarsystem.minimal) then globals.user.name else "sheep";
     };
     homeDir = lib.mkOption {
       type = lib.types.str;
