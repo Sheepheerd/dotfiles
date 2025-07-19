@@ -6,6 +6,7 @@
       general = lib.mkDefault true;
       # ssh = lib.mkDefault true;
       # env = lib.mkDefault true;
+      packages = lib.mkDefault true;
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
       # git = lib.mkDefault true;

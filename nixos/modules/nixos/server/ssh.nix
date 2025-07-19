@@ -15,12 +15,12 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "yes";
       };
-      hostKeys = [
-        {
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-      ];
+      # hostKeys = [
+      #   {
+      #     path = "/etc/ssh/ssh_host_ed25519_key";
+      #     type = "ed25519";
+      #   }
+      # ];
     };
     users.users."${config.solarsystem.mainUser}".openssh.authorizedKeys.keyFiles = [
       (self + /secrets/keys/ssh/landing.pub)
