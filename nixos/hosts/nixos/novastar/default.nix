@@ -37,7 +37,7 @@ in
     # firewall = lib.mkForce true;
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
-    asahi = true;
+    # asahi = true;
     # rootDisk = "/dev/nvme0n1";
 
     # FIX

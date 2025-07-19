@@ -10,7 +10,7 @@
       # env = lib.mkDefault true;
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
-      # git = lib.mkDefault true;
+      git = lib.mkDefault true;
       fuzzel = lib.mkDefault true;
       zsh = lib.mkDefault true;
       firefox = lib.mkDefault true;
@@ -23,6 +23,7 @@
       waybar.enable = lib.mkDefault true;
       hyprland = lib.mkDefault true;
       nixvim = lib.mkDefault true;
+      # age = lib.mkDefault true;
     };
   };
 

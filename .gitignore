@@ -1,6 +1,2 @@
-
 ./home/.config/nvim/lazy-lock.json
-!.local/share/fonts
-!.local/share/rofi
-!.local/bin/startw
-
+**/*.env*

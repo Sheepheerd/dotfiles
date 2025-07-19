@@ -18,7 +18,7 @@ in
     asahi = lib.mkEnableOption "Asahi Linux and Apple Silicon support";
   };
 
-  config = lib.mkIf config.solarsystem.isLaptop {
+  config = {
     hardware.asahi = {
       # enable = config.solarsystem.isLaptop;
       enable = cfg.asahi;
