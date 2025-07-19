@@ -14,7 +14,7 @@ let
     isNixos = false;
     isLinux = true;
     profiles = {
-      minimal = true;
+      reduced = true;
     };
   };
 in
