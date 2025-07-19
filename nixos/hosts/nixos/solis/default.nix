@@ -16,7 +16,7 @@ let
     isLinux = true;
     # sharescreen = "eDP-1";
     profiles = {
-      server = lib.mkIf minimal true;
+      server = true;
     };
   };
 in

@@ -22,4 +22,9 @@ in
     user1
     landing
   ];
+  "firefly.appkey.age".publicKeys = [
+    system1
+    user1
+    landing
+  ];
 }

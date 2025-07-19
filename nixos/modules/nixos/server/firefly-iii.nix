@@ -34,8 +34,8 @@ in
       };
     };
 
-    age.secrets."firefly.core.env" = {
-      file = self + /secrets/server/env/firefly.env.age;
+    age.secrets.firefly-app-key = {
+      file = self + /secrets/server/env/firefly.appkey;
       owner = serviceUser;
       group = nginxGroup;
       mode = "0440";
@@ -49,7 +49,11 @@ in
         group = nginxGroup;
         # dataDir = "/Vault/data/${serviceName}";
         settings = {
-          environmentFile = config.age.secrets."firefly.env".path;
+          TZ = "America/New_York";
+          APP_URL = "http://solis:9999";
+          APP_ENV = "local";
+          APP_KEY_FILE = config.age.secrets.firefly-app-key.path;
+          DB_CONNECTION = "sqlite";
         };
         enableNginx = true;
         virtualHost = tailscaleHost; # Required by module but not used for certs
@@ -71,8 +75,6 @@ in
             };
             "/api" = {
               proxyPass = "http://${serviceName}";
-              setOauth2Headers = false;
-              bypassAuth = true;
               extraConfig = ''
                 index index.php;
                 try_files $uri $uri/ /index.php?$query_string;
