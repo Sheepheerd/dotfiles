@@ -28,7 +28,8 @@ in
       groups.${serviceGroup} = { };
       users.${serviceUser} = {
         group = lib.mkForce serviceGroup;
-        extraGroups = lib.mkIf cfg.enableNginx [ nginxGroup ];
+        # extraGroups = lib.mkIf cfg.enableNginx [ nginxGroup ];
+        extraGroups = [ nginxGroup ];
         isSystemUser = true;
       };
     };
@@ -44,7 +45,8 @@ in
       ${serviceName} = {
         enable = true;
         user = serviceUser;
-        group = if cfg.enableNginx then nginxGroup else serviceGroup;
+        # group = if cfg.enableNginx then nginxGroup else serviceGroup;
+        group = nginxGroup;
         # dataDir = "/Vault/data/${serviceName}";
         settings = {
           environmentFile = config.age.secrets."firefly.env".path;

@@ -34,7 +34,6 @@ in
   solarsystem = lib.recursiveUpdate {
     # firewall = lib.mkForce true;
     # wallpaper = self + /files/wallpaper/lenovowp.png;
-    enableNginx = true;
     hasBluetooth = false;
     # rootDisk = "/dev/nvme0n1";
 
