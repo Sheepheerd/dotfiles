@@ -20,8 +20,8 @@ in
 
   config = {
     hardware.asahi = {
-      # enable = config.solarsystem.isLaptop;
-      enable = cfg.asahi;
+      enable = config.solarsystem.isLaptop;
+      # enable = true;
       useExperimentalGPUDriver = true;
       experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;
