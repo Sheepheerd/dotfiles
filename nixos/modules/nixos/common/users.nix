@@ -18,6 +18,7 @@
           [ "wheel" ]
           ++ lib.optionals (!minimal) [
             "networkmanager"
+            "wireshark"
             "syncthing"
             "docker"
             "audio"

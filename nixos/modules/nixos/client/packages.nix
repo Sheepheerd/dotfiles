@@ -13,10 +13,12 @@ in
   options.solarsystem.modules.packages = lib.mkEnableOption "Install packages";
 
   config = lib.mkIf cfg.packages {
+    programs.wireshark.enable = true;
     environment.systemPackages =
       with pkgs;
       lib.optionals (!minimal) [
 
+        wireshark
         # better make for general tasks
         just
 
