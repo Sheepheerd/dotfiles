@@ -29,6 +29,8 @@
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
         immich = lib.mkDefault true;
+        jellyfin = lib.mkDefault true;
+        radicale = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
       ageServer = lib.mkDefault true;
