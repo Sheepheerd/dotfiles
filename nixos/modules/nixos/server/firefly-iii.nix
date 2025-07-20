@@ -5,10 +5,9 @@
   ...
 }:
 let
+  # servicePort = 80;
   serviceUser = "firefly-iii";
   serviceName = "firefly-iii";
-
-  tailscaleHost = "100.113.25.38";
 
   nginxGroup = "nginx";
 
@@ -32,30 +31,26 @@ in
         dataDir = "/vault/data/${serviceName}";
         settings = {
           TZ = "America/New_York";
-          APP_URL = tailscaleHost;
-          APP_ENV = "local";
+
+          APP_ENV = "production";
           APP_KEY_FILE = config.age.secrets.firefly-app-key.path;
+          # DB_CONNECTION = "mysql";
           TRUSTED_PROXIES = "**";
           DB_CONNECTION = "sqlite";
         };
         enableNginx = true;
-        virtualHost = "localhost";
-        # virtualHost = tailscaleHost; # Required by module but not used for certs
+        virtualHost = "firefly-iii";
       };
 
-      nginx = {
-        virtualHosts = {
-          ${config.services.firefly-iii.virtualHost} = {
-            listen = [
-              {
-                addr = tailscaleHost;
-                port = 9999;
-              }
-            ];
-          };
-        };
+      nginx.virtualHosts.${config.services.firefly-iii.virtualHost} = {
+        enableACME = false;
+        listen = [
+          {
+            addr = "0.0.0.0";
+            port = 9999;
+          }
+        ];
       };
     };
   };
-
 }

@@ -23,11 +23,12 @@
       # appimage = lib.mkDefault true;
       # hyprland = lib.mkDefault true;
       nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
-      tailscale = lib.mkDefault true;
+      tailscaleServer = lib.mkDefault true;
       server = {
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
+        immich = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
       ageServer = lib.mkDefault true;

@@ -20,11 +20,5 @@ in
       inputs.agenix.packages.${pkgs.system}.default
     ];
 
-    age.secrets."immich.env" = {
-      file = inputs.self + /secrets/server/immich.age;
-      owner = "sheep";
-      group = "users";
-    };
-
   };
 }

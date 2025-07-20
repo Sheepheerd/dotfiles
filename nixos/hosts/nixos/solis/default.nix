@@ -32,7 +32,7 @@ in
   };
 
   solarsystem = lib.recursiveUpdate {
-    # firewall = lib.mkForce true;
+    firewall = lib.mkForce true;
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = false;
     # rootDisk = "/dev/nvme0n1";
