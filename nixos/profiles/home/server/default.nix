@@ -9,7 +9,7 @@
       packages = lib.mkDefault true;
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
-      # git = lib.mkDefault true;
+      git = lib.mkDefault true;
       fuzzel = lib.mkDefault true;
       zsh = lib.mkDefault true;
       tmux = lib.mkDefault true;
