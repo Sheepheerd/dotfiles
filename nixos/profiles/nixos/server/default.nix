@@ -31,6 +31,7 @@
         immich = lib.mkDefault true;
         jellyfin = lib.mkDefault true;
         radicale = lib.mkDefault true;
+        nextcloud = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
       ageServer = lib.mkDefault true;

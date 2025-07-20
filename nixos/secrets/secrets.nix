@@ -12,6 +12,11 @@ in
     solis
     landing
   ];
+  "server/nextcloud-admin-pass.age".publicKeys = [
+    system1
+    solis
+    landing
+  ];
   "server/firefly.env.age".publicKeys = [
     system1
     solis
