@@ -25,10 +25,10 @@
     };
     systemd = {
       targets = {
-        sleep.enable = false;
-        suspend.enable = false;
-        hibernate.enable = false;
-        hybrid-sleep.enable = false;
+        sleep.enable = lib.mkIf config.isLaptop;
+        suspend.enable = lib.mkIf config.isLaptop;
+        hibernate.enable = lib.mkIf config.isLaptop;
+        hybrid-sleep.enable = lib.mkIf config.isLaptop;
 
       };
 
