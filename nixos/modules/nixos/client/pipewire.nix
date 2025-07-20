@@ -14,6 +14,10 @@ in
   config = lib.mkIf cfg.pipewire {
     security.rtkit.enable = true; # Required for Pipewire real-time access
 
+    environment.systemPackages = with pkgs; [
+      alsa-utils
+      pavucontrol
+    ];
     services.pipewire = {
       enable = true;
       # package = pkgs.stable.pipewire;
