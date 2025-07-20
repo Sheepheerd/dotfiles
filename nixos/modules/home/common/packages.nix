@@ -55,7 +55,11 @@
           vesktop
           youtube-music
         ];
+
+        extraX86Packages = lib.optionals (!config.solarsystem.isLaptop) [
+          tutanota-desktop
+        ];
       in
-      basePackages ++ extraNixosPackages;
+      basePackages ++ extraNixosPackages ++ extraX86Packages;
   };
 }
