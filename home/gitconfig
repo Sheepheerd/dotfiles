@@ -1,6 +1,12 @@
 [user]
-	name = Sheepheerd
-	email = 130428152+Sheepheerd@users.noreply.github.com
+	name = Shepard Garrett
+	email = shepard@heerd.dev
 
 [credential]
 	helper = store
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
+[pull]
+	rebase = true
