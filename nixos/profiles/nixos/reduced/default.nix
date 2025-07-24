@@ -24,6 +24,7 @@
       hyprland = lib.mkDefault true;
       nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
       tailscale = lib.mkDefault true;
+      mullvad = lib.mkDefault true;
       # server = {
       #   ssh = lib.mkDefault true;
       # };
