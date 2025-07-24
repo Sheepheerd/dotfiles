@@ -2,14 +2,15 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 with lib;
 let
-
   serviceUser = "jellyfin";
+  serviceName = "jellyfin";
   serviceGroup = serviceUser;
-
+  servicePort = "8096";
   cfg = config.solarsystem.modules.server.jellyfin;
 in
 {
@@ -41,6 +42,26 @@ in
       user = serviceUser;
       # openFirewall = true;
       # port = 8096; Non configurable
+    };
+
+    services.nginx = {
+
+      virtualHosts = {
+        "movies.heerd.dev" = {
+          enableACME = true;
+          forceSSL = true;
+          acmeRoot = null;
+          locations = {
+            "/" = {
+              # proxyPass = "http://${serviceName}";
+              proxyPass = "http://127.0.0.1:8096";
+              extraConfig = ''
+                client_max_body_size 0;
+              '';
+            };
+          };
+        };
+      };
     };
   };
 }

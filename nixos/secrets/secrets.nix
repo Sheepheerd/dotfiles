@@ -27,4 +27,12 @@ in
     solis
     landing
   ];
+  "server/nginx/jellyfin-domain.age".publicKeys = [
+    system1
+    solis
+  ];
+  "server/acme.age".publicKeys = [
+    system1
+    solis
+  ];
 }

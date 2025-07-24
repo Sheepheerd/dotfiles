@@ -7,12 +7,9 @@
 }:
 let
 
-  servicePort = 80;
   serviceUser = "nextcloud";
   serviceGroup = serviceUser;
   serviceName = "nextcloud";
-  # serviceDomain = config.repo.secrets.common.services.domains.${serviceName};
-  serviceDomain = "0.0.0.0";
 in
 {
   options.solarsystem.modules.server.${serviceName} =
@@ -45,7 +42,7 @@ in
       enable = true;
       configureRedis = true;
 
-      hostName = "localhost";
+      hostName = "nextcloud.heerd.dev";
       home = "/var/lib/nextcloud";
       database.createLocally = true;
       extraApps = {
@@ -73,7 +70,10 @@ in
           "127.0.0.1"
           "100.113.25.38"
           "solis"
+          "nextcloud.heerd.dev"
         ];
+        extraTrustedDomains = [ "nextcloud.heerd.dev" ];
+        overwriteProtocol = "https";
 
         enabledPreviewProviders = [
           "OC\\Preview\\BMP"
@@ -92,5 +92,25 @@ in
       maxUploadSize = "10G";
     };
 
+    services.nginx = {
+
+      virtualHosts = {
+        "nextcloud.heerd.dev" = {
+          enableACME = true;
+          forceSSL = true;
+          acmeRoot = null;
+          locations = {
+            "/" = {
+              # proxyPass = "http://${serviceName}";
+              proxyPass = "http://127.0.0.1:8080";
+              proxyWebsockets = true;
+              # extraConfig = ''
+              #   client_max_body_size 0;
+              # '';
+            };
+          };
+        };
+      };
+    };
   };
 }

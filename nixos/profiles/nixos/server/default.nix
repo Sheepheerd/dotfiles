@@ -28,7 +28,7 @@
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
-        immich = lib.mkDefault true;
+        immich = lib.mkDefault false;
         jellyfin = lib.mkDefault true;
         radicale = lib.mkDefault true;
         nextcloud = lib.mkDefault true;

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  self,
   ...
 }:
 {
@@ -9,24 +10,56 @@
 
   config = lib.mkIf config.solarsystem.modules.server.nginx {
 
-    environment.systemPackages = with pkgs; [ ];
+    environment.systemPackages = with pkgs; [ lego ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
-    security.acme = {
-      acceptTerms = false;
-      preliminarySelfsigned = false;
-      defaults = { };
+    age.secrets.acme-api = {
+      file = self + /secrets/server/acme.age;
+      owner = "sheep";
+      group = "users";
+      mode = "0440";
+    };
+    services.blocky = {
+      enable = true;
+      settings = {
+        ports.dns = 53;
+        upstreams.groups.default = [
+          "https://dns.quad9.net/dns-query"
+        ];
+        bootstrapDns = {
+          upstream = "https://dns.quad9.net/dns-query";
+          ips = [ "9.9.9.9" ];
+        };
+        customDNS = {
+          mapping = {
+            "movies.heerd.dev" = "100.113.25.38";
+            "nextcloud.heerd.dev" = "100.113.25.38";
+          };
+        };
+      };
     };
 
+    security.acme = {
+      acceptTerms = true;
+      preliminarySelfsigned = false;
+      defaults = {
+        email = "shepard@heerd.dev";
+        dnsProvider = "cloudflare";
+        environmentFile = "${config.age.secrets.acme-api.path}";
+      };
+    };
+    users.users.nginx.extraGroups = [ "acme" ];
     services.nginx = {
       enable = true;
       statusPage = true;
       recommendedProxySettings = true;
-      # No TLS — Tailscale handles encryption
-      recommendedTlsSettings = false;
+      recommendedTlsSettings = true;
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
 
-      # Define virtualHosts in the module that depends on this
     };
   };
 }

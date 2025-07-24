@@ -26,6 +26,11 @@
       type = lib.types.str;
       default = "/run/user/1000";
     };
+    sopsFile = lib.mkOption {
+      type = lib.types.str;
+      default = "${config.solarsystem.flakePath}/secrets/nixos/secrets.yaml";
+    };
+
     flakePath = lib.mkOption {
       type = lib.types.str;
       default = "/home/sheep/github/dotfiles/nixos";
