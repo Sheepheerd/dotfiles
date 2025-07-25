@@ -115,9 +115,9 @@ in
         cat = "bat";
         grep = "rg";
 
-        update-ds = "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#deathstar";
-        update-ns = "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#novastar";
-        update-sc = "sudo nixos-rebuild switch --flake ~/github/dotfiles/nixos/#starcraft";
+        update-d = "sudo nixos-rebuild switch --flake ~/.dotfiles#deathstar";
+        update-n = "sudo nixos-rebuild switch --flake ~/.dotfiles#novastar";
+        update-s = "sudo nixos-rebuild switch --flake ~/.dotfiles#solis";
       };
 
       plugins = [

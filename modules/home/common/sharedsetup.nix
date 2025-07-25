@@ -6,6 +6,9 @@
   globals,
   ...
 }:
+let
+  inherit (config.solarsystem) mainUser;
+in
 {
   options.solarsystem = {
     isLaptop = lib.mkEnableOption "laptop host";
@@ -33,7 +36,7 @@
 
     flakePath = lib.mkOption {
       type = lib.types.str;
-      default = "/home/sheep/github/dotfiles/nixos";
+      default = "/home/${mainUser}/.dotfiles/";
     };
     # wallpaper = lib.mkOption {
     #   type = lib.types.path;

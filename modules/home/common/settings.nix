@@ -49,7 +49,7 @@ in
       stateVersion = lib.mkDefault "25.05";
       keyboard.layout = "us";
       sessionVariables = {
-        FLAKE = "/home/${mainUser}/github/dotfiles/nixos";
+        FLAKE = "/home/${mainUser}/.dotfiles";
       };
     };
   };
