@@ -38,6 +38,7 @@
             "movies.heerd.dev" = "100.113.25.38";
             "nextcloud.heerd.dev" = "100.113.25.38";
             "radical.heerd.dev" = "100.113.25.38";
+            "bank.heerd.dev" = "100.113.25.38";
           };
         };
       };
