@@ -38,6 +38,7 @@ in
     hasBluetooth = true;
     # rootDisk = "/dev/nvme0n1";
     modules.sunshine = true;
+    modules.steam = true;
     # FIX
     profiles = {
       # btrfs = true;
