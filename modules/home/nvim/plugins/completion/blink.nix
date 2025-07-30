@@ -8,7 +8,16 @@
         enable = true;
         setupLspCapabilities = true;
         settings = {
+          fuzzy = {
+            implementation = "rust";
+          };
           sources = {
+            default = [
+              "lsp"
+              "buffer"
+              "snippets"
+              "path"
+            ];
             copilot = {
               async = true;
               module = "blink-cmp-copilot";
@@ -17,6 +26,7 @@
             };
             providers = {
               lsp = {
+                async = true;
                 score_offset = 10;
               };
               buffer = {

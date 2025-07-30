@@ -21,8 +21,8 @@ in
 
       luaLoader.enable = true;
 
-      extraLuaPackages = ps: [ ps.magick ];
-      extraPackages = [ pkgs.imagemagick ];
+      extraPlugins = [ pkgs.vimPlugins.kanso-nvim ];
+      extraConfigLua = "vim.cmd('colorscheme kanso')";
     };
   };
 
