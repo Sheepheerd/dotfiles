@@ -65,21 +65,26 @@
               auto_brackets.enabled = true;
             };
             ghost_text = {
-              enabled = true;
+              enabled = false;
             };
             documentation = {
               auto_show = false;
               auto_show_delay_ms = 200;
               window = {
                 border = "rounded";
+                winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None";
               };
             };
             menu = {
-              draw = {
-                treesitter = [ "lsp" ];
-              };
+              # draw = {
+              #   treesitter = [ "lsp" ];
+              # };
               border = "rounded";
-              # auto_show = true;
+              draw = {
+                gap = 2;
+              };
+              winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None";
+              auto_show = true;
             };
           };
           snippets = {

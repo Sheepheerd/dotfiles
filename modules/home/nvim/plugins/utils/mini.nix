@@ -53,6 +53,7 @@
       statusline = {
 
       };
+      pairs = { };
 
     };
   };
