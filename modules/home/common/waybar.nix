@@ -139,7 +139,7 @@ in
             "on-scroll-up" = "bash ~/.scripts/volume up";
             "on-scroll-down" = "bash ~/.scripts/volume down";
             "scroll-step" = 5;
-            "on-click-right" = "pavucontrol";
+            "on-click-right" = "env DISPLAY=$DISPLAY pavucontrol";
           };
           "custom/hyprpicker" = {
             format = "󰈋";

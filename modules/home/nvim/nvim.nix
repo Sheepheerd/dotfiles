@@ -22,7 +22,13 @@ in
       luaLoader.enable = true;
 
       extraPlugins = [ pkgs.vimPlugins.kanso-nvim ];
-      extraConfigLua = "vim.cmd('colorscheme kanso')";
+      extraConfigLua = ''
+
+        require('kanso').setup({
+          transparent = true,
+        })
+
+        vim.cmd('colorscheme kanso')'';
     };
   };
 

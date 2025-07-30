@@ -15,6 +15,7 @@ in
 
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
+      pamixer
       swww
       grim
       slurp
