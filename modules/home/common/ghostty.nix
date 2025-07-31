@@ -14,13 +14,14 @@ in
         theme = "rose-pine";
         font-size = 12;
         font-family = "JetBrainsMono Nerd Font Mono";
-
+        shell-integration-features = [
+          "no-cursor"
+        ];
         confirm-close-surface = false;
         cursor-style = "block";
         cursor-style-blink = false;
 
         shell-integration = "zsh";
-        shell-integration-features = "no-cursor";
 
         window-decoration = false;
         # window-theme = "dark";

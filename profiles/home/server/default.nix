@@ -7,6 +7,7 @@
       # ssh = lib.mkDefault true;
       # env = lib.mkDefault true;
       packages = lib.mkDefault true;
+      ghostty = lib.mkDefault true;
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
       git = lib.mkDefault true;
