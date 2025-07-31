@@ -57,10 +57,10 @@ in
               done
               prompt_segment NONE yellow "[$package_names]"
             elif [[ -n $name ]]; then
-              local cleanName="$\{name#interactive-}"
-              cleanName="$\{cleanName#lorri-keep-env-hack-}"
-              cleanName="$\{cleanName%-environment}"
-              prompt_segment NONE yellow "[$cleanName]"
+              # local cleanName="$\{name#interactive-}"
+              # cleanName="$\{cleanName#lorri-keep-env-hack-}"
+              # cleanName="$\{cleanName%-environment}"
+              prompt_segment NONE yellow "[nix]"
             else
               prompt_segment NONE yellow "[]"
             fi
