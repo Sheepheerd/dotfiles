@@ -34,7 +34,7 @@
                 async = true;
                 module = "blink-copilot";
                 name = "copilot";
-                score_offset = 6;
+                score_offset = 11;
               };
 
               ripgrep = {

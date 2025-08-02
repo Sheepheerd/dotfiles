@@ -7,17 +7,27 @@
 
     # Keymaps
     keymaps = [
-      # Disable arrow keys
-      # {
-      #   mode = "n";
-      #   key = "<leader>e";
-      #   action = "<cmd>Explore<cr>";
-      #   options = {
-      #     silent = true;
-      #     desc = "Filebrowser";
-      #   };
-      # }
+      # Terminal
+      {
+        mode = "n";
+        key = "<leader>t";
+        action = "<cmd>term<cr>";
+        options = {
+          silent = true;
+          desc = "Toggle terminal";
+        };
+      }
+      {
+        mode = "t";
+        key = "<Esc>";
+        action = "<C-\\><C-n>";
+        options = {
+          silent = true;
+          desc = "Esc Terminal";
+        };
+      }
 
+      # Disable arrow keys
       {
         mode = [
           "n"
@@ -68,66 +78,6 @@
           silent = true;
           noremap = true;
           desc = "Disable Left arrow key";
-        };
-      }
-      # Tabs
-      {
-        mode = "n";
-        key = "<leader><tab>l";
-        action = "<cmd>tablast<cr>";
-        options = {
-          silent = true;
-          desc = "Last tab";
-        };
-      }
-
-      {
-        mode = "n";
-        key = "<leader><tab>f";
-        action = "<cmd>tabfirst<cr>";
-        options = {
-          silent = true;
-          desc = "First Tab";
-        };
-      }
-
-      {
-        mode = "n";
-        key = "<leader><tab><tab>";
-        action = "<cmd>tabnew<cr>";
-        options = {
-          silent = true;
-          desc = "New Tab";
-        };
-      }
-
-      {
-        mode = "n";
-        key = "<leader><tab>]";
-        action = "<cmd>tabnext<cr>";
-        options = {
-          silent = true;
-          desc = "Next Tab";
-        };
-      }
-
-      {
-        mode = "n";
-        key = "<leader><tab>d";
-        action = "<cmd>tabclose<cr>";
-        options = {
-          silent = true;
-          desc = "Close tab";
-        };
-      }
-
-      {
-        mode = "n";
-        key = "<leader><tab>[";
-        action = "<cmd>tabprevious<cr>";
-        options = {
-          silent = true;
-          desc = "Previous Tab";
         };
       }
 
