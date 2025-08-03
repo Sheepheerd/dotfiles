@@ -38,9 +38,9 @@ in
       database = {
         enable = true;
       };
-      environment = {
-        IMMICH_MACHINE_LEARNING_URL = lib.mkForce "http://localhost:3003";
-      };
+      # environment = {
+      #   IMMICH_MACHINE_LEARNING_URL = lib.mkForce "http://localhost:3003";
+      # };
     };
 
     # networking.firewall.allowedTCPPorts = [ 3001 ];
