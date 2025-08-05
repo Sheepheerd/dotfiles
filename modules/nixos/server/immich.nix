@@ -14,6 +14,8 @@ in
   config = lib.mkIf config.solarsystem.modules.server.immich {
 
     users.users.${serviceUser} = {
+      home = "/var/lib/immich";
+      createHome = true;
       extraGroups = [
         "video"
         "render"
@@ -22,6 +24,11 @@ in
     };
 
     services.${serviceName} = {
+
+      # machine-learning.environment = {
+      #   HF_XET_CACHE = "/var/cache/immich/huggingface-xet";
+      # };
+
       enable = true;
       host = "0.0.0.0";
       port = servicePort;
@@ -38,9 +45,9 @@ in
       database = {
         enable = true;
       };
-      # environment = {
-      #   IMMICH_MACHINE_LEARNING_URL = lib.mkForce "http://localhost:3003";
-      # };
+      environment = {
+        IMMICH_MACHINE_LEARNING_URL = lib.mkForce "http://localhost:3003";
+      };
     };
 
     # networking.firewall.allowedTCPPorts = [ 3001 ];
