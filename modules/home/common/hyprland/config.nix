@@ -38,8 +38,8 @@ in
           "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
           "hyprctl setcursor Dracula-cursors 24"
           "${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
-          "[workspace 1 silent] ${browser}"
-          "[workspace 2 silent] ${terminal}"
+          "[workspace 2 silent] ${browser}"
+          "[workspace 1 silent] ${terminal}"
         ];
 
         input = {
