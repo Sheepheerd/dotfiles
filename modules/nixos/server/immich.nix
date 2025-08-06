@@ -19,35 +19,15 @@ in
       extraGroups = [
         "video"
         "render"
-        "users"
       ];
     };
 
     services.${serviceName} = {
-
-      # machine-learning.environment = {
-      #   HF_XET_CACHE = "/var/cache/immich/huggingface-xet";
-      # };
-
+      accelerationDevices = null;
       enable = true;
       host = "0.0.0.0";
       port = servicePort;
-      # openFirewall = true;
       mediaLocation = "/mnt/one-t-ssd/immich"; # dataDir
-      machine-learning = {
-        enable = true;
-      };
-      redis = {
-        enable = true;
-        host = "0.0.0.0";
-        port = 6379;
-      };
-      database = {
-        enable = true;
-      };
-      environment = {
-        IMMICH_MACHINE_LEARNING_URL = lib.mkForce "http://localhost:3003";
-      };
     };
 
     # networking.firewall.allowedTCPPorts = [ 3001 ];
