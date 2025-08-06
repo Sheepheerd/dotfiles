@@ -14,7 +14,9 @@ in
 {
   options.solarsystem = {
     modules.network = lib.mkEnableOption "network config";
-    firewall = lib.solarsystem.mkTrueOption;
+    modules.firewall = lib.solarsystem.mkTrueOption;
+    modules.resolved = lib.solarsystem.mkTrueOption;
+
   };
   config = lib.mkIf config.solarsystem.modules.network {
     networking.nameservers = [
@@ -22,16 +24,17 @@ in
       "1.0.0.1#one.one.one.one"
     ];
 
-    # services.resolved = {
-    #   enable = true;
-    #   dnssec = "true";
-    #   domains = [ "~." ];
-    #   fallbackDns = [
-    #     "1.1.1.1#one.one.one.one"
-    #     "1.0.0.1#one.one.one.one"
-    #   ];
-    #   dnsovertls = "true";
-    # };
+    services.resolved = {
+      enable = lib.mkIf config.solarsystem.modules.resolved true;
+      dnssec = "true";
+      domains = [ "~." ];
+      fallbackDns = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+      ];
+      dnsovertls = "true";
+    };
+
     networking = {
       # wireless.iwd = {
       #   enable = true;
@@ -47,9 +50,9 @@ in
       # nftables.enable = lib.mkDefault true;
       enableIPv6 = lib.mkDefault true;
       firewall = {
-        enable = lib.solarsystem.mkStrong config.solarsystem.firewall;
+        enable = lib.solarsystem.mkStrong config.solarsystem.modules.firewall;
         # checkReversePath = lib.mkDefault false;
-        # allowedUDPPorts = [ 51820 ]; # 51820: wireguard
+        allowedUDPPorts = [ 51820 ]; # 51820: wireguard
         # allowedTCPPortRanges = [
         #   {
         #     from = 1714;

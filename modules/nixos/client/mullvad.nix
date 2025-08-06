@@ -19,13 +19,13 @@ in
       package = pkgs.mullvad-vpn;
     };
     environment.systemPackages = [ mullvad-autostart ];
-    systemd = {
-      services."mullvad-daemon".environment.MULLVAD_SETTINGS_DIR = "/var/lib/mullvad-vpn";
-      tmpfiles.settings."10-mullvad-settings"."/var/lib/mullvad-vpn/settings.json"."C+" = {
-        group = "root";
-        mode = "0700";
-        user = "root";
-      };
-    };
+    # systemd = {
+    #   services."mullvad-daemon".environment.MULLVAD_SETTINGS_DIR = "/var/lib/mullvad-vpn";
+    #   tmpfiles.settings."10-mullvad-settings"."/var/lib/mullvad-vpn/settings.json"."C+" = {
+    #     group = "root";
+    #     mode = "0700";
+    #     user = "root";
+    #   };
+    # };
   };
 }
