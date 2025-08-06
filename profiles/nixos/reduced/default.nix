@@ -8,7 +8,7 @@
       general = lib.mkDefault true;
       home-manager = lib.mkDefault true;
       firewall = lib.mkDefault true;
-      resolved = lib.mkDefault false;
+      resolved = lib.mkDefault true;
       users = lib.mkDefault true;
       hardware = lib.mkDefault true;
       pipewire = lib.mkDefault true;
