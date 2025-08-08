@@ -49,6 +49,10 @@
 
           # Python
           pyenv
+
+          # Tools
+          tree
+          nettools
         ];
 
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [
