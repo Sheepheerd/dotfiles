@@ -35,6 +35,9 @@ in
       dnsovertls = "true";
     };
 
+    environment.systemPackages = with pkgs; [
+      networkmanagerapplet
+    ];
     networking = {
       # wireless.iwd = {
       #   enable = true;
