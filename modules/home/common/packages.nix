@@ -39,7 +39,7 @@
           wiki-tui
           mask
 
-          uutils-coreutils-noprefix
+          # uutils-coreutils-noprefix
 
           # Fonts
           liberation_ttf
@@ -49,6 +49,11 @@
 
           # Python
           pyenv
+
+          # Tools
+          tree
+          nettools
+          pulsemixer
         ];
 
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [
