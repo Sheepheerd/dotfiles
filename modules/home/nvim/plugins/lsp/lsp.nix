@@ -16,7 +16,7 @@
       # lsp-lines.enable = true;
       lsp = {
         enable = true;
-        inlayHints = true;
+        inlayHints = false;
         keymaps = {
           silent = true;
           diagnostic = {
@@ -90,11 +90,15 @@
           tflint.enable = true;
           templ.enable = true;
           html.enable = true;
-          # rust_analyzer = {
-          #   enable = true;
-          #   installCargo = true;
-          #   installRustc = true;
-          # };
+          rust_analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+            settings = {
+              checkOnSave = true;
+            };
+
+          };
           # htmx.enable = true;
           # tailwindcss.enable = true;
         };

@@ -1,8 +1,10 @@
 {
   programs.nixvim = {
-    plugins.crates = { enable = true; };
-    plugins.rustaceanvim = {
+    plugins.crates = {
       enable = true;
+    };
+    plugins.rustaceanvim = {
+      enable = false;
       settings = {
         tools.float_win_config.border = "rounded";
         # server = {
