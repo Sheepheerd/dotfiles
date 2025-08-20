@@ -38,6 +38,9 @@
 
         servers = {
           # texlab.enable = true;
+          vhdl_ls = {
+            enable = true;
+          };
           asm_lsp = {
             enable = true;
             cmd = [
