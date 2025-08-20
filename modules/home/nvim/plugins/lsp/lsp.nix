@@ -38,7 +38,21 @@
 
         servers = {
           # texlab.enable = true;
-          asm_lsp.enable = true;
+          asm_lsp = {
+            enable = true;
+            cmd = [
+              "asm-lsp"
+            ];
+            rootMarkers = [
+              "asm-lsp.toml"
+              ".git"
+            ];
+            filetypes = [
+              "asm"
+              "nasm"
+            ];
+
+          };
           tinymist.enable = true;
           jdtls.enable = false;
           ltex.enable = true;

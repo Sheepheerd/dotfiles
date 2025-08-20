@@ -15,6 +15,7 @@ in
     environment.systemPackages = with pkgs; [
       distrobox
       boxbuddy
+      qemu_full
     ];
 
     virtualisation.podman = {
