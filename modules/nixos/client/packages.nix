@@ -18,7 +18,6 @@ in
       with pkgs;
       lib.optionals (!minimal) [
 
-        wireshark
         # better make for general tasks
         just
 

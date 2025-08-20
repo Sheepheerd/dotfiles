@@ -38,6 +38,7 @@
 
         servers = {
           # texlab.enable = true;
+          asm_lsp.enable = true;
           tinymist.enable = true;
           jdtls.enable = false;
           ltex.enable = true;

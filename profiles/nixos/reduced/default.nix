@@ -30,6 +30,7 @@
       # server = {
       #   ssh = lib.mkDefault true;
       # };
+      school = lib.mkDefault true;
     };
 
   };
