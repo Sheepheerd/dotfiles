@@ -1,0 +1,75 @@
+{
+  lib,
+  config,
+  globals,
+  ...
+}:
+let
+  servicePort = 3001;
+  serviceUser = "calibre";
+  serviceName = "calibre";
+  library = "/var/lib/calibre-server";
+in
+{
+  options.solarsystem.modules.server.calibre = lib.mkEnableOption "enable ${serviceName} on server";
+  config = lib.mkIf config.solarsystem.modules.server.immich {
+
+    users.users.${serviceUser} = {
+    };
+
+    fileSystems."/var/lib/calibre-server" = {
+      device = "/mnt/one-t-ssd/calibre";
+      options = [ "bind" ];
+    };
+    services = {
+      calibre-server = {
+        enable = true;
+
+        host = "localhost";
+        port = 8195;
+        libraries = [ library ];
+        auth.enable = false;
+
+        user = "calibre";
+        group = "calibre";
+      };
+      calibre-web = {
+        enable = true;
+        listen = {
+          ip = "localhost";
+          port = 8095;
+        };
+        options = {
+          enableBookConversion = true;
+          enableBookUploading = true;
+          reverseProxyAuth.enable = true;
+          calibreLibrary = "/var/lib/calibre-server";
+        };
+
+        user = "calibre";
+        group = "calibre";
+      };
+    };
+
+    # networking.firewall.allowedTCPPorts = [ 3001 ];
+
+    services.nginx = {
+      virtualHosts = {
+        "books.heerd.dev" = {
+          enableACME = true;
+          forceSSL = true;
+          acmeRoot = null;
+          locations = {
+            "/" = {
+              proxyPass = "http://localhost:8095";
+              extraConfig = '''';
+            };
+          };
+        };
+      };
+    };
+    systemd.services.calibre-web.after = [ "calibre-server.service" ];
+
+  };
+
+}
