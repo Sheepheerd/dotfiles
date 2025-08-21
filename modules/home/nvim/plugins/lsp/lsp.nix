@@ -38,6 +38,16 @@
 
         servers = {
           # texlab.enable = true;
+          matlab_ls = {
+            enable = true;
+            filetypes = [ "matlab" ];
+            settings = {
+              # indexWorkspace = false;
+              # installPath = "";
+              matlabConnectionTiming = "onStart";
+              telemetry = false;
+            };
+          };
           vhdl_ls = {
             enable = true;
           };
