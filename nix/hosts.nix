@@ -128,8 +128,9 @@
       homeConfigurations = mkHalfHostConfigs {
         hosts = lib.solarsystem.readHosts "home";
         type = "home";
-        pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
-        minimal = true;
+        pkgs = lib.solarsystem.pkgsFor.aarch64-linux;
+        # pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
+        # minimal = false;
       };
 
       # nodes = config.nixosConfigurations // config.darwinConfigurations;
