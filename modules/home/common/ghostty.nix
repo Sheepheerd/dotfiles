@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.solarsystem.modules.ghostty;
@@ -9,6 +14,8 @@ in
   config = lib.mkIf cfg {
     programs.ghostty = {
       enable = true;
+      package = if config.solarsystem.isNixos then pkgs.ghostty else null;
+
       enableZshIntegration = true;
       settings = {
         theme = "rose-pine";

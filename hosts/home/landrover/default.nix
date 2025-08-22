@@ -14,7 +14,7 @@ let
     isNixos = false;
     isLinux = true;
     profiles = {
-      reduced = true;
+      laptop = true;
     };
   };
 in
@@ -31,7 +31,12 @@ in
     };
   };
 
+  home.stateVersion = lib.mkForce "25.05";
   solarsystem = lib.recursiveUpdate {
+    # lowResolution = "1280x800";
+    # highResolution = "1920x1080";
   } sharedOptions;
+  # solarsystem = lib.recursiveUpdate {
+  # } sharedOptions;
 
 }

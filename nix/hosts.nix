@@ -130,7 +130,7 @@
         type = "home";
         pkgs = lib.solarsystem.pkgsFor.aarch64-linux;
         # pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
-        # minimal = false;
+         minimal = false;
       };
 
       # nodes = config.nixosConfigurations // config.darwinConfigurations;

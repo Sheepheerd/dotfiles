@@ -30,8 +30,9 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = if config.solarsystem.isNixos then null else pkgs.hyprland;
-      portalPackage = if config.solarsystem.isNixos then null else pkgs.xdg-desktop-portal-hyprland;
+      # package = if config.solarsystem.isNixos then null else pkgs.hyprland;
+      package = null;
+      portalPackage = null;
       xwayland.enable = true;
     };
 
