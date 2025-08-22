@@ -13,13 +13,24 @@ in
 
   config = lib.mkIf cfg.school {
 
+    programs.virt-manager.enable = true;
+
+    users.groups.libvirtd.members = [ "sheep" ];
+
+    virtualisation.libvirtd.enable = true;
+
+    virtualisation.spiceUSBRedirection.enable = true;
+
     environment.systemPackages = with pkgs; [
+
       coreutils
       qucs-s
       gtkwave
       # ghdl
       nvc
+      virt-manager
       octaveFull
+      quickemu
     ];
 
   };
