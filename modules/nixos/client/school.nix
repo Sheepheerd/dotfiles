@@ -22,6 +22,7 @@ in
     virtualisation.spiceUSBRedirection.enable = true;
 
     environment.systemPackages = with pkgs; [
+      matlab
 
       coreutils
       qucs-s

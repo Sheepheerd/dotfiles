@@ -29,6 +29,12 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
+
     nixgl.url = "github:guibou/nixGL";
     nix-firefox-addons = {
       url = "github:osipog/nix-firefox-addons";

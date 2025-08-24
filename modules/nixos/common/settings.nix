@@ -81,7 +81,7 @@ in
       system.stateVersion = lib.mkDefault "25.05";
 
       nixpkgs = {
-        # overlays = [ outputs.overlays.default ];
+        overlays = [ outputs.overlays.default ];
         config = {
           allowUnfree = true;
         };
