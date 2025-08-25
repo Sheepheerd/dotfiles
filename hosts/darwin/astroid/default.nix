@@ -85,7 +85,10 @@ in
 
   homebrew = {
     enable = true;
-
+    brews = [
+      "x86_64-elf-binutils"
+      "x86_64-elf-gcc"
+    ];
     casks = [
       "ghostty"
       "nikitabobko/tap/aerospace"
@@ -100,7 +103,7 @@ in
 
   system = {
     keyboard = {
-      swapLeftCommandAndLeftAlt = true;
+      #swapLeftCommandAndLeftAlt = true;
       enableKeyMapping = true;
       remapCapsLockToControl = true;
     };
