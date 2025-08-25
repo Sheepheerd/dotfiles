@@ -32,40 +32,28 @@
 
         };
 
-      # mkDarwinHost =
-      #   { minimal }:
-      #   configName:
-      #   inputs.nix-darwin.lib.darwinSystem {
-      #     specialArgs = {
-      #       inherit
-      #         inputs
-      #         outputs
-      #         lib
-      #         self
-      #         minimal
-      #         configName
-      #         ;
-      #       inherit (config) globals nodes;
-      #     };
-      #     modules = [
-      #       # inputs.disko.nixosModules.disko
-      #       # inputs.sops-nix.nixosModules.sops
-      #       # inputs.impermanence.nixosModules.impermanence
-      #       # inputs.lanzaboote.nixosModules.lanzaboote
-      #       # inputs.fw-fanctrl.nixosModules.default
-      #       # inputs.nix-topology.nixosModules.default
-      #       inputs.home-manager.darwinModules.home-manager
-      #       "${self}/hosts/darwin/${configName}"
-      #       "${self}/modules/nixos/darwin"
-      #       # needed for infrastructure
-      #       "${self}/modules/nixos/common/meta.nix"
-      #       "${self}/modules/nixos/common/globals.nix"
-      #       {
-      #         node.name = configName;
-      #         node.secretsDir = ../hosts/darwin/${configName}/secrets;
-      #       }
-      #     ];
-      #   };
+      mkDarwinHost =
+        { minimal }:
+        configName:
+        inputs.nix-darwin.lib.darwinSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              lib
+              self
+              minimal
+              configName
+              ;
+            inherit (config)
+              ;
+          };
+          modules = [
+            "${self}/hosts/darwin/${configName}"
+            inputs.home-manager.darwinModules.home-manager
+            # "${self}/profiles/home/darwin"
+          ];
+        };
 
       mkHalfHost =
         { minimal }:
@@ -117,9 +105,9 @@
       nixosConfigurationsMinimal = lib.genAttrs nixosHosts (mkNixosHost {
         minimal = true;
       });
-      # darwinConfigurations = lib.genAttrs darwinHosts (mkDarwinHost {
-      #   minimal = false;
-      # });
+      darwinConfigurations = lib.genAttrs darwinHosts (mkDarwinHost {
+        minimal = false;
+      });
       # darwinConfigurationsMinimal = lib.genAttrs darwinHosts (mkDarwinHost {
       #   minimal = true;
       # });
@@ -130,7 +118,7 @@
         type = "home";
         pkgs = lib.solarsystem.pkgsFor.aarch64-linux;
         # pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
-         minimal = false;
+        minimal = false;
       };
 
       # nodes = config.nixosConfigurations // config.darwinConfigurations;

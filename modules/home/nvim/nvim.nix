@@ -10,9 +10,9 @@ let
   cfg = config.solarsystem.modules.nixvim;
 in
 {
-  options.solarsystem.modules.nixvim = lib.mkEnableOption "Enable and configure NixVim with additional packages";
 
-  config = lib.mkIf cfg {
+  options.solarsystem.modules.nixvim = lib.mkEnableOption "nixvim";
+  config = lib.mkIf config.solarsystem.modules.nixvim {
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
@@ -60,7 +60,6 @@ in
       };
     };
   };
-
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
   ];

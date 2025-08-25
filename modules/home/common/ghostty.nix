@@ -30,9 +30,9 @@ in
 
         shell-integration = "zsh";
 
-        window-decoration = false;
+        window-decoration = true;
         # window-theme = "dark";
-        background-opacity = 0;
+        background-opacity = 10;
         window-padding-x = 10;
         window-padding-y = 10;
 

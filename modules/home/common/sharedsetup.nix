@@ -14,9 +14,9 @@ in
     isLaptop = lib.mkEnableOption "laptop host";
     isNixos = lib.mkEnableOption "nixos host";
     isPublic = lib.mkEnableOption "is a public machine (no secrets)";
-    # isDarwin = lib.mkEnableOption "darwin host";
+    isDarwin = lib.mkEnableOption "darwin host";
     isLinux = lib.mkEnableOption "whether this is a linux machine";
-    # isBtrfs = lib.mkEnableOption "use btrfs filesystem";
+     isBtrfs = lib.mkEnableOption "use btrfs filesystem";
     mainUser = lib.mkOption {
       type = lib.types.str;
       default = if (!config.solarsystem.minimal) then globals.user.name else "sheep";

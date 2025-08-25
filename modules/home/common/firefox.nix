@@ -10,6 +10,10 @@ let
   cfg = config.solarsystem.modules.firefox;
 in
 {
+  imports = [
+    inputs.nix-firefox-addons.homeManagerModules.default
+  ];
+
   options.solarsystem.modules.firefox = lib.mkEnableOption "Enable Firefox with preconfigured addons";
 
   config = lib.mkIf cfg {
