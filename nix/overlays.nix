@@ -22,7 +22,8 @@ in
           # merge overlays, now including Matlab
           (nixpkgs-stable final prev)
           // (inputs.nixgl.overlay final prev)
-          // (inputs.nix-matlab.overlay final prev);
+          // (inputs.nix-matlab.overlay final prev)
+          // (inputs.nix-firefox-addons.overlays.default final prev);
       };
     };
 }

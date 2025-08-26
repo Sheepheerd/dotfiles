@@ -11,7 +11,7 @@ let
 in
 {
   imports = [
-    inputs.nix-firefox-addons.homeManagerModules.default
+    # inputs.nix-firefox-addons.homeManagerModules.default
   ];
 
   options.solarsystem.modules.firefox = lib.mkEnableOption "Enable Firefox with preconfigured addons";
