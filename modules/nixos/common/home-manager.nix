@@ -14,6 +14,7 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       verbose = true;
+      backupFileExtension = ".bk";
       users.sheep.imports = [
         {
           imports = [
