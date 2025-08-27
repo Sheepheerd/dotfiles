@@ -88,12 +88,14 @@ in
     brews = [
       "x86_64-elf-binutils"
       "x86_64-elf-gcc"
+      "tailscale"
     ];
     casks = [
       "ghostty"
       "nikitabobko/tap/aerospace"
       "vesktop"
       "firefox"
+      "ghdl"
     ];
 
   };
@@ -109,17 +111,15 @@ in
     };
 
     defaults = {
-      NSGlobalDomain = {
-        AppleKeyboardUIMode = 3;
-        "com.apple.keyboard.fnState" = true;
-      };
-
       controlcenter = {
         BatteryShowPercentage = true;
         NowPlaying = false;
       };
       NSGlobalDomain = {
         "com.apple.sound.beep.volume" = 0.000;
+        NSWindowShouldDragOnGesture = true;
+        AppleKeyboardUIMode = 3;
+        "com.apple.keyboard.fnState" = true;
         AppleInterfaceStyle = "Dark";
         ApplePressAndHoldEnabled = false;
         AppleShowAllExtensions = true;

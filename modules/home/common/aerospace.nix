@@ -18,8 +18,8 @@
       start-at-login = true
 
       # Normalization settings
-      enable-normalization-flatten-containers = true
-      enable-normalization-opposite-orientation-for-nested-containers = true
+      enable-normalization-flatten-containers = false
+      enable-normalization-opposite-orientation-for-nested-containers = false
 
       # Accordion layout settings
       accordion-padding = 30
@@ -30,7 +30,7 @@
 
       # Mouse follows focus settings
       on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-      on-focus-changed = ['move-mouse window-lazy-center']
+      # on-focus-changed = ['move-mouse window-lazy-center']
 
       # Automatically unhide macOS hidden apps
       automatically-unhide-macos-hidden-apps = true
@@ -58,7 +58,7 @@
       # Window management
       alt-q = "close"
       alt-f = 'fullscreen'
-      #alt- = 'layout floating tiling'
+      alt-space = 'layout floating tiling'
 
       # Focus movement
       alt-h = 'focus left'
@@ -136,24 +136,13 @@
 
       # Window detection rules
       [[on-window-detected]]
-      if.app-id = 'com.brave.Browser'
+      if.app-id = 'org.mozilla.firefox'
       run = 'move-node-to-workspace 1'
 
       [[on-window-detected]]
-      if.app-id = 'org.alacritty'
+      if.app-id = 'com.mitchellh.ghostty'
       run = 'move-node-to-workspace 2'
 
-      [[on-window-detected]]
-      if.app-id = 'com.tdesktop.Telegram'
-      run = 'move-node-to-workspace 3'
-
-      [[on-window-detected]]
-      if.app-id = 'com.obsproject.obs-studio'
-      run = 'move-node-to-workspace 4'
-
-      [[on-window-detected]]
-      if.app-id = 'us.zoom.xos'
-      run = 'move-node-to-workspace 5'
     '';
   };
 }

@@ -29,7 +29,7 @@ in
           bitwarden-password-manager
           darkreader
           vimium-ff
-          adblock-for-youtube
+          sponsorblock
           dearrow
         ];
 
