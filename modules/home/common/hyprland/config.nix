@@ -252,8 +252,8 @@ in
 
       extraConfig = ''
         ${monitor}
-        ${extraEnv}
       '';
+      #${extraEnv}
 
       systemd.enable = true;
     };

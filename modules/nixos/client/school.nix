@@ -22,7 +22,7 @@ in
     virtualisation.spiceUSBRedirection.enable = true;
 
     environment.systemPackages = with pkgs; [
-      matlab
+      (lib.mkIf (!config.solarsystem.isLaptop) matlab)
 
       coreutils
       qucs-s
@@ -33,6 +33,5 @@ in
       octaveFull
       quickemu
     ];
-
   };
 }

@@ -38,6 +38,10 @@ in
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
      asahi = true;
+
+    modules.sunshine = false;
+    modules.steam = false;
+    modules.minecraft = false;
     # rootDisk = "/dev/nvme0n1";
 
     # FIX
