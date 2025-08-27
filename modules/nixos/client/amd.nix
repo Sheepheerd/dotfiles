@@ -11,7 +11,18 @@
   };
 
   config = lib.mkIf config.solarsystem.modules.amd {
-    hardware.graphics.enable = true;
+
+    hardware = {
+      graphics = {
+        enable = true;
+        enable32Bit = true;
+      };
+
+      amdgpu.amdvlk = {
+        enable = true;
+        support32Bit.enable = true;
+      };
+    };
 
     boot.initrd.kernelModules = [ "amdgpu" ];
     services.xserver.videoDrivers = [ "amdgpu" ];
@@ -20,16 +31,9 @@
       "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     ];
 
-    hardware.graphics.enable32Bit = true;
-
-    hardware.graphics.extraPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       lact
-      amdvlk
-      rocmPackages.clr.icd
-    ];
-    # For 32 bit applications
-    hardware.graphics.extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
+      clinfo
     ];
 
     systemd.packages = with pkgs; [ lact ];
