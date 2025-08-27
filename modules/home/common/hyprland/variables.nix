@@ -32,9 +32,9 @@ in
         GSK_RENDERER = "ngl";
       })
 
-      (lib.mkIf (!isLaptop) {
-        libva_driver_name = "nvidia";
-      })
+      # (lib.mkIf (!isLaptop) {
+      #   libva_driver_name = "nvidia";
+      # })
     ];
   };
 }

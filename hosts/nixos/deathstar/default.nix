@@ -39,6 +39,7 @@ in
     # rootDisk = "/dev/nvme0n1";
     modules.sunshine = true;
     modules.steam = true;
+    modules.minecraft = true;
     # FIX
     profiles = {
       # btrfs = true;
