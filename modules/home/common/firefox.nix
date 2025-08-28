@@ -794,7 +794,7 @@ in
              1363508 & 1826051 - spoof/suppress Pointer Events (FF64, FF132)
              1492766 - spoof pointerEvent.pointerid (FF65)
              1485266 - disable exposure of system colors to CSS or canvas (FF67)
-             1494034 - return "light" with prefers-color-scheme (FF67)
+             1494034 - return "dark" with prefers-color-scheme (FF67)
              1564422 - spoof audioContext outputLatency (FF70)
              1595823 - return audioContext sampleRate as 44100 (FF72)
              1607316 - spoof pointer as coarse and hover as none (ANDROID) (FF74)

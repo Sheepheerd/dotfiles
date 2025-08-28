@@ -31,13 +31,13 @@ in
   networking = {
     hostName = "novastar";
   };
-
+  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
   solarsystem = lib.recursiveUpdate {
     # info = "Apple M1";
     # firewall = lib.mkForce true;
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
-     asahi = true;
+    asahi = true;
 
     modules.sunshine = false;
     modules.steam = false;

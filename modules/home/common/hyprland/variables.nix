@@ -24,12 +24,12 @@ in
         SDL_VIDEODRIVER = "wayland";
         CLUTTER_BACKEND = "wayland";
         GRIMBLAST_HIDE_CURSOR = 0;
-        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-        OZONE_PLATFORM = "wayland";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        OZONE_PLATFORM = "auto";
       }
 
       (lib.mkIf isLaptop {
-        GSK_RENDERER = "ngl";
+        GSK_RENDERER = "vulkan";
       })
 
       # (lib.mkIf (!isLaptop) {
