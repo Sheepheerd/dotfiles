@@ -29,7 +29,7 @@ in
       }
 
       (lib.mkIf isLaptop {
-        GSK_RENDERER = "vulkan";
+        GSK_RENDERER = "ngl";
       })
 
       # (lib.mkIf (!isLaptop) {
