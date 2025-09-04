@@ -17,7 +17,6 @@
       };
 
       ripgrep.enable = true;
-      eza.enable = true;
       zoxide.enable = true;
       bat.enable = true;
     };

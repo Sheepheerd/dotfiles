@@ -17,6 +17,7 @@ in
     environment.systemPackages =
       with pkgs;
       lib.optionals (!minimal) [
+        firefox
 
         # better make for general tasks
         just

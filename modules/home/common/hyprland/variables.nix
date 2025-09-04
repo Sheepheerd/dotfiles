@@ -19,6 +19,7 @@ in
         MOZ_ENABLE_WAYLAND = 1;
         WLR_NO_HARDWARE_CURSORS = 1;
         XDG_CURRENT_DESKTOP = "Hyprland";
+        WLR_RENDERER_ALLOW_SOFTWARE = "1";
         XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "Hyprland";
         SDL_VIDEODRIVER = "wayland";
@@ -29,7 +30,8 @@ in
       }
 
       (lib.mkIf isLaptop {
-        GSK_RENDERER = "ngl";
+        # GSK_RENDERER = "ngl";
+        WLR_DRM_DEVICES = "/dev/dri/card0";
       })
 
       # (lib.mkIf (!isLaptop) {

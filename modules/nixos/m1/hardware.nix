@@ -21,9 +21,6 @@ in
   config = {
     hardware.asahi = {
       enable = config.solarsystem.isLaptop;
-      # enable = true;
-      # useExperimentalGPUDriver = true;
-      # experimentalGPUInstallMode = "replace";
       setupAsahiSound = true;
 
       peripheralFirmwareDirectory = lib.mkIf (builtins.pathExists (self + "/extrafiles/firmware")) (
