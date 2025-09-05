@@ -7,6 +7,7 @@
 let
   servicePort = 3001;
   serviceUser = "calibre";
+  serviceGroup = "calibre";
   serviceName = "calibre";
   library = "/var/lib/calibre-server";
 in
@@ -14,7 +15,12 @@ in
   options.solarsystem.modules.server.calibre = lib.mkEnableOption "enable ${serviceName} on server";
   config = lib.mkIf config.solarsystem.modules.server.immich {
 
-    users.users.${serviceUser} = {
+    users = {
+      groups.${serviceGroup} = { };
+      users.${serviceUser} = {
+        group = lib.mkForce serviceGroup;
+        isSystemUser = true;
+      };
     };
 
     fileSystems."/var/lib/calibre-server" = {
@@ -36,13 +42,13 @@ in
       calibre-web = {
         enable = true;
         listen = {
-          ip = "localhost";
+          ip = "0.0.0.0";
           port = 8095;
         };
         options = {
           enableBookConversion = true;
           enableBookUploading = true;
-          reverseProxyAuth.enable = true;
+          # reverseProxyAuth.enable = true;
           calibreLibrary = "/var/lib/calibre-server";
         };
 
