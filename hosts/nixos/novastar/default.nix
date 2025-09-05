@@ -42,6 +42,7 @@ in
     modules.sunshine = false;
     modules.steam = false;
     modules.minecraft = false;
+    modules.dolphin = true;
     # rootDisk = "/dev/nvme0n1";
 
     # FIX
