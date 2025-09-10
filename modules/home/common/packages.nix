@@ -26,7 +26,6 @@
       let
         basePackages = [
           # Utils
-          typst
           nurl
           croc
           clippy

@@ -32,6 +32,7 @@ in
       virt-manager
       octaveFull
       quickemu
+      libqalculate
     ];
   };
 }
