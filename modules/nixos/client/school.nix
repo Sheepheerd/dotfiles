@@ -33,6 +33,15 @@ in
       octaveFull
       quickemu
       libqalculate
+      chromium
+      libreoffice-qt6-fresh
     ];
+
+    services.udev.extraRules = ''
+      # TI-Nspire
+      SUBSYSTEM=="usb", ATTR{idVendor}=="0451", ATTR{idProduct}=="e012", ENV{ID_PDA}="1"
+      # TI-Nspire CX II
+      SUBSYSTEM=="usb", ATTR{idVendor}=="0451", ATTR{idProduct}=="e022", ENV{ID_PDA}="1"
+    '';
   };
 }

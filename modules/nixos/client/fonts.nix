@@ -17,6 +17,8 @@ in
     fontPackages = mkOption {
       type = with types; listOf package;
       default = with pkgs; [
+        corefonts
+
         jetbrains-mono
         nerd-font-patcher
         noto-fonts-color-emoji

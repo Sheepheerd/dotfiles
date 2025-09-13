@@ -30,6 +30,7 @@
           croc
           clippy
           curl
+          wakeonlan
 
           # Oxidization
           ouch
