@@ -28,6 +28,8 @@
         calibre = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
+
+      amd = lib.mkDefault false;
       ageServer = lib.mkDefault true;
     };
 

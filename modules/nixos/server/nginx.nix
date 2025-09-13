@@ -48,7 +48,6 @@
 
     security.acme = {
       acceptTerms = true;
-      preliminarySelfsigned = false;
       defaults = {
         email = "shepard@heerd.dev";
         dnsProvider = "cloudflare";

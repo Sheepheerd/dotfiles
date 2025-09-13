@@ -33,9 +33,7 @@ in
 
   solarsystem = lib.recursiveUpdate {
     modules.firewall = lib.mkForce true;
-    # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = false;
-    # rootDisk = "/dev/nvme0n1";
 
     # FIX
     profiles = {
