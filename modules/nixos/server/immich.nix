@@ -2,6 +2,7 @@
   lib,
   config,
   globals,
+  pkgs,
   ...
 }:
 let
@@ -24,6 +25,7 @@ in
 
     services.${serviceName} = {
       accelerationDevices = null;
+      package = pkgs.immich;
       enable = true;
       host = "0.0.0.0";
       port = servicePort;
