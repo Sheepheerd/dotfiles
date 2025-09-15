@@ -30,6 +30,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-xilinx = {
+      # Recommended if you also override the default nixpkgs flake, common among
+      # nixos-unstable users:
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-xilinx";
+    };
+
     nix-matlab = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-matlab";
