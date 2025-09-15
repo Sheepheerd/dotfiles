@@ -60,10 +60,8 @@
           youtube-music
         ];
 
-        extraX86Packages = lib.optionals (!config.solarsystem.isLaptop) [
-          tutanota-desktop
-        ];
       in
-      basePackages ++ extraNixosPackages ++ extraX86Packages;
+      # basePackages ++ extraNixosPackages ++ extraX86Packages;
+      basePackages ++ extraNixosPackages;
   };
 }

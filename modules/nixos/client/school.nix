@@ -30,11 +30,8 @@ in
       # ghdl
       nvc
       virt-manager
-      octaveFull
-      quickemu
       libqalculate
-      chromium
-      libreoffice-qt6-fresh
+      wayvnc
     ];
 
     services.udev.extraRules = ''

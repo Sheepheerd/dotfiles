@@ -30,7 +30,6 @@ in
           ublock-origin
           bitwarden-password-manager
           darkreader
-          vimium-ff
           sponsorblock
           dearrow
         ];

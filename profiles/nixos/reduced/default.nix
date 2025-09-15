@@ -21,8 +21,8 @@
       # keyboards = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       # # xdg-portal = lib.mkDefault true;
-      distrobox = lib.mkDefault true;
-      appimage = lib.mkDefault true;
+      distrobox = lib.mkDefault false;
+      appimage = lib.mkDefault false;
       hyprland = lib.mkDefault true;
       # nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
       nvidia = false;
