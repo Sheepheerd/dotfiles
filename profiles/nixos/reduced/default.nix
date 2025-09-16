@@ -21,7 +21,7 @@
       # keyboards = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       # # xdg-portal = lib.mkDefault true;
-      distrobox = lib.mkDefault false;
+      distrobox = lib.mkDefault true;
       appimage = lib.mkDefault false;
       hyprland = lib.mkDefault true;
       # nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
@@ -29,9 +29,9 @@
       amd = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
       tailscale = lib.mkDefault true;
       mullvad = lib.mkDefault true;
-      # server = {
-      #   ssh = lib.mkDefault true;
-      # };
+      server = {
+        ssh = lib.mkDefault true;
+      };
       school = lib.mkDefault true;
     };
 

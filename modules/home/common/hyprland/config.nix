@@ -16,9 +16,7 @@ let
       '';
 
   extraEnv = lib.optionalString isLaptop ''
-    env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
-    env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
-    env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile
+    exec-once = wayvnc 100.112.23.95
   '';
 in
 {
@@ -255,9 +253,9 @@ in
       };
 
       extraConfig = ''
-        ${monitor}
+          ${monitor}
+        ${extraEnv}
       '';
-      #${extraEnv}
 
       systemd.enable = true;
     };

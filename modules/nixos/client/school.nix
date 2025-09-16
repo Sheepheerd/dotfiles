@@ -22,7 +22,8 @@ in
     virtualisation.spiceUSBRedirection.enable = true;
 
     environment.systemPackages = with pkgs; [
-      (lib.mkIf (!config.solarsystem.isLaptop) matlab vivado)
+      (lib.mkIf (!config.solarsystem.isLaptop) matlab)
+      (lib.mkIf (!config.solarsystem.isLaptop) vivado)
 
       coreutils
       qucs-s

@@ -14,8 +14,7 @@ in
   config = lib.mkIf cfg.distrobox {
     environment.systemPackages = with pkgs; [
       distrobox
-      boxbuddy
-      qemu_full
+      wineWowPackages.waylandFull
     ];
 
     virtualisation.podman = {
