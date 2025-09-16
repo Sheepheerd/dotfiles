@@ -33,6 +33,8 @@ in
       virt-manager
       libqalculate
       wayvnc
+      remmina
+
     ];
 
     services.udev.extraRules = ''

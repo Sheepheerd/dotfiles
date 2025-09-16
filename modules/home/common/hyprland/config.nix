@@ -61,9 +61,10 @@ in
         };
 
         gestures = {
-          workspace_swipe = true;
-          workspace_swipe_fingers = 3;
-          workspace_swipe_cancel_ratio = 0.15;
+          gesture = [
+            "3, r, workspace, +1" # Three-finger swipe right: next workspace
+            "3, l, workspace, -1" # Three-finger swipe left: previous workspace
+          ];
 
         };
 
