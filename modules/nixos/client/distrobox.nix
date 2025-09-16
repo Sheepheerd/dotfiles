@@ -14,7 +14,6 @@ in
   config = lib.mkIf cfg.distrobox {
     environment.systemPackages = with pkgs; [
       distrobox
-      wineWowPackages.waylandFull
     ];
 
     virtualisation.podman = {

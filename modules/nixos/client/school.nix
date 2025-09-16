@@ -24,6 +24,7 @@ in
     environment.systemPackages = with pkgs; [
       (lib.mkIf (!config.solarsystem.isLaptop) matlab)
       (lib.mkIf (!config.solarsystem.isLaptop) vivado)
+      (lib.mkIf (!config.solarsystem.isLaptop) wineWowPackages.waylandFull)
 
       coreutils
       qucs-s
