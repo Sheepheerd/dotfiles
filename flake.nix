@@ -43,10 +43,15 @@
     };
 
     nixgl.url = "github:guibou/nixGL";
-    nix-firefox-addons = {
-      url = "github:osipog/nix-firefox-addons";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nix-firefox-addons = {
+    #   url = "github:osipog/nix-firefox-addons";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     agenix.url = "github:ryantm/agenix";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
