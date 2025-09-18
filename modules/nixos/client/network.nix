@@ -1,16 +1,9 @@
 {
-  self,
   lib,
   pkgs,
   config,
   ...
 }:
-let
-
-  inherit (config.solarsystem) mainUser;
-
-  iwd = config.networking.networkmanager.wifi.backend == "iwd";
-in
 {
   options.solarsystem = {
     modules.network = lib.mkEnableOption "network config";

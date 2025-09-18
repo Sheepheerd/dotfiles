@@ -1,7 +1,6 @@
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, ... }:
 let
   system = pkgs.system;
-  homeDir = config.home.homeDirectory;
 in {
   home.packages = with pkgs; [ easyeffects ];
   systemd.user.services.easyeffects = {

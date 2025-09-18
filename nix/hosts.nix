@@ -45,8 +45,6 @@
               minimal
               configName
               ;
-            inherit (config)
-              ;
           };
           modules = [
             "${self}/hosts/darwin/${configName}"
@@ -56,7 +54,7 @@
         };
 
       mkHalfHost =
-        { minimal }:
+        { }:
         configName: type: pkgs: {
           ${configName} =
             let

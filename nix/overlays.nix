@@ -1,12 +1,8 @@
 { self, inputs, ... }:
 
-let
-  inherit (self) outputs;
-  inherit (outputs) lib;
-in
 {
   flake =
-    { config, ... }:
+    { ... }:
     {
       overlays = {
         default =
