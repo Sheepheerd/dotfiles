@@ -63,6 +63,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ghdl = {
+      url = "github:Sheepheerd/nix-ghdl";
+    };
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     systems.url = "github:nix-systems/default";
   };

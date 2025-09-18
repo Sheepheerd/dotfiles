@@ -27,16 +27,11 @@ in
       (lib.mkIf (!config.solarsystem.isLaptop) wineWowPackages.waylandFull)
 
       coreutils
-      qucs-s
-      gtkwave
-      # ghdl
-      nvc
-      virt-manager
       libqalculate
       wayvnc
       remmina
       waypipe
-
+      xorg.xauth
     ];
 
     services.udev.extraRules = ''
