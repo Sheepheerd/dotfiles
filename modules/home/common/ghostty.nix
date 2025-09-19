@@ -18,7 +18,7 @@ in
 
       enableZshIntegration = true;
       settings = {
-        theme = "rose-pine";
+        theme = "Rose Pine";
         font-size = 12;
         font-family = "JetBrainsMono Nerd Font Mono";
         shell-integration-features = [

@@ -2,7 +2,7 @@
 { inputs, ... }:
 {
   flake =
-    { config, lib, ... }:
+    { lib, ... }:
     {
       globals =
         let
@@ -15,7 +15,7 @@
             modules = [
               ../modules/nixos/common/globals.nix
               (
-                { lib, ... }:
+                { ... }:
                 {
 
                 }
