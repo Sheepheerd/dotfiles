@@ -26,7 +26,7 @@
         radicale = lib.mkDefault true;
         nextcloud = lib.mkDefault true;
         calibre = lib.mkDefault true;
-        subsonic = lib.mkDefault true;
+        navidrome = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
 
