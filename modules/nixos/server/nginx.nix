@@ -41,6 +41,7 @@
             "bank.heerd.dev" = "100.113.25.38";
             "images.heerd.dev" = "100.113.25.38";
             "books.heerd.dev" = "100.113.25.38";
+            "music.heerd.dev" = "100.113.25.38";
           };
         };
       };
