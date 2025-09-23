@@ -10,9 +10,9 @@
     services.openssh = {
       enable = true;
       startWhenNeeded = lib.mkForce false;
-      forwardX11 = true;
       settings = {
         PasswordAuthentication = false;
+        X11Forwarding = true;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "yes";
       };

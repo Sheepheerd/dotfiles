@@ -52,9 +52,12 @@ in
             format = "{icon}";
             "on-click" = "activate";
             "format-icons" = {
+              "1" = "";
+              "2" = "";
+              "3" = "";
               urgent = "";
-              active = "";
-              default = "󰧞";
+              # active = "";
+              # default = "󰧞";
               "sort-by-number" = true;
             };
           };
