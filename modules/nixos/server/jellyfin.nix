@@ -2,15 +2,12 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 with lib;
 let
   serviceUser = "jellyfin";
-  serviceName = "jellyfin";
   serviceGroup = serviceUser;
-  servicePort = "8096";
   cfg = config.solarsystem.modules.server.jellyfin;
 in
 {

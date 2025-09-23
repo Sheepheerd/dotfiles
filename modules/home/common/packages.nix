@@ -10,17 +10,6 @@
 
   config = lib.mkIf config.solarsystem.modules.packages {
 
-    programs = {
-      nix-your-shell = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      ripgrep.enable = true;
-      zoxide.enable = true;
-      bat.enable = true;
-    };
-
     home.packages =
       with pkgs;
       let
@@ -46,9 +35,6 @@
           nerd-fonts.jetbrains-mono
           nerd-fonts.caskaydia-cove
 
-          # Python
-          pyenv
-
           # Tools
           tree
           nettools
@@ -60,10 +46,8 @@
           youtube-music
         ];
 
-        extraX86Packages = lib.optionals (!config.solarsystem.isLaptop) [
-          tutanota-desktop
-        ];
       in
-      basePackages ++ extraNixosPackages ++ extraX86Packages;
+      # basePackages ++ extraNixosPackages ++ extraX86Packages;
+      basePackages ++ extraNixosPackages;
   };
 }

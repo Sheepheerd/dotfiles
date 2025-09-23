@@ -1,14 +1,10 @@
 {
   lib,
   config,
-  pkgs,
   inputs,
   ...
 }:
 
-let
-  cfg = config.solarsystem.modules.nixvim;
-in
 {
 
   options.solarsystem.modules.nixvim = lib.mkEnableOption "nixvim";

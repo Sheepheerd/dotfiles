@@ -42,7 +42,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    firefox
+    # firefox
   ];
 
   home-manager = {
@@ -94,7 +94,7 @@ in
       "ghostty"
       "nikitabobko/tap/aerospace"
       "vesktop"
-      "firefox"
+      # "firefox"
       "ghdl"
     ];
 

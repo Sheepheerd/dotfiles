@@ -1,16 +1,9 @@
 {
-  self,
   lib,
   pkgs,
   config,
   ...
 }:
-let
-
-  inherit (config.solarsystem) mainUser;
-
-  iwd = config.networking.networkmanager.wifi.backend == "iwd";
-in
 {
   options.solarsystem = {
     modules.network = lib.mkEnableOption "network config";
@@ -28,10 +21,10 @@ in
     #   enable = lib.mkIf config.solarsystem.modules.resolved true;
     #   dnssec = "true";
     #   domains = [ "~." ];
-    #   fallbackDns = [
-    #     "1.1.1.1#one.one.one.one"
-    #     "1.0.0.1#one.one.one.one"
-    #   ];
+    #   # fallbackDns = [
+    #   #   "1.1.1.1#one.one.one.one"
+    #   #   "1.0.0.1#one.one.one.one"
+    #   # ];
     #   dnsovertls = "true";
     # };
 

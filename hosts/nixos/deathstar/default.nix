@@ -1,7 +1,4 @@
 {
-  self,
-  config,
-  inputs,
   lib,
   minimal,
   ...
@@ -30,6 +27,7 @@ in
 
   networking = {
     hostName = "deathstar";
+    interfaces.eno1.wakeOnLan.enable = true;
   };
 
   solarsystem = lib.recursiveUpdate {

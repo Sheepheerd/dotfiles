@@ -17,25 +17,13 @@ in
     environment.systemPackages =
       with pkgs;
       lib.optionals (!minimal) [
-        firefox
 
         # better make for general tasks
         just
 
-        # keyboards
-        qmk
-
-        # theme related
-        adwaita-icon-theme
-
         # bluetooth
         bluez
-        ghostscript_headless
-        wireguard-tools
         nixd
-        zig
-        zls
-        ansible-language-server
       ];
   };
 }

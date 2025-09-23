@@ -9,6 +9,10 @@ in
   };
 
   config = lib.mkIf cfg.programs {
-    programs.dconf.enable = true;
+    programs = {
+      dconf.enable = true;
+      nix-ld.enable = true;
+    };
+
   };
 }

@@ -15,10 +15,8 @@ let
         monitor = DP-3,1920x1080@144,0x0,1
       '';
 
-  extraEnv = lib.optionalString isLaptop ''
-    env = PATH,$HOME/.nix-profile/bin:$HOME/.nix-profile/sbin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/bin
-    env = NIX_PATH,nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs
-    env = NIX_PROFILES,/nix/var/nix/profiles/default $HOME/.nix-profile
+  extraEnv = lib.optionalString (!isLaptop) ''
+    exec-once = wayvnc 100.112.23.95
   '';
 in
 {
@@ -63,9 +61,10 @@ in
         };
 
         gestures = {
-          workspace_swipe = true;
-          workspace_swipe_fingers = 3;
-          workspace_swipe_cancel_ratio = 0.15;
+          gesture = [
+            "3, r, workspace, +1" # Three-finger swipe right: next workspace
+            "3, l, workspace, -1" # Three-finger swipe left: previous workspace
+          ];
 
         };
 
@@ -255,9 +254,9 @@ in
       };
 
       extraConfig = ''
-        ${monitor}
+          ${monitor}
+        ${extraEnv}
       '';
-      #${extraEnv}
 
       systemd.enable = true;
     };

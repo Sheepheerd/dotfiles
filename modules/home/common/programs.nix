@@ -8,6 +8,10 @@
   options.solarsystem.modules.programs = lib.mkEnableOption "programs settings";
   config = lib.mkIf config.solarsystem.modules.programs {
     programs = {
+      nix-your-shell = {
+        enable = true;
+        enableZshIntegration = true;
+      };
       bat = {
         enable = true;
         extraPackages = with pkgs.bat-extras; [

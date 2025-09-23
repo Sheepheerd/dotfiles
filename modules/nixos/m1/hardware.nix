@@ -6,9 +6,6 @@
   ...
 }:
 
-let
-  cfg = config.solarsystem;
-in
 {
 
   imports = [
