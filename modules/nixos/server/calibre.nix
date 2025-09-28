@@ -1,11 +1,9 @@
 {
   lib,
   config,
-  globals,
   ...
 }:
 let
-  servicePort = 3001;
   serviceUser = "calibre";
   serviceGroup = "calibre";
   serviceName = "calibre";

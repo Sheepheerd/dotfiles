@@ -1,7 +1,4 @@
 {
-  self,
-  config,
-  inputs,
   lib,
   minimal,
   ...

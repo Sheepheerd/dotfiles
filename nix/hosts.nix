@@ -23,8 +23,8 @@
           };
           modules = [
             inputs.agenix.nixosModules.default
-            # inputs.nix-firefox-addons.homeManagerModules.default
             inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"
             "${self}/modules/nixos"
@@ -45,8 +45,6 @@
               minimal
               configName
               ;
-            inherit (config)
-              ;
           };
           modules = [
             "${self}/hosts/darwin/${configName}"
@@ -56,7 +54,7 @@
         };
 
       mkHalfHost =
-        { minimal }:
+        { }:
         configName: type: pkgs: {
           ${configName} =
             let

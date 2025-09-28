@@ -30,6 +30,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-xilinx = {
       # Recommended if you also override the default nixpkgs flake, common among
       # nixos-unstable users:
@@ -43,10 +48,15 @@
     };
 
     nixgl.url = "github:guibou/nixGL";
-    nix-firefox-addons = {
-      url = "github:osipog/nix-firefox-addons";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nix-firefox-addons = {
+    #   url = "github:osipog/nix-firefox-addons";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     agenix.url = "github:ryantm/agenix";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
@@ -56,6 +66,10 @@
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ghdl = {
+      url = "github:Sheepheerd/nix-ghdl";
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";

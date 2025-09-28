@@ -1,8 +1,5 @@
 {
   self,
-  inputs,
-  outputs,
-  minimal,
   lib,
   ...
 }:

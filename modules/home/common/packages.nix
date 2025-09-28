@@ -10,17 +10,6 @@
 
   config = lib.mkIf config.solarsystem.modules.packages {
 
-    programs = {
-      nix-your-shell = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-
-      ripgrep.enable = true;
-      zoxide.enable = true;
-      bat.enable = true;
-    };
-
     home.packages =
       with pkgs;
       let
@@ -45,9 +34,6 @@
           noto-fonts
           nerd-fonts.jetbrains-mono
           nerd-fonts.caskaydia-cove
-
-          # Python
-          pyenv
 
           # Tools
           tree

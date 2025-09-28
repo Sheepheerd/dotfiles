@@ -13,6 +13,7 @@
       git = lib.mkDefault true;
       fuzzel = lib.mkDefault true;
       zsh = lib.mkDefault true;
+      programs = lib.mkDefault true;
       firefox = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       mako = lib.mkDefault true;

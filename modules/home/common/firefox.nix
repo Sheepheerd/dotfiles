@@ -21,14 +21,15 @@ in
     programs.firefox = {
       enable = true;
       # package = pkgs.firefox-bin;
-      package = null;
+      # package = null;
       profiles.default = {
         id = 0;
         name = "Default";
         search.default = "ddg";
-        extensions.packages = with pkgs.firefoxAddons; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+          # extensions.packages = with pkgs.firefoxAddons; [
           ublock-origin
-          bitwarden-password-manager
+          bitwarden
           darkreader
           sponsorblock
           dearrow

@@ -1,12 +1,8 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 
-let
-  inherit (self) outputs;
-  inherit (outputs) lib;
-in
 {
   flake =
-    { config, ... }:
+    { ... }:
     {
       overlays = {
         default =
@@ -23,8 +19,8 @@ in
           (nixpkgs-stable final prev)
           // (inputs.nixgl.overlay final prev)
           // (inputs.nix-matlab.overlay final prev)
-          // (inputs.nix-xilinx.overlay final prev)
-          // (inputs.nix-firefox-addons.overlays.default final prev);
+          // (inputs.nix-xilinx.overlay final prev);
+        # // (inputs.nix-firefox-addons.overlays.default final prev);
       };
     };
 }

@@ -5,6 +5,7 @@
   lib,
   outputs,
   globals,
+  pkgs,
   ...
 }:
 {
@@ -14,7 +15,9 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       verbose = true;
-      backupFileExtension = ".bk";
+      backupFileExtension =
+        "backup-"
+        + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
       users.sheep.imports = [
         {
           imports = [
