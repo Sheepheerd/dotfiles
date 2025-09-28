@@ -14,6 +14,7 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "yes";
+        X11Forwarding = true;
       };
       # hostKeys = [
       #   {

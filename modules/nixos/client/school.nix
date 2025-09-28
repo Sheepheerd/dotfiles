@@ -36,7 +36,6 @@ in
       wayvnc
       remmina
       waypipe
-
     ];
 
     services.udev.extraRules = ''
