@@ -156,15 +156,14 @@ in
           ",switch:off:Lid Switch, exec, hyprlock --immediate"
 
           "SUPER SHIFT, E, exec, $HOME/.scripts/fuzzel-powermenu.sh"
-          "SUPER, C, exec, killall fuzzel ||  $HOME/.scripts/fuzzel-calculator.sh"
-          "SUPER, A, exec, killall fuzzel || fuzzel"
+          "SUPER, SPACE, exec, killall fuzzel || fuzzel"
           "SUPER, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
           # Window Management
           "SUPER, Q, killactive,"
           "SUPER SHIFT, Q, exit,"
           "SUPER, F, fullscreen,"
-          "SUPER, Space, togglefloating,"
+          "SUPER SHIFT, F, togglefloating,"
           "SUPER, P, pseudo, # dwindle"
           "SUPER, S, togglesplit, # dwindle"
 

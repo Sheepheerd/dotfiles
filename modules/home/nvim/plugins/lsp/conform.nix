@@ -2,15 +2,8 @@
 {
   programs.nixvim = {
     extraPackages = with pkgs; [
-      # black
-      ruff
-      # google-java-format
-      prettierd
       nixfmt-rfc-style
-      astyle
       stylua
-      rustfmt
-      yamlfix
     ];
     plugins.conform-nvim = {
       enable = true;
@@ -63,6 +56,7 @@
           nix = [ "nixfmt" ];
           cpp = [ "astyle" ];
           c = [ "astyle" ];
+          vhdl = [ "ghdl" ];
           markdown = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";
