@@ -44,6 +44,7 @@
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [
           vesktop
           youtube-music
+
         ];
 
       in
