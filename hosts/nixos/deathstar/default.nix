@@ -15,6 +15,7 @@ let
     profiles = {
       reduced = lib.mkIf (!minimal) true;
       minimal = lib.mkIf minimal true;
+      gaming = true;
     };
   };
 in
@@ -35,9 +36,6 @@ in
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
     # rootDisk = "/dev/nvme0n1";
-    modules.sunshine = true;
-    modules.steam = true;
-    modules.minecraft = true;
     # FIX
     profiles = {
       # btrfs = true;

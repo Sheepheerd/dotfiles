@@ -30,17 +30,8 @@ in
   };
   boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
   solarsystem = lib.recursiveUpdate {
-    # info = "Apple M1";
-    # firewall = lib.mkForce true;
-    # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
     asahi = true;
-
-    modules.sunshine = false;
-    modules.steam = false;
-    modules.minecraft = false;
-    modules.dolphin = true;
-    # rootDisk = "/dev/nvme0n1";
 
     # FIX
     profiles = {
@@ -51,8 +42,6 @@ in
   home-manager.users."${mainUser}" = {
     home.stateVersion = lib.mkForce "25.05";
     solarsystem = lib.recursiveUpdate {
-      # lowResolution = "1280x800";
-      # highResolution = "1920x1080";
     } sharedOptions;
   };
 }
