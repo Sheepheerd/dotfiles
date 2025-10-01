@@ -13,14 +13,6 @@ in
 
   config = lib.mkIf cfg.school {
 
-    programs.virt-manager.enable = true;
-
-    users.groups.libvirtd.members = [ "sheep" ];
-
-    virtualisation.libvirtd.enable = true;
-
-    virtualisation.spiceUSBRedirection.enable = true;
-
     environment.systemPackages = with pkgs; [
       (lib.mkIf (!config.solarsystem.isLaptop) matlab)
       (lib.mkIf (!config.solarsystem.isLaptop) vivado)

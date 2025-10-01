@@ -18,14 +18,12 @@
       zsh = lib.mkDefault true;
       blueman = lib.mkDefault true;
       networkDevices = lib.mkDefault true;
-      # keyboards = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       # # xdg-portal = lib.mkDefault true;
-      distrobox = lib.mkDefault true;
+      virt = lib.mkDefault true;
       appimage = lib.mkDefault false;
       hyprland = lib.mkDefault true;
-      # nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
-      nvidia = false;
+      nvidia = lib.mkDefault false;
       amd = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
       tailscale = lib.mkDefault true;
       mullvad = lib.mkDefault true;
