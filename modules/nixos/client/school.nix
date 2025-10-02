@@ -24,6 +24,7 @@ in
       remmina
       waypipe
       xorg.xauth
+      gemini-cli
     ];
 
     services.udev.extraRules = ''
