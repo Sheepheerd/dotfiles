@@ -19,7 +19,11 @@ in
       default = with pkgs; [
         corefonts
 
-        jetbrains-mono
+        noto-fonts
+        liberation_ttf
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.caskaydia-cove
+        # jetbrains-mono
         nerd-font-patcher
         noto-fonts-color-emoji
       ];

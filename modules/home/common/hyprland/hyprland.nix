@@ -14,6 +14,7 @@ in
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
       pamixer
+      clippy
       swww
       grim
       slurp
