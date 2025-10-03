@@ -31,7 +31,6 @@ in
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;
-    modules.box64Asahi = true;
     modules.virt = true;
 
     # FIX

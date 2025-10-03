@@ -35,11 +35,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    box64-binfmt = {
-      url = "github:Sheepheerd/nixos-box64-binfmt";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-xilinx = {
       # Recommended if you also override the default nixpkgs flake, common among
       # nixos-unstable users:
