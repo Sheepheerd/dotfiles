@@ -25,6 +25,7 @@
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+            inputs.box64-binfmt.nixosModules.default
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"
             "${self}/modules/nixos"

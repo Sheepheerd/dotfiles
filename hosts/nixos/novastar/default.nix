@@ -28,11 +28,11 @@ in
   networking = {
     hostName = "novastar";
   };
-  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;
-    modules.virt = false;
+    modules.box64Asahi = true;
+    modules.virt = true;
 
     # FIX
     profiles = {
