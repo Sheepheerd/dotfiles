@@ -48,8 +48,9 @@
               telemetry = false;
             };
           };
-          vhdl_ls = {
+          ghdl_ls = {
             enable = true;
+            package = null;
           };
           asm_lsp = {
             enable = true;

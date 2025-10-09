@@ -224,7 +224,7 @@ in
           ",XF86AudioNext,exec, playerctl next"
           ",XF86AudioPrev,exec, playerctl previous"
           ",XF86AudioStop,exec, playerctl stop"
-          ",XF86AudioMute,exec, pamixer -t"
+          ",XF86AudioMute,exec, amixer set Master 1+ toggle"
           # # binds that repeat when held
 
           # screenshot
@@ -233,8 +233,8 @@ in
           ''$mainMod SHIFT, S, exec, grim -g "$(slurp)"''
         ];
         binde = [
-          ",XF86AudioRaiseVolume,exec, pamixer -i 2"
-          ",XF86AudioLowerVolume,exec, pamixer -d 2"
+          ",XF86AudioRaiseVolume,exec, amixer set Master 5%+"
+          ",XF86AudioLowerVolume,exec, amixer set Master 5%-"
         ];
 
         bindl = [
