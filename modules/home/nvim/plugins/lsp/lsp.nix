@@ -1,5 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
 {
+
   programs.nixvim = {
     plugins = {
       java = {
@@ -51,6 +52,10 @@
           ghdl_ls = {
             enable = true;
             package = null;
+          };
+          arduino_language_server = {
+            enable = true;
+            # Requires aruino-cli
           };
           asm_lsp = {
             enable = true;

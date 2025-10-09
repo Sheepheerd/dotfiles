@@ -6,7 +6,7 @@
       sunshine = lib.mkDefault true;
       steam = lib.mkDefault true;
       minecraft = lib.mkDefault true;
-      dolphin = lib.mkDefault true;
+      dolphin = lib.mkDefault false;
     };
 
   };
