@@ -42,6 +42,10 @@ in
   home-manager.users."${mainUser}" = {
     home.stateVersion = lib.mkForce "25.05";
     solarsystem = lib.recursiveUpdate {
+      profiles = {
+        nixvim = true;
+      };
+
     } sharedOptions;
   };
 }

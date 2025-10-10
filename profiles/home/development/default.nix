@@ -13,7 +13,7 @@
       zsh = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      nixvim = lib.mkDefault true;
+      # nixvim = lib.mkDefault true;
     };
   };
 

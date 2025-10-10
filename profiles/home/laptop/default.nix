@@ -20,7 +20,7 @@
       tmux = lib.mkDefault true;
       waybar.enable = lib.mkDefault true;
       hyprland = lib.mkDefault true;
-      nixvim = lib.mkDefault true;
+      # nixvim = lib.mkDefault true;
     };
   };
 

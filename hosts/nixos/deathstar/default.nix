@@ -47,6 +47,9 @@ in
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";
+      profiles = {
+        nixvim = true;
+      };
     } sharedOptions;
   };
 }

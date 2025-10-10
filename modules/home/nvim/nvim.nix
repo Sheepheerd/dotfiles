@@ -7,8 +7,8 @@
 
 {
 
-  options.solarsystem.modules.nixvim = lib.mkEnableOption "nixvim";
-  config = lib.mkIf config.solarsystem.modules.nixvim {
+  options.solarsystem.modules.nixvim.enable = lib.mkEnableOption "nixvim";
+  config = lib.mkIf config.solarsystem.modules.nixvim.enable {
     programs.nixvim = {
       enable = true;
       defaultEditor = true;

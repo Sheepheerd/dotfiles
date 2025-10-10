@@ -11,7 +11,7 @@
       # git = lib.mkDefault true;
       zsh = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      nixvim = lib.mkDefault true;
+      # nixvim = lib.mkDefault true;
     };
   };
 
