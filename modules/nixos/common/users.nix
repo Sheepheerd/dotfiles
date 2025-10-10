@@ -13,19 +13,21 @@
       users."${config.solarsystem.mainUser}" = {
         isNormalUser = true;
         description = "goober";
-        extraGroups =
-          [ "wheel" ]
-          ++ lib.optionals (!minimal) [
-            "networkmanager"
-            "wireshark"
-            "syncthing"
-            "docker"
-            "audio"
-            "video"
-            "vboxusers"
-            "libvirtd"
-            "scanner"
-          ];
+        extraGroups = [
+          "wheel"
+        ]
+        ++ lib.optionals (!minimal) [
+          "networkmanager"
+          "wireshark"
+          "syncthing"
+          "docker"
+          "audio"
+          "dialout"
+          "video"
+          "vboxusers"
+          "libvirtd"
+          "scanner"
+        ];
         packages = with pkgs; [ ];
       };
     };
