@@ -167,7 +167,7 @@
                     "-cli"
                     "arduino-cli"
                     "-cli-config"
-                    "$HOME/.arduino15/arduino-cli.yaml"
+                    "/home/sheep/.arduino15/arduino-cli.yaml"
                     "-fqbn"
                     "arduino:avr:uno"
                   ];

@@ -19,10 +19,8 @@ in
       lib.optionals (!minimal) [
 
         # better make for general tasks
-        just
 
         # clang-tools
-        arduino-cli
         # bluetooth
         bluez
         nixd
