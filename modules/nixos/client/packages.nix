@@ -21,8 +21,7 @@ in
         # better make for general tasks
         just
 
-        arduino-language-server
-        clang-tools
+        # clang-tools
         arduino-cli
         # bluetooth
         bluez

@@ -55,12 +55,23 @@
           };
           arduino_language_server = {
             enable = true;
-            package = null;
-            rootMarkers = [ "arduino-cli.yaml" ];
+            rootMarkers = [
+              ".git"
+            ];
+            settings = {
+              capabilities = {
+                textDocument = {
+                  semanticTokens = null;
+                };
+                workspace = {
+                  semanticTokens = null;
+                };
+              };
+            };
             cmd = [
               "arduino-language-server"
-              # "-clangd"
-              # "clangd"
+              "-clangd"
+              "clangd"
               "-cli"
               "arduino-cli"
               "-cli-config"
@@ -68,7 +79,6 @@
               "-fqbn"
               "arduino:avr:uno"
             ];
-            # Requires aruino-cli
           };
           asm_lsp = {
             enable = true;
@@ -93,7 +103,7 @@
           };
           # cssls = { enable = true; };
           clangd = {
-            enable = false;
+            enable = true;
             # cmd = [ "clangd" "--offset-encoding=utf-16" ];
           };
           dockerls = {
