@@ -19,6 +19,7 @@
           (nixpkgs-stable final prev)
           // (inputs.nixgl.overlay final prev)
           // (inputs.nix-matlab.overlay final prev)
+          // (inputs.box64-binfmt.overlays.default final prev)
           // (inputs.nix-xilinx.overlay final prev);
         # // (inputs.nix-firefox-addons.overlays.default final prev);
       };

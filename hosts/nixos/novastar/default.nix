@@ -32,6 +32,7 @@ in
     hasBluetooth = true;
     asahi = true;
     modules.virt = true;
+    modules.box = true;
 
     # FIX
     profiles = {
