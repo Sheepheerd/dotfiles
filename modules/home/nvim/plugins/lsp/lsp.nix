@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -37,8 +36,6 @@
   config = lib.mkIf config.solarsystem.modules.nixvim.lsp.enable {
     programs.nixvim = {
       lsp = {
-        # enable = config.solarsystem.modules.nixvim.lsp.enable;
-        # inlayHints = false;
         keymaps = [
           {
             key = "gd";
