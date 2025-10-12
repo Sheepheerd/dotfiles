@@ -66,7 +66,10 @@ in
           locations = {
             "/" = {
               proxyPass = "http://localhost:8095";
-              extraConfig = '''';
+              extraConfig = ''
+                client_max_body_size    0;
+
+              '';
             };
           };
         };
