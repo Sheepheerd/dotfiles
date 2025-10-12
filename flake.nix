@@ -36,8 +36,6 @@
     };
 
     nix-xilinx = {
-      # Recommended if you also override the default nixpkgs flake, common among
-      # nixos-unstable users:
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-xilinx";
     };
@@ -53,10 +51,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nix-firefox-addons = {
-    #   url = "github:osipog/nix-firefox-addons";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     agenix.url = "github:ryantm/agenix";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";

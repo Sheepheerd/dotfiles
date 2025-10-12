@@ -183,7 +183,7 @@
             };
           };
         };
-        ltex-extra.enable = true;
+        ltex-extra.enable = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.ltex;
         # lsp = {
         #   luaConfig.post = ''
         #     vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResized' }, {
