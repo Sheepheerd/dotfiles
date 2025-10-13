@@ -55,7 +55,7 @@
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
           cpp = [ "astyle" ];
-          c = [ "astyle" ];
+          c = [ "clang-format" ];
           vhdl = [ "ghdl" ];
           markdown = {
             __unkeyed-1 = "prettierd";
