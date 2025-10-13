@@ -33,6 +33,7 @@ in
           darkreader
           sponsorblock
           dearrow
+          remove-youtube-s-suggestions
         ];
 
         extraConfig = ''
