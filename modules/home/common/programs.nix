@@ -22,7 +22,6 @@
         ];
       };
       mpv.enable = true;
-      imv.enable = true;
       jq.enable = true;
       ripgrep.enable = true;
       fzf.enable = true;

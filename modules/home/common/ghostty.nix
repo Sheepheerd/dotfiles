@@ -18,7 +18,8 @@ in
 
       enableZshIntegration = true;
       settings = {
-        theme = "Rose Pine";
+        # theme = "Rose Pine";
+        theme = if config.solarsystem.isLinux then "Rose Pine" else "rose-pine";
         font-size = 12;
         font-family = "JetBrainsMono Nerd Font Mono";
         shell-integration-features = [

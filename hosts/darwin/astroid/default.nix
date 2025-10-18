@@ -66,7 +66,8 @@ in
         modules.eza = true;
         modules.direnv = true;
         modules.zsh = true;
-        modules.firefox = true;
+        modules.programs = true;
+        modules.firefox = false;
       } sharedOptions;
     };
   };
