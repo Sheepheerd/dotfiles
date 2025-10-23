@@ -56,7 +56,6 @@
           nix = [ "nixfmt" ];
           cpp = [ "astyle" ];
           c = [ "clang-format" ];
-          vhdl = [ "ghdl" ];
           markdown = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "prettier";
