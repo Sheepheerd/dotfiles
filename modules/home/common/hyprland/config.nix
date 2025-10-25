@@ -9,14 +9,14 @@ let
 
   monitor =
     if isLaptop then
-      "monitor = eDP-1 ,2560x1600@60, 0x0, 1.25"
+      "monitor = eDP-1 , preferred, 0x0, 1.6"
     else
       ''
         monitor = DP-3,1920x1080@144,0x0,1
       '';
 
   extraEnv = lib.optionalString (!isLaptop) ''
-    exec-once = wayvnc 100.112.23.95
+    # exec-once = wayvnc 100.112.23.95
   '';
 in
 {
@@ -62,8 +62,7 @@ in
 
         gestures = {
           gesture = [
-            "3, r, workspace, +1" # Three-finger swipe right: next workspace
-            "3, l, workspace, -1" # Three-finger swipe left: previous workspace
+            "3, horizontal, workspace"
           ];
 
         };
@@ -74,6 +73,7 @@ in
           gaps_in = 5;
           gaps_out = 5;
           border_size = 2;
+
           # col.active_border = "rgba(e5b9c6ff) rgba(c293a3ff) 45deg";
           # col.inactive_border = "0xff382D2E";
           no_border_on_floating = false;
@@ -253,8 +253,14 @@ in
       };
 
       extraConfig = ''
-          ${monitor}
+        ${monitor}
         ${extraEnv}
+        general {
+        col.active_border = rgba(FFFFFF50) 
+        col.inactive_border = 0xff382D2E
+        }
+
+              # windowrulev2 = active:bordercolor rgba(ffffffcc) rgba(ddddddcc) 45deg
       '';
 
       systemd.enable = true;
