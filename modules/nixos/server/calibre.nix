@@ -11,7 +11,7 @@ let
 in
 {
   options.solarsystem.modules.server.calibre = lib.mkEnableOption "enable ${serviceName} on server";
-  config = lib.mkIf config.solarsystem.modules.server.immich {
+  config = lib.mkIf config.solarsystem.modules.server.calibre {
 
     users = {
       groups.${serviceGroup} = { };

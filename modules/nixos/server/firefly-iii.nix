@@ -43,6 +43,7 @@ in
     services.nginx.virtualHosts.${domain} = {
       enableACME = true;
       forceSSL = true;
+      acmeRoot = null;
     };
 
   };

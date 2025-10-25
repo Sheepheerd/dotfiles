@@ -15,7 +15,7 @@
       zsh = lib.mkDefault true;
       networkDevices = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
-      nvidia = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
+      nvidia = lib.mkDefault false;
       tailscaleServer = lib.mkDefault true;
       server = {
         ssh = lib.mkDefault true;
@@ -24,8 +24,8 @@
         immich = lib.mkDefault true;
         jellyfin = lib.mkDefault true;
         radicale = lib.mkDefault true;
-        nextcloud = lib.mkDefault true;
-        calibre = lib.mkDefault true;
+        nextcloud = lib.mkDefault false;
+        calibre = lib.mkDefault false;
         navidrome = lib.mkDefault true;
       };
       # filesystems = lib.mkDefault true;
