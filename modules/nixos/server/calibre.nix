@@ -1,9 +1,19 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
+  pinnedNixpkgs =
+    import
+      (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/832e3b6.tar.gz";
+        sha256 = "1xyk39afidw5qxfnzj4pnzqmx973j1ja34sb2pg40j20fh676fmr";
+      })
+      {
+        system = pkgs.system;
+      };
   serviceUser = "calibre";
   serviceGroup = "calibre";
   serviceName = "calibre";
@@ -12,6 +22,14 @@ in
 {
   options.solarsystem.modules.server.calibre = lib.mkEnableOption "enable ${serviceName} on server";
   config = lib.mkIf config.solarsystem.modules.server.calibre {
+
+    nixpkgs.overlays = [
+      (final: prev: {
+        calibre = pinnedNixpkgs.calibre;
+        # If your module uses calibre-server specifically, override it too:
+        calibre-server = pinnedNixpkgs.calibre-server or pinnedNixpkgs.calibre;
+      })
+    ];
 
     users = {
       groups.${serviceGroup} = { };
