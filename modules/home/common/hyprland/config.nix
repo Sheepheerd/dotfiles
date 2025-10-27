@@ -15,9 +15,7 @@ let
         monitor = DP-3,1920x1080@144,0x0,1
       '';
 
-  extraEnv = lib.optionalString (!isLaptop) ''
-    # exec-once = wayvnc 100.112.23.95
-  '';
+  extraEnv = lib.optionalString (!isLaptop) '''';
 in
 {
   config = lib.mkIf hyprlandEnabled {
@@ -31,11 +29,18 @@ in
           "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "waybar &"
           "swww-daemon &"
+
           "wl-clip-persist --clipboard both &"
           "wl-paste --watch cliphist store &"
           "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
           "hyprctl setcursor Dracula-cursors 24"
           "${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
+
+          # Audio
+          "[workspace 3 silent] bash -c pavucontrol & sleep 1 && pkill pavucontrol"
+          "amixer set Master 1+ toggle"
+          # Audio
+
           "[workspace 2 silent] ${browser}"
           "[workspace 1 silent] ${terminal}"
         ];

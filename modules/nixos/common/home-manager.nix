@@ -15,15 +15,16 @@
       useGlobalPkgs = true;
       useUserPackages = true;
       verbose = true;
-      backupFileExtension =
-        "backup-"
-        + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
+      # backupFileExtension =
+      #   "backup-"
+      #   + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
       users.sheep.imports = [
         {
           imports = [
             "${self}/profiles/home"
             "${self}/modules/home"
           ];
+          xdg.configFile."mimeapps.list".force = true;
           home.stateVersion = lib.mkDefault config.system.stateVersion;
         }
       ];

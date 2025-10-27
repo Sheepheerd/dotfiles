@@ -17,7 +17,6 @@ in
   options.solarsystem.modules.firefox = lib.mkEnableOption "Enable Firefox with preconfigured addons";
 
   config = lib.mkIf cfg {
-
     programs.firefox = {
       enable = true;
       # package = pkgs.firefox-bin;
@@ -25,7 +24,10 @@ in
       profiles.default = {
         id = 0;
         name = "Default";
-        search.default = "ddg";
+        search = {
+          default = "ddg";
+          force = true;
+        };
         extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           # extensions.packages = with pkgs.firefoxAddons; [
           ublock-origin
