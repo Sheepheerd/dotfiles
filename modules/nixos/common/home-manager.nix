@@ -5,7 +5,6 @@
   lib,
   outputs,
   globals,
-  pkgs,
   ...
 }:
 {

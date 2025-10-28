@@ -24,7 +24,7 @@ in
   config = lib.mkIf config.solarsystem.modules.server.calibre {
 
     nixpkgs.overlays = [
-      (final: prev: {
+      (_final: _prev: {
         calibre = pinnedNixpkgs.calibre;
         # If your module uses calibre-server specifically, override it too:
         calibre-server = pinnedNixpkgs.calibre-server or pinnedNixpkgs.calibre;
