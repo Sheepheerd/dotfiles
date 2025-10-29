@@ -28,7 +28,6 @@
           "libvirtd"
           "scanner"
         ];
-        packages = with pkgs; [ ];
       };
     };
   };

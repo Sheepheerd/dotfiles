@@ -106,9 +106,6 @@
       darwinConfigurations = lib.genAttrs darwinHosts (mkDarwinHost {
         minimal = false;
       });
-      # darwinConfigurationsMinimal = lib.genAttrs darwinHosts (mkDarwinHost {
-      #   minimal = true;
-      # });
 
       # TODO: Build these for all architectures
       homeConfigurations = mkHalfHostConfigs {
@@ -118,8 +115,6 @@
         # pkgs = lib.solarsystem.pkgsFor.x86_64-linux;
         minimal = false;
       };
-
-      # nodes = config.nixosConfigurations // config.darwinConfigurations;
 
     };
 }

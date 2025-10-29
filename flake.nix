@@ -78,7 +78,6 @@
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./nix/globals.nix
         ./nix/hosts.nix
         # ./nix/packages.nix
         ./nix/overlays.nix
