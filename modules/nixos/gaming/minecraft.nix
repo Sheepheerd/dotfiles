@@ -14,7 +14,7 @@ in
   config = lib.mkIf cfg.minecraft {
     environment.systemPackages = with pkgs; [
       prismlauncher
-      glfw-wayland-minecraft
+      glfw3-minecraft
     ];
   };
 }
