@@ -150,6 +150,12 @@
           };
           elixirls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.elixir {
             enable = true;
+            settings = {
+              cmd = [ "elixir-ls" ];
+              root_markers = [
+                ".git"
+              ];
+            };
           };
           arduino_language_server =
             lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.arduino_language_server
