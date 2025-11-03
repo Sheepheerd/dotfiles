@@ -30,6 +30,7 @@
       templ = lib.mkEnableOption "templ LSP server";
       html = lib.mkEnableOption "html LSP server";
       rust_analyzer = lib.mkEnableOption "rust_analyzer LSP server";
+      elixir = lib.mkEnableOption "elixir LSP server";
     };
   };
 
@@ -146,6 +147,9 @@
             config = {
               checkOnSave = true;
             };
+          };
+          elixirls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.elixir {
+            enable = true;
           };
           arduino_language_server =
             lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.arduino_language_server

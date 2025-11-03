@@ -12,6 +12,7 @@
           lua_ls = lib.mkDefault true;
           nil_ls = lib.mkDefault true;
           basedpyright = lib.mkDefault true;
+          elixir = lib.mkDefault true;
         };
       };
     };

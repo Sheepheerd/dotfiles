@@ -22,6 +22,8 @@
           nettools
           pulsemixer
           lua
+          comma
+          fh
         ];
 
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [
