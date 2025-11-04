@@ -19,7 +19,12 @@ in
   config = lib.mkIf cfg {
     programs.firefox = {
       enable = true;
-      # package = pkgs.firefox-bin;
+      package =
+        (pkgs.wrapFirefox.override {
+          libcanberra-gtk3 = pkgs.libcanberra-gtk2;
+        })
+          pkgs.firefox-unwrapped
+          { };
       # package = null;
       profiles.default = {
         id = 0;

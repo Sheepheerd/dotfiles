@@ -56,18 +56,21 @@ in
 
       imports = [
         "${self}/modules/home"
+        "${self}/profiles/home/nixvim"
 
       ];
 
       solarsystem = lib.recursiveUpdate {
-        modules.nixvim = true;
+        profiles = {
+          nixvim = true;
+        };
         modules.packages = true;
         modules.ghostty = true;
         modules.eza = true;
         modules.direnv = true;
         modules.zsh = true;
         modules.programs = true;
-        modules.firefox = false;
+        modules.firefox = true;
       } sharedOptions;
     };
   };
