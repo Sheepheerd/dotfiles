@@ -62,6 +62,7 @@
             stop_after_first = true;
           };
           rust = [ "rustfmt" ];
+          verilog = [ "verible" ];
           elixir = [ "mix" ];
           # yaml = [ "yamlfix" ];
         };
