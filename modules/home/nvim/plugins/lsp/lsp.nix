@@ -9,7 +9,6 @@
   options.solarsystem.modules.nixvim.lsp = {
     enable = lib.mkEnableOption "nixvim lsp";
     servers = {
-      matlab_ls = lib.mkEnableOption "matlab_ls LSP server";
       ghdl_ls = lib.mkEnableOption "ghdl_ls LSP server";
       arduino_language_server = lib.mkEnableOption "arduino_language_server LSP server";
       asm_lsp = lib.mkEnableOption "asm_lsp LSP server";
@@ -31,6 +30,7 @@
       html = lib.mkEnableOption "html LSP server";
       rust_analyzer = lib.mkEnableOption "rust_analyzer LSP server";
       elixir = lib.mkEnableOption "elixir LSP server";
+      verilog = lib.mkEnableOption "verilog LSP server";
     };
   };
 
@@ -64,14 +64,6 @@
           # }
         ];
         servers = {
-          matlab_ls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.matlab_ls {
-            enable = true;
-            filetypes = [ "matlab" ];
-            config = {
-              matlabConnectionTiming = "onStart";
-              telemetry = false;
-            };
-          };
           ghdl_ls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.ghdl_ls {
             enable = true;
             package = null;
@@ -147,6 +139,9 @@
             config = {
               checkOnSave = true;
             };
+          };
+          verilog = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.verilog {
+            enable = true;
           };
           elixirls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.elixir {
             enable = true;
