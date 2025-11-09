@@ -23,7 +23,6 @@
             "${self}/profiles/home"
             "${self}/modules/home"
           ];
-          xdg.configFile."mimeapps.list".force = true;
           home.stateVersion = lib.mkDefault config.system.stateVersion;
         }
       ];

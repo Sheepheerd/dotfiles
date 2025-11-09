@@ -5,6 +5,9 @@
   self,
   ...
 }:
+let
+  serverIp = "100.113.25.38";
+in
 {
   options.solarsystem.modules.server.nginx = lib.mkEnableOption "enable nginx on server";
 
@@ -35,13 +38,14 @@
         };
         customDNS = {
           mapping = {
-            "movies.heerd.dev" = "100.113.25.38";
-            "nextcloud.heerd.dev" = "100.113.25.38";
-            "radical.heerd.dev" = "100.113.25.38";
-            "bank.heerd.dev" = "100.113.25.38";
-            "images.heerd.dev" = "100.113.25.38";
-            "books.heerd.dev" = "100.113.25.38";
-            "music.heerd.dev" = "100.113.25.38";
+            "movies.heerd.dev" = serverIp;
+            "nextcloud.heerd.dev" = serverIp;
+            "radical.heerd.dev" = serverIp;
+            "bank.heerd.dev" = serverIp;
+            "images.heerd.dev" = serverIp;
+            "books.heerd.dev" = serverIp;
+            "music.heerd.dev" = serverIp;
+            "paperless.heerd.dev" = serverIp;
           };
         };
       };

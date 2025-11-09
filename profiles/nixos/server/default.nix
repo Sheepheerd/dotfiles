@@ -22,6 +22,7 @@
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
         immich = lib.mkDefault true;
+        paperless = lib.mkDefault true;
         jellyfin = lib.mkDefault true;
         radicale = lib.mkDefault true;
         nextcloud = lib.mkDefault false;
