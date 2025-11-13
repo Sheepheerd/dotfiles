@@ -28,7 +28,7 @@
       tflint = lib.mkEnableOption "tflint LSP server";
       templ = lib.mkEnableOption "templ LSP server";
       html = lib.mkEnableOption "html LSP server";
-      rust_analyzer = lib.mkEnableOption "rust_analyzer LSP server";
+      rust = lib.mkEnableOption "rust_analyzer LSP server";
       elixir = lib.mkEnableOption "elixir LSP server";
       verilog = lib.mkEnableOption "verilog LSP server";
     };
@@ -132,15 +132,10 @@
           html = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.html {
             enable = true;
           };
-          rust_analyzer = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.rust_analyzer {
+          rust_analyzer = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.rust {
             enable = true;
-            installCargo = true;
-            installRustc = true;
-            config = {
-              checkOnSave = true;
-            };
           };
-          verilog = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.verilog {
+          verible = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.verilog {
             enable = true;
           };
           elixirls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.elixir {

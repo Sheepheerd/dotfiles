@@ -14,6 +14,7 @@
           basedpyright = lib.mkDefault true;
           elixir = lib.mkDefault true;
           verilog = lib.mkDefault true;
+          rust = lib.mkDefault true;
         };
       };
     };
