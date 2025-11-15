@@ -33,7 +33,7 @@ in
           default = "ddg";
           force = true;
         };
-        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           # extensions.packages = with pkgs.firefoxAddons; [
           ublock-origin
           bitwarden

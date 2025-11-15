@@ -12,7 +12,7 @@ let
         sha256 = "1xyk39afidw5qxfnzj4pnzqmx973j1ja34sb2pg40j20fh676fmr";
       })
       {
-        system = pkgs.system;
+        system = pkgs.stdenv.hostPlatform.system;
       };
   serviceUser = "calibre";
   serviceGroup = "calibre";

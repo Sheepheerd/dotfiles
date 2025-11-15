@@ -140,7 +140,7 @@
           };
           elixirls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.elixir {
             enable = true;
-            settings = {
+            config = {
               cmd = [ "elixir-ls" ];
               root_markers = [
                 ".git"
