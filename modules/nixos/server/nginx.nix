@@ -26,7 +26,7 @@ in
       mode = "0440";
     };
     services.blocky = {
-      enable = true;
+      enable = false;
       settings = {
         ports.dns = 53;
         upstreams.groups.default = [
