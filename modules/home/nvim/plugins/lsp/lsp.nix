@@ -58,6 +58,10 @@
             key = "K";
             lspBufAction = "hover";
           }
+          {
+            key = "<leader>ca";
+            lspBufAction = "code_action";
+          }
           # {
           #   action = lib.nixvim.mkRaw "require('telescope.builtin').lsp_definitions";
           #   key = "gd";
