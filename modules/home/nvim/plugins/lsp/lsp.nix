@@ -23,7 +23,7 @@
       golangci_lint_ls = lib.mkEnableOption "golangci_lint_ls LSP server";
       lua_ls = lib.mkEnableOption "lua_ls LSP server";
       hls = lib.mkEnableOption "hls LSP server";
-      nil_ls = lib.mkEnableOption "nil_ls LSP server";
+      nixd = lib.mkEnableOption "nil_ls LSP server";
       basedpyright = lib.mkEnableOption "basedpyright LSP server";
       tflint = lib.mkEnableOption "tflint LSP server";
       templ = lib.mkEnableOption "templ LSP server";
@@ -117,7 +117,7 @@
             enable = true;
             installGhc = false;
           };
-          nil_ls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.nil_ls {
+          nixd = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.nixd {
             enable = true;
             config.nix.flake.autoArchive = true;
           };
