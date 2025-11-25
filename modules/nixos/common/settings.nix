@@ -45,7 +45,7 @@ let
           nixpkgs.flake = inputs.nixpkgs;
           n = nixpkgs;
         };
-        nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+        # nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
       };
 
     services.dbus.implementation = "broker";
@@ -61,7 +61,7 @@ in
     lib.recursiveUpdate {
 
       nix = {
-        package = pkgs.nixVersions.nix_2_28;
+        package = pkgs.nixVersions.nix_2_30;
         settings = {
           experimental-features = [
             "nix-command"
