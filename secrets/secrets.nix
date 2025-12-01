@@ -34,4 +34,8 @@ in
     system1
     solis
   ];
+  "server/arr/sabnzbd.age".publicKeys = [
+    system1
+    solis
+  ];
 }

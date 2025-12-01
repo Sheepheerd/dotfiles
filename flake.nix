@@ -14,7 +14,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.886100.tar.gz";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2505.812242.tar.gz";
 
@@ -35,6 +35,10 @@
 
     stylix = {
       url = "https://flakehub.com/f/nix-community/stylix/0.1.1223.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixarr = {
+      url = "github:rasmus-kirk/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

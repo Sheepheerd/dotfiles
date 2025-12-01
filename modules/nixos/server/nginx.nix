@@ -46,6 +46,8 @@ in
             "books.heerd.dev" = serverIp;
             "music.heerd.dev" = serverIp;
             "paperless.heerd.dev" = serverIp;
+            "radarr.heerd.dev" = serverIp;
+            "prowlarr.heerd.dev" = serverIp;
           };
         };
       };

@@ -24,6 +24,7 @@
         immich = lib.mkDefault true;
         paperless = lib.mkDefault true;
         jellyfin = lib.mkDefault true;
+        arr = lib.mkDefault true;
         radicale = lib.mkDefault true;
         nextcloud = lib.mkDefault false;
         calibre = lib.mkDefault true;

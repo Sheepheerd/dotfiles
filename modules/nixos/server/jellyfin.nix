@@ -23,6 +23,7 @@ in
           "video"
           "render"
           "users"
+          "media"
         ];
         isSystemUser = true;
       };
@@ -40,7 +41,9 @@ in
       # openFirewall = true;
       # port = 8096; Non configurable
     };
-
+    systemd.tmpfiles.rules = [
+      "d /mnt/two-t-hdd/jellyfin_media/Movies 2775 root media -"
+    ];
     services.nginx = {
 
       virtualHosts = {
