@@ -53,7 +53,6 @@ in
             ads = [ "https://blocklistproject.github.io/Lists/ads.txt" ];
             adult = [
               "https://blocklistproject.github.io/Lists/porn.txt"
-              "https://raw.githubusercontent.com/mwoolweaver/custom.list/refs/heads/master/custom.list"
             ];
           };
           clientGroupsBlock = {
