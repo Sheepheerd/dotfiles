@@ -15,8 +15,12 @@ in
 
     environment.systemPackages = with pkgs; [ lego ];
     networking.firewall.allowedTCPPorts = [
+      53
       80
       443
+    ];
+    networking.firewall.allowedUDPPorts = [
+      53
     ];
 
     age.secrets.acme-api = {
@@ -25,6 +29,14 @@ in
       group = "users";
       mode = "0440";
     };
+
+    services.tailscale.extraUpFlags = [
+      "--advertise-routes=0.0.0.0/0"
+      "--accept-dns=false"
+    ];
+
+    networking.networkmanager.dns = "none";
+
     services.blocky = {
       enable = true;
       settings = {
@@ -35,6 +47,21 @@ in
         bootstrapDns = {
           upstream = "https://dns.quad9.net/dns-query";
           ips = [ "9.9.9.9" ];
+        };
+        blocking = {
+          denylists = {
+            ads = [ "https://blocklistproject.github.io/Lists/ads.txt" ];
+            adult = [
+              "https://blocklistproject.github.io/Lists/porn.txt"
+              "https://raw.githubusercontent.com/mwoolweaver/custom.list/refs/heads/master/custom.list"
+            ];
+          };
+          clientGroupsBlock = {
+            default = [
+              "ads"
+              "adult"
+            ];
+          };
         };
         customDNS = {
           mapping = {
@@ -48,6 +75,8 @@ in
             "paperless.heerd.dev" = serverIp;
             "radarr.heerd.dev" = serverIp;
             "prowlarr.heerd.dev" = serverIp;
+            "deluge.heerd.dev" = serverIp;
+
           };
         };
       };

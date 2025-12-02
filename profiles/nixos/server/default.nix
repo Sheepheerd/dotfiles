@@ -10,6 +10,7 @@
       users = lib.mkDefault true;
       hardware = lib.mkDefault true;
       network = lib.mkDefault true;
+      resolved = lib.mkDefault false;
       time = lib.mkDefault true;
       programs = lib.mkDefault true;
       zsh = lib.mkDefault true;

@@ -26,6 +26,7 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.nixarr.nixosModules.default
+            inputs.microvm.nixosModules.host
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"
             "${self}/modules/nixos"

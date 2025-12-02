@@ -25,6 +25,19 @@ in
 
   networking = {
     hostName = "solis";
+    defaultGateway = "192.168.0.1";
+    nameservers = [
+      "127.0.0.1#5353"
+    ];
+    interfaces.enp4s0 = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "192.168.0.10";
+          prefixLength = 24;
+        }
+      ];
+    };
   };
 
   solarsystem = lib.recursiveUpdate {
@@ -42,7 +55,9 @@ in
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";
- profiles = {nixvim = true;};   
-} sharedOptions;
+      profiles = {
+        nixvim = true;
+      };
+    } sharedOptions;
   };
 }

@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-xilinx = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-xilinx";

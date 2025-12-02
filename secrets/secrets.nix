@@ -38,4 +38,8 @@ in
     system1
     solis
   ];
+  "server/arr/vpn.age".publicKeys = [
+    system1
+    solis
+  ];
 }
