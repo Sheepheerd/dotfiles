@@ -1,16 +1,10 @@
 {
   config,
   lib,
-  self,
-  inputs,
-  pkgs,
   ...
 }:
 
 let
-
-  serviceUser = "arr";
-  serviceGroup = serviceUser;
   cfg = config.solarsystem.modules.server.arr;
 in
 {
