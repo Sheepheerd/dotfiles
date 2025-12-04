@@ -24,6 +24,7 @@
           lua
           comma
           fh
+          python3
         ];
 
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [
