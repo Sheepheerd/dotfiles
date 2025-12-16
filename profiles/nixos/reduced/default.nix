@@ -15,6 +15,7 @@
         users = lib.mkDefault true;
         hardware = lib.mkDefault true;
         pipewire = lib.mkDefault true;
+        udev = lib.mkDefault true;
         network = lib.mkDefault true;
         time = lib.mkDefault true;
         programs = lib.mkDefault true;
