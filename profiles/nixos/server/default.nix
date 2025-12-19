@@ -31,7 +31,7 @@
         calibre = lib.mkDefault true;
         navidrome = lib.mkDefault true;
       };
-      # filesystems = lib.mkDefault true;
+      filesystems = lib.mkDefault true;
 
       amd = lib.mkDefault false;
       ageServer = lib.mkDefault true;

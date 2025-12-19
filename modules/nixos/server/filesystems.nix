@@ -7,16 +7,17 @@ in
   options.solarsystem.modules.filesystems = lib.mkEnableOption "Enable custom filesystem mounts";
 
   config = lib.mkIf cfg {
-    fileSystems."/mnt/two-t-hdd" = {
-      device = "/dev/disk/by-uuid/a2055d3c-e51e-4529-b90d-e81650d27f24";
-      fsType = "ext4";
-      options = [ "bind" ];
+
+    services.nfs.server = {
+      enable = true;
+      exports = ''
+        /mnt/two-t-hdd/jellyfin_media/Movies 192.168.0.220(rw,sync,all_squash,anonuid=988,anongid=169)
+      '';
+
     };
 
-    fileSystems."/mnt/one-t-ssd" = {
-      device = "/dev/disk/by-uuid/a2055d3c-e51e-4529-b90d-e81650d27f24";
-      fsType = "ext4";
-      options = [ "bind" ];
-    };
+    networking.firewall.allowedTCPPorts = [ 2049 ];
+    networking.firewall.allowedUDPPorts = [ 2049 ];
+
   };
 }
