@@ -2,6 +2,7 @@
   lib,
   config,
   self,
+  pkgs,
   ...
 }:
 let
@@ -23,9 +24,8 @@ in
     };
 
     users = {
-      groups.${serviceGroup} = { };
+      groups.${serviceGroup}.gid = 777;
       users.${serviceUser} = {
-        extraGroups = [ "users" ];
         uid = 777;
         group = lib.mkForce serviceGroup;
         isSystemUser = true;
@@ -39,16 +39,16 @@ in
 
     services.nextcloud = {
       enable = true;
+      package = pkgs.nextcloud32;
       configureRedis = true;
+      appstoreEnable = true;
 
       hostName = "nextcloud.heerd.dev";
+      https = true;
       home = "/var/lib/nextcloud";
       database.createLocally = true;
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
-          contacts
-          calendar
-          cookbook
           tasks
           onlyoffice
           news
@@ -56,7 +56,7 @@ in
           ;
       };
       extraAppsEnable = true;
-      autoUpdateApps.enable = true;
+      # autoUpdateApps.enable = true;
 
       config = {
         dbtype = "pgsql";
@@ -98,16 +98,16 @@ in
           enableACME = true;
           forceSSL = true;
           acmeRoot = null;
-          locations = {
-            "/" = {
-              # proxyPass = "http://${serviceName}";
-              proxyPass = "http://127.0.0.1:8080";
-              proxyWebsockets = true;
-              # extraConfig = ''
-              #   client_max_body_size 0;
-              # '';
-            };
-          };
+          # locations = {
+          #   "/" = {
+          #     # proxyPass = "http://${serviceName}";
+          #     proxyPass = "http://127.0.0.1:8080";
+          #     proxyWebsockets = true;
+          #     # extraConfig = ''
+          #     #   client_max_body_size 0;
+          #     # '';
+          #   };
+          # };
         };
       };
     };

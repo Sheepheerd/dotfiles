@@ -27,7 +27,7 @@
         jellyfin = lib.mkDefault true;
         arr = lib.mkDefault true;
         radicale = lib.mkDefault true;
-        nextcloud = lib.mkDefault false;
+        nextcloud = lib.mkDefault true;
         calibre = lib.mkDefault true;
         navidrome = lib.mkDefault true;
       };
