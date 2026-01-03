@@ -343,6 +343,26 @@
         "type": "github"
       }
     },
+    "glaumar_repo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737428919,
+        "narHash": "sha256-uywQK2tlqk12fznVJHJrYnYT90lv3oiS8fqdBxoJJJM=",
+        "owner": "glaumar",
+        "repo": "nur",
+        "rev": "84d56f9f26afcb07620c1e126673d033338406de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "glaumar",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "gnome-shell": {
       "flake": false,
       "locked": {
@@ -696,6 +716,7 @@
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "ghdl": "ghdl",
+        "glaumar_repo": "glaumar_repo",
         "home-manager": "home-manager_2",
         "microvm": "microvm",
         "nix-darwin": "nix-darwin",

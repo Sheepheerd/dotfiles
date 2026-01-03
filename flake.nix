@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # glaumar_repo = {
+    #   url = "github:glaumar/nur";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     microvm = {
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
