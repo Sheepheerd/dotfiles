@@ -1,4 +1,10 @@
-{ self, config, lib, ... }: {
+{
+  self,
+  config,
+  lib,
+  ...
+}:
+{
   options.solarsystem = {
     modules = lib.mkOption {
       type = lib.types.attrs;
@@ -34,11 +40,11 @@
     isPublic = lib.mkEnableOption "is a public machine (no secrets)";
     isDarwin = lib.mkEnableOption "darwin host";
     isLinux = lib.mkEnableOption "whether this is a linux machine";
+    isDedicatedGaming = lib.mkEnableOption "whether this is a pure gaming machine";
     isBtrfs = lib.mkEnableOption "use btrfs filesystem";
     sopsFile = lib.mkOption {
       type = lib.types.str;
-      default =
-        "${config.solarsystem.flakePath}/secrets/${config.node.name}/secrets.yaml";
+      default = "${config.solarsystem.flakePath}/secrets/${config.node.name}/secrets.yaml";
     };
     homeDir = lib.mkOption {
       type = lib.types.str;
