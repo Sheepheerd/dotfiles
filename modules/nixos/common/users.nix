@@ -22,6 +22,7 @@
           "syncthing"
           "docker"
           "audio"
+          "plugdev"
           "dialout"
           "video"
           "vboxusers"
