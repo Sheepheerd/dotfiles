@@ -12,6 +12,30 @@ in
   };
 
   config = mkIf cfg.tailscale {
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+
+    };
+
+    networking = {
+      nftables.enable = true;
+      firewall = {
+        enable = true;
+        trustedInterfaces = [ "tailscale0" ];
+
+        allowedUDPPorts = [ config.services.tailscale.port ];
+
+        # Strict reverse path filtering breaks Tailscale exit node use and some subnet routing setups.
+        checkReversePath = "loose";
+      };
+
+      # networkmanager.unmanaged = [ "tailscale0" ];
+    };
+    systemd.services.tailscaled.serviceConfig.Environment = [
+      "TS_DEBUG_FIREWALL_MODE=nftables"
+    ];
+    systemd.network.wait-online.enable = false;
+    boot.initrd.systemd.network.wait-online.enable = false;
+
   };
 }

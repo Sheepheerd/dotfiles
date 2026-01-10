@@ -12,11 +12,16 @@ in
   };
 
   config = mkIf cfg.tailscaleServer {
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+
+    };
 
     networking = {
+      nftables.enable = true;
       firewall = {
-        trustedInterfaces = [ config.services.tailscale.interfaceName ];
+        enable = true;
+        trustedInterfaces = [ "tailscale0" ];
 
         allowedUDPPorts = [ config.services.tailscale.port ];
 
@@ -24,8 +29,13 @@ in
         checkReversePath = "loose";
       };
 
-      networkmanager.unmanaged = [ "tailscale0" ];
+      # networkmanager.unmanaged = [ "tailscale0" ];
     };
+    systemd.services.tailscaled.serviceConfig.Environment = [
+      "TS_DEBUG_FIREWALL_MODE=nftables"
+    ];
+    systemd.network.wait-online.enable = false;
+    boot.initrd.systemd.network.wait-online.enable = false;
 
   };
 }
