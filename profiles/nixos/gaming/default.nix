@@ -3,7 +3,6 @@
   options.solarsystem.profiles.gaming = lib.mkEnableOption "is this a gaming host";
   config = lib.mkIf config.solarsystem.profiles.gaming {
     solarsystem.modules = {
-<<<<<<< HEAD
       jovian = lib.mkDefault true;
 
       bootloader = lib.mkDefault true;
@@ -25,7 +24,7 @@
       gnome-keyring = lib.mkDefault true;
       virt = lib.mkDefault true;
       appimage = lib.mkDefault false;
-      hyprland = lib.mkDefault false;
+      hyprland = lib.mkDefault true;
       nvidia = lib.mkDefault false;
       amd = lib.mkDefault false;
       tailscale = lib.mkDefault true;

@@ -5,7 +5,9 @@
 
   config = lib.mkIf config.solarsystem.modules.hyprland {
     programs.hyprland.enable = true;
-    services.displayManager.gdm.enable = true;
-    # services.displayManager.ly.enable = true;
+
+    services.displayManager.ly = lib.mkIf (!config.solarsystem.isDedicatedGaming) {
+      enable = true;
+    };
   };
 }
