@@ -118,6 +118,9 @@ in
         update-d = "sudo nixos-rebuild switch --flake ~/.dotfiles#deathstar";
         update-n = "sudo nixos-rebuild switch --flake ~/.dotfiles#novastar";
         update-s = "sudo nixos-rebuild switch --flake ~/.dotfiles#solis";
+
+        # school related
+        fry = "ssh w947sxg@fry.cs.wright.edu";
       };
 
       plugins = [

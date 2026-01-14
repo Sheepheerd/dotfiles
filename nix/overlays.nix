@@ -14,7 +14,6 @@
               config.allowUnfree = true;
             };
           };
-
           # glaumar-overlay = final: prev: {
           #   glaumar_repo = inputs.glaumar_repo.packages.${prev.system};
           # };

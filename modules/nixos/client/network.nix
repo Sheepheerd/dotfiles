@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 {
@@ -58,8 +59,9 @@
 
       networkmanager = {
         enable = true;
-        # wifi.backend = "iwd";
+        plugins = [ ];
       };
+
     };
 
     systemd.services.NetworkManager-ensure-profiles.after = [ "NetworkManager.service" ];

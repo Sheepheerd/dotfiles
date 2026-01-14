@@ -5,7 +5,7 @@
     solarsystem.modules = {
       packages = lib.mkDefault true;
       general = lib.mkDefault true;
-      # ssh = lib.mkDefault true;
+      ssh = lib.mkDefault true;
       desktop = lib.mkDefault true;
       # env = lib.mkDefault true;
       direnv = lib.mkDefault true;

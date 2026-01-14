@@ -24,6 +24,7 @@ in
         font-family = "JetBrainsMono Nerd Font Mono";
         shell-integration-features = [
           "no-cursor"
+          "ssh-env"
         ];
         confirm-close-surface = false;
         cursor-style = "block";

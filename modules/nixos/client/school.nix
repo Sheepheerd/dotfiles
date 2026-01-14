@@ -25,6 +25,8 @@ in
       waypipe
       xorg.xauth
       gemini-cli
+      inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso
+
     ];
 
     services.udev.extraRules = ''
