@@ -3,7 +3,6 @@
   config,
   inputs,
   self,
-  pkgs,
   ...
 }:
 

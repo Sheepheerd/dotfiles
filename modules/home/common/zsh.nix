@@ -121,6 +121,7 @@ in
 
         # school related
         fry = "ssh w947sxg@fry.cs.wright.edu";
+        wvpn = "export QT_QPA_PLATFORM=xcb openconnect-sso --server wsu-vpn.wright.edu";
       };
 
       plugins = [

@@ -2,7 +2,6 @@
 # jovian.nix -- Gaming
 #
 {
-  pkgs,
   config,
   lib,
   ...
@@ -11,11 +10,6 @@ let
   # Local user account for auto login
   # Separate and distinct from Steam login
   # Can be any name you like
-  gameuser = "sheep";
-  jovian-nixos = builtins.fetchGit {
-    url = "https://github.com/Jovian-Experiments/Jovian-NixOS";
-    ref = "development";
-  };
   cfg = config.solarsystem.modules;
 in
 {
