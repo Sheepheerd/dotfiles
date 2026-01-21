@@ -24,6 +24,9 @@ in
       wayland
       hyprland-qtutils
       wl-clipboard
+      kdePackages.qtwayland
+      polkit_gnome
+      hyprpolkitagent
     ];
 
     wayland.windowManager.hyprland = {

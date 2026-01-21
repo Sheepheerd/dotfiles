@@ -31,6 +31,7 @@
       rust = lib.mkEnableOption "rust_analyzer LSP server";
       elixir = lib.mkEnableOption "elixir LSP server";
       verilog = lib.mkEnableOption "verilog LSP server";
+      bash = lib.mkEnableOption "bash LSP server";
     };
   };
 
@@ -89,6 +90,9 @@
           };
           jdtls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.jdtls {
             enable = false;
+          };
+          bashls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.bash {
+            enable = true;
           };
           ltex = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.ltex {
             enable = true;

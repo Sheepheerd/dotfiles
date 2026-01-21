@@ -18,6 +18,8 @@ in
       (lib.mkIf (!config.solarsystem.isLaptop) matlab)
       (lib.mkIf (!config.solarsystem.isLaptop) vivado)
       (lib.mkIf (!config.solarsystem.isLaptop) wineWowPackages.waylandFull)
+      (lib.mkIf (config.solarsystem.isLaptop
+      ) inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso)
 
       coreutils
       libqalculate
@@ -26,7 +28,6 @@ in
       waypipe
       xorg.xauth
       gemini-cli
-      inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso
 
     ];
 

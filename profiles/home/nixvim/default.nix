@@ -15,6 +15,7 @@
           elixir = lib.mkDefault true;
           verilog = lib.mkDefault true;
           rust = lib.mkDefault true;
+          bash = lib.mkDefault true;
         };
       };
     };

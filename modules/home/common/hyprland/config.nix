@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   isLaptop = config.solarsystem.isLaptop;
@@ -27,6 +32,8 @@ in
         exec-once = [
           "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "waybar &"
           "swww-daemon &"
 
@@ -147,6 +154,9 @@ in
         };
 
         bind = [
+
+          # notes
+          "$mainMod, N, exec, ${terminal} -e vim ~/tmp/notes"
 
           # applications
           "$mainMod, Return, exec, ${terminal} --gtk-single-instance=true"
