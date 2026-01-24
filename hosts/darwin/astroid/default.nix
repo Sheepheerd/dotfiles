@@ -42,7 +42,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    flood-for-transmission
     # firefox
   ];
 
@@ -97,7 +96,7 @@ in
     ];
     casks = [
       "ghostty"
-      "nikitabobko/tap/aerospace"
+      #"nikitabobko/tap/aerospace"
       "vesktop"
       # "firefox"
       "ghdl"
