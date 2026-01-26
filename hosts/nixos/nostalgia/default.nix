@@ -36,13 +36,4 @@ in
       minimal = true;
     };
   } sharedOptions;
-
-  # home-manager.users."${mainUser}" = {
-  #   home.stateVersion = lib.mkForce "25.11";
-  #   solarsystem = lib.recursiveUpdate {
-  #     profiles = {
-  #       nixvim = false;
-  #     };
-  #   } sharedOptions;
-  # };
 }
