@@ -6,7 +6,7 @@
 }:
 
 {
-  options.solarsystem.modules.amd = lib.mkOption {
+  options.solarsystem.modules.amd = lib.mkEnableOption {
     description = "Enable Amd module";
   };
 

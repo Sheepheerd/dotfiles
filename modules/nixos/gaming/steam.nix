@@ -31,7 +31,8 @@ in
 
     services.displayManager.autoLogin = {
       enable = true;
-      user = "sheep";
+      user = "${config.solarsystem.mainUser}";
+
     };
     programs.gamemode.enable = true;
 

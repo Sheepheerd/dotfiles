@@ -33,6 +33,7 @@ in
     asahi = true;
     modules.virt = true;
     modules.box = true;
+    modules.minecraft = true;
 
     # FIX
     profiles = {

@@ -29,7 +29,7 @@
     };
     mainUser = lib.mkOption {
       type = lib.types.str;
-      default = "swarsel";
+      default = "sheep";
     };
     isCrypted = lib.mkEnableOption "uses full disk encryption";
 
@@ -48,7 +48,8 @@
     };
     homeDir = lib.mkOption {
       type = lib.types.str;
-      default = "/home/swarsel";
+      default = "/home/${config.solarsystem.mainUser}";
+
     };
     xdgDir = lib.mkOption {
       type = lib.types.str;
@@ -56,7 +57,7 @@
     };
     flakePath = lib.mkOption {
       type = lib.types.str;
-      default = "/home/sheep/.dotfiles";
+      default = "/home/${config.solarsystem.mainUser}/.dotfiles";
     };
     wallpaper = lib.mkOption {
       type = lib.types.path;

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-  options.solarsystem.modules.nvidia = lib.mkOption {
+  options.solarsystem.modules.nvidia = lib.mkEnableOption {
     description = "Enable Nvidia module";
   };
 

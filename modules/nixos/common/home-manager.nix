@@ -17,7 +17,7 @@
       # backupFileExtension =
       #   "backup-"
       #   + pkgs.lib.readFile "${pkgs.runCommand "timestamp" { } "echo -n `date '+%Y%m%d%H%M%S'` > $out"}";
-      users.sheep.imports = [
+      users."${config.solarsystem.mainUser}".imports = [
         {
           imports = [
             "${self}/profiles/home"
