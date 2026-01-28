@@ -20,7 +20,7 @@ let
         monitor = DP-3,1920x1080@144,0x0,1
       '';
 
-  extraEnv = lib.optionalString (!isLaptop) '''';
+  extraEnv = lib.optionalString (!isLaptop) "";
 in
 {
   config = lib.mkIf hyprlandEnabled {
@@ -88,7 +88,6 @@ in
 
           # col.active_border = "rgba(e5b9c6ff) rgba(c293a3ff) 45deg";
           # col.inactive_border = "0xff382D2E";
-          no_border_on_floating = false;
         };
 
         misc = {
@@ -156,10 +155,10 @@ in
         bind = [
 
           # notes
-          "$mainMod, N, exec, ${terminal} -e vim ~/tmp/notes"
+          "SUPER, N, exec, ${terminal} -e vim ~/tmp/notes"
 
           # applications
-          "$mainMod, Return, exec, ${terminal} --gtk-single-instance=true"
+          "SUPER, Return, exec, ${terminal} --gtk-single-instance=true"
           "CTRL ALT, L, exec, hyprlock"
           "SUPER, E, exec, ${file}"
           "SUPER, B, exec,  ${browser}"
@@ -244,8 +243,8 @@ in
 
           # screenshot
           # ",Print, exec, screenshot --copy"
-          # "$mainMod, Print, exec, screenshot --save"
-          ''$mainMod SHIFT, S, exec, grim -g "$(slurp)"''
+          # "SUPER, Print, exec, screenshot --save"
+          ''SUPER SHIFT, S, exec, grim -g "$(slurp)"''
         ];
         binde = [
           ",XF86AudioRaiseVolume,exec, amixer set Master 5%+"
@@ -256,13 +255,13 @@ in
           # laptop brigthness
           ",XF86MonBrightnessUp, exec, brightnessctl set 1%+"
           ",XF86MonBrightnessDown, exec, brightnessctl set 1%-"
-          "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
-          "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
+          "SUPER, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
+          "SUPER, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
         ];
 
         bindm = [
-          "$mainMod, mouse:272, movewindow"
-          "$mainMod, mouse:273, resizewindow"
+          "SUPER, mouse:272, movewindow"
+          "SUPER, mouse:273, resizewindow"
         ];
 
       };
@@ -278,7 +277,6 @@ in
               # windowrulev2 = active:bordercolor rgba(ffffffcc) rgba(ddddddcc) 45deg
       '';
 
-      systemd.enable = true;
     };
   };
 }

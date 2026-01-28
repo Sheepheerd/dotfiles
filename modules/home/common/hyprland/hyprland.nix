@@ -35,6 +35,7 @@ in
       package = null;
       portalPackage = null;
       xwayland.enable = true;
+      systemd.enable = false;
     };
 
     programs.kitty.enable = false;

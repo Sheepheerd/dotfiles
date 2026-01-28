@@ -28,7 +28,6 @@
       nvidia = lib.mkDefault false;
       amd = lib.mkDefault false;
       tailscale = lib.mkDefault true;
-      mullvad = lib.mkDefault false;
       server = {
         ssh = lib.mkDefault true;
       };
