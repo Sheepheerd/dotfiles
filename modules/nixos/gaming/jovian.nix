@@ -7,9 +7,7 @@
   ...
 }:
 let
-  # Local user account for auto login
-  # Separate and distinct from Steam login
-  # Can be any name you like
+  gameuser = "sheep";
   cfg = config.solarsystem.modules;
 in
 {
@@ -27,20 +25,15 @@ in
       ];
 
     jovian = {
-      steam.enable = true;
+      steam = {
+        user = gameuser;
+        enable = true;
+        autoStart = true;
+        desktopSession = "hyprland";
+      };
       hardware.has.amd.gpu = true;
     };
 
     services.xserver.enable = true;
-    # services.displayManager.sddm = {
-    #   enable = true;
-    #   wayland.enable = true;
-    #   settings = {
-    #     General = {
-    #       # Scale SDDM UI by 2x for TV
-    #       GreeterEnvironment = "QT_SCREEN_SCALE_FACTORS=2";
-    #     };
-    #   };
-    # };
   };
 }
