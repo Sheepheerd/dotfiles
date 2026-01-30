@@ -22,9 +22,7 @@
         enable = config.solarsystem.isLaptop;
         setupAsahiSound = true;
 
-        peripheralFirmwareDirectory = lib.mkIf (builtins.pathExists (self + "/extrafiles/firmware")) (
-          self + "/extrafiles/firmware"
-        );
+        peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
     };
 

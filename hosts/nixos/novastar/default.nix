@@ -34,6 +34,8 @@ in
     modules.virt = true;
     modules.box = true;
     modules.minecraft = true;
+    x86 = true;
+    muvm = true;
 
     # FIX
     profiles = {

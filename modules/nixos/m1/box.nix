@@ -100,40 +100,6 @@ let
     CMD ["/bin/bash"]
   '';
 
-  generateDistroboxSteam = pkgs.writeShellScriptBin "generate-distrobox-steam" ''
-        #!/usr/bin/env bash
-        set -euo pipefail
-
-        echo "[box] Setting up Fedora Asahi Steam Distrobox..."
-        mkdir -p ~/distrobox/steam
-
-        echo "[box] Writing Dockerfile..."
-        cat > ~/distrobox/steam/Dockerfile <<'EOF'
-    ${dockerfile}
-    EOF
-
-        cd ~/distrobox/steam
-
-        # prefer podman over docker
-        CONTAINER_TOOL=$(command -v docker)
-
-        if ! $CONTAINER_TOOL images | grep -q "steam"; then
-          echo "[box] Building image 'steam:latest'..."
-          $CONTAINER_TOOL build . --tag steam:latest
-        else
-          echo "[box] Image already exists, skipping build."
-        fi
-
-        if ! distrobox-list | grep -q steam; then
-          echo "[box] Creating Distrobox container 'steam'..."
-          distrobox-create --name steam --image steam:latest --home ~/Distrobox/steam
-        else
-          echo "[box] Container already exists, skipping creation."
-        fi
-
-        echo "[box] Done."
-  '';
-
   matlabScript = pkgs.writeShellScriptBin "matlab" ''
     #!/usr/bin/env bash
     set -euo pipefail
@@ -145,10 +111,8 @@ in
 
   config = lib.mkIf config.solarsystem.modules.box {
     environment.systemPackages = [
-      generateDistroboxSteam
       matlabScript
       pkgs.distrobox
-      pkgs.podman
     ];
   };
 }

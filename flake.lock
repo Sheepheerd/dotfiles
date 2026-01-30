@@ -40,6 +40,24 @@
         "type": "github"
       }
     },
+    "asahi-firmware": {
+      "flake": false,
+      "locked": {
+        "dir": "m1air",
+        "lastModified": 1769746729,
+        "narHash": "sha256-7THxi8ZVQPBpgW0J7KVxdyZyaxby/rB9zBkwdZnQI9w=",
+        "ref": "refs/heads/main",
+        "rev": "90c5459f8a068089d9c097bf2f9633c7b5937f2c",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/Sheepheerd/asahi-firmware.git"
+      },
+      "original": {
+        "dir": "m1air",
+        "type": "git",
+        "url": "ssh://git@github.com/Sheepheerd/asahi-firmware.git"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -843,6 +861,7 @@
       "inputs": {
         "agenix": "agenix",
         "apple-silicon": "apple-silicon",
+        "asahi-firmware": "asahi-firmware",
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "ghdl": "ghdl",

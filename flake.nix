@@ -3,7 +3,6 @@
 
   nixConfig = {
     extra-substituters = [
-
       "https://nixos-apple-silicon.cachix.org"
       "https://nix-community.cachix.org"
     ];
@@ -87,6 +86,11 @@
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    asahi-firmware = {
+      url = "git+ssh://git@github.com/Sheepheerd/asahi-firmware.git?dir=m1air";
+      flake = false;
     };
 
     ghdl = {
