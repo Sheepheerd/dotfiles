@@ -26,6 +26,7 @@
     users.users."${config.solarsystem.mainUser}".openssh.authorizedKeys.keyFiles = [
       (self + /secrets/keys/ssh/deathstar.pub)
       (self + /secrets/keys/ssh/novastar.pub)
+      (self + /secrets/keys/ssh/novastar-root.pub)
     ];
     # users.users.root.openssh.authorizedKeys.keyFiles = [
     #   # (self + /secrets/keys/ssh/yubikey.pub)
