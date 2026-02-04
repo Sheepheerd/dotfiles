@@ -24,6 +24,7 @@
 
         peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
+      graphics.enable = true;
     };
 
     nixpkgs.overlays = [

@@ -14,8 +14,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2505.812242.tar.gz";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -40,6 +39,13 @@
       url = "github:rasmus-kirk/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nixos-muvm-fex = {
+    #   url = "github:nrabulinski/nixos-muvm-fex";
+    # };
+    # nixos-muvm-fex = {
+    #   url = "github:Sheepheerd/nixos-muvm-fex";
+    # };
 
     # glaumar_repo = {
     #   url = "github:glaumar/nur";

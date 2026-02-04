@@ -13,37 +13,36 @@ let
       { }
     '';
 
-    nix =
-      {
-        settings = {
-          connect-timeout = 5;
-          bash-prompt-prefix = "\033[33m$SHLVL:\\w \033[0m";
-          bash-prompt = "$(if [[ $? -gt 0 ]]; then printf \"\033[31m\"; else printf \"\033[32m\"; fi)λ \033[0m";
-          fallback = true;
-          min-free = 128000000;
-          max-free = 1000000000;
-          flake-registry = "";
-          auto-optimise-store = true;
-          warn-dirty = false;
-          max-jobs = 1;
-          use-cgroups = lib.mkIf config.solarsystem.isLinux true;
-        };
-        gc = {
-          automatic = true;
-          dates = "weekly";
-          options = "--delete-older-than 10d";
-        };
-        optimise = {
-          automatic = true;
-          dates = "weekly";
-        };
-        channel.enable = false;
-        registry = rec {
-          nixpkgs.flake = inputs.nixpkgs;
-          n = nixpkgs;
-        };
-        # nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    nix = {
+      settings = {
+        connect-timeout = 5;
+        bash-prompt-prefix = "\033[33m$SHLVL:\\w \033[0m";
+        bash-prompt = "$(if [[ $? -gt 0 ]]; then printf \"\033[31m\"; else printf \"\033[32m\"; fi)λ \033[0m";
+        fallback = true;
+        min-free = 128000000;
+        max-free = 1000000000;
+        flake-registry = "";
+        auto-optimise-store = true;
+        warn-dirty = false;
+        max-jobs = 1;
+        use-cgroups = lib.mkIf config.solarsystem.isLinux true;
       };
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 10d";
+      };
+      optimise = {
+        automatic = true;
+        dates = "weekly";
+      };
+      channel.enable = false;
+      registry = rec {
+        nixpkgs.flake = inputs.nixpkgs;
+        n = nixpkgs;
+      };
+      # nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
 
     services.dbus.implementation = "broker";
 
@@ -74,7 +73,7 @@ in
         };
       };
 
-      system.stateVersion = lib.mkDefault "25.11";
+      system.stateVersion = lib.mkDefault "26.05";
 
       nixpkgs = {
         overlays = [ outputs.overlays.default ];

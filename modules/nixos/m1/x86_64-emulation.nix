@@ -45,7 +45,9 @@
     # nix-shell -p hello --argstr system aarch64-linux --run "hello"
     boot.binfmt.emulatedSystems = [
       "x86_64-linux"
+      "i686-linux"
     ];
+    boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;
     # Use statically-linked QEMU binaries, often necessary for Docker/Podman
     # or chroot envs (like flatpak)
     # Note: This might trigger a local build of QEMU if pre-built binaries aren't cached
@@ -57,5 +59,7 @@
     # Disable this to use remote builders for those platforms,
     # while allowing testing binaries locally.
     # boot.binfmt.addEmulatedSystemsToNixSandbox = true;
+
   };
+
 }
