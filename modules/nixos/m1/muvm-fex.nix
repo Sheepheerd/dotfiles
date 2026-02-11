@@ -46,19 +46,19 @@ let
           # We must patch muvm to look in /run/current-system/...
           # The default behavior looks in the immutable ${fex}/share path.
           postPatch = (oldAttrs.postPatch or "") + ''
-                       # Replace the store path (or default path) with the NixOS system path
+            # Replace the store path (or default path) with the NixOS system path
 
             # Faulty replacement in nixpkgs
-                       substituteInPlace crates/muvm/src/guest/mount.rs \
-                         --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
+            substituteInPlace crates/muvm/src/guest/mount.rs \
+              --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
 
-                       # Used for auto-discovery of RootFS images
-                       # substituteInPlace crates/muvm/src/bin/muvm.rs \
-                       #   --replace-fail "/usr/share/fex-emu" "/run/current-system/sw/share/fex-emu"
+            # Used for auto-discovery of RootFS images
+            # substituteInPlace crates/muvm/src/bin/muvm.rs \
+            #   --replace-fail "/usr/share/fex-emu" "/run/current-system/sw/share/fex-emu"
 
-                       # substituteInPlace crates/muvm/src/bin/muvm.rs \
-                       #   --replace-fail "/usr/local/share/fex-emu" "/run/current-system/sw/share/fex-emu"
-                       #   --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
+            # substituteInPlace crates/muvm/src/bin/muvm.rs \
+            #   --replace-fail "/usr/local/share/fex-emu" "/run/current-system/sw/share/fex-emu"
+            #   --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
           '';
         });
   };
@@ -113,8 +113,8 @@ let
     version = "1.1.2-fc43";
 
     src = pkgs.fetchurl {
-      url = "https://riscv-kojipkgs.fedoraproject.org/packages/fex-emu-rootfs-fedora/43%5e20251127.0/1.fc43/src/fex-emu-rootfs-fedora-43%5e20251127.0-1.fc43.src.rpm";
-      sha256 = "sha256-cYDVnsESH5/3n6sMC+PjBbR2CpqAN4Dxbjsxp1W5GEU=";
+      url = "https://riscv-kojipkgs.fedoraproject.org//packages/fex-emu-rootfs-fedora/42%5E1.1/2.fc43/noarch/fex-emu-rootfs-fedora-42%5E1.1-2.fc43.noarch.rpm";
+      sha256 = "sha256-xyN2yWi+1ErbCT/gynZFxrXjYdyUvEE76nfddotOPAQ=";
     };
 
     # Required tools
@@ -127,13 +127,12 @@ let
     unpackPhase = ''
       # Extract the RPM content
       rpm2cpio $src | cpio -idmv
-      unxz -c *.erofs.xz > default.erofs
     '';
 
     installPhase = ''
       # Install to the shared system path structure
       mkdir -p $out/share/fex-emu/RootFS
-      cp default.erofs $out/share/fex-emu/RootFS/
+      cp usr/share/fex-emu/RootFS/default.erofs $out/share/fex-emu/RootFS/
     '';
   };
 in
@@ -187,9 +186,9 @@ in
     # Install necessary deps
     environment.systemPackages = with pkgs; [
       # Needed by FEXRootFSFetcher
-      fuse
-      squashfuse
-      squashfsTools
+      # fuse
+      # squashfuse
+      # squashfsTools
 
       # RootFS
       fexRootFS

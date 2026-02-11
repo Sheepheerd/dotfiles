@@ -47,7 +47,7 @@
       "x86_64-linux"
       "i686-linux"
     ];
-    boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;
+    # boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;
     # Use statically-linked QEMU binaries, often necessary for Docker/Podman
     # or chroot envs (like flatpak)
     # Note: This might trigger a local build of QEMU if pre-built binaries aren't cached

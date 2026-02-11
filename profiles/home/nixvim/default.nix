@@ -16,6 +16,7 @@
           verilog = lib.mkDefault true;
           rust = lib.mkDefault true;
           bash = lib.mkDefault true;
+          asm_lsp = lib.mkDefault false;
         };
       };
     };

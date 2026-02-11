@@ -57,8 +57,9 @@ in
     modules.virt = true;
     modules.box = true;
     modules.minecraft = true;
+    modules.youtube = true;
     x86 = true;
-    muvm = true;
+    muvm = false;
 
     # FIX
     profiles = {
