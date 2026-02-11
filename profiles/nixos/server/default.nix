@@ -16,7 +16,6 @@
       zsh = lib.mkDefault true;
       networkDevices = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
-      nvidia = lib.mkDefault false;
       tailscaleServer = lib.mkDefault true;
       headscaleServer = lib.mkDefault true;
       server = {
@@ -31,11 +30,9 @@
         nextcloud = lib.mkDefault true;
         calibre = lib.mkDefault true;
         navidrome = lib.mkDefault true;
-        qjam = lib.mkDefault true;
       };
       filesystems = lib.mkDefault true;
 
-      amd = lib.mkDefault false;
       ageServer = lib.mkDefault true;
     };
 

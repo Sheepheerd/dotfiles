@@ -20,16 +20,13 @@ in
     };
     users.groups.${serviceGroup} = { };
 
-    # Only allow HTTP/S for Nginx
-    networking.firewall.allowedTCPPorts = [ servicePort ];
-
     services.paperless = {
       enable = true;
       user = serviceUser;
       mediaDir = "/mnt/two-t-hdd/paperless/media";
       dataDir = "/mnt/two-t-hdd/paperless/data";
       port = servicePort;
-      address = "0.0.0.0"; # CRITICAL: localhost only
+      address = "0.0.0.0";
       configureNginx = true;
 
       domain = serviceDomain;
