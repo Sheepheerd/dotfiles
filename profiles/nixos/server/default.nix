@@ -18,6 +18,7 @@
       gnome-keyring = lib.mkDefault true;
       nvidia = lib.mkDefault false;
       tailscaleServer = lib.mkDefault true;
+      headscaleServer = lib.mkDefault true;
       server = {
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
@@ -30,6 +31,7 @@
         nextcloud = lib.mkDefault true;
         calibre = lib.mkDefault true;
         navidrome = lib.mkDefault true;
+        qjam = lib.mkDefault true;
       };
       filesystems = lib.mkDefault true;
 

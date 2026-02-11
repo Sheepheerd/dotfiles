@@ -67,7 +67,8 @@ in
         trusted_domains = [
           "localhost"
           "127.0.0.1"
-          "100.113.25.38"
+          # "100.113.25.38"
+          "100.64.0.2"
           "solis"
           "nextcloud.heerd.dev"
         ];
