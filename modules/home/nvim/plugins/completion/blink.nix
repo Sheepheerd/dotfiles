@@ -3,7 +3,7 @@
     plugins = {
       colorful-menu.enable = true;
       blink-ripgrep.enable = true;
-      blink-copilot.enable = true;
+      # blink-copilot.enable = true;
       blink-cmp = {
         enable = true;
         setupLspCapabilities = true;
@@ -17,7 +17,7 @@
               "buffer"
               "snippets"
               "path"
-              "copilot"
+              # "copilot"
             ];
             providers = {
               lsp = {
@@ -30,12 +30,12 @@
               path = {
                 score_offset = 3;
               };
-              copilot = {
-                async = true;
-                module = "blink-copilot";
-                name = "copilot";
-                score_offset = 11;
-              };
+              # copilot = {
+              #   async = true;
+              #   module = "blink-copilot";
+              #   name = "copilot";
+              #   score_offset = 11;
+              # };
 
               ripgrep = {
                 async = true;
