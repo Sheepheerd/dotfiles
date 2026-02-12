@@ -22,6 +22,7 @@ in
     ];
     networking.firewall.allowedUDPPorts = [
       53
+      41641
     ];
 
     age.secrets.acme-api = {

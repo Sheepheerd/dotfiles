@@ -26,13 +26,13 @@ in
         server_url = "https://${domain}";
 
         dns = {
-          override_local_dns = false;
+          override_local_dns = true;
           base_domain = "tailnet.heerd.dev";
           magic_dns = true;
           nameservers = {
             global = [
-              "1.1.1.1"
               serverIp
+              "1.1.1.1"
             ];
           };
         };
