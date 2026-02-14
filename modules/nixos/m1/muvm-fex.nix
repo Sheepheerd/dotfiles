@@ -6,10 +6,10 @@
   ...
 }:
 let
-  # pkgsX86 = import inputs.nixpkgs {
-  #   system = "x86_64-linux";
-  #   config.allowUnfree = true;
-  # };
+  pkgsX86 = import inputs.nixpkgs {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
   # pkgsStable = import inputs.nixpkgs-stable {
   #   system = "aarch64-linux";
   #   config.allowUnfree = true;
@@ -95,14 +95,14 @@ let
     paths = [
       (makeMesaErofs {
         name = "mesa-x86_64";
-        mesaPkg = pkgs.pkgsCross.gnu64.mesa;
-        # mesaPkg = pkgsX86.mesa;
+        # mesaPkg = pkgs.pkgsCross.gnu64.mesa;
+        mesaPkg = pkgsX86.mesa;
         libDir = "lib64";
       })
       (makeMesaErofs {
         name = "mesa-i386";
-        mesaPkg = pkgs.pkgsCross.gnu32.mesa;
-        # mesaPkg = pkgsX86.pkgsi686Linux.mesa;
+        # mesaPkg = pkgs.pkgsCross.gnu32.mesa;
+        mesaPkg = pkgsX86.pkgsi686Linux.mesa;
         libDir = "lib";
       })
     ];

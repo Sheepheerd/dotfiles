@@ -59,7 +59,7 @@ in
     modules.minecraft = true;
     modules.youtube = true;
     x86 = true;
-    muvm = false;
+    muvm = true;
 
     # FIX
     profiles = {
