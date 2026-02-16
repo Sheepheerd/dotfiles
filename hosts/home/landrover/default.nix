@@ -13,6 +13,7 @@ let
     profiles = {
       reduced = true;
       nixvim = true;
+      laptop = true;
     };
   };
 in
