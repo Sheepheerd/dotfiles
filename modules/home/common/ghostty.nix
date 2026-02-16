@@ -15,6 +15,7 @@ in
     programs.ghostty = {
       enable = true;
       package = if config.solarsystem.isNixos then pkgs.ghostty else null;
+      systemd.enable = false;
 
       enableZshIntegration = true;
       settings = {

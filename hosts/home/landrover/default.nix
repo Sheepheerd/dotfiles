@@ -11,7 +11,8 @@ let
     isNixos = false;
     isLinux = true;
     profiles = {
-      laptop = true;
+      reduced = true;
+      nixvim = true;
     };
   };
 in
@@ -22,7 +23,6 @@ in
   ];
 
   nixpkgs = {
-    # overlays = [ outputs.overlays.default ];
     config = {
       allowUnfree = true;
     };
@@ -30,10 +30,6 @@ in
 
   home.stateVersion = lib.mkForce "25.05";
   solarsystem = lib.recursiveUpdate {
-    # lowResolution = "1280x800";
-    # highResolution = "1920x1080";
   } sharedOptions;
-  # solarsystem = lib.recursiveUpdate {
-  # } sharedOptions;
 
 }
