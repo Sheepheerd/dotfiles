@@ -90,16 +90,12 @@ in
   homebrew = {
     enable = true;
     brews = [
-      "x86_64-elf-binutils"
-      "x86_64-elf-gcc"
       "tailscale"
     ];
     casks = [
       "ghostty"
-      #"nikitabobko/tap/aerospace"
       "vesktop"
-      # "firefox"
-      "ghdl"
+      "firefox"
     ];
 
   };

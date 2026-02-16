@@ -2,25 +2,9 @@
   lib,
   config,
   inputs,
-  self,
   ...
 }:
 
-let
-  fairydustKernel = final: prev: {
-    linux-asahi = prev.linux-asahi.override (old: {
-      argsOverride = {
-        src = final.fetchFromGitHub {
-          owner = "AsahiLinux";
-          repo = "linux";
-          rev = "fairydust";
-          hash = "sha256-…"; # get from failed build
-        };
-        version = "asahi-fairydust"; # example
-      };
-    });
-  };
-in
 {
 
   imports = [
