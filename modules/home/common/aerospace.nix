@@ -6,10 +6,10 @@
 {
   config = lib.mkIf (config.solarsystem.isDarwin) {
 
-    # programs.aerospace = {
-    #   enable = true;
-    #   launchd.enable = true;
-    # };
+    programs.aerospace = {
+      enable = false;
+      launchd.enable = true;
+    };
 
     # Source aerospace config from the home-manager store
     home.file.".aerospace.toml".text = ''

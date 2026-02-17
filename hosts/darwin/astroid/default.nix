@@ -41,10 +41,9 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # firefox
+  imports = [
+    "${self}/modules/home/common/sharedsetup.nix"
   ];
-
   home-manager = {
 
     extraSpecialArgs = { inherit inputs; };
@@ -54,32 +53,22 @@ in
       home.username = "sheep";
       programs.home-manager.enable = true;
 
+      solarsystem = lib.recursiveUpdate {
+        profiles = {
+          darwin = true;
+          nixvim = true;
+        };
+      } sharedOptions;
+
       imports = [
         "${self}/modules/home"
         "${self}/profiles/home/nixvim"
-
+        "${self}/profiles/home/darwin"
       ];
-
-      solarsystem = lib.recursiveUpdate {
-        profiles = {
-          nixvim = true;
-        };
-        modules.packages = true;
-        modules.ghostty = true;
-        modules.eza = true;
-        modules.direnv = true;
-        modules.zsh = true;
-        modules.programs = true;
-        modules.firefox = true;
-      } sharedOptions;
     };
   };
 
   system.stateVersion = 4;
-
-  imports = [
-    "${self}/modules/home/common/sharedsetup.nix"
-  ];
 
   ids.gids.nixbld = 350;
   solarsystem = lib.recursiveUpdate {
@@ -89,14 +78,19 @@ in
 
   homebrew = {
     enable = true;
-    brews = [
-      "tailscale"
-    ];
+    # brews = [
+    #   "yabai"
+    # ];
+
     casks = [
       "ghostty"
       "vesktop"
       "firefox"
     ];
+
+    # taps = [
+    #   "koekeishiya/formulae"
+    # ];
 
   };
 
@@ -115,57 +109,57 @@ in
         BatteryShowPercentage = true;
         NowPlaying = false;
       };
-      NSGlobalDomain = {
-        "com.apple.sound.beep.volume" = 0.000;
-        NSWindowShouldDragOnGesture = true;
-        AppleKeyboardUIMode = 3;
-        "com.apple.keyboard.fnState" = true;
-        AppleInterfaceStyle = "Dark";
-        ApplePressAndHoldEnabled = false;
-        AppleShowAllExtensions = true;
-        InitialKeyRepeat = 20;
-        KeyRepeat = 2;
-        NSAutomaticCapitalizationEnabled = false;
-        NSAutomaticDashSubstitutionEnabled = false;
-        NSAutomaticQuoteSubstitutionEnabled = false;
-        NSAutomaticSpellingCorrectionEnabled = false;
-        NSAutomaticWindowAnimationsEnabled = false;
-        NSDocumentSaveNewDocumentsToCloud = false;
-        NSNavPanelExpandedStateForSaveMode = true;
-        PMPrintingExpandedStateForPrint = true;
-      };
-      LaunchServices = {
-        LSQuarantine = false;
-      };
+      # NSGlobalDomain = {
+      #   "com.apple.sound.beep.volume" = 0.000;
+      #   NSWindowShouldDragOnGesture = true;
+      #   AppleKeyboardUIMode = 3;
+      #   "com.apple.keyboard.fnState" = true;
+      #   AppleInterfaceStyle = "Dark";
+      #   ApplePressAndHoldEnabled = false;
+      #   AppleShowAllExtensions = true;
+      #   InitialKeyRepeat = 20;
+      #   KeyRepeat = 2;
+      #   NSAutomaticCapitalizationEnabled = false;
+      #   NSAutomaticDashSubstitutionEnabled = false;
+      #   NSAutomaticQuoteSubstitutionEnabled = false;
+      #   NSAutomaticSpellingCorrectionEnabled = false;
+      #   NSAutomaticWindowAnimationsEnabled = false;
+      #   NSDocumentSaveNewDocumentsToCloud = false;
+      #   NSNavPanelExpandedStateForSaveMode = true;
+      #   PMPrintingExpandedStateForPrint = true;
+      # };
+      # LaunchServices = {
+      #   LSQuarantine = false;
+      # };
       trackpad = {
         TrackpadRightClick = true;
         TrackpadThreeFingerDrag = true;
         Clicking = true;
       };
-      finder = {
-        AppleShowAllFiles = true;
-        CreateDesktop = false;
-        FXDefaultSearchScope = "SCcf";
-        FXEnableExtensionChangeWarning = false;
-        FXPreferredViewStyle = "Nlsv";
-        QuitMenuItem = true;
-        ShowPathbar = true;
-        ShowStatusBar = true;
-        _FXShowPosixPathInTitle = true;
-        _FXSortFoldersFirst = true;
-      };
-      dock = {
-        autohide = true;
-        expose-animation-duration = 0.15;
-        show-recents = false;
-        showhidden = true;
-        persistent-apps = [ ];
-        tilesize = 30;
-        wvous-bl-corner = 1;
-        wvous-br-corner = 1;
-        wvous-tl-corner = 1;
-        wvous-tr-corner = 1;
-      };
+      # finder = {
+      #   AppleShowAllFiles = true;
+      #   CreateDesktop = false;
+      #   FXDefaultSearchScope = "SCcf";
+      #   FXEnableExtensionChangeWarning = false;
+      #   FXPreferredViewStyle = "Nlsv";
+      #   QuitMenuItem = true;
+      #   ShowPathbar = true;
+      #   ShowStatusBar = true;
+      #   _FXShowPosixPathInTitle = true;
+      #   _FXSortFoldersFirst = true;
+      # };
+      # dock = {
+      # autohide = true;
+      # expose-animation-duration = 0.15;
+      # show-recents = false;
+      # showhidden = true;
+      # persistent-apps = [ ];
+      # tilesize = 30;
+      # wvous-bl-corner = 1;
+      # wvous-br-corner = 1;
+      # wvous-tl-corner = 1;
+      # wvous-tr-corner = 1;
+      # };
     };
   };
 

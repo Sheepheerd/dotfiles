@@ -36,7 +36,7 @@ in
   };
 
   # Enable fonts only if not on a NixOS system
-  config = lib.mkIf (config.solarsystem.isNixos != true) {
+  config = lib.mkIf (config.solarsystem.isNixos != true && config.solarsystem.isDarwin != true) {
     home.packages = cfg.fontPackages;
 
     fonts.fontconfig.enable = true;

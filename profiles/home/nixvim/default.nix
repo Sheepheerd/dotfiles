@@ -12,8 +12,6 @@
           lua_ls = lib.mkDefault true;
           nixd = lib.mkDefault true;
           basedpyright = lib.mkDefault true;
-          elixir = lib.mkDefault true;
-          verilog = lib.mkDefault true;
           rust = lib.mkDefault true;
           bash = lib.mkDefault true;
           asm_lsp = lib.mkDefault false;
