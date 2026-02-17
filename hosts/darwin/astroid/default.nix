@@ -19,7 +19,12 @@ let
 in
 {
 
+  environment.systemPackages = with pkgs; [
+    utm
+  ];
+
   nix = {
+    enable = false;
     settings = {
       experimental-features = "nix-command flakes";
     };
@@ -43,6 +48,7 @@ in
 
   imports = [
     "${self}/modules/home/common/sharedsetup.nix"
+    "${self}/modules/darwin"
   ];
   home-manager = {
 
@@ -78,19 +84,20 @@ in
 
   homebrew = {
     enable = true;
-    # brews = [
-    #   "yabai"
-    # ];
+    taps = [
+      # "asmvik/formulae"
+    ];
+    brews = [
+      # "yabai"
+      # "tailscale"
+    ];
 
     casks = [
       "ghostty"
       "vesktop"
       "firefox"
+      "nikitabobko/tap/aerospace"
     ];
-
-    # taps = [
-    #   "koekeishiya/formulae"
-    # ];
 
   };
 
@@ -109,57 +116,57 @@ in
         BatteryShowPercentage = true;
         NowPlaying = false;
       };
-      # NSGlobalDomain = {
-      #   "com.apple.sound.beep.volume" = 0.000;
-      #   NSWindowShouldDragOnGesture = true;
-      #   AppleKeyboardUIMode = 3;
-      #   "com.apple.keyboard.fnState" = true;
-      #   AppleInterfaceStyle = "Dark";
-      #   ApplePressAndHoldEnabled = false;
-      #   AppleShowAllExtensions = true;
-      #   InitialKeyRepeat = 20;
-      #   KeyRepeat = 2;
-      #   NSAutomaticCapitalizationEnabled = false;
-      #   NSAutomaticDashSubstitutionEnabled = false;
-      #   NSAutomaticQuoteSubstitutionEnabled = false;
-      #   NSAutomaticSpellingCorrectionEnabled = false;
-      #   NSAutomaticWindowAnimationsEnabled = false;
-      #   NSDocumentSaveNewDocumentsToCloud = false;
-      #   NSNavPanelExpandedStateForSaveMode = true;
-      #   PMPrintingExpandedStateForPrint = true;
-      # };
-      # LaunchServices = {
-      #   LSQuarantine = false;
-      # };
+      NSGlobalDomain = {
+        "com.apple.sound.beep.volume" = 0.000;
+        NSWindowShouldDragOnGesture = true;
+        AppleKeyboardUIMode = 3;
+        "com.apple.keyboard.fnState" = true;
+        AppleInterfaceStyle = "Dark";
+        ApplePressAndHoldEnabled = false;
+        AppleShowAllExtensions = true;
+        InitialKeyRepeat = 20;
+        KeyRepeat = 2;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        NSAutomaticWindowAnimationsEnabled = false;
+        NSDocumentSaveNewDocumentsToCloud = false;
+        NSNavPanelExpandedStateForSaveMode = true;
+        PMPrintingExpandedStateForPrint = true;
+      };
+      LaunchServices = {
+        LSQuarantine = false;
+      };
       trackpad = {
         TrackpadRightClick = true;
         TrackpadThreeFingerDrag = true;
         Clicking = true;
       };
-      # finder = {
-      #   AppleShowAllFiles = true;
-      #   CreateDesktop = false;
-      #   FXDefaultSearchScope = "SCcf";
-      #   FXEnableExtensionChangeWarning = false;
-      #   FXPreferredViewStyle = "Nlsv";
-      #   QuitMenuItem = true;
-      #   ShowPathbar = true;
-      #   ShowStatusBar = true;
-      #   _FXShowPosixPathInTitle = true;
-      #   _FXSortFoldersFirst = true;
-      # };
-      # dock = {
-      # autohide = true;
-      # expose-animation-duration = 0.15;
-      # show-recents = false;
-      # showhidden = true;
-      # persistent-apps = [ ];
-      # tilesize = 30;
-      # wvous-bl-corner = 1;
-      # wvous-br-corner = 1;
-      # wvous-tl-corner = 1;
-      # wvous-tr-corner = 1;
-      # };
+      finder = {
+        AppleShowAllFiles = true;
+        CreateDesktop = false;
+        FXDefaultSearchScope = "SCcf";
+        FXEnableExtensionChangeWarning = false;
+        FXPreferredViewStyle = "Nlsv";
+        QuitMenuItem = true;
+        ShowPathbar = true;
+        ShowStatusBar = true;
+        _FXShowPosixPathInTitle = true;
+        _FXSortFoldersFirst = true;
+      };
+      dock = {
+        autohide = true;
+        expose-animation-duration = 0.15;
+        show-recents = false;
+        showhidden = true;
+        persistent-apps = [ ];
+        tilesize = 30;
+        wvous-bl-corner = 1;
+        wvous-br-corner = 1;
+        wvous-tl-corner = 1;
+        wvous-tr-corner = 1;
+      };
     };
   };
 

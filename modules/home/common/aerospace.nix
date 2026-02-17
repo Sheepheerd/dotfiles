@@ -8,7 +8,7 @@
 
     programs.aerospace = {
       enable = false;
-      launchd.enable = true;
+      launchd.enable = false;
     };
 
     # Source aerospace config from the home-manager store
