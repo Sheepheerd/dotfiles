@@ -19,7 +19,12 @@ let
 in
 {
 
+  environment.systemPackages = with pkgs; [
+    utm
+  ];
+
   nix = {
+    enable = false;
     settings = {
       experimental-features = "nix-command flakes";
     };
@@ -41,10 +46,10 @@ in
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # firefox
+  imports = [
+    "${self}/modules/home/common/sharedsetup.nix"
+    "${self}/modules/darwin"
   ];
-
   home-manager = {
 
     extraSpecialArgs = { inherit inputs; };
@@ -54,32 +59,22 @@ in
       home.username = "sheep";
       programs.home-manager.enable = true;
 
+      solarsystem = lib.recursiveUpdate {
+        profiles = {
+          darwin = true;
+          nixvim = true;
+        };
+      } sharedOptions;
+
       imports = [
         "${self}/modules/home"
         "${self}/profiles/home/nixvim"
-
+        "${self}/profiles/home/darwin"
       ];
-
-      solarsystem = lib.recursiveUpdate {
-        profiles = {
-          nixvim = true;
-        };
-        modules.packages = true;
-        modules.ghostty = true;
-        modules.eza = true;
-        modules.direnv = true;
-        modules.zsh = true;
-        modules.programs = true;
-        modules.firefox = true;
-      } sharedOptions;
     };
   };
 
   system.stateVersion = 4;
-
-  imports = [
-    "${self}/modules/home/common/sharedsetup.nix"
-  ];
 
   ids.gids.nixbld = 350;
   solarsystem = lib.recursiveUpdate {
@@ -89,17 +84,19 @@ in
 
   homebrew = {
     enable = true;
-    brews = [
-      "x86_64-elf-binutils"
-      "x86_64-elf-gcc"
-      "tailscale"
+    taps = [
+      # "asmvik/formulae"
     ];
+    brews = [
+      # "yabai"
+      # "tailscale"
+    ];
+
     casks = [
       "ghostty"
-      #"nikitabobko/tap/aerospace"
       "vesktop"
-      # "firefox"
-      "ghdl"
+      "firefox"
+      "nikitabobko/tap/aerospace"
     ];
 
   };

@@ -20,6 +20,7 @@
         in
         composeManyExtensions [
           nixpkgs-stable
+          # inputs.nixos-muvm-fex.overlays.default
           inputs.nixgl.overlay
           inputs.nix-matlab.overlay
           # glaumar-overlay

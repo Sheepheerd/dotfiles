@@ -24,6 +24,7 @@ in
         # bluetooth
         bluez
         nixd
+        waypipe
       ];
   };
 }

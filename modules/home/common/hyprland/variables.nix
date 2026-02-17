@@ -30,10 +30,10 @@ in
         OZONE_PLATFORM = "auto";
       }
 
-      (lib.mkIf isLaptop {
-        # GSK_RENDERER = "ngl";
-        WLR_DRM_DEVICES = "/dev/dri/card0";
-      })
+      # (lib.mkIf isLaptop {
+      #   # GSK_RENDERER = "ngl";
+      #   WLR_DRM_DEVICES = "/dev/dri/card0";
+      # })
 
       # (lib.mkIf (!isLaptop) {
       #   libva_driver_name = "nvidia";

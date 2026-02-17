@@ -75,15 +75,19 @@
           };
           asm_lsp = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.asm_lsp {
             enable = true;
-            cmd = [ "asm-lsp" ];
-            rootMarkers = [
-              "asm-lsp.toml"
-              ".git"
-            ];
-            filetypes = [
-              "asm"
-              "nasm"
-            ];
+
+            config = {
+              # cmd = [ "asm-lsp" ];
+              # rootMarkers = [
+              #   "asm-lsp.toml"
+              #   ".git"
+              # ];
+              filetypes = [
+                "asm"
+                "nasm"
+                "S"
+              ];
+            };
           };
           tinymist = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.tinymist {
             enable = true;

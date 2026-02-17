@@ -16,8 +16,8 @@
       zsh = lib.mkDefault true;
       networkDevices = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
-      nvidia = lib.mkDefault false;
       tailscaleServer = lib.mkDefault true;
+      headscaleServer = lib.mkDefault true;
       server = {
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
@@ -33,7 +33,6 @@
       };
       filesystems = lib.mkDefault true;
 
-      amd = lib.mkDefault false;
       ageServer = lib.mkDefault true;
     };
 

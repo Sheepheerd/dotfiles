@@ -10,7 +10,7 @@ let
   hyprlandEnabled = config.solarsystem.modules.hyprland;
   browser = "firefox";
   terminal = "ghostty";
-  file = "nemo";
+  file = "thunar";
 
   monitor =
     if isLaptop then
@@ -28,6 +28,9 @@ in
       enable = true;
 
       settings = {
+        env = [
+          "PATH,$PATH:$HOME/.nix-profile/bin"
+        ];
         plugins = [ "hyprland-polkit" ];
         exec-once = [
           "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
@@ -39,7 +42,7 @@ in
 
           "wl-clip-persist --clipboard both &"
           "wl-paste --watch cliphist store &"
-          "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+          "${pkgs.nix}/etc/profile.d/nix-daemon.sh"
           "hyprctl setcursor Dracula-cursors 24"
           "${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
 
@@ -61,7 +64,7 @@ in
           numlock_by_default = true;
           repeat_delay = 300;
           follow_mouse = 1;
-          sensitivity = 0.5;
+          sensitivity = 0.3;
           touchpad = {
             disable_while_typing = true;
             scroll_factor = 0.3;

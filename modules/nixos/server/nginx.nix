@@ -6,7 +6,8 @@
   ...
 }:
 let
-  serverIp = "100.113.25.38";
+  # serverIp = "100.113.25.38";
+  serverIp = "100.64.0.5";
 in
 {
   options.solarsystem.modules.server.nginx = lib.mkEnableOption "enable nginx on server";
@@ -21,6 +22,7 @@ in
     ];
     networking.firewall.allowedUDPPorts = [
       53
+      41641
     ];
 
     age.secrets.acme-api = {
@@ -75,7 +77,6 @@ in
             "radarr.heerd.dev" = serverIp;
             "prowlarr.heerd.dev" = serverIp;
             "deluge.heerd.dev" = serverIp;
-
           };
         };
       };

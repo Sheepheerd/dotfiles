@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.solarsystem.modules.hyprland;
@@ -7,6 +12,8 @@ in
   config = lib.mkIf cfg {
     services.hypridle = {
       enable = true;
+      package = if config.solarsystem.isNixos then pkgs.hypridle else null;
+
       settings = {
         general = {
           lock_cmd = "pidof hyprlock || hyprlock";

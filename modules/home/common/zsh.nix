@@ -8,6 +8,9 @@
 let
   cfg = config.solarsystem.modules.zsh;
   homeDir = config.home.homeDirectory;
+
+  brew = if config.solarsystem.isDarwin then ''eval "$(/opt/homebrew/bin/brew shellenv)"'' else "";
+
 in
 {
   options.solarsystem.modules.zsh = lib.mkEnableOption "Custom Zsh config with fzf, zsh theme, and plugins";
@@ -105,6 +108,8 @@ in
         export PATH="$PATH:$HOME/.scripts/bin"
         export PATH="$PATH:$HOME/.local/bin"
         eval "$(zoxide init zsh)"
+        ${brew}
+
       '';
 
       shellAliases = {

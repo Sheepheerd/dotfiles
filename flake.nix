@@ -3,7 +3,6 @@
 
   nixConfig = {
     extra-substituters = [
-
       "https://nixos-apple-silicon.cachix.org"
       "https://nix-community.cachix.org"
     ];
@@ -15,8 +14,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2505.812242.tar.gz";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -24,7 +22,7 @@
     };
 
     nix-darwin = {
-      url = "github:LnL7/nix-darwin";
+      url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -41,6 +39,13 @@
       url = "github:rasmus-kirk/nixarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # nixos-muvm-fex = {
+    #   url = "github:nrabulinski/nixos-muvm-fex";
+    # };
+    # nixos-muvm-fex = {
+    #   url = "github:Sheepheerd/nixos-muvm-fex";
+    # };
 
     # glaumar_repo = {
     #   url = "github:glaumar/nur";
@@ -87,6 +92,11 @@
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    asahi-firmware = {
+      url = "git+ssh://git@github.com/Sheepheerd/asahi-firmware.git?dir=m1air";
+      flake = false;
     };
 
     ghdl = {

@@ -50,8 +50,9 @@
               ;
           };
           modules = [
-            "${self}/hosts/darwin/${configName}"
             inputs.home-manager.darwinModules.home-manager
+            "${self}/hosts/darwin/${configName}"
+            "${self}/modules/darwin"
           ];
         };
 

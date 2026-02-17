@@ -34,6 +34,14 @@ in
     system1
     solis
   ];
+  "server/cloud-dns.age".publicKeys = [
+    system1
+    solis
+  ];
+  "server/head-acl.age".publicKeys = [
+    system1
+    solis
+  ];
   "server/arr/sabnzbd.age".publicKeys = [
     system1
     solis

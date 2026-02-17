@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 let
   cfg = config.solarsystem.modules.hyprland;
@@ -7,6 +12,8 @@ in
   config = lib.mkIf cfg {
     programs.hyprlock = {
       enable = true;
+      package = if config.solarsystem.isNixos then pkgs.hyprlock else null;
+
       sourceFirst = true;
 
       extraConfig = ''

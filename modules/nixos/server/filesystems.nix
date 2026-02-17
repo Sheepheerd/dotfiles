@@ -11,7 +11,7 @@ in
     services.nfs.server = {
       enable = true;
       exports = ''
-        /mnt/two-t-hdd/jellyfin_media/Movies 192.168.0.220(rw,sync,all_squash,anonuid=988,anongid=169)
+        /mnt/two-t-hdd/jellyfin_media/Movies 192.168.0.219(rw,sync,all_squash,anonuid=988,anongid=169)
       '';
 
     };

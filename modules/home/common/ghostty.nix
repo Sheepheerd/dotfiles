@@ -15,11 +15,12 @@ in
     programs.ghostty = {
       enable = true;
       package = if config.solarsystem.isNixos then pkgs.ghostty else null;
+      systemd.enable = false;
 
       enableZshIntegration = true;
       settings = {
         # theme = "Rose Pine";
-        theme = if config.solarsystem.isLinux then "Rose Pine" else "rose-pine";
+        theme = "Rose Pine";
         font-size = 12;
         font-family = "JetBrainsMono Nerd Font Mono";
         shell-integration-features = [

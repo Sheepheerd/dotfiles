@@ -28,12 +28,38 @@ in
   networking = {
     hostName = "novastar";
   };
+
+  nix = {
+    distributedBuilds = true;
+
+    buildMachines = [
+      {
+        hostName = "solis";
+
+        systems = [ "x86_64-linux" ];
+
+        protocol = "ssh-ng";
+        maxJobs = 16;
+        speedFactor = 2;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+      }
+    ];
+  };
+
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;
     modules.virt = true;
     modules.box = true;
     modules.minecraft = true;
+    modules.youtube = true;
+    x86 = true;
+    muvm = true;
 
     # FIX
     profiles = {
@@ -42,7 +68,7 @@ in
   } sharedOptions;
 
   home-manager.users."${mainUser}" = {
-    home.stateVersion = lib.mkForce "25.05";
+    home.stateVersion = lib.mkForce "25.11";
     solarsystem = lib.recursiveUpdate {
       profiles = {
         nixvim = true;
