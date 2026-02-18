@@ -97,6 +97,7 @@ in
     casks = [
       # "J-x-Z/tap/cocoa-way"
       # "J-x-Z/tap/waypipe-darwin"
+      "scroll-reverser"
       "ghostty"
       "obs"
       "vesktop"
