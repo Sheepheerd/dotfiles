@@ -86,14 +86,19 @@ in
     enable = true;
     taps = [
       # "asmvik/formulae"
+      # "FelixKratz/formulae"
     ];
     brews = [
       # "yabai"
       # "tailscale"
+      # "sketchybar"
     ];
 
     casks = [
+      # "J-x-Z/tap/cocoa-way"
+      # "J-x-Z/tap/waypipe-darwin"
       "ghostty"
+      "obs"
       "vesktop"
       "firefox"
       "nikitabobko/tap/aerospace"

@@ -1,15 +1,15 @@
 {
   lib,
   config,
+  self,
   ...
 }:
 {
   config = lib.mkIf (config.solarsystem.isDarwin) {
 
-    programs.aerospace = {
-      enable = false;
-      launchd.enable = false;
-    };
+    # home.file = {
+    #   ".config/sketchybar".source = ../../../configs/sketchybar;
+    # };
 
     # Source aerospace config from the home-manager store
     home.file.".aerospace.toml".text = ''
