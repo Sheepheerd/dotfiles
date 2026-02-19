@@ -25,6 +25,7 @@
           comma
           fh
           python3
+          libqalculate
         ];
 
         extraNixosPackages = lib.optionals config.solarsystem.isNixos [

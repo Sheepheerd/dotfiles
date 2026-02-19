@@ -2,7 +2,6 @@
 
 let
   hyprlandEnabled = config.solarsystem.modules.hyprland;
-  isLaptop = config.solarsystem.isLaptop;
 in
 {
   config = lib.mkIf hyprlandEnabled {

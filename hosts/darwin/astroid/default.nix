@@ -101,7 +101,7 @@ in
       "ghostty"
       "obs"
       "vesktop"
-      "firefox"
+      # "firefox"
       "nikitabobko/tap/aerospace"
     ];
 
