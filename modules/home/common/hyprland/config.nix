@@ -14,7 +14,14 @@ let
 
   monitor =
     if isLaptop then
-      "monitor = eDP-1 , preferred, 0x0, 1.6"
+      ''
+        monitor = DP-1, 1920x1080@144, 0x0, 1
+
+        monitor = eDP-1, preferred, auto, 1.6, mirror, DP-1
+
+        # monitor = eDP-1 , preferred, 0x0, 1.6
+        # monitor = DP-1, 1920x1080@144, auto,1, mirror, eDP-1
+      ''
     else
       ''
         monitor = DP-3,1920x1080@144,0x0,1
@@ -272,12 +279,15 @@ in
       extraConfig = ''
         ${monitor}
         ${extraEnv}
+
+        # monitor = ,preferred,auto,1
+
         general {
         col.active_border = rgba(FFFFFF50) 
         col.inactive_border = 0xff382D2E
         }
 
-              # windowrulev2 = active:bordercolor rgba(ffffffcc) rgba(ddddddcc) 45deg
+        # windowrulev2 = active:bordercolor rgba(ffffffcc) rgba(ddddddcc) 45deg
       '';
 
     };
