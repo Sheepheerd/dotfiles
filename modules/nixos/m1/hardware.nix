@@ -37,11 +37,11 @@
     ];
 
     # Monitor Support
-    services.logind = {
-      lidSwitch = "suspend";
-      lidSwitchExternalPower = "ignore";
-      lidSwitchDocked = "ignore";
-    };
+    # services.logind = {
+    #   lidSwitch = "suspend";
+    #   lidSwitchExternalPower = "ignore";
+    #   lidSwitchDocked = "ignore";
+    # };
     boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-fairydust);
 
     # FIXME
