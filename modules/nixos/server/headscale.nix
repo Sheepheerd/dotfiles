@@ -32,7 +32,7 @@ in
           nameservers = {
             global = [
               serverIp
-              "1.1.1.1"
+              # "1.1.1.1"
             ];
           };
         };
