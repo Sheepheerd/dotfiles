@@ -70,7 +70,7 @@ in
     modules.box = true;
     # modules.minecraft = true;
     modules.youtube = true;
-    x86 = true;
+    x86 = false;
     muvm = true;
 
     # FIX

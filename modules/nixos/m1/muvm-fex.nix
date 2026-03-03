@@ -24,43 +24,9 @@ let
 
     # Override muvm: Use latest libkrun
 
-    muvm =
-      (prev.muvm.override {
-        libkrun = final.libkrun;
-      }).overrideAttrs
-        (oldAttrs: rec {
-          version = "0.5.0-fork";
-          src = final.fetchFromGitHub {
-            owner = "zeronone";
-            repo = "muvm";
-            rev = "main";
-            hash = "sha256-52mcVx/ofmuAyOOTnezQGtkbw3gqF32fwNKX5vMIffk=";
-          };
-
-          # Cargo dependencies will change with the new version
-          cargoDeps = final.rustPlatform.fetchCargoVendor {
-            inherit src;
-            hash = "sha256-Rx98pDO2NR2BYp6eJMrqQ9n4J8+1pnMBy886cZCEFBo=";
-          };
-
-          # We must patch muvm to look in /run/current-system/...
-          # The default behavior looks in the immutable ${fex}/share path.
-          postPatch = (oldAttrs.postPatch or "") + ''
-            # Replace the store path (or default path) with the NixOS system path
-
-            # Faulty replacement in nixpkgs
-            substituteInPlace crates/muvm/src/guest/mount.rs \
-              --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
-
-            # Used for auto-discovery of RootFS images
-            # substituteInPlace crates/muvm/src/bin/muvm.rs \
-            #   --replace-fail "/usr/share/fex-emu" "/run/current-system/sw/share/fex-emu"
-
-            # substituteInPlace crates/muvm/src/bin/muvm.rs \
-            #   --replace-fail "/usr/local/share/fex-emu" "/run/current-system/sw/share/fex-emu"
-            #   --replace-fail "${final.fex}/share/fex-emu" "/usr/share/fex-emu"
-          '';
-        });
+    muvm = prev.muvm.override {
+      libkrun = final.libkrun;
+    };
   };
 
   # Helper method to create mesa erofs

@@ -105,6 +105,7 @@
             enable = true;
           };
           clangd = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.clangd {
+            package = null;
             enable = true;
           };
           dockerls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.dockerls {
