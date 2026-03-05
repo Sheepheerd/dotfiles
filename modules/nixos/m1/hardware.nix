@@ -2,7 +2,6 @@
   lib,
   config,
   inputs,
-  self,
   pkgs,
   ...
 }:
@@ -16,7 +15,7 @@
     asahi = lib.mkEnableOption "Asahi Linux and Apple Silicon support";
   };
 
-  config = lib.mkIf config.solarsystem.asahi {
+  config = {
     hardware = {
 
       asahi = {
@@ -26,23 +25,19 @@
         peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
       graphics.enable = true;
+
     };
 
-    nixpkgs.overlays = [
+    nixpkgs.overlays = lib.mkIf config.solarsystem.asahi [
       inputs.apple-silicon.overlays.apple-silicon-overlay
       (final: prev: {
-        linux-fairydust = final.callPackage "${self}/pkgs/linux-asahi" { };
+        linux-fairydust = final.callPackage "${inputs.self}/pkgs/linux-asahi" { };
       })
-
     ];
 
-    # Monitor Support
-    # services.logind = {
-    #   lidSwitch = "suspend";
-    #   lidSwitchExternalPower = "ignore";
-    #   lidSwitchDocked = "ignore";
-    # };
-    boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-fairydust);
+    boot.kernelPackages = lib.mkIf config.solarsystem.asahi (
+      lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-fairydust)
+    );
 
     # FIXME
     boot.extraModulePackages = with config.boot.kernelPackages; [

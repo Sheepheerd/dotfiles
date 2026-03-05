@@ -77,6 +77,7 @@ in
             "radarr.heerd.dev" = serverIp;
             "prowlarr.heerd.dev" = serverIp;
             "deluge.heerd.dev" = serverIp;
+            "joplin.heerd.dev" = serverIp;
           };
         };
       };
