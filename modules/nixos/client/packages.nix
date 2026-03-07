@@ -25,6 +25,7 @@ in
         bluez
         nixd
         waypipe
+        brightnessctl
       ];
   };
 }

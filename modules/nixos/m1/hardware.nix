@@ -30,7 +30,7 @@
 
     nixpkgs.overlays = lib.mkIf config.solarsystem.asahi [
       inputs.apple-silicon.overlays.apple-silicon-overlay
-      (final: prev: {
+      (final: _prev: {
         linux-fairydust = final.callPackage "${inputs.self}/pkgs/linux-asahi" { };
       })
     ];

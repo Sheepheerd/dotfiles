@@ -1,7 +1,5 @@
 {
-  lib,
   callPackage,
-  linuxPackagesFor,
   _kernelPatches ? [ ],
   ...
 }:
@@ -12,7 +10,6 @@ let
       stdenv,
       lib,
       fetchFromGitHub,
-      fetchpatch,
       buildLinux,
       ...
     }:

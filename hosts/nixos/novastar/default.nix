@@ -66,7 +66,7 @@ in
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;
-    modules.virt = true;
+    modules.virt = false;
     modules.box = true;
     # modules.minecraft = true;
     modules.youtube = true;
