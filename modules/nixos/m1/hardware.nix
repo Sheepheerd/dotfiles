@@ -24,11 +24,11 @@
 
         peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
-      graphics.enable = true;
+      graphics.enable = config.solarsystem.asahi;
 
     };
 
-    nixpkgs.overlays = lib.mkIf config.solarsystem.asahi [
+    nixpkgs.overlays = [
       inputs.apple-silicon.overlays.apple-silicon-overlay
       (final: _prev: {
         linux-fairydust = final.callPackage "${inputs.self}/pkgs/linux-asahi" { };
