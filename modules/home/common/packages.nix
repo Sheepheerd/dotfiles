@@ -24,7 +24,6 @@
           lua
           comma
           fh
-          python3
           libqalculate
         ];
 

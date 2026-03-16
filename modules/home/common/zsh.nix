@@ -9,7 +9,14 @@ let
   cfg = config.solarsystem.modules.zsh;
   homeDir = config.home.homeDirectory;
 
-  brew = if config.solarsystem.isDarwin then ''eval "$(/opt/homebrew/bin/brew shellenv)"'' else "";
+  brew =
+    if config.solarsystem.isDarwin then
+      ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        export PATH="/opt/homebrew/opt/python/libexec/bin:$PATH"
+      ''
+    else
+      "";
 
 in
 {
@@ -114,7 +121,6 @@ in
 
       shellAliases = {
         t = "tmux a";
-        open = "xdg-open";
         vim = "nvim";
         ls = "eza";
         cat = "bat";

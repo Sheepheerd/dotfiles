@@ -97,12 +97,14 @@ in
     casks = [
       # "J-x-Z/tap/cocoa-way"
       # "J-x-Z/tap/waypipe-darwin"
+      "pear-devs/pear/pear-desktop"
       "scroll-reverser"
       "ghostty"
       "obs"
       "vesktop"
       # "firefox"
       "nikitabobko/tap/aerospace"
+      "kicad"
     ];
 
   };
