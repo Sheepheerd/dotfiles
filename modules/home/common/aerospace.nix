@@ -132,14 +132,6 @@
       alt-p = 'mode main'
       esc = 'mode main'
 
-      # Window detection rules
-      [[on-window-detected]]
-      if.app-id = 'org.mozilla.firefox'
-      run = 'move-node-to-workspace 1'
-
-      [[on-window-detected]]
-      if.app-id = 'com.mitchellh.ghostty'
-      run = 'move-node-to-workspace 2'
 
     '';
   };
