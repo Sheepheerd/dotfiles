@@ -50,4 +50,8 @@ in
     system1
     solis
   ];
+  "server/blocky.age".publicKeys = [
+    system1
+    solis
+  ];
 }

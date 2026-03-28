@@ -32,6 +32,13 @@ in
       mode = "0440";
     };
 
+    age.secrets.blocky = {
+      file = self + /secrets/server/blocky.age;
+      owner = "blocky";
+      group = "blocky";
+      mode = "0777";
+    };
+
     services.tailscale.extraUpFlags = [
       "--advertise-routes=0.0.0.0/0"
       "--accept-dns=false"
@@ -53,6 +60,7 @@ in
         blocking = {
           denylists = {
             ads = [ "https://blocklistproject.github.io/Lists/ads.txt" ];
+            sites = [ "${config.age.secrets.blocky.path}" ];
             adult = [
               "https://blocklistproject.github.io/Lists/porn.txt"
             ];
@@ -61,6 +69,7 @@ in
             default = [
               "ads"
               "adult"
+              "sites"
             ];
           };
         };
