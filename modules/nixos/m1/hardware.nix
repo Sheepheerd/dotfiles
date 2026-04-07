@@ -24,7 +24,7 @@
 
         peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
-      graphics.enable = config.solarsystem.asahi;
+      # graphics.enable = config.solarsystem.asahi;
 
     };
 

@@ -34,7 +34,7 @@
         server = {
           ssh = lib.mkDefault true;
         };
-        school = lib.mkDefault true;
+        school = lib.mkDefault false;
         stylix = lib.mkDefault true;
       };
 

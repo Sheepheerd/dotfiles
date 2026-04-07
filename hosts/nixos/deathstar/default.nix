@@ -15,7 +15,6 @@ let
     profiles = {
       reduced = lib.mkIf (!minimal) true;
       minimal = lib.mkIf minimal true;
-      gaming = true;
     };
   };
 in
