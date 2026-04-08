@@ -17,7 +17,8 @@
     };
 
     environment.systemPackages = with pkgs; [
-      kdePackages.kdenlive
+      # kdePackages.kdenlive
+      davinci-resolve
       v4l-utils
       scrcpy
     ];
