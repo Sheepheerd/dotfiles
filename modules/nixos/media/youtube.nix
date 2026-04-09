@@ -22,6 +22,16 @@
       v4l-utils
       scrcpy
     ];
+    environment.variables = {
+      RUSTICL_ENABLE = "radeonsi";
+    };
+    hardware.amdgpu.opencl.enable = true;
+    hardware.graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        mesa.opencl
+      ];
+    };
     boot = {
       # Make v4l2loopback kernel module available to NixOS.
       extraModulePackages = with config.boot.kernelPackages; [
