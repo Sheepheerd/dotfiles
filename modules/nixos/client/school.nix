@@ -15,8 +15,8 @@ in
   config = lib.mkIf cfg.school {
 
     environment.systemPackages = with pkgs; [
-      (lib.mkIf (!config.solarsystem.isLaptop) matlab)
-      (lib.mkIf (!config.solarsystem.isLaptop) vivado)
+      # (lib.mkIf (!config.solarsystem.isLaptop) matlab)
+      # (lib.mkIf (!config.solarsystem.isLaptop) vivado)
       (lib.mkIf (!config.solarsystem.isLaptop) wineWowPackages.waylandFull)
       (lib.mkIf (config.solarsystem.isLaptop
       ) inputs.openconnect-sso.packages.${pkgs.system}.openconnect-sso)

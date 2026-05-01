@@ -22,7 +22,7 @@
       blueman = lib.mkDefault true;
       networkDevices = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
-      virt = lib.mkDefault true;
+      virt = lib.mkDefault false;
       appimage = lib.mkDefault false;
       hyprland = lib.mkDefault true;
       nvidia = lib.mkDefault false;

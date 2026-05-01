@@ -24,7 +24,7 @@ in
     ./hardware-configuration.nix
 
   ];
-
+  boot.supportedFilesystems = [ "ntfs" ];
   networking = {
     hostName = "deathstar";
     interfaces.eno1.wakeOnLan.enable = true;
@@ -36,6 +36,8 @@ in
     hasBluetooth = true;
     # rootDisk = "/dev/nvme0n1";
     modules.youtube = true;
+    modules.dolphin = true;
+    modules.winboat = true;
     # FIX
     profiles = {
       # btrfs = true;
