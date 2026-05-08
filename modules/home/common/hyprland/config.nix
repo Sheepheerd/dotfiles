@@ -25,6 +25,7 @@ let
     else
       ''
         monitor = DP-3,1920x1080@144,0x0,1
+        # comment out if using as standalone
         monitor = HDMI-A-1,1920x1080@75,-1920x0,1
       '';
 

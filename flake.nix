@@ -99,6 +99,10 @@
       flake = false;
     };
 
+    # davinci-flake = {
+    #   url = "git+ssh://git@github.com/Sheepheerd/davinci";
+    # };
+
     ghdl = {
       url = "github:Sheepheerd/nix-ghdl";
     };

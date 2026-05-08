@@ -7,6 +7,10 @@ in
   config = lib.mkIf hyprlandEnabled {
     home.sessionVariables = lib.mkMerge [
       {
+        NIXOS_OZONE_WL = "1";
+        WLR_NO_HARDWARE_CURSORS = "1";
+        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_SESSION_TYPE = "wayland";
         _JAVA_AWT_WM_NONEREPARENTING = 1;
         GDK_BACKEND = "wayland";
         DIRENV_LOG_FORMAT = "";
@@ -17,10 +21,7 @@ in
         QT_QPA_PLATFORMTHEME = "qt5ct";
         QT_STYLE_OVERRIDE = "kvantum";
         MOZ_ENABLE_WAYLAND = 1;
-        WLR_NO_HARDWARE_CURSORS = 1;
-        XDG_CURRENT_DESKTOP = "Hyprland";
         WLR_RENDERER_ALLOW_SOFTWARE = "1";
-        XDG_SESSION_TYPE = "wayland";
         XDG_SESSION_DESKTOP = "Hyprland";
         SDL_VIDEODRIVER = "wayland";
         CLUTTER_BACKEND = "wayland";

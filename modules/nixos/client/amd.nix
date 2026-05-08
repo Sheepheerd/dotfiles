@@ -9,28 +9,33 @@
   options.solarsystem.modules.amd = lib.mkEnableOption "Enable Amd module";
 
   config = lib.mkIf config.solarsystem.modules.amd {
+    # This automatically handles the OpenCL ICD and ROCm runtime for you
+    hardware.amdgpu.opencl.enable = true;
+
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-      # Moved inside graphics block
       extraPackages = with pkgs; [
-        libva
-        libva-vdpau-driver
-        libvdpau-va-gl
-        mesa.drivers
+        mesa.opencl
       ];
+    };
+
+    environment.variables = {
+      RUSTICL_ENABLE = "radeonsi";
     };
 
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "radeonsi";
+      # Forces OpenCL to use the stable AMD/ROCm path:
+      OCL_ICD_VENDORS = "amdocl64.icd";
     };
 
-    boot.initrd.kernelModules = [ "amdgpu" ];
-    services.xserver.videoDrivers = [ "amdgpu" ];
+    # boot.initrd.kernelModules = [ "amdgpu" ];
+    # services.xserver.videoDrivers = [ "amdgpu" ];
 
-    systemd.tmpfiles.rules = [
-      "L+    /opt/rocm/hip    -    -    -     -    ${pkgs.rocmPackages.clr}"
-    ];
+    # systemd.tmpfiles.rules = [
+    #   "L+    /opt/rocm/hip    -    -    -     -    ${pkgs.rocmPackages.clr}"
+    # ];
 
     environment.systemPackages = with pkgs; [
       lact

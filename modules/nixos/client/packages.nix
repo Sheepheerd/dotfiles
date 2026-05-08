@@ -26,6 +26,11 @@ in
         nixd
         waypipe
         brightnessctl
+        (discord.override {
+          withOpenASAR = true; # can do this here too
+          withVencord = true;
+        })
+
       ];
   };
 }

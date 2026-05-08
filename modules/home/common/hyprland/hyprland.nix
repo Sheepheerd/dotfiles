@@ -14,7 +14,7 @@ in
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
       clippy
-      swww
+      awww
       grim
       slurp
       wl-clip-persist
@@ -35,7 +35,7 @@ in
       package = null;
       portalPackage = null;
       xwayland.enable = true;
-      # systemd.enable = false;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
     };
 
