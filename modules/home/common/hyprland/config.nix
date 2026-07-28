@@ -48,6 +48,7 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "waybar &"
           "swww-daemon &"
+          "wayscriber --daemon &"
 
           "wl-clip-persist --clipboard both &"
           "wl-paste --watch cliphist store &"
@@ -107,7 +108,7 @@ in
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
           mouse_move_enables_dpms = true;
-          vfr = true;
+          # vfr = true;
           vrr = 0;
           animate_manual_resizes = true;
           mouse_move_focuses_monitor = true;
@@ -115,7 +116,7 @@ in
         };
 
         dwindle = {
-          pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          # pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true; # you probably want this
         };
 
@@ -191,7 +192,7 @@ in
           "SUPER, F, fullscreen,"
           "SUPER SHIFT, F, togglefloating,"
           "SUPER, P, pseudo, # dwindle"
-          "SUPER, S, togglesplit, # dwindle"
+          # "SUPER, S, togglesplit, # dwindle"
 
           # Change Workspace Mode
           "SUPER SHIFT, Space, workspaceopt, allfloat"
@@ -257,6 +258,8 @@ in
           # ",Print, exec, screenshot --copy"
           # "SUPER, Print, exec, screenshot --save"
           ''SUPER SHIFT, S, exec, grim -g "$(slurp)"''
+
+          "SUPER, D, exec, wayscriber --daemon-toggle"
         ];
         binde = [
           ",XF86AudioRaiseVolume,exec, amixer set Master 5%+"
