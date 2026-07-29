@@ -32,12 +32,12 @@
     };
 
     environment.systemPackages = with pkgs; [
-      lact
+      # lact
       clinfo
     ];
 
-    systemd.packages = with pkgs; [ lact ];
-    systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+    # systemd.packages = with pkgs; [ lact ];
+    # systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   };
 }

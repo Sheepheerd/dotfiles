@@ -43,7 +43,7 @@ in
     # rootDisk = "/dev/nvme0n1";
     modules.youtube = true;
     modules.dolphin = true;
-    modules.winboat = true;
+    # modules.winboat = true;
     # FIX
     profiles = {
       # btrfs = true;
@@ -51,7 +51,7 @@ in
   } sharedOptions;
 
   home-manager.users."${mainUser}" = {
-    home.stateVersion = lib.mkForce "25.11";
+    home.stateVersion = lib.mkForce "26.05";
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";
