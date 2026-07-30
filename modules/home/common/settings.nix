@@ -45,7 +45,7 @@ in
     home = {
       username = lib.mkDefault mainUser;
       homeDirectory = lib.mkDefault "/home/${mainUser}";
-      stateVersion = lib.mkDefault "25.05";
+      stateVersion = lib.mkDefault "26.05";
       keyboard.layout = "us";
       sessionVariables = {
         FLAKE = "/home/${mainUser}/.dotfiles";

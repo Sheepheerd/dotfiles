@@ -15,8 +15,8 @@ in
 
   config = lib.mkIf config.solarsystem.modules.mullvad {
     services.mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
+      enable = false;
+      # package = pkgs.mullvad-vpn;
     };
     environment.systemPackages = [ mullvad-autostart ];
     # systemd = {

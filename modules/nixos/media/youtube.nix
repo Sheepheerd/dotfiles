@@ -2,8 +2,10 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
+
 {
   options.solarsystem.modules.youtube = lib.mkEnableOption "youtube config";
   config = lib.mkIf config.solarsystem.modules.youtube {
@@ -13,6 +15,7 @@
       enableVirtualCamera = true;
       plugins = with pkgs.obs-studio-plugins; [
         droidcam-obs
+        obs-vaapi
       ];
     };
 
@@ -20,7 +23,14 @@
       kdePackages.kdenlive
       v4l-utils
       scrcpy
+      # systemctl --user enable --now wayscriber.service
+      inputs.wayscriber.packages.${pkgs.system}.default
+      inputs.wayscriber.packages.${pkgs.system}.wayscriber-configurator
+      gimp
+      audacity
+
     ];
+
     boot = {
       # Make v4l2loopback kernel module available to NixOS.
       extraModulePackages = with config.boot.kernelPackages; [

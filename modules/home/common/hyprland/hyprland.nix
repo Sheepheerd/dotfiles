@@ -14,7 +14,7 @@ in
   config = lib.mkIf cfg {
     home.packages = with pkgs; [
       clippy
-      swww
+      awww
       grim
       slurp
       wl-clip-persist
@@ -31,11 +31,14 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
+      # HM >=26.05 defaults configType to "lua"; our settings/extraConfig are
+      # hyprlang, so keep generating hyprland.conf.
+      configType = "hyprlang";
       # package = if config.solarsystem.isNixos then null else pkgs.hyprland;
       package = null;
       portalPackage = null;
       xwayland.enable = true;
-      # systemd.enable = false;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
     };
 

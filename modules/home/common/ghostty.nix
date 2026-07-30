@@ -39,6 +39,8 @@ in
         window-padding-x = 10;
         window-padding-y = 10;
 
+        gtk-single-instance = false;
+
         keybind = [
           "ctrl+l=clear_screen"
           "ctrl+enter=ignore"

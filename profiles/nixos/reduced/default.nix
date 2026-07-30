@@ -30,7 +30,7 @@
         nvidia = lib.mkDefault false;
         amd = if config.solarsystem.isNixos && !config.solarsystem.isLaptop then true else false;
         tailscale = lib.mkDefault true;
-        mullvad = lib.mkDefault true;
+        mullvad = lib.mkDefault false;
         server = {
           ssh = lib.mkDefault true;
         };

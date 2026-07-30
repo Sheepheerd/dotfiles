@@ -24,10 +24,16 @@ in
     ./hardware-configuration.nix
 
   ];
-
+  boot.supportedFilesystems = [ "ntfs" ];
   networking = {
     hostName = "deathstar";
     interfaces.eno1.wakeOnLan.enable = true;
+  };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   solarsystem = lib.recursiveUpdate {
@@ -35,6 +41,9 @@ in
     # wallpaper = self + /files/wallpaper/lenovowp.png;
     hasBluetooth = true;
     # rootDisk = "/dev/nvme0n1";
+    modules.youtube = true;
+    modules.dolphin = true;
+    # modules.winboat = true;
     # FIX
     profiles = {
       # btrfs = true;
@@ -42,7 +51,7 @@ in
   } sharedOptions;
 
   home-manager.users."${mainUser}" = {
-    home.stateVersion = lib.mkForce "25.11";
+    home.stateVersion = lib.mkForce "26.05";
     solarsystem = lib.recursiveUpdate {
       # lowResolution = "1280x800";
       # highResolution = "1920x1080";

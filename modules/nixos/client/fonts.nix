@@ -26,6 +26,12 @@ in
         # jetbrains-mono
         nerd-font-patcher
         noto-fonts-color-emoji
+        (google-fonts.override {
+          fonts = [
+            "PatrickHand"
+            "ArchitectsDaughter"
+          ];
+        })
       ];
       description = "List of font packages to install";
     };
