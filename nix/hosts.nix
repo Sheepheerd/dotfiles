@@ -26,7 +26,6 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.nixarr.nixosModules.default
-            inputs.microvm.nixosModules.host
             inputs.jovian.nixosModules.default
             "${self}/hosts/nixos/${configName}"
             "${self}/profiles/nixos"
@@ -120,5 +119,23 @@
 
       # nodes = config.nixosConfigurations // config.darwinConfigurations;
 
+      # Dry-build matrix for CI (.github/workflows/nix-check.yml) — derived
+      # from the same host lists above so adding/removing a host directory
+      # doesn't require touching CI config.
+      ciMatrix = {
+        include =
+          (lib.map (h: {
+            attr = "nixosConfigurations.${h}.config.system.build.toplevel";
+            name = "nixos-${h}";
+          }) nixosHosts)
+          ++ (lib.map (h: {
+            attr = "nixosConfigurationsMinimal.${h}.config.system.build.toplevel";
+            name = "nixos-${h}-minimal";
+          }) nixosHosts)
+          ++ (lib.map (h: {
+            attr = "darwinConfigurations.${h}.system";
+            name = "darwin-${h}";
+          }) darwinHosts);
+      };
     };
 }

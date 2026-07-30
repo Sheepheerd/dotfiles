@@ -5,3 +5,18 @@ repos:
       - id: deadnix
         args: [--edit] # Uncomment to automatically modify files
         stages: [commit]
+  - repo: local
+    hooks:
+      - id: statix
+        name: statix
+        entry: nix run nixpkgs#statix -- check
+        language: system
+        files: \.nix$
+        pass_filenames: false
+        stages: [commit]
+      - id: nix-flake-check
+        name: nix flake check
+        entry: nix flake check --no-build
+        language: system
+        pass_filenames: false
+        stages: [push]
