@@ -103,7 +103,7 @@ in
       "obs"
       "vesktop"
       # "firefox"
-      # "nikitabobko/tap/aerospace"
+      "nikitabobko/tap/aerospace"
       "kicad"
     ];
 
@@ -149,7 +149,7 @@ in
       trackpad = {
         TrackpadRightClick = true;
         Clicking = true;
-        TrackpadThreeFingerHorizSwipeGesture = 1;
+        TrackpadThreeFingerHorizSwipeGesture = 2;
       };
       finder = {
         AppleShowAllFiles = true;
