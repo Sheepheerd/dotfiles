@@ -32,7 +32,6 @@ in
 
       database = {
         enable = true;
-        enableVectors = true;
       };
 
     };

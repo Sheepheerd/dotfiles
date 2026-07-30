@@ -17,6 +17,9 @@ in
       radarr = {
         enable = true;
       };
+      sonarr = {
+        enable = true;
+      };
 
       prowlarr = {
         enable = true;
@@ -33,32 +36,32 @@ in
           locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:7878";
-              extraConfig = '''';
+              extraConfig = "";
             };
           };
         };
-        # "prowlarr.heerd.dev" = {
-        #   enableACME = true;
-        #   forceSSL = true;
-        #   acmeRoot = null;
-        #   locations = {
-        #     "/" = {
-        #       proxyPass = "http://127.0.0.1:9696";
-        #       extraConfig = '''';
-        #     };
-        #   };
-        # };
-        "deluge.heerd.dev" = {
+        "sonarr.heerd.dev" = {
           enableACME = true;
           forceSSL = true;
           acmeRoot = null;
           locations = {
             "/" = {
-              proxyPass = "http://127.0.0.1:8112";
-              extraConfig = '''';
+              proxyPass = "http://127.0.0.1:8989";
+              extraConfig = "";
             };
           };
         };
+        # "deluge.heerd.dev" = {
+        #   enableACME = true;
+        #   forceSSL = true;
+        #   acmeRoot = null;
+        #   locations = {
+        #     "/" = {
+        #       proxyPass = "http://127.0.0.1:8112";
+        #       extraConfig = "";
+        #     };
+        #   };
+        # };
       };
     };
   };

@@ -33,6 +33,7 @@ in
     };
 
     fileSystems."/var/lib/nextcloud" = {
+      fsType = "ext4";
       device = "/mnt/two-t-hdd/${serviceName}";
       options = [ "bind" ];
     };
@@ -89,7 +90,7 @@ in
           "OC\\Preview\\HEIC"
         ];
       };
-      maxUploadSize = "10G";
+      maxUploadSize = "100G";
     };
 
     services.nginx = {

@@ -84,8 +84,9 @@ in
             "music.heerd.dev" = serverIp;
             "paperless.heerd.dev" = serverIp;
             "radarr.heerd.dev" = serverIp;
+            "sonarr.heerd.dev" = serverIp;
             "prowlarr.heerd.dev" = serverIp;
-            "deluge.heerd.dev" = serverIp;
+            # "deluge.heerd.dev" = serverIp;
             "joplin.heerd.dev" = serverIp;
           };
         };
