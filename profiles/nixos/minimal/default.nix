@@ -19,6 +19,8 @@
         zsh = lib.mkDefault true;
         blueman = lib.mkDefault true;
         tailscale = lib.mkDefault true;
+        gnome = lib.mkDefault true;
+        firefox = lib.mkDefault true;
       };
 
     };
