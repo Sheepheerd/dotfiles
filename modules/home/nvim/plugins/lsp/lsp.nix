@@ -179,13 +179,14 @@
                     "-cli-config"
                     "/home/sheep/.arduino15/arduino-cli.yaml"
                     "-fqbn"
-                    "arduino:avr:uno"
+                    "esp32:esp32:esp32"
                   ];
                 };
 
               };
         };
       };
+
       plugins = {
         java = {
           enable = false;
