@@ -181,9 +181,9 @@ in
           # Lock lid on close
           ",switch:off:Lid Switch, exec, hyprlock --immediate"
 
-          "SUPER SHIFT, E, exec, $HOME/.scripts/fuzzel-powermenu.sh"
-          "SUPER, SPACE, exec, killall fuzzel || fuzzel"
-          "SUPER, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+          "SUPER SHIFT, E, exec, $HOME/.scripts/walker-powermenu.sh"
+          "SUPER, SPACE, exec, walker"
+          "SUPER, V, exec, cliphist list | walker --dmenu | cliphist decode | wl-copy"
 
           # Window Management
           "SUPER, Q, killactive,"
