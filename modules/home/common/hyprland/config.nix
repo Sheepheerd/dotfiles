@@ -25,6 +25,7 @@ let
     else
       ''
         monitor = DP-3,1920x1080@144,0x0,1
+        # 60 rather than the panel's 75: fewer competing vblanks against DP-3's 144.
         # comment out if using as standalone
         monitor = HDMI-A-1,1920x1080@75,-1920x0,1
       '';
@@ -73,7 +74,7 @@ in
           numlock_by_default = true;
           repeat_delay = 300;
           follow_mouse = 1;
-          sensitivity = 0.3;
+          sensitivity = 0;
           touchpad = {
             disable_while_typing = true;
             scroll_factor = 0.3;
