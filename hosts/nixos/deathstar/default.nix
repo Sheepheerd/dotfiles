@@ -9,6 +9,7 @@ let
   sharedOptions = {
     inherit mainUser;
     isLaptop = false;
+    noSleep = true;
     isNixos = true;
     isLinux = true;
     # sharescreen = "eDP-1";
@@ -43,6 +44,7 @@ in
     # rootDisk = "/dev/nvme0n1";
     modules.youtube = true;
     modules.dolphin = true;
+    modules.zram = true;
     # modules.winboat = true;
     # FIX
     profiles = {
