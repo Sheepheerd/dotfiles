@@ -24,13 +24,20 @@
       consoleLogLevel = 3;
     };
     systemd = {
-      targets = {
-        sleep.enable = lib.mkIf config.solarsystem.isLaptop true;
-        suspend.enable = lib.mkIf config.solarsystem.isLaptop true;
-        hibernate.enable = lib.mkIf config.solarsystem.isLaptop true;
-        hybrid-sleep.enable = lib.mkIf config.solarsystem.isLaptop true;
-
-      };
+      # Masking these makes systemctl suspend/hibernate fail outright, so nothing
+      # (logind, hypridle, a stray keybind) can put a noSleep host to sleep.
+      targets =
+        lib.genAttrs
+          [
+            "sleep"
+            "suspend"
+            "hibernate"
+            "hybrid-sleep"
+          ]
+          (_: {
+            enable =
+              if config.solarsystem.noSleep then lib.mkForce false else lib.mkIf config.solarsystem.isLaptop true;
+          });
 
     };
   };

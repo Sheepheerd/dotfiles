@@ -10,6 +10,7 @@ in
 {
   options.solarsystem = {
     isLaptop = lib.mkEnableOption "laptop host";
+    noSleep = lib.mkEnableOption "host never suspends or hibernates";
     isNixos = lib.mkEnableOption "nixos host";
     isPublic = lib.mkEnableOption "is a public machine (no secrets)";
     isDarwin = lib.mkEnableOption "darwin host";

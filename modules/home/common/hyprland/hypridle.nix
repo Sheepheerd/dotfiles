@@ -41,11 +41,15 @@ in
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
+        ]
+        # Screen still blanks on a noSleep host, it just never suspends after.
+        ++ lib.optionals (!config.solarsystem.noSleep) [
           {
             timeout = 1800;
             on-timeout = "systemctl suspend";
           }
         ];
+
       };
     };
   };
