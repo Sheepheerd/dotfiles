@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  inputs,
   ...
 }:
 
@@ -23,9 +22,6 @@
       kdePackages.kdenlive
       v4l-utils
       scrcpy
-      # systemctl --user enable --now wayscriber.service
-      inputs.wayscriber.packages.${pkgs.system}.default
-      inputs.wayscriber.packages.${pkgs.system}.wayscriber-configurator
       gimp
       audacity
 

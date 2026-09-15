@@ -48,7 +48,6 @@ in
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "waybar &"
           "swww-daemon &"
-          "wayscriber --daemon &"
 
           "wl-clip-persist --clipboard both &"
           "wl-paste --watch cliphist store &"
@@ -258,8 +257,6 @@ in
           # ",Print, exec, screenshot --copy"
           # "SUPER, Print, exec, screenshot --save"
           ''SUPER SHIFT, S, exec, grim -g "$(slurp)"''
-
-          "SUPER, D, exec, wayscriber --daemon-toggle"
         ];
         binde = [
           ",XF86AudioRaiseVolume,exec, amixer set Master 5%+"
