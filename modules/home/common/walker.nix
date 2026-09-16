@@ -33,6 +33,27 @@ in
       Install.WantedBy = [ "graphical-session.target" ];
     };
 
+    # Launching walker cold on every keypress pays for GTK init each time.
+    # Kept resident as a GApplication service, the keybind's `walker` only
+    # asks the running instance over D-Bus to show its window.
+    systemd.user.services.walker = {
+      Unit = {
+        Description = "Walker launcher kept resident for instant open";
+        PartOf = [ "graphical-session.target" ];
+        After = [
+          "graphical-session.target"
+          "elephant.service"
+        ];
+        Wants = [ "elephant.service" ];
+      };
+      Service = {
+        ExecStart = "${pkgs.walker}/bin/walker --gapplication-service";
+        Restart = "on-failure";
+        RestartSec = 2;
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+    };
+
     home.file.".scripts/walker-powermenu.sh" = {
       text = ''
         #!/usr/bin/env bash
