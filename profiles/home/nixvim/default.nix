@@ -4,6 +4,7 @@
   config = lib.mkIf config.solarsystem.profiles.nixvim {
     solarsystem.modules.nixvim = {
       enable = lib.mkDefault true;
+      godot.enable = lib.mkDefault true;
       lsp = {
         enable = lib.mkDefault true;
         servers = {

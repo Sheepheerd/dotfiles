@@ -419,6 +419,22 @@
         "type": "gitlab"
       }
     },
+    "godotdev-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788193834,
+        "narHash": "sha256-8g3y4kkonX0Wz2CDxalLk8JpoE73o/ynKjcjDbYCczM=",
+        "owner": "Mathijs-Bakker",
+        "repo": "godotdev.nvim",
+        "rev": "ccac07c5b18ccbe0c3f90d06129cd17f08e4ac04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mathijs-Bakker",
+        "repo": "godotdev.nvim",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -447,11 +463,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785239295,
-        "narHash": "sha256-aYFoftXjm7Df7CAoR0XoMQjJ9rTZ/l9d1jr9EqD7sHM=",
+        "lastModified": 1790002393,
+        "narHash": "sha256-K52mRzjlCKWaFf+Z3SmoxACg/UzNNR4eUiRZUe1tMs4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "42bb40f7aaab63a107b64a20c4a4ade6550758d0",
+        "rev": "fae3c7589610212a87c89a968f2321d2bc823f38",
         "type": "github"
       },
       "original": {
@@ -770,11 +786,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1785090369,
-        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
+        "lastModified": 1789921291,
+        "narHash": "sha256-Ft/BRnIqw1MywFoXydKobjjWmDFgDdYtSpJliE8+yUw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "624af665418d3c65d544145b4d34ad696439570e",
+        "rev": "44a91898084f46797b5fac650c7e8c9ac38c43d4",
         "type": "github"
       },
       "original": {
@@ -891,6 +907,7 @@
         "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "ghdl": "ghdl",
+        "godotdev-nvim": "godotdev-nvim",
         "home-manager": "home-manager_2",
         "jovian": "jovian",
         "microvm": "microvm",

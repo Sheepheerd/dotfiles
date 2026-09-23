@@ -111,6 +111,9 @@
     claude-code = {
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    godotdev-nvim = {
+      url = "github:Mathijs-Bakker/godotdev.nvim";
+      flake = false;
     };
 
     flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1.406.tar.gz";
