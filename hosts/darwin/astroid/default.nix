@@ -25,11 +25,6 @@ let
 in
 {
 
-  godot-ai = pkgs.writeShellScriptBin "godot-ai" ''
-    export UV_PYTHON=${pkgs.python3}/bin/python3
-    export UV_PYTHON_DOWNLOADS=never
-    exec ${pkgs.uv}/bin/uvx godot-ai "$@"
-  '';
   environment.systemPackages = with pkgs; [
     utm
     godot-ai

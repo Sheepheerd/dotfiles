@@ -111,6 +111,7 @@
     claude-code = {
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
     godotdev-nvim = {
       url = "github:Mathijs-Bakker/godotdev.nvim";
       flake = false;
