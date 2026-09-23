@@ -18,7 +18,7 @@
       ghostty = lib.mkDefault true;
       gtk = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      waybar.enable = lib.mkDefault true;
+      quickshell = lib.mkDefault true;
       hyprland = lib.mkDefault true;
     };
 

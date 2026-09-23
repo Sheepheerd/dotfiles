@@ -2,9 +2,19 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }:
 
+let
+  # godot-ai hard-pins fastmcp 4 / mcp 2, which nixpkgs doesn't carry, so run
+  # it through uvx (the upstream-supported launcher) against nixpkgs' python.
+  godot-ai = pkgs.writeShellScriptBin "godot-ai" ''
+    export UV_PYTHON=${pkgs.python3}/bin/python3
+    export UV_PYTHON_DOWNLOADS=never
+    exec ${pkgs.uv}/bin/uvx godot-ai "$@"
+  '';
+in
 {
   options.solarsystem.modules.youtube = lib.mkEnableOption "youtube config";
   config = lib.mkIf config.solarsystem.modules.youtube {
@@ -24,7 +34,11 @@
       scrcpy
       gimp
       audacity
-
+      godot
+      blender
+      inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
+      uv
+      godot-ai
     ];
 
     boot = {

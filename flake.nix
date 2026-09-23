@@ -108,6 +108,11 @@
       url = "github:Sheepheerd/nix-ghdl";
     };
 
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1.406.tar.gz";
     systems.url = "github:nix-systems/default";
   };

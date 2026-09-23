@@ -47,7 +47,6 @@ in
           "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-          "waybar &"
           "swww-daemon &"
 
           "wl-clip-persist --clipboard both &"
@@ -175,8 +174,8 @@ in
           "CTRL ALT, L, exec, hyprlock"
           "SUPER, E, exec, ${file}"
           "SUPER, B, exec,  ${browser}"
-          "SUPER SHIFT, B, exec, killall -SIGUSR2 waybar" # Reload waybar
-          "SUPER, W, exec, killall -SIGUSR1 waybar"
+          "SUPER SHIFT, B, exec, systemctl --user restart quickshell" # Reload the bar
+          "SUPER, W, exec, qs ipc call bar toggle" # Hide/show the bar
 
           ",switch:on:Lid Switch, exec, hyprlock --immediate"
           # Lock lid on close

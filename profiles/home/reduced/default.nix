@@ -21,7 +21,7 @@
       gtk = lib.mkDefault true;
       # orcaSlicer = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      waybar.enable = lib.mkDefault true;
+      quickshell = lib.mkDefault true;
       hyprland = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       # age = lib.mkDefault true;

@@ -58,21 +58,45 @@ in
       text = ''
         #!/usr/bin/env bash
 
-        SELECTION="$(printf "1 - Lock\n2 - Suspend\n3 - Log out\n4 - Reboot\n5 - Reboot to UEFI\n6 - Shutdown" | walker --dmenu -p "Power Menu: ")"
+        # A --dmenu call that reaches the resident walker over D-Bus segfaults
+        # it and hands back nothing, so every entry here silently did nothing
+        # and took the launcher down with it. Pointing this one call at a dead
+        # bus makes GApplication fall back to a private primary instance: the
+        # menu answers here, and the resident launcher stays up.
+        dmenu() {
+          DBUS_SESSION_BUS_ADDRESS=unix:path=/nonexistent walker --dmenu "$@"
+        }
 
-        case $SELECTION in
-          *"Lock")
+        SELECTION="$(printf "1 - Lock\n2 - Suspend\n3 - Log out\n4 - Reboot\n5 - Reboot to UEFI\n6 - Shutdown" | dmenu -p "Power Menu: ")"
+
+        # The menu runs with no terminal attached, so a selection that lands on
+        # the wrong entry leaves no trace. Record what came back before acting
+        # on it: journalctl -t powermenu.
+        logger -t powermenu "selection=[$SELECTION]"
+
+        # Matched on the label alone, and exactly. The patterns used to be
+        # trailing globs, which meant an unexpected answer -- an empty string,
+        # a truncated line -- could still fall into a branch that tears the
+        # session down.
+        case "''${SELECTION##* - }" in
+          "Lock")
             hyprlock;;
-          *"Suspend")
+          "Suspend")
             systemctl suspend;;
-          *"Log out")
-            pkill -KILL -u "$USER";;
-          *"Reboot")
+          "Log out")
+            # SIGKILLing the user meant killing systemd --user along with the
+            # compositor, which leaves the session half-torn-down and the last
+            # frame stuck on screen. uwsm stops the compositor the way the
+            # session was started.
+            uwsm stop || loginctl terminate-user "$USER";;
+          "Reboot")
             systemctl reboot;;
-          *"Reboot to UEFI")
+          "Reboot to UEFI")
             systemctl reboot --firmware-setup;;
-          *"Shutdown")
+          "Shutdown")
             systemctl poweroff;;
+          *)
+            logger -t powermenu "no action for selection=[$SELECTION]";;
         esac
       '';
       executable = true;
