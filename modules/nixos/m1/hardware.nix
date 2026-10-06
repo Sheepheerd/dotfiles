@@ -22,23 +22,23 @@
         enable = config.solarsystem.asahi;
         setupAsahiSound = true;
 
-        peripheralFirmwareDirectory = inputs.asahi-firmware;
+        # peripheralFirmwareDirectory = inputs.asahi-firmware;
       };
       # graphics.enable = config.solarsystem.asahi;
 
     };
 
-    nixpkgs.overlays = [
-      inputs.apple-silicon.overlays.apple-silicon-overlay
-      (final: _prev: {
-        linux-fairydust = final.callPackage "${inputs.self}/pkgs/linux-asahi" { };
-      })
-    ];
-
-    boot.kernelPackages = lib.mkIf config.solarsystem.asahi (
-      lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-fairydust)
-    );
-
+    # nixpkgs.overlays = [
+    #   inputs.apple-silicon.overlays.apple-silicon-overlay
+    #   (final: _prev: {
+    #     linux-fairydust = final.callPackage "${inputs.self}/pkgs/linux-asahi" { };
+    #   })
+    # ];
+    #
+    # boot.kernelPackages = lib.mkIf config.solarsystem.asahi (
+    #   lib.mkForce (pkgs.linuxPackagesFor pkgs.linux-fairydust)
+    # );
+    #
     # FIXME
     boot.extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback

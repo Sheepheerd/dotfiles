@@ -19,13 +19,20 @@ in
   config = lib.mkIf cfg {
     programs.firefox = {
       enable = true;
+      # On macOS the app comes from the Homebrew cask (hosts/darwin/*). The nix
+      # wrapper turns Contents/MacOS/firefox into a bash script, and LaunchServices
+      # then registers Firefox with pid 0 and no bundle path. Accessibility can't
+      # see its windows, so OmniWM never tiles them. Profiles, extensions and prefs
+      # below are still written by home-manager.
       package =
-        (pkgs.wrapFirefox.override {
-          libcanberra-gtk3 = pkgs.libcanberra-gtk2;
-        })
-          pkgs.firefox-unwrapped
-          { };
-      # package = null;
+        if pkgs.stdenv.hostPlatform.isDarwin then
+          null
+        else
+          (pkgs.wrapFirefox.override {
+            libcanberra-gtk3 = pkgs.libcanberra-gtk2;
+          })
+            pkgs.firefox-unwrapped
+            { };
       profiles.default = {
         id = 0;
         name = "Default";

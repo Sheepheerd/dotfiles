@@ -110,7 +110,7 @@ in
       "ghostty"
       "obs"
       "vesktop"
-      # "firefox"
+      "firefox"
       "kicad"
     ];
 
