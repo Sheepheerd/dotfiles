@@ -31,14 +31,16 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      # HM >=26.05 defaults configType to "lua"; our settings/extraConfig are
-      # hyprlang, so keep generating hyprland.conf.
-      configType = "hyprlang";
+      # Generates hyprland.lua; settings/extraConfig in config.nix are Lua.
+      configType = "lua";
       # package = if config.solarsystem.isNixos then null else pkgs.hyprland;
       package = null;
       portalPackage = null;
       xwayland.enable = true;
-      systemd.enable = true;
+      # On NixOS the session runs under UWSM, which owns graphical-session.target.
+      # HM's exec-once that stops/starts hyprland-session.target races it and
+      # tears the session down right after login.
+      systemd.enable = !config.solarsystem.isNixos;
       systemd.variables = [ "--all" ];
     };
 

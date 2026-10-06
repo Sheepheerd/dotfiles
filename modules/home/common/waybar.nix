@@ -47,8 +47,8 @@ in
             "active-only" = false;
             "all-outputs" = true;
             "disable-scroll" = false;
-            "on-scroll-up" = "hyprctl dispatch workspace -1";
-            "on-scroll-down" = "hyprctl dispatch workspace +1";
+            "on-scroll-up" = ''hyprctl dispatch 'hl.dsp.focus({ workspace = "-1" })' '';
+            "on-scroll-down" = ''hyprctl dispatch 'hl.dsp.focus({ workspace = "+1" })' '';
             format = "{icon}";
             "on-click" = "activate";
             "format-icons" = {

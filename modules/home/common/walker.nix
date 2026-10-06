@@ -87,8 +87,14 @@ in
             # SIGKILLing the user meant killing systemd --user along with the
             # compositor, which leaves the session half-torn-down and the last
             # frame stuck on screen. uwsm stops the compositor the way the
-            # session was started.
-            uwsm stop || loginctl terminate-user "$USER";;
+            # session was started. A session launched without uwsm makes
+            # `uwsm stop` report "not running" and still exit 0, so ask
+            # first and let Hyprland exit itself otherwise.
+            if uwsm check is-active >/dev/null 2>&1; then
+              uwsm stop
+            else
+              hyprctl dispatch 'hl.dsp.exit()'
+            fi;;
           "Reboot")
             systemctl reboot;;
           "Reboot to UEFI")

@@ -28,6 +28,9 @@
     services.displayManager.sddm = lib.mkIf (!config.solarsystem.isDedicatedGaming) {
       enable = true;
       wayland.enable = true;
+      # Otherwise sddm preselects whatever session was used last, which can
+      # keep landing on plain hyprland.desktop despite defaultSession.
+      settings.Users.RememberLastSession = false;
     };
     xdg.portal = {
       enable = true;

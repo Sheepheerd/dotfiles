@@ -67,11 +67,11 @@ in
     hasBluetooth = true;
     asahi = true;
     modules.virt = false;
-    modules.box = true;
+    modules.box = false;
     # modules.minecraft = true;
     modules.youtube = true;
     x86 = false;
-    muvm = true;
+    muvm = false;
 
     # FIX
     profiles = {

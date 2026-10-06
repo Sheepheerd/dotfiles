@@ -16,6 +16,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    # Builds the M1's fairydust kernel (pkgs/linux-asahi). Pinned by rev so
+    # `nix flake update` leaves it alone: the kernel's hash covers the whole
+    # stdenv, and every nixpkgs bump would otherwise recompile it. Bump this
+    # rev only together with the kernel itself.
+    nixpkgs-kernel.url = "github:nixos/nixpkgs/44a91898084f46797b5fac650c7e8c9ac38c43d4";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,8 +101,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Non-redistributable Asahi peripheral firmware, read straight off the ESP
+    # where the Asahi installer put it. Only its hash goes in flake.lock.
     asahi-firmware = {
-      url = "git+ssh://git@github.com/Sheepheerd/asahi-firmware.git?dir=m1air";
+      url = "path:/boot/vendorfw";
       flake = false;
     };
 

@@ -43,19 +43,14 @@
     "asahi-firmware": {
       "flake": false,
       "locked": {
-        "dir": "m1air",
-        "lastModified": 1771644468,
-        "narHash": "sha256-dTj8pATf22acXDmsa723r4FrL3KeEsR91/TF3E0xW9I=",
-        "ref": "refs/heads/main",
-        "rev": "36a27976a40cb9fcad148fbc26d7a2d127b22ded",
-        "revCount": 2,
-        "type": "git",
-        "url": "ssh://git@github.com/Sheepheerd/asahi-firmware.git"
+        "lastModified": 1791287084,
+        "narHash": "sha256-q8+FQ6xNuzkN9C7VeStoG5MztFFxIgBs85mTkHGTuC8=",
+        "path": "/boot/vendorfw",
+        "type": "path"
       },
       "original": {
-        "dir": "m1air",
-        "type": "git",
-        "url": "ssh://git@github.com/Sheepheerd/asahi-firmware.git"
+        "path": "/boot/vendorfw",
+        "type": "path"
       }
     },
     "base16": {
@@ -706,6 +701,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-kernel": {
+      "locked": {
+        "lastModified": 1789921291,
+        "narHash": "sha256-Ft/BRnIqw1MywFoXydKobjjWmDFgDdYtSpJliE8+yUw=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "44a91898084f46797b5fac650c7e8c9ac38c43d4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "44a91898084f46797b5fac650c7e8c9ac38c43d4",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1782614948,
@@ -917,6 +928,7 @@
         "nixarr": "nixarr",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-kernel": "nixpkgs-kernel",
         "nixpkgs-openconnect-sso": "nixpkgs-openconnect-sso",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",

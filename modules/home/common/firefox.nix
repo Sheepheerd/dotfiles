@@ -24,15 +24,7 @@ in
       # then registers Firefox with pid 0 and no bundle path. Accessibility can't
       # see its windows, so OmniWM never tiles them. Profiles, extensions and prefs
       # below are still written by home-manager.
-      package =
-        if pkgs.stdenv.hostPlatform.isDarwin then
-          null
-        else
-          (pkgs.wrapFirefox.override {
-            libcanberra-gtk3 = pkgs.libcanberra-gtk2;
-          })
-            pkgs.firefox-unwrapped
-            { };
+      package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.firefox;
       profiles.default = {
         id = 0;
         name = "Default";

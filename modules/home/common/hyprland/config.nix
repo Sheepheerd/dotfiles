@@ -14,283 +14,311 @@ let
 
   monitor =
     if isLaptop then
-      ''
-        monitor = DP-1, 1920x1080@144, 0x0, 1
+      {
+        primary = {
+          output = "DP-1";
+          mode = "1920x1080@144";
+          position = "0x0";
+          scale = 1;
+        };
+        secondary = {
+          output = "eDP-1";
+          mode = "preferred";
+          position = "auto";
+          scale = 1.6;
+          mirror = "DP-1";
+        };
 
-        monitor = eDP-1, preferred, auto, 1.6, mirror, DP-1
-
-        # monitor = eDP-1, preferred, auto, 1.6
-        # monitor = DP-1, 1920x1080@60, 0x0, 1
-      ''
+        # { output = "eDP-1"; mode = "preferred"; position = "auto"; scale = 1.6; }
+        # { output = "DP-1"; mode = "1920x1080@60"; position = "0x0"; scale = 1; }
+      }
     else
-      ''
-        monitor = DP-3,1920x1080@144,0x0,1
+      {
+        primary = {
+          output = "DP-3";
+          mode = "1920x1080@144";
+          position = "0x0";
+          scale = 1;
+        };
         # 60 rather than the panel's 75: fewer competing vblanks against DP-3's 144.
         # comment out if using as standalone
-        monitor = HDMI-A-1,1920x1080@75,-1920x0,1
-      '';
+        secondary = {
+          output = "HDMI-A-1";
+          mode = "1920x1080@75";
+          position = "-1920x0";
+          scale = 1;
+        };
+      };
+  # hl.curve(name, { type = "bezier", points = { {x0, y0}, {x1, y1} } })
+  bezier = name: x0: y0: x1: y1: {
+    _args = [
+      name
+      {
+        type = "bezier";
+        points = [
+          [
+            x0
+            y0
+          ]
+          [
+            x1
+            y1
+          ]
+        ];
+      }
+    ];
+  };
 
-  extraEnv = lib.optionalString (!isLaptop) "";
+  animation =
+    leaf: speed: curve: style:
+    {
+      inherit leaf speed;
+      enabled = true;
+      bezier = curve;
+    }
+    // lib.optionalAttrs (style != null) { inherit style; };
 in
 {
   config = lib.mkIf hyprlandEnabled {
     wayland.windowManager.hyprland = {
       enable = true;
 
+      # Each attribute renders as an hl.<name>(...) call in hyprland.lua.
       settings = {
-        env = [
-          "PATH,$PATH:$HOME/.nix-profile/bin"
-        ];
-        plugins = [ "hyprland-polkit" ];
-        exec-once = [
-          "dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-          "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        monitor = monitor.primary;
 
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-          "swww-daemon &"
+        config = {
+          input = {
+            kb_layout = "us";
+            kb_options = "shift:both_capslock,caps:ctrl_modifier";
+            numlock_by_default = true;
+            repeat_delay = 300;
+            follow_mouse = 1;
+            sensitivity = 0;
+            touchpad = {
+              disable_while_typing = true;
+              scroll_factor = 0.3;
+              natural_scroll = true;
+            };
 
-          "wl-clip-persist --clipboard both &"
-          "wl-paste --watch cliphist store &"
-          "${pkgs.nix}/etc/profile.d/nix-daemon.sh"
-          "hyprctl setcursor Dracula-cursors 24"
-          "${terminal} --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
-
-          # Audio
-          "[workspace 3 silent] bash -c pavucontrol & sleep 1 && pkill pavucontrol"
-          "amixer set Master 1+ toggle"
-          # Audio
-
-          "[workspace 2 silent] ${browser}"
-          "[workspace 1 silent] ${terminal}"
-        ];
-
-        input = {
-          kb_layout = "us";
-          kb_options = [
-            "shift:both_capslock"
-            "caps:ctrl_modifier"
-          ];
-          numlock_by_default = true;
-          repeat_delay = 300;
-          follow_mouse = 1;
-          sensitivity = 0;
-          touchpad = {
-            disable_while_typing = true;
-            scroll_factor = 0.3;
-            natural_scroll = true;
+            force_no_accel = false;
+            accel_profile = "flat";
           };
 
-          force_no_accel = 0;
-          accel_profile = "flat";
-        };
+          general = {
+            layout = "dwindle";
+            gaps_in = 5;
+            gaps_out = 5;
+            border_size = 2;
 
-        gestures = {
-          gesture = [
-            "3, horizontal, workspace"
-          ];
+            col = {
+              active_border = "rgba(FFFFFF50)";
+              inactive_border = "rgba(382D2Eff)";
+            };
+          };
 
-        };
+          misc = {
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true;
+            mouse_move_enables_dpms = true;
+            # vfr = true;
+            vrr = 0;
+            animate_manual_resizes = true;
+            mouse_move_focuses_monitor = true;
+            enable_swallow = true;
+          };
 
-        general = {
-          "$mainMod" = "SUPER";
-          layout = "dwindle";
-          gaps_in = 5;
-          gaps_out = 5;
-          border_size = 2;
+          dwindle = {
+            # pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+            preserve_split = true; # you probably want this
+          };
 
-          # col.active_border = "rgba(e5b9c6ff) rgba(c293a3ff) 45deg";
-          # col.inactive_border = "0xff382D2E";
-        };
+          decoration = {
+            rounding = 6;
 
-        misc = {
+            active_opacity = 1.0;
+            inactive_opacity = 0.8;
 
-          disable_hyprland_logo = true;
-          disable_splash_rendering = true;
-          mouse_move_enables_dpms = true;
-          # vfr = true;
-          vrr = 0;
-          animate_manual_resizes = true;
-          mouse_move_focuses_monitor = true;
-          enable_swallow = true;
-        };
+            blur = {
+              enabled = false;
+              size = 6;
+              passes = 3;
+              new_optimizations = true;
+              xray = true;
+              ignore_opacity = true;
+            };
+          };
 
-        dwindle = {
-          # pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true; # you probably want this
-        };
+          xwayland = {
+            force_zero_scaling = true;
+          };
 
-        decoration = {
-
-          rounding = 6;
-          # multisample_edges = true
-
-          active_opacity = 1.0;
-          inactive_opacity = 0.8;
-
-          blur = {
+          animations = {
             enabled = false;
-            size = 6;
-            passes = 3;
-            new_optimizations = true;
-            xray = true;
-            ignore_opacity = true;
           };
-
         };
 
-        xwayland = {
-          force_zero_scaling = true;
-        };
-
-        animations = {
-          enabled = false;
-
-          bezier = [
-            "wind, 0.05, 0.9, 0.1, 1.05"
-            "winIn, 0.1, 1, 0.1, 1"
-            "winOut, 0.3, -0.3, 0, 1"
-            "liner, 1, 1, 1, 1"
-          ];
-
-          animation = [
-            "windows, 1, 6, wind, popin"
-            "windowsIn, 1, 6, winIn, popin"
-            "windowsOut, 1, 5, winOut, popin"
-            "windowsMove, 1, 5, wind, popin"
-            "border, 1, 1, liner"
-            "borderangle, 1, 30, liner, loop"
-            "fade, 1, 10, default"
-            "workspaces, 1, 5, wind"
-          ];
-        };
-
-        bind = [
-
-          # notes
-          "SUPER, N, exec, ${terminal} -e vim ~/tmp/notes"
-
-          # applications
-          "SUPER, Return, exec, ${terminal} --gtk-single-instance=true"
-          "CTRL ALT, L, exec, hyprlock"
-          "SUPER, E, exec, ${file}"
-          "SUPER, B, exec,  ${browser}"
-          "SUPER SHIFT, B, exec, systemctl --user restart quickshell" # Reload the bar
-          "SUPER, W, exec, qs ipc call bar toggle" # Hide/show the bar
-
-          ",switch:on:Lid Switch, exec, hyprlock --immediate"
-          # Lock lid on close
-          ",switch:off:Lid Switch, exec, hyprlock --immediate"
-
-          "SUPER SHIFT, E, exec, $HOME/.scripts/walker-powermenu.sh"
-          "SUPER, SPACE, exec, walker"
-          "SUPER, V, exec, cliphist list | walker --dmenu | cliphist decode | wl-copy"
-
-          # Window Management
-          "SUPER, Q, killactive,"
-          "SUPER SHIFT, Q, exit,"
-          "SUPER, F, fullscreen,"
-          "SUPER SHIFT, F, togglefloating,"
-          "SUPER, P, pseudo, # dwindle"
-          # "SUPER, S, togglesplit, # dwindle"
-
-          # Change Workspace Mode
-          "SUPER SHIFT, Space, workspaceopt, allfloat"
-          "SUPER SHIFT, Space, exec, $notifycmd 'Toggled All Float Mode'"
-          "SUPER SHIFT, P, workspaceopt, allpseudo"
-          "SUPER SHIFT, P, exec, $notifycmd 'Toggled All Pseudo Mode'"
-
-          "SUPER, Tab, cyclenext,"
-          "SUPER, Tab, bringactivetotop,"
-
-          # Focus
-          "SUPER, h, movefocus, l"
-          "SUPER, l, movefocus, r"
-          "SUPER, k, movefocus, u"
-          "SUPER, j, movefocus, d"
-
-          # Move
-          "SUPER SHIFT, h, movewindow, l"
-          "SUPER SHIFT, l, movewindow, r"
-          "SUPER SHIFT, k, movewindow, u"
-          "SUPER SHIFT, j, movewindow, d"
-
-          # Resize
-          "SUPER CTRL, h, resizeactive, -20 0"
-          "SUPER CTRL, l, resizeactive, 20 0"
-          "SUPER CTRL, k, resizeactive, 0 -20"
-          "SUPER CTRL, j, resizeactive, 0 20"
-
-          # Switch
-          "SUPER, 1, workspace, 1"
-          "SUPER, 2, workspace, 2"
-          "SUPER, 3, workspace, 3"
-          "SUPER, 4, workspace, 4"
-          "SUPER, 5, workspace, 5"
-          "SUPER, 6, workspace, 6"
-          "SUPER, 7, workspace, 7"
-          "SUPER, 8, workspace, 8"
-          "SUPER, 9, workspace, 9"
-          "SUPER, 0, workspace, 10"
-          "SUPER ALT, up, workspace, e+1"
-          "SUPER ALT, down, workspace, e-1"
-
-          # Move
-          "SUPER SHIFT, 1, movetoworkspace, 1"
-          "SUPER SHIFT, 2, movetoworkspace, 2"
-          "SUPER SHIFT, 3, movetoworkspace, 3"
-          "SUPER SHIFT, 4, movetoworkspace, 4"
-          "SUPER SHIFT, 5, movetoworkspace, 5"
-          "SUPER SHIFT, 6, movetoworkspace, 6"
-          "SUPER SHIFT, 7, movetoworkspace, 7"
-          "SUPER SHIFT, 8, movetoworkspace, 8"
-          "SUPER SHIFT, 9, movetoworkspace, 9"
-          "SUPER SHIFT, 0, movetoworkspace, 10"
-
-          ",XF86AudioPlay,exec, playerctl play-pause"
-          ",XF86AudioNext,exec, playerctl next"
-          ",XF86AudioPrev,exec, playerctl previous"
-          ",XF86AudioStop,exec, playerctl stop"
-          ",XF86AudioMute,exec, amixer set Master 1+ toggle"
-          # # binds that repeat when held
-
-          # screenshot
-          # ",Print, exec, screenshot --copy"
-          # "SUPER, Print, exec, screenshot --save"
-          ''SUPER SHIFT, S, exec, grim -g "$(slurp)"''
-        ];
-        binde = [
-          ",XF86AudioRaiseVolume,exec, amixer set Master 5%+"
-          ",XF86AudioLowerVolume,exec, amixer set Master 5%-"
+        # Flat is right for a desktop mouse but makes a trackpad feel dead:
+        # macOS accelerates trackpad motion, so slow movements stay precise
+        # and quick flicks cross the screen. Only matches the MacBook's
+        # built-in trackpad, so other hosts are untouched.
+        device = [
+          {
+            name = "apple-spi-trackpad";
+            accel_profile = "adaptive";
+            sensitivity = 0.1;
+          }
         ];
 
-        bindl = [
-          # laptop brigthness
-          ",XF86MonBrightnessUp, exec, brightnessctl set 1%+"
-          ",XF86MonBrightnessDown, exec, brightnessctl set 1%-"
-          "SUPER, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
-          "SUPER, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
+        gesture = [
+          {
+            fingers = 3;
+            direction = "horizontal";
+            action = "workspace";
+          }
         ];
 
-        bindm = [
-          "SUPER, mouse:272, movewindow"
-          "SUPER, mouse:273, resizewindow"
+        curve = [
+          (bezier "wind" 0.05 0.9 0.1 1.05)
+          (bezier "winIn" 0.1 1 0.1 1)
+          (bezier "winOut" 0.3 (-0.3) 0 1)
+          (bezier "liner" 1 1 1 1)
         ];
 
+        animation = [
+          (animation "windows" 6 "wind" "popin")
+          (animation "windowsIn" 6 "winIn" "popin")
+          (animation "windowsOut" 5 "winOut" "popin")
+          (animation "windowsMove" 5 "wind" "popin")
+          (animation "border" 1 "liner" null)
+          (animation "borderangle" 30 "liner" "loop")
+          (animation "fade" 10 "default" null)
+          (animation "workspaces" 5 "wind" null)
+        ];
       };
 
       extraConfig = ''
-        ${monitor}
-        ${extraEnv}
+        local terminal = "${terminal}"
+        local browser = "${browser}"
+        local file = "${file}"
 
+        hl.env("PATH", os.getenv("PATH") .. ":" .. os.getenv("HOME") .. "/.nix-profile/bin")
 
-        general {
-        col.active_border = rgba(FFFFFF50) 
-        col.inactive_border = 0xff382D2E
-        }
+        -- Second monitor: monitors-local.lua next to this file is not managed
+        -- by Nix, so it can be edited live (saved changes auto-reload). If it
+        -- doesn't exist, fall back to the default below.
+        local hypr_dir = (os.getenv("XDG_CONFIG_HOME") or (os.getenv("HOME") .. "/.config")) .. "/hypr"
+        local local_monitors = io.open(hypr_dir .. "/monitors-local.lua", "r")
+        if local_monitors then
+          local_monitors:close()
+          require("monitors-local")
+        else
+          hl.monitor(${lib.generators.toLua { } monitor.secondary})
+        end
 
-        # windowrulev2 = active:bordercolor rgba(ffffffcc) rgba(ddddddcc) 45deg
+        -- Autostart
+        hl.on("hyprland.start", function()
+          hl.exec_cmd("dbus-update-activation-environment --all --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+          hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+
+          hl.exec_cmd("${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
+          hl.exec_cmd("swww-daemon")
+
+          hl.exec_cmd("wl-clip-persist --clipboard both")
+          hl.exec_cmd("wl-paste --watch cliphist store")
+          hl.exec_cmd("${pkgs.nix}/etc/profile.d/nix-daemon.sh")
+          hl.exec_cmd("hyprctl setcursor Dracula-cursors 24")
+          hl.exec_cmd(terminal .. " --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false")
+
+          -- Audio
+          hl.exec_cmd("bash -c pavucontrol & sleep 1 && pkill pavucontrol", { workspace = "3 silent" })
+          hl.exec_cmd("amixer set Master 1+ toggle")
+
+          hl.exec_cmd(browser, { workspace = "2 silent" })
+          hl.exec_cmd(terminal, { workspace = "1 silent" })
+        end)
+
+        -- Keybinds
+        local exec = hl.dsp.exec_cmd
+
+        -- notes
+        hl.bind("SUPER + N", exec(terminal .. " -e vim ~/tmp/notes"))
+
+        -- applications
+        hl.bind("SUPER + Return", exec(terminal .. " --gtk-single-instance=true"))
+        hl.bind("CTRL + ALT + L", exec("hyprlock"))
+        hl.bind("SUPER + E", exec(file))
+        hl.bind("SUPER + B", exec(browser))
+        hl.bind("SUPER + SHIFT + B", exec("systemctl --user restart quickshell")) -- Reload the bar
+        hl.bind("SUPER + W", exec("qs ipc call bar toggle")) -- Hide/show the bar
+
+        -- Lock lid on close
+        hl.bind("switch:on:Lid Switch", exec("hyprlock --immediate"))
+        hl.bind("switch:off:Lid Switch", exec("hyprlock --immediate"))
+
+        hl.bind("SUPER + SHIFT + E", exec("$HOME/.scripts/walker-powermenu.sh"))
+        hl.bind("SUPER + SPACE", exec("walker"))
+        hl.bind("SUPER + V", exec("cliphist list | walker --dmenu | cliphist decode | wl-copy"))
+
+        -- Window Management
+        hl.bind("SUPER + Q", hl.dsp.window.close())
+        hl.bind("SUPER + SHIFT + Q", hl.dsp.exit())
+        hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+        hl.bind("SUPER + SHIFT + F", hl.dsp.window.float())
+        hl.bind("SUPER + P", hl.dsp.window.pseudo()) -- dwindle
+        -- hl.bind("SUPER + S", hl.dsp.layout("togglesplit")) -- dwindle
+
+        hl.bind("SUPER + Tab", function()
+          hl.dispatch(hl.dsp.window.cycle_next())
+          hl.dispatch(hl.dsp.window.bring_to_top())
+        end)
+
+        local directions = { h = "left", l = "right", k = "up", j = "down" }
+        local resize = { h = { -20, 0 }, l = { 20, 0 }, k = { 0, -20 }, j = { 0, 20 } }
+        for key, direction in pairs(directions) do
+          -- Focus
+          hl.bind("SUPER + " .. key, hl.dsp.focus({ direction = direction }))
+          -- Move
+          hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ direction = direction }))
+          -- Resize
+          hl.bind("SUPER + CTRL + " .. key, hl.dsp.window.resize({ x = resize[key][1], y = resize[key][2], relative = true }))
+        end
+
+        for i = 1, 10 do
+          local key = i % 10 -- 10 maps to key 0
+          -- Switch
+          hl.bind("SUPER + " .. key, hl.dsp.focus({ workspace = i }))
+          -- Move
+          hl.bind("SUPER + SHIFT + " .. key, hl.dsp.window.move({ workspace = i, follow = true }))
+        end
+        hl.bind("SUPER + ALT + up", hl.dsp.focus({ workspace = "e+1" }))
+        hl.bind("SUPER + ALT + down", hl.dsp.focus({ workspace = "e-1" }))
+
+        -- media
+        hl.bind("XF86AudioPlay", exec("playerctl play-pause"))
+        hl.bind("XF86AudioNext", exec("playerctl next"))
+        hl.bind("XF86AudioPrev", exec("playerctl previous"))
+        hl.bind("XF86AudioStop", exec("playerctl stop"))
+        hl.bind("XF86AudioMute", exec("amixer set Master 1+ toggle"))
+
+        -- binds that repeat when held
+        hl.bind("XF86AudioRaiseVolume", exec("amixer set Master 5%+"), { repeating = true })
+        hl.bind("XF86AudioLowerVolume", exec("amixer set Master 5%-"), { repeating = true })
+
+        -- laptop brightness, works while locked
+        hl.bind("XF86MonBrightnessUp", exec("brightnessctl set 1%+"), { locked = true })
+        hl.bind("XF86MonBrightnessDown", exec("brightnessctl set 1%-"), { locked = true })
+        hl.bind("SUPER + XF86MonBrightnessUp", exec("brightnessctl set 100%+"), { locked = true })
+        hl.bind("SUPER + XF86MonBrightnessDown", exec("brightnessctl set 100%-"), { locked = true })
+
+        -- screenshot
+        -- hl.bind("Print", exec("screenshot --copy"))
+        -- hl.bind("SUPER + Print", exec("screenshot --save"))
+        hl.bind("SUPER + SHIFT + S", exec('grim -g "$(slurp)"'))
+
+        hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
+        hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
       '';
-
     };
   };
 }
