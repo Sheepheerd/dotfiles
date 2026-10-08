@@ -46,25 +46,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixos-muvm-fex = {
-    #   url = "github:nrabulinski/nixos-muvm-fex";
-    # };
-    # nixos-muvm-fex = {
-    #   url = "github:Sheepheerd/nixos-muvm-fex";
-    # };
+    artcraft.url = "github:Hy4ri/artcraft-flake";
 
-    # glaumar_repo = {
-    #   url = "github:glaumar/nur";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
+    nix-x86-on-aarch64 = {
+      url = "github:rowanG077/nix-x86-on-aarch64";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    microvm = {
-      url = "github:microvm-nix/microvm.nix";
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -85,10 +75,6 @@
     };
 
     agenix.url = "https://flakehub.com/f/ryantm/agenix/0.15.0.tar.gz";
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     openconnect-sso = {
       url = "github:jcszymansk/openconnect-sso";
@@ -106,14 +92,6 @@
     asahi-firmware = {
       url = "path:/boot/vendorfw";
       flake = false;
-    };
-
-    # davinci-flake = {
-    #   url = "git+ssh://git@github.com/Sheepheerd/davinci";
-    # };
-
-    ghdl = {
-      url = "github:Sheepheerd/nix-ghdl";
     };
 
     claude-code = {

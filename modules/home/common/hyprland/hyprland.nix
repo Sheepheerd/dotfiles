@@ -44,6 +44,9 @@ in
       systemd.variables = [ "--all" ];
     };
 
+    # Software dimming below the backlight floor (driven by the brightness keys).
+    services.hyprsunset.enable = true;
+
     programs.kitty.enable = false;
   };
 }

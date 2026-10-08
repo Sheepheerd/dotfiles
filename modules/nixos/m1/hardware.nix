@@ -54,6 +54,12 @@ in
         )
       );
 
+      programs.x86-on-arm = {
+        enable = true;
+        steam.enable = true; # Optional desktop application
+        wine.enable = true; # Optional Wine launcher
+      };
+
       # FIXME
       boot.extraModulePackages = with config.boot.kernelPackages; [
         v4l2loopback

@@ -85,9 +85,9 @@ let
       fi
 
       if [[ -z $content ]]; then
-        rm -f "$file"
+        install -m644 "$(dirname "$file")/monitors-default.lua" "$file"
       else
-        printf -- '-- Written by hyprmon; delete to fall back to the Nix default.\n%s\n' "$content" >"$file"
+        printf -- '-- Written by hyprmon; pick "Reset to Nix default" to undo.\n%s\n' "$content" >"$file"
       fi
       hyprctl reload >/dev/null
 

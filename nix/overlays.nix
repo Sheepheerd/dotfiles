@@ -12,17 +12,12 @@
           config.allowUnfree = true;
         };
       };
-      # glaumar-overlay = final: prev: {
-      #   glaumar_repo = inputs.glaumar_repo.packages.${prev.system};
-      # };
     in
     {
       overlays.default = composeManyExtensions [
         nixpkgs-stable
-        # inputs.nixos-muvm-fex.overlays.default
         inputs.nixgl.overlay
-        # glaumar-overlay
-        # inputs.box64-binfmt.overlays.default
+        inputs.artcraft.overlays.default
       ];
 
       # Heavy proprietary toolchains, opt in per-host (see modules/nixos/client/school.nix)

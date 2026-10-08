@@ -12,6 +12,32 @@ let
   terminal = "ghostty";
   file = "thunar";
 
+  # Backlight first, then hyprsunset gamma below the panel's floor (Asahi's 0 isn't off).
+  brightness = pkgs.writeShellScript "brightness" ''
+    bctl=${pkgs.brightnessctl}/bin/brightnessctl
+    state="''${XDG_RUNTIME_DIR:-/tmp}/brightness-gamma"
+    min_gamma=20
+    gamma=$(cat "$state" 2>/dev/null || echo 100)
+    set_gamma() { echo "$1" > "$state"; hyprctl hyprsunset gamma "$1" >/dev/null; }
+
+    case "$1" in
+      up)
+        if [ "$gamma" -lt 100 ]; then
+          set_gamma $(( gamma + 10 > 100 ? 100 : gamma + 10 ))
+        else
+          $bctl -q set 1%+
+        fi ;;
+      down)
+        if [ "$($bctl get)" -gt 0 ]; then
+          $bctl -q set 1%-
+        else
+          set_gamma $(( gamma - 10 < min_gamma ? min_gamma : gamma - 10 ))
+        fi ;;
+      max) set_gamma 100; $bctl -q set 100% ;;
+      min) $bctl -q set 0 ;;
+    esac
+  '';
+
   monitor =
     if isLaptop then
       {
@@ -23,9 +49,9 @@ let
         };
         secondary = {
           output = "eDP-1";
-          mode = "preferred";
+          mode = "2560x1600@60.00Hz";
           position = "auto";
-          scale = 1.6;
+          scale = 1.33;
           mirror = "DP-1";
         };
 
@@ -49,6 +75,14 @@ let
           scale = 1;
         };
       };
+
+  # Second-monitor default. Copied over monitors-local.lua on every rebuild
+  # unless hyprmon wrote that file (see home.activation below).
+  monitorsDefault = ''
+    -- Nix default, rewritten on every rebuild. Run hyprmon to override.
+    hl.monitor(${lib.generators.toLua { } monitor.secondary})
+  '';
+
   # hl.curve(name, { type = "bezier", points = { {x0, y0}, {x1, y1} } })
   bezier = name: x0: y0: x1: y1: {
     _args = [
@@ -80,6 +114,15 @@ let
 in
 {
   config = lib.mkIf hyprlandEnabled {
+    xdg.configFile."hypr/monitors-default.lua".text = monitorsDefault;
+
+    home.activation.hyprMonitorsLocal = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      file=${lib.escapeShellArg "${config.xdg.configHome}/hypr/monitors-local.lua"}
+      if ! head -n1 "$file" 2>/dev/null | grep -q '^-- Written by hyprmon'; then
+        run install -Dm644 ${pkgs.writeText "monitors-default.lua" monitorsDefault} "$file"
+      fi
+    '';
+
     wayland.windowManager.hyprland = {
       enable = true;
 
@@ -166,7 +209,9 @@ in
           {
             name = "apple-spi-trackpad";
             accel_profile = "adaptive";
-            sensitivity = 0.1;
+            scroll_factor = 0.2;
+
+            sensitivity = -0.2;
           }
         ];
 
@@ -213,7 +258,7 @@ in
           local_monitors:close()
           require("monitors-local")
         else
-          hl.monitor(${lib.generators.toLua { } monitor.secondary})
+          require("monitors-default")
         end
 
         -- Autostart
@@ -306,10 +351,10 @@ in
         hl.bind("XF86AudioLowerVolume", exec("amixer set Master 5%-"), { repeating = true })
 
         -- laptop brightness, works while locked
-        hl.bind("XF86MonBrightnessUp", exec("brightnessctl set 1%+"), { locked = true })
-        hl.bind("XF86MonBrightnessDown", exec("brightnessctl set 1%-"), { locked = true })
-        hl.bind("SUPER + XF86MonBrightnessUp", exec("brightnessctl set 100%+"), { locked = true })
-        hl.bind("SUPER + XF86MonBrightnessDown", exec("brightnessctl set 100%-"), { locked = true })
+        hl.bind("XF86MonBrightnessUp", exec("${brightness} up"), { locked = true, repeating = true })
+        hl.bind("XF86MonBrightnessDown", exec("${brightness} down"), { locked = true, repeating = true })
+        hl.bind("SUPER + XF86MonBrightnessUp", exec("${brightness} max"), { locked = true })
+        hl.bind("SUPER + XF86MonBrightnessDown", exec("${brightness} min"), { locked = true })
 
         -- screenshot
         -- hl.bind("Print", exec("screenshot --copy"))

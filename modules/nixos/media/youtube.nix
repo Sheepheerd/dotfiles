@@ -29,6 +29,8 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      # photocraft
+      # filmcraft
       kdePackages.kdenlive
       v4l-utils
       scrcpy
