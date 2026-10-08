@@ -5,6 +5,7 @@
     solarsystem.modules.nixvim = {
       enable = lib.mkDefault true;
       godot.enable = lib.mkDefault true;
+      youtube.enable = lib.mkDefault true;
       lsp = {
         enable = lib.mkDefault true;
         servers = {
@@ -16,6 +17,7 @@
           rust = lib.mkDefault false;
           bash = lib.mkDefault true;
           asm_lsp = lib.mkDefault false;
+
         };
       };
     };
