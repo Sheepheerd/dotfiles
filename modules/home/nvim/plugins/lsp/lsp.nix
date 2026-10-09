@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -36,6 +37,37 @@
   };
 
   config = lib.mkIf config.solarsystem.modules.nixvim.lsp.enable {
+    # GCC-only flags from the ESP-IDF compile_commands.json that clang rejects.
+    # Lives in the user config so ESP projects need no .clangd of their own.
+    home.file.${
+      if pkgs.stdenv.isDarwin then
+        "Library/Preferences/clangd/config.yaml"
+      else
+        ".config/clangd/config.yaml"
+    } =
+      lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.clangd {
+        text = ''
+          CompileFlags:
+            Remove:
+              - -mlongcalls
+              - -mtext-section-literals
+              - -mdisable-hardware-atomics
+              - -mfix-esp32-psram-cache-issue
+              - -mfix-esp32-psram-cache-strategy=*
+              - -fstrict-volatile-bitfields
+              - -fno-tree-switch-conversion
+              - -fno-shrink-wrap
+              - -fzero-init-padding-bits=*
+              - -specs=*
+              - -march=rv32*
+              - -mabi=ilp32*
+          Diagnostics:
+            Suppress:
+              - drv_unknown_argument
+              - drv_unsupported_opt
+        '';
+      };
+
     programs.nixvim = {
       lsp = {
         keymaps = [
@@ -105,8 +137,17 @@
             enable = true;
           };
           clangd = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.clangd {
+            # Resolved from PATH so a project devshell (e.g. esp-clang) wins;
+            # pkgs.clang-tools is appended below as the fallback.
             package = null;
             enable = true;
+            config.cmd = [
+              "clangd"
+              "--background-index"
+              "--header-insertion=never"
+              # Let clangd ask the cross compilers for their sysroot/newlib includes.
+              "--query-driver=**/xtensa-esp*-elf-gcc,**/xtensa-esp*-elf-g++,**/riscv32-esp-elf-gcc,**/riscv32-esp-elf-g++,**/arm-none-eabi-gcc,**/arm-none-eabi-g++"
+            ];
           };
           dockerls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.dockerls {
             enable = true;
@@ -186,6 +227,10 @@
               };
         };
       };
+
+      extraPackagesAfter = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.clangd [
+        pkgs.clang-tools
+      ];
 
       plugins = {
         java = {
