@@ -10,6 +10,7 @@ let
     inherit mainUser;
     isLaptop = false;
     noSleep = true;
+    noAutoLock = true;
     isNixos = true;
     isLinux = true;
     # sharescreen = "eDP-1";

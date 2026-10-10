@@ -32,10 +32,14 @@ in
             on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
             on-resume = "brightnessctl -rd rgb:kbd_backlight";
           }
+        ]
+        ++ lib.optionals (!config.solarsystem.noAutoLock) [
           {
             timeout = 300;
             on-timeout = "loginctl lock-session";
           }
+        ]
+        ++ [
           {
             timeout = 330;
             on-timeout = ''hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })' '';
