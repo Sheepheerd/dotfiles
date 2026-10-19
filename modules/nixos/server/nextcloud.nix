@@ -51,10 +51,17 @@ in
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps)
           tasks
-          onlyoffice
           news
           notes
           ;
+        # upstream nixpkgs 33.json ships an empty hash for onlyoffice 10.2.0
+        onlyoffice = pkgs.fetchNextcloudApp {
+          appName = "onlyoffice";
+          appVersion = "10.2.0";
+          url = "https://github.com/ONLYOFFICE/onlyoffice-nextcloud/releases/download/v10.2.0/onlyoffice.tar.gz";
+          hash = "sha256-QX2OJKoArx9pFoZBdeXXSc6K0UGzpUCZ6imZJSnBeQc=";
+          license = "agpl3Plus";
+        };
       };
       extraAppsEnable = true;
       # autoUpdateApps.enable = true;
