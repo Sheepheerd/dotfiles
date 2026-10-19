@@ -79,6 +79,8 @@ in
             "nextcloud.heerd.dev" = serverIp;
             "radical.heerd.dev" = serverIp;
             "bank.heerd.dev" = serverIp;
+            "bank-import.heerd.dev" = serverIp;
+            "stocks.heerd.dev" = serverIp;
             "images.heerd.dev" = serverIp;
             "books.heerd.dev" = serverIp;
             "music.heerd.dev" = serverIp;

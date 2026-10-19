@@ -22,6 +22,7 @@
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
+        wealthfolio = lib.mkDefault true;
         immich = lib.mkDefault true;
         paperless = lib.mkDefault true;
         jellyfin = lib.mkDefault true;

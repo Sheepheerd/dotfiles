@@ -16,12 +16,22 @@ in
     solis
     landing
   ];
-  "server/firefly.env.age".publicKeys = [
+  "server/firefly-importer.age".publicKeys = [
     system1
     solis
     landing
   ];
   "server/firefly.appkey.age".publicKeys = [
+    system1
+    solis
+    landing
+  ];
+  "server/wealthfolio.key.age".publicKeys = [
+    system1
+    solis
+    landing
+  ];
+  "server/wealthfolio.hash.age".publicKeys = [
     system1
     solis
     landing
