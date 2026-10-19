@@ -35,10 +35,6 @@
       url = "https://flakehub.com/f/nix-community/stylix/0.1.1223.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixarr = {
-      url = "github:rasmus-kirk/nixarr";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # nixos-muvm-fex = {
     #   url = "github:nrabulinski/nixos-muvm-fex";

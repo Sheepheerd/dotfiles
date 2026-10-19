@@ -34,9 +34,9 @@ in
 
     age.secrets.blocky = {
       file = self + /secrets/server/blocky.age;
-      owner = "blocky";
-      group = "blocky";
-      mode = "0777";
+      owner = "root";
+      group = "root";
+      mode = "0444";
     };
 
     services.tailscale.extraUpFlags = [
@@ -83,11 +83,9 @@ in
             "books.heerd.dev" = serverIp;
             "music.heerd.dev" = serverIp;
             "paperless.heerd.dev" = serverIp;
-            "radarr.heerd.dev" = serverIp;
-            "sonarr.heerd.dev" = serverIp;
-            "prowlarr.heerd.dev" = serverIp;
             # "deluge.heerd.dev" = serverIp;
             "joplin.heerd.dev" = serverIp;
+            "notes.heerd.dev" = serverIp;
           };
         };
       };

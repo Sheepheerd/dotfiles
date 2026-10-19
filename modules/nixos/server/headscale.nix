@@ -83,8 +83,8 @@ in
     };
     age.secrets.cloud-dns = {
       file = self + /secrets/server/cloud-dns.age;
-      owner = "sheep";
-      group = "sheep";
+      owner = config.services.cloudflare-ddns.user;
+      group = config.services.cloudflare-ddns.group;
       mode = "0440";
     };
 

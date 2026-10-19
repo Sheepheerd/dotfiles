@@ -25,7 +25,6 @@
             inputs.agenix.nixosModules.default
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
-            inputs.nixarr.nixosModules.default
             inputs.microvm.nixosModules.host
             inputs.jovian.nixosModules.default
             "${self}/hosts/nixos/${configName}"
