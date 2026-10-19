@@ -1,5 +1,7 @@
 {
   lib,
+  pkgs,
+  inputs,
   ...
 }:
 let
@@ -21,6 +23,10 @@ in
   imports = [
     ./hardware-configuration.nix
 
+  ];
+
+  environment.systemPackages = with pkgs; [
+    inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   networking = {
