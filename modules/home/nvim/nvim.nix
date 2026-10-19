@@ -11,6 +11,9 @@
   config = lib.mkIf config.solarsystem.modules.nixvim.enable {
     programs.nixvim = {
       enable = true;
+      # nixvim evaluates its own nixpkgs instance, so the global allowUnfree
+      # doesn't reach it (needed for copilot-language-server)
+      nixpkgs.config.allowUnfree = true;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;

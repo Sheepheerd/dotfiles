@@ -69,6 +69,8 @@ in
   programs.ssh.knownHosts.solis.publicKey =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/nhkvST55B5vzLLiHK3kof50GTUjskIp/bmw5+vZGU";
 
+  nixpkgs.config.allowUnfree = true;
+
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;

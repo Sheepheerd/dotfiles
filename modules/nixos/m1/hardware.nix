@@ -54,6 +54,10 @@ in
         )
       );
 
+      # DP/HDMI audio is off by default in appledrm ("unstable"); without it
+      # the DCP never starts its AV endpoint and no HDMI sound card appears.
+      boot.kernelParams = [ "appledrm.hdmi_audio=1" ];
+
       programs.x86-on-arm = {
         enable = true;
         steam.enable = true; # Optional desktop application

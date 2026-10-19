@@ -145,8 +145,24 @@
               "clangd"
               "--background-index"
               "--header-insertion=never"
-              # Let clangd ask the cross compilers for their sysroot/newlib includes.
-              "--query-driver=**/xtensa-esp*-elf-gcc,**/xtensa-esp*-elf-g++,**/riscv32-esp-elf-gcc,**/riscv32-esp-elf-g++,**/arm-none-eabi-gcc,**/arm-none-eabi-g++"
+              # Let clangd ask whatever compiler compile_commands.json names (as
+              # picked by the project flake) for its system includes: nix
+              # cc-wrappers carry the devshell's -isystem paths, cross
+              # compilers carry their sysroot/newlib.
+              "--query-driver=${
+                lib.concatStringsSep "," [
+                  "/nix/store/*/bin/*"
+                  "**/bin/cc"
+                  "**/bin/c++"
+                  "**/bin/gcc*"
+                  "**/bin/g++*"
+                  "**/bin/clang*"
+                  "**/*-elf-gcc"
+                  "**/*-elf-g++"
+                  "**/*-eabi-gcc"
+                  "**/*-eabi-g++"
+                ]
+              }"
             ];
           };
           dockerls = lib.mkIf config.solarsystem.modules.nixvim.lsp.servers.dockerls {

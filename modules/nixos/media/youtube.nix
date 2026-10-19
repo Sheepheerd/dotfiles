@@ -29,6 +29,8 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      vlc
+
       # photocraft
       # filmcraft
       kdePackages.kdenlive
