@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixarr = {
+      url = "github:rasmus-kirk/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     artcraft.url = "github:Hy4ri/artcraft-flake";
 
     nix-x86-on-aarch64 = {
@@ -81,13 +86,6 @@
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Non-redistributable Asahi peripheral firmware, read straight off the ESP
-    # where the Asahi installer put it. Only its hash goes in flake.lock.
-    asahi-firmware = {
-      url = "path:/boot/vendorfw";
-      flake = false;
     };
 
     claude-code = {

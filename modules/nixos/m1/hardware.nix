@@ -35,7 +35,18 @@ in
           setupAsahiSound = true;
           #extractPeripheralFirmware = false;
 
-          peripheralFirmwareDirectory = inputs.asahi-firmware;
+          # Non-redistributable firmware the Asahi installer left on the ESP.
+          # A fixed-output path rather than a flake input, so hosts without
+          # /boot/vendorfw can still evaluate the flake. After reinstalling or
+          # updating the firmware, register it and refresh the hash with:
+          #   nix-store --add-fixed --recursive sha256 /boot/vendorfw
+          #   nix hash path /boot/vendorfw
+          peripheralFirmwareDirectory = pkgs.requireFile {
+            name = "vendorfw";
+            hashMode = "recursive";
+            hash = "sha256-q8+FQ6xNuzkN9C7VeStoG5MztFFxIgBs85mTkHGTuC8=";
+            message = "Run: nix-store --add-fixed --recursive sha256 /boot/vendorfw";
+          };
         };
         # graphics.enable = config.solarsystem.asahi;
 
