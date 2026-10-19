@@ -4,6 +4,8 @@
   config = lib.mkIf config.solarsystem.profiles.nixvim {
     solarsystem.modules.nixvim = {
       enable = lib.mkDefault true;
+      godot.enable = lib.mkDefault true;
+      youtube.enable = lib.mkDefault true;
       lsp = {
         enable = lib.mkDefault true;
         servers = {
@@ -12,9 +14,10 @@
           lua_ls = lib.mkDefault true;
           nixd = lib.mkDefault true;
           basedpyright = lib.mkDefault true;
-          rust = lib.mkDefault true;
+          rust = lib.mkDefault false;
           bash = lib.mkDefault true;
           asm_lsp = lib.mkDefault false;
+
         };
       };
     };

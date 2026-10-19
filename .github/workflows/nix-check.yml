@@ -1,0 +1,44 @@
+on: [push, pull_request]
+
+name: Nix flake check
+
+jobs:
+  flake-check:
+    name: flake check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+      - run: nix flake check --no-build
+
+  matrix-gen:
+    name: generate dry-build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.gen.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+      - id: gen
+        run: echo "matrix=$(nix eval --json .#ciMatrix)" >> "$GITHUB_OUTPUT"
+
+  dry-build:
+    name: dry-build ${{ matrix.name }}
+    needs: matrix-gen
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.matrix-gen.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+      - run: nix build ".#${{ matrix.attr }}" --dry-run

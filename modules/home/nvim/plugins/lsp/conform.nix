@@ -56,11 +56,11 @@
           nix = [ "nixfmt" ];
           cpp = [ "astyle" ];
           c = [ "clang-format" ];
-          markdown = {
-            __unkeyed-1 = "prettierd";
-            __unkeyed-2 = "prettier";
-            stop_after_first = true;
-          };
+          # markdown = {
+          #   __unkeyed-1 = "prettierd";
+          #   __unkeyed-2 = "prettier";
+          #   stop_after_first = true;
+          # };
           rust = [ "rustfmt" ];
           verilog = [ "verible" ];
           elixir = [ "mix" ];

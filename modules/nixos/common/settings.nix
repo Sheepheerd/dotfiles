@@ -22,9 +22,14 @@ let
         min-free = 128000000;
         max-free = 1000000000;
         flake-registry = "";
-        auto-optimise-store = true;
+        # Deliberately off: it hardlink-dedupes under a global lock on every store
+        # write, which stalls builds. nix.optimise.automatic below does it weekly instead.
+        auto-optimise-store = false;
         warn-dirty = false;
-        max-jobs = 1;
+        # 4x4 saturates the 16 threads on deathstar without the machine going
+        # unusable mid-rebuild the way max-jobs=auto with unbounded cores does.
+        max-jobs = 4;
+        cores = 4;
         use-cgroups = lib.mkIf config.solarsystem.isLinux true;
       };
       gc = {

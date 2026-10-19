@@ -11,7 +11,7 @@
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
       git = lib.mkDefault true;
-      fuzzel = lib.mkDefault true;
+      walker = lib.mkDefault true;
       zsh = lib.mkDefault true;
       programs = lib.mkDefault true;
       firefox = lib.mkDefault true;
@@ -21,7 +21,7 @@
       gtk = lib.mkDefault true;
       # orcaSlicer = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      waybar.enable = lib.mkDefault true;
+      quickshell = lib.mkDefault true;
       hyprland = lib.mkDefault true;
       fonts.enable = lib.mkDefault true;
       # age = lib.mkDefault true;

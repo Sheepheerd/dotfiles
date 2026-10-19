@@ -6,6 +6,15 @@
   ...
 }:
 
+let
+  # godot-ai hard-pins fastmcp 4 / mcp 2, which nixpkgs doesn't carry, so run
+  # it through uvx (the upstream-supported launcher) against nixpkgs' python.
+  godot-ai = pkgs.writeShellScriptBin "godot-ai" ''
+    export UV_PYTHON=${pkgs.python3}/bin/python3
+    export UV_PYTHON_DOWNLOADS=never
+    exec ${pkgs.uv}/bin/uvx godot-ai "$@"
+  '';
+in
 {
   options.solarsystem.modules.youtube = lib.mkEnableOption "youtube config";
   config = lib.mkIf config.solarsystem.modules.youtube {
@@ -20,15 +29,18 @@
     };
 
     environment.systemPackages = with pkgs; [
+      # photocraft
+      # filmcraft
       kdePackages.kdenlive
       v4l-utils
       scrcpy
-      # systemctl --user enable --now wayscriber.service
-      inputs.wayscriber.packages.${pkgs.system}.default
-      inputs.wayscriber.packages.${pkgs.system}.wayscriber-configurator
       gimp
       audacity
-
+      godot
+      blender
+      inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
+      uv
+      godot-ai
     ];
 
     boot = {
@@ -43,6 +55,9 @@
         # Virtual Microphone. Custom DroidCam v4l2loopback driver needed for audio.
         #    "snd-aloop"
       ];
+      extraModprobeConfig = ''
+        options v4l2loopback video_nr=10 card_label="scrcpy-cam" exclusive_caps=1
+      '';
     };
 
   };

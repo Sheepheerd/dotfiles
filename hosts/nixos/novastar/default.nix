@@ -47,6 +47,9 @@ in
     buildMachines = [
       {
         hostName = "solis";
+        # nix-daemon connects as root, which has no key of its own
+        sshUser = "sheep";
+        sshKey = "/home/sheep/.ssh/id_rsa";
 
         systems = [ "x86_64-linux" ];
 
@@ -63,15 +66,16 @@ in
     ];
   };
 
+  programs.ssh.knownHosts.solis.publicKey =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/nhkvST55B5vzLLiHK3kof50GTUjskIp/bmw5+vZGU";
+
   solarsystem = lib.recursiveUpdate {
     hasBluetooth = true;
     asahi = true;
     modules.virt = false;
-    modules.box = true;
+    modules.box = false;
     # modules.minecraft = true;
     modules.youtube = true;
-    x86 = false;
-    muvm = true;
 
     # FIX
     profiles = {

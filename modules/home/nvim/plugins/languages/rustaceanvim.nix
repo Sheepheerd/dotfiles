@@ -4,7 +4,7 @@
       enable = true;
     };
     plugins.rustaceanvim = {
-      enable = false;
+      enable = true;
       settings = {
         tools.float_win_config.border = "rounded";
         # server = {

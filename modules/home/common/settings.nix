@@ -11,7 +11,7 @@ in
   options.solarsystem.modules.general = lib.mkEnableOption "general nix settings";
   config = lib.mkIf config.solarsystem.modules.general {
     nix = lib.mkIf (!config.solarsystem.isNixos) {
-      package = lib.mkForce pkgs.nixVersions.nix_2_28;
+      package = lib.mkForce pkgs.nixVersions.nix_2_31;
       settings = {
         experimental-features = [
           "nix-command"

@@ -1,3 +1,4 @@
 ./home/.config/nvim/lazy-lock.json
 **/*.env*
 **/.DS_Store
+firmware/

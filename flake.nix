@@ -16,6 +16,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    # Builds the M1's fairydust kernel (pkgs/linux-asahi). Pinned by rev so
+    # `nix flake update` leaves it alone: the kernel's hash covers the whole
+    # stdenv, and every nixpkgs bump would otherwise recompile it. Bump this
+    # rev only together with the kernel itself.
+    nixpkgs-kernel.url = "github:nixos/nixpkgs/44a91898084f46797b5fac650c7e8c9ac38c43d4";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,30 +42,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixos-muvm-fex = {
-    #   url = "github:nrabulinski/nixos-muvm-fex";
-    # };
-    # nixos-muvm-fex = {
-    #   url = "github:Sheepheerd/nixos-muvm-fex";
-    # };
+    artcraft.url = "github:Hy4ri/artcraft-flake";
 
-    # glaumar_repo = {
-    #   url = "github:glaumar/nur";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-x86-on-aarch64 = {
+      url = "github:rowanG077/nix-x86-on-aarch64";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    wayscriber = {
-      url = "github:Sheepheerd/wayscriber";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    microvm = {
-      url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -80,10 +71,6 @@
     };
 
     agenix.url = "https://flakehub.com/f/ryantm/agenix/0.15.0.tar.gz";
-    rose-pine-hyprcursor = {
-      url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     openconnect-sso = {
       url = "github:jcszymansk/openconnect-sso";
@@ -96,17 +83,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Non-redistributable Asahi peripheral firmware, read straight off the ESP
+    # where the Asahi installer put it. Only its hash goes in flake.lock.
     asahi-firmware = {
-      url = "git+ssh://git@github.com/Sheepheerd/asahi-firmware.git?dir=m1air";
+      url = "path:/boot/vendorfw";
       flake = false;
     };
 
-    # davinci-flake = {
-    #   url = "git+ssh://git@github.com/Sheepheerd/davinci";
-    # };
-
-    ghdl = {
-      url = "github:Sheepheerd/nix-ghdl";
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    godotdev-nvim = {
+      url = "github:Mathijs-Bakker/godotdev.nvim";
+      flake = false;
     };
 
     flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1.406.tar.gz";

@@ -16,11 +16,18 @@ let
     isDarwin = true;
     isLinux = false;
   };
+  godot-ai = pkgs.writeShellScriptBin "godot-ai" ''
+    export UV_PYTHON=${pkgs.python3}/bin/python3
+    export UV_PYTHON_DOWNLOADS=never
+    exec ${pkgs.uv}/bin/uvx godot-ai "$@"
+  '';
+
 in
 {
 
   environment.systemPackages = with pkgs; [
     utm
+    godot-ai
   ];
 
   nix = {
@@ -98,12 +105,12 @@ in
       # "J-x-Z/tap/cocoa-way"
       # "J-x-Z/tap/waypipe-darwin"
       "pear-devs/pear/pear-desktop"
+      "godot"
       "scroll-reverser"
       "ghostty"
       "obs"
       "vesktop"
-      # "firefox"
-      # "nikitabobko/tap/aerospace"
+      "firefox"
       "kicad"
     ];
 
@@ -146,10 +153,15 @@ in
       LaunchServices = {
         LSQuarantine = false;
       };
+      # OmniWM requires "Displays have separate Spaces" ON.
+      # spans-displays = false is that setting. Needs a logout to take effect.
+      spaces = {
+        spans-displays = false;
+      };
       trackpad = {
         TrackpadRightClick = true;
         Clicking = true;
-        TrackpadThreeFingerHorizSwipeGesture = 1;
+        TrackpadThreeFingerHorizSwipeGesture = 2;
       };
       finder = {
         AppleShowAllFiles = true;

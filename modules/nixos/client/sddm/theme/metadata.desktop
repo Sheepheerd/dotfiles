@@ -1,0 +1,17 @@
+[SddmGreeterTheme]
+Name=minimal
+Description=Flat dark login screen matching the quickshell bar
+Author=sheep
+License=MIT
+Type=sddm-theme
+Version=1.0
+Website=
+Screenshot=
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=minimal
+Theme-API=2.0
+# Without this sddm looks for the Qt5 greeter, `sddm-greeter`, which the
+# nixpkgs build does not produce -- it ships `sddm-greeter-qt6` only -- and
+# silently falls back to the built-in theme.
+QtVersion=6

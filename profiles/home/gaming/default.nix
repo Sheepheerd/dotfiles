@@ -11,14 +11,14 @@
       direnv = lib.mkDefault true;
       eza = lib.mkDefault true;
       git = lib.mkDefault true;
-      fuzzel = lib.mkDefault true;
+      walker = lib.mkDefault true;
       zsh = lib.mkDefault true;
       programs = lib.mkDefault true;
       gnome-keyring = lib.mkDefault true;
       ghostty = lib.mkDefault true;
       gtk = lib.mkDefault true;
       tmux = lib.mkDefault true;
-      waybar.enable = lib.mkDefault true;
+      quickshell = lib.mkDefault true;
       hyprland = lib.mkDefault true;
     };
 

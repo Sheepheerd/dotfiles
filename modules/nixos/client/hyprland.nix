@@ -22,9 +22,15 @@
     # services.displayManager.gdm = lib.mkIf (!config.solarsystem.isDedicatedGaming) {
     #   enable = false;
     # };
+    # Plain hyprland.desktop never reaches graphical-session.target, so the
+    # elephant and walker user services would silently not start.
+    services.displayManager.defaultSession = lib.mkIf (!config.solarsystem.isDedicatedGaming) "hyprland-uwsm";
     services.displayManager.sddm = lib.mkIf (!config.solarsystem.isDedicatedGaming) {
       enable = true;
       wayland.enable = true;
+      # Otherwise sddm preselects whatever session was used last, which can
+      # keep landing on plain hyprland.desktop despite defaultSession.
+      settings.Users.RememberLastSession = false;
     };
     xdg.portal = {
       enable = true;

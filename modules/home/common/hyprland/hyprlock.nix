@@ -7,6 +7,28 @@
 
 let
   cfg = config.solarsystem.modules.hyprland;
+
+  # The sddm greeter's theme.conf is the source of truth for the palette and
+  # font, so the lock screen and the login screen cannot drift apart. It is
+  # plain `key=value` lines plus comments.
+  palette = lib.pipe ../../../nixos/client/sddm/theme/theme.conf [
+    builtins.readFile
+    (lib.splitString "\n")
+    (lib.filter (line: lib.hasInfix "=" line && !lib.hasPrefix "#" line))
+    (map (
+      line:
+      let
+        parts = lib.splitString "=" line;
+      in
+      lib.nameValuePair (lib.head parts) (lib.concatStringsSep "=" (lib.tail parts))
+    ))
+    lib.listToAttrs
+  ];
+
+  # hyprlock wants rgb(rrggbb) for colour options, and `#` starts a comment,
+  # so inside pango markup it has to be escaped as `##`.
+  rgb = hex: "rgb(${lib.removePrefix "#" hex})";
+  markup = hex: "##${lib.removePrefix "#" hex}";
 in
 {
   config = lib.mkIf cfg {
@@ -16,89 +38,9 @@ in
 
       sourceFirst = true;
 
-      extraConfig = ''
-        $rosewater = rgb(f5e0dc)
-        $rosewaterAlpha = f5e0dc
-
-        $flamingo = rgb(f2cdcd)
-        $flamingoAlpha = f2cdcd
-
-        $pink = rgb(f5c2e7)
-        $pinkAlpha = f5c2e7
-
-        $mauve = rgb(cba6f7)
-        $mauveAlpha = cba6f7
-
-        $red = rgb(f38ba8)
-        $redAlpha = f38ba8
-
-        $maroon = rgb(eba0ac)
-        $maroonAlpha = eba0ac
-
-        $peach = rgb(fab387)
-        $peachAlpha = fab387
-
-        $yellow = rgb(f9e2af)
-        $yellowAlpha = f9e2af
-
-        $green = rgb(a6e3a1)
-        $greenAlpha = a6e3a1
-
-        $teal = rgb(94e2d5)
-        $tealAlpha = 94e2d5
-
-        $sky = rgb(89dceb)
-        $skyAlpha = 89dceb
-
-        $sapphire = rgb(74c7ec)
-        $sapphireAlpha = 74c7ec
-
-        $blue = rgb(89b4fa)
-        $blueAlpha = 89b4fa
-
-        $lavender = rgb(b4befe)
-        $lavenderAlpha = b4befe
-
-        $text = rgb(cdd6f4)
-        $textAlpha = cdd6f4
-
-        $subtext1 = rgb(bac2de)
-        $subtext1Alpha = bac2de
-
-        $subtext0 = rgb(a6adc8)
-        $subtext0Alpha = a6adc8
-
-        $overlay2 = rgb(9399b2)
-        $overlay2Alpha = 9399b2
-
-        $overlay1 = rgb(7f849c)
-        $overlay1Alpha = 7f849c
-
-        $overlay0 = rgb(6c7086)
-        $overlay0Alpha = 6c7086
-
-        $surface2 = rgb(585b70)
-        $surface2Alpha = 585b70
-
-        $surface1 = rgb(45475a)
-        $surface1Alpha = 45475a
-
-        $surface0 = rgb(313244)
-        $surface0Alpha = 313244
-
-        $base = rgb(1e1e2e)
-        $baseAlpha = 1e1e2e
-
-        $mantle = rgb(181825)
-        $mantleAlpha = 181825
-
-        $crust = rgb(11111b)
-        $crustAlpha = 11111b
-
-        $accent = $mauve
-        $accentAlpha = $mauveAlpha
-        $font = JetBrainsMono Nerd Font
-
+      # Laid out like the greeter's Main.qml: a clock, the date under it and a
+      # pill-shaped password field, all on one centred column.
+      extraConfig = with palette; ''
         general {
           disable_loading_bar = true
           hide_cursor = true
@@ -106,72 +48,51 @@ in
 
         background {
           monitor =
-          path = $HOME/.config/background
-          blur_passes = 0
-          color = $base
+          color = ${rgb background}
         }
 
         label {
           monitor =
-          text = Layout: $LAYOUT
-          color = $text
-          font_size = 25
-          font_family = $font
-          position = 30, -30
-          halign = left
-          valign = top
+          text = <span weight="light" letter_spacing="-2048">$TIME</span>
+          color = ${rgb foreground}
+          font_size = 96
+          font_family = ${font}
+          position = 0, 110
+          halign = center
+          valign = center
         }
 
         label {
           monitor =
-          text = $TIME
-          color = $text
-          font_size = 90
-          font_family = $font
-          position = -30, 0
-          halign = right
-          valign = top
-        }
-
-        label {
-          monitor =
-          text = cmd[update:43200000] date +"%A, %d %B %Y"
-          color = $text
-          font_size = 25
-          font_family = $font
-          position = -30, -150
-          halign = right
-          valign = top
-        }
-
-        image {
-          monitor =
-          path = $HOME/.face
-          size = 100
-          border_color = $accent
-          position = 0, 75
+          text = cmd[update:60000] echo "<span letter_spacing=\"3072\">$(date +'%A, %-d %B' | tr '[:upper:]' '[:lower:]')</span>"
+          color = ${rgb subdued}
+          font_size = 14
+          font_family = ${font}
+          position = 0, 35
           halign = center
           valign = center
         }
 
         input-field {
           monitor =
-          size = 300, 60
-          outline_thickness = 4
+          size = 300, 44
+          rounding = -1
+          outline_thickness = 1
           dots_size = 0.2
-          dots_spacing = 0.2
+          dots_spacing = 0.4
           dots_center = true
-          outer_color = $accent
-          inner_color = $surface0
-          font_color = $text
+          outer_color = ${rgb border}
+          inner_color = ${rgb surface}
+          font_color = ${rgb foreground}
+          font_family = ${font}
           fade_on_empty = false
-          placeholder_text = <span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>
+          placeholder_text = <span foreground="${markup subdued}">password</span>
           hide_input = false
-          check_color = $accent
-          fail_color = $red
-          fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
-          capslock_color = $yellow
-          position = 0, -47
+          check_color = ${rgb hover}
+          fail_color = ${rgb error}
+          fail_text = <span foreground="${markup error}">Incorrect password</span>
+          capslock_color = ${rgb hover}
+          position = 0, -90
           halign = center
           valign = center
         }

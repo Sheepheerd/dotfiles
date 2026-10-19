@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  self,
   ...
 }:
 
@@ -13,6 +14,7 @@ in
   options.solarsystem.modules.school = lib.mkEnableOption "Enable school stuff";
 
   config = lib.mkIf cfg.school {
+    nixpkgs.overlays = [ self.overlays.school ];
 
     environment.systemPackages = with pkgs; [
       # (lib.mkIf (!config.solarsystem.isLaptop) matlab)

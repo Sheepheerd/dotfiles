@@ -9,6 +9,11 @@
       # env = lib.mkDefault true;
       eza = lib.mkDefault true;
       # git = lib.mkDefault true;
+      programs = lib.mkDefault true;
+      firefox = lib.mkDefault true;
+      gnome-keyring = lib.mkDefault true;
+      ghostty = lib.mkDefault true;
+
       zsh = lib.mkDefault true;
       tmux = lib.mkDefault true;
       # nixvim = lib.mkDefault true;

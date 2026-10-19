@@ -19,6 +19,19 @@
         ax_focus = true;
       };
 
+      # OmniWM has no exec/launch action (its only open* actions are
+      # openCommandPalette and openMenuAnywhere), so the AeroSpace launcher
+      # bindings live here. Chords are kept clear of OmniWM's hotkeys; see
+      # modules/home/common/omniwm/default.nix.
+      skhd = {
+        enable = true;
+        skhdConfig = ''
+          alt - return : open -na ghostty
+          alt - b : open -a Firefox
+          shift + alt - f : open -a Finder
+        '';
+      };
+
     };
 
   };

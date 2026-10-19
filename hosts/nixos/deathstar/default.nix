@@ -9,6 +9,8 @@ let
   sharedOptions = {
     inherit mainUser;
     isLaptop = false;
+    noSleep = true;
+    noAutoLock = true;
     isNixos = true;
     isLinux = true;
     # sharescreen = "eDP-1";
@@ -25,6 +27,9 @@ in
 
   ];
   boot.supportedFilesystems = [ "ntfs" ];
+  # The clocksource watchdog misfires during early boot on this board and drops
+  # to hpet on some boots, which tanks game performance. The 5700G's TSC is fine.
+  boot.kernelParams = [ "tsc=reliable" ];
   networking = {
     hostName = "deathstar";
     interfaces.eno1.wakeOnLan.enable = true;
@@ -35,6 +40,7 @@ in
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+  programs.gamemode.enable = true;
 
   solarsystem = lib.recursiveUpdate {
     # firewall = lib.mkForce true;
@@ -43,6 +49,7 @@ in
     # rootDisk = "/dev/nvme0n1";
     modules.youtube = true;
     modules.dolphin = true;
+    modules.zram = true;
     # modules.winboat = true;
     # FIX
     profiles = {

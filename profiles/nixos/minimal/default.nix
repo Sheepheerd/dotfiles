@@ -6,6 +6,7 @@
 
       fonts.enable = lib.mkDefault true;
       modules = {
+        home-manager = lib.mkDefault true;
         bootloader = lib.mkDefault true;
         packages = lib.mkDefault true;
         general = lib.mkDefault true;
@@ -19,6 +20,7 @@
         zsh = lib.mkDefault true;
         blueman = lib.mkDefault true;
         tailscale = lib.mkDefault true;
+        gnome = lib.mkDefault true;
       };
 
     };
