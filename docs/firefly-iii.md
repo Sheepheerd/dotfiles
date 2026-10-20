@@ -86,20 +86,19 @@ existing transactions, then check card balances against the statement.
 
 ### Investments
 
-Holdings and performance live in Wealthfolio
-([`wealthfolio.nix`](../modules/nixos/server/wealthfolio.nix),
-<https://stocks.heerd.dev>); Firefly only tracks cash moving in and out.
+Firefly only tracks cash moving in and out of brokerage accounts, not holdings
+or performance.
 
 - In Firefly, create one asset account per brokerage or retirement account,
   role **Savings account**.
 - Don't map brokerage accounts in the SimpleFIN import. Trades, dividends and
-  sweeps are Wealthfolio's job.
+  sweeps would clutter the ledger.
 - Rule for contributions: description contains the broker's ACH text, source
   is Checking → Convert to transfer, destination = the brokerage account.
   Transfers never count against a budget.
-- Optional: Reconcile the brokerage account monthly to Wealthfolio's value so
-  Firefly's net worth includes gains. Otherwise it shows what you've put in.
-- In Wealthfolio, import the broker's activity CSV every month or after trades.
+- Optional: Reconcile the brokerage account monthly to the broker's statement
+  value so Firefly's net worth includes gains. Otherwise it shows what you've
+  put in.
 
 ## Rules: categories and budgets
 

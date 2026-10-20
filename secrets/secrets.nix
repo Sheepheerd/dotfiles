@@ -31,16 +31,6 @@ in
     solis
     landing
   ];
-  "server/wealthfolio.key.age".publicKeys = [
-    system1
-    solis
-    landing
-  ];
-  "server/wealthfolio.hash.age".publicKeys = [
-    system1
-    solis
-    landing
-  ];
   "server/nginx/jellyfin-domain.age".publicKeys = [
     system1
     solis

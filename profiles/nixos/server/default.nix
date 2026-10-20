@@ -22,7 +22,6 @@
         ssh = lib.mkDefault true;
         nginx = lib.mkDefault true;
         firefly-iii = lib.mkDefault true;
-        wealthfolio = lib.mkDefault true;
         lubelogger = lib.mkDefault true;
         traccar = lib.mkDefault true;
         homepage = lib.mkDefault true;

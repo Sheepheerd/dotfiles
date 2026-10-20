@@ -64,8 +64,7 @@ in
         {
           Money =
             mkService server.firefly-iii "Firefly III" "bank" "firefly-iii.png" "Budget & transactions"
-            ++ mkService server.firefly-iii "Data Importer" "bank-import" "firefly-iii.png" "SimpleFIN bank import"
-            ++ mkService server.wealthfolio "Wealthfolio" "stocks" "mdi-chart-line" "Investments";
+            ++ mkService server.firefly-iii "Data Importer" "bank-import" "firefly-iii.png" "SimpleFIN bank import";
         }
         {
           Media =

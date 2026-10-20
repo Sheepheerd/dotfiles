@@ -80,7 +80,6 @@ in
             "radical.heerd.dev" = serverIp;
             "bank.heerd.dev" = serverIp;
             "bank-import.heerd.dev" = serverIp;
-            "stocks.heerd.dev" = serverIp;
             "cars.heerd.dev" = serverIp;
             "track.heerd.dev" = serverIp;
             "dash.heerd.dev" = serverIp;
@@ -101,6 +100,9 @@ in
       defaults = {
         email = "shepard@heerd.dev";
         dnsProvider = "cloudflare";
+        # Check propagation against public DNS; the system resolver is tailscale's
+        # 100.100.100.100, which never sees the _acme-challenge TXT records
+        dnsResolver = "1.1.1.1:53";
         environmentFile = "${config.age.secrets.acme-api.path}";
       };
     };
