@@ -21,6 +21,11 @@ in
     solis
     landing
   ];
+  "server/firefly-simplefin-config.age".publicKeys = [
+    system1
+    solis
+    landing
+  ];
   "server/firefly.appkey.age".publicKeys = [
     system1
     solis
