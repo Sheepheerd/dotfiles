@@ -188,7 +188,11 @@ The `accounts` section maps SimpleFIN account IDs to Firefly account IDs:
 - `systemctl list-timers firefly-iii-simplefin-import` shows the next run.
 - A day with nothing new, or only already-imported transactions, counts as
   success (the importer exits 73 or reports [a115] duplicates). A
-  SimpleFIN or Firefly error fails the unit.
+  SimpleFIN or Firefly error fails the unit, which retries every 30 minutes
+  (up to 3 retries). A missed day is still picked up by the next run's 7-day
+  window.
+- SimpleFIN `cURL error 28: Operation timed out`: SimpleFIN was down or slow.
+  The retries usually take care of it.
 - "Unit not found": the module isn't deployed yet; rebuild.
 - SimpleFIN `404 Not Found` with `%0A` in the URL: the token had a trailing
   newline. The job strips whitespace now; check `SIMPLEFIN_TOKEN` is one line.

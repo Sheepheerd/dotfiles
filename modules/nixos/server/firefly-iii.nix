@@ -75,6 +75,9 @@ in
         APP_URL = "https://${importerDomain}";
         FIREFLY_III_URL = "https://${domain}";
         VANITY_URL = "https://${domain}";
+        # debug (the default) logs the SimpleFIN access URL with its password.
+        # Not higher than info: the import job parses the "There are N error(s)" line
+        LOG_LEVEL = "info";
         # The CLI importer only reads configs from these directories
         IMPORT_DIR_ALLOWLIST = "/run/${autoImportName}";
       };
@@ -94,6 +97,10 @@ in
       ];
       wants = [ "network-online.target" ];
       requires = [ "firefly-iii-data-importer-setup.service" ];
+      # SimpleFIN occasionally times out; retry a few times (see Restart below)
+      # instead of waiting for tomorrow's run
+      startLimitIntervalSec = 4 * 3600;
+      startLimitBurst = 4;
       path = [ pkgs.jq ];
       script = ''
         # The config secret starts out empty; skip until accounts are mapped
@@ -151,6 +158,8 @@ in
       '';
       serviceConfig = {
         Type = "oneshot";
+        Restart = "on-failure";
+        RestartSec = "30min";
         EnvironmentFile = config.age.secrets.firefly-importer-env.path;
         User = importer.user;
         Group = importer.group;
