@@ -31,6 +31,8 @@ in
 
   networking = {
     hostName = "solis";
+    # no public IPv6 exposure; the tailnet works over its 100.64.0.0/10 addresses
+    enableIPv6 = false;
     defaultGateway = "192.168.0.1";
     nameservers = [
       "127.0.0.1#5353"

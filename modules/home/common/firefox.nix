@@ -19,6 +19,7 @@ in
   config = lib.mkIf cfg {
     programs.firefox = {
       enable = true;
+      configPath = ".mozilla/firefox";
       # On macOS the app comes from the Homebrew cask (hosts/darwin/*). The nix
       # wrapper turns Contents/MacOS/firefox into a bash script, and LaunchServices
       # then registers Firefox with pid 0 and no bundle path. Accessibility can't

@@ -5,8 +5,8 @@
     programs.ssh = {
       enableDefaultConfig = false;
       enable = true;
-      matchBlocks.default = {
-        forwardAgent = true;
+      settings.default = {
+        ForwardAgent = true;
       };
       # extraConfig = ''
       #   SetEnv TERM=xterm-256color

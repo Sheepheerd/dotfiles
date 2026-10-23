@@ -14,6 +14,8 @@
       # nixvim evaluates its own nixpkgs instance, so the global allowUnfree
       # doesn't reach it (needed for copilot-language-server)
       nixpkgs.config.allowUnfree = true;
+      # build nixvim against the flake's nixpkgs (the `follows` in flake.nix)
+      nixpkgs.source = inputs.nixpkgs;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;

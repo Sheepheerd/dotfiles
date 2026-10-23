@@ -58,9 +58,8 @@ in
 
     # Nginx virtual host w/ ACME DNS
     services.nginx.virtualHosts.${domain} = {
-      enableACME = true;
+      useACMEHost = "heerd.dev";
       forceSSL = true;
-      acmeRoot = null;
     };
 
     # Data importer (SimpleFIN)
@@ -190,9 +189,8 @@ in
     };
 
     services.nginx.virtualHosts.${importerDomain} = {
-      enableACME = true;
+      useACMEHost = "heerd.dev";
       forceSSL = true;
-      acmeRoot = null;
     };
 
     # Let the importer reach Firefly III locally instead of through tailscale DNS

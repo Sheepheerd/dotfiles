@@ -16,6 +16,7 @@ in
       enable = true;
       theme.package = pkgs.dracula-theme;
       theme.name = "Dracula";
+      gtk4.theme = config.gtk.theme;
     };
   };
 }

@@ -65,9 +65,8 @@ in
       virtualHosts."headscale.heerd.dev" = {
         # the only vhost reachable from the internet (443 is port-forwarded)
         tailnetOnly = false;
-        enableACME = true;
+        useACMEHost = "heerd.dev";
         forceSSL = true;
-        acmeRoot = null;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString config.services.headscale.port}";

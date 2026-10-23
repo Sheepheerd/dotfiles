@@ -48,9 +48,8 @@ in
     services.nginx = {
       virtualHosts = {
         "images.heerd.dev" = {
-          enableACME = true;
+          useACMEHost = "heerd.dev";
           forceSSL = true;
-          acmeRoot = null;
           locations = {
             "/" = {
               proxyPass = "http://localhost:3001";

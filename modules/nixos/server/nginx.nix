@@ -64,8 +64,16 @@ in
       mode = "0444";
     };
 
-    services.tailscale.extraUpFlags = [
-      "--advertise-routes=0.0.0.0/0"
+    # `set` flags apply on every boot (`up` flags only run with an authKeyFile).
+    # No exit node on purpose: services are reached over the tailnet directly, and
+    # blocky already serves DNS to tailnet clients. To route a device's internet
+    # traffic through home (e.g. on public wifi), add "--advertise-exit-node" here,
+    # set `services.tailscale.useRoutingFeatures = "server"` for IP forwarding, and
+    # approve it with `headscale nodes approve-routes`.
+    services.tailscale.extraSetFlags = [
+      # clear any previously advertised routes (an old 0.0.0.0/0 exit route)
+      "--advertise-routes="
+      "--advertise-exit-node=false"
       "--accept-dns=false"
     ];
 
@@ -129,6 +137,11 @@ in
         # 100.100.100.100, which never sees the _acme-challenge TXT records
         dnsResolver = "1.1.1.1:53";
         environmentFile = "${config.age.secrets.acme-api.path}";
+      };
+      # one wildcard cert for every vhost (useACMEHost), so new subdomains don't show up in CT logs
+      certs."heerd.dev" = {
+        domain = "*.heerd.dev";
+        extraDomainNames = [ "heerd.dev" ];
       };
     };
     users.users.nginx.extraGroups = [ "acme" ];

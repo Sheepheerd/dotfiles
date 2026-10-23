@@ -49,9 +49,8 @@ in
 
       virtualHosts = {
         "radical.heerd.dev" = {
-          enableACME = true;
+          useACMEHost = "heerd.dev";
           forceSSL = true;
-          acmeRoot = null;
           locations = {
             "/" = {
               proxyPass = "http://127.0.0.1:5232";

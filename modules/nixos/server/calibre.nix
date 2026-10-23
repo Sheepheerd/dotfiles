@@ -61,9 +61,8 @@ in
     services.nginx = {
       virtualHosts = {
         "books.heerd.dev" = {
-          enableACME = true;
+          useACMEHost = "heerd.dev";
           forceSSL = true;
-          acmeRoot = null;
           locations = {
             "/" = {
               proxyPass = "http://localhost:8095";

@@ -25,9 +25,8 @@ in
 
     # Nginx virtual host w/ ACME DNS
     services.nginx.virtualHosts.${domain} = {
-      enableACME = true;
+      useACMEHost = "heerd.dev";
       forceSSL = true;
-      acmeRoot = null;
       locations."/" = {
         proxyPass = "http://127.0.0.1:${toString servicePort}";
         proxyWebsockets = true;

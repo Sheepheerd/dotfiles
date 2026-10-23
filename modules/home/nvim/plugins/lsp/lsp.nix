@@ -40,7 +40,7 @@
     # GCC-only flags from the ESP-IDF compile_commands.json that clang rejects.
     # Lives in the user config so ESP projects need no .clangd of their own.
     home.file.${
-      if pkgs.stdenv.isDarwin then
+      if pkgs.stdenv.hostPlatform.isDarwin then
         "Library/Preferences/clangd/config.yaml"
       else
         ".config/clangd/config.yaml"
