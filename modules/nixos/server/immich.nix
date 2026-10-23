@@ -26,7 +26,7 @@ in
       accelerationDevices = null;
       package = pkgs.immich;
       enable = true;
-      host = "0.0.0.0";
+      host = "127.0.0.1";
       port = servicePort;
       mediaLocation = "/mnt/one-t-ssd/immich"; # dataDir
 

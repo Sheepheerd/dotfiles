@@ -16,8 +16,11 @@ in
 
     };
 
-    networking.firewall.allowedTCPPorts = [ 2049 ];
-    networking.firewall.allowedUDPPorts = [ 2049 ];
+    # NFS for LAN clients only
+    networking.firewall.interfaces.enp4s0 = {
+      allowedTCPPorts = [ 2049 ];
+      allowedUDPPorts = [ 2049 ];
+    };
 
   };
 }

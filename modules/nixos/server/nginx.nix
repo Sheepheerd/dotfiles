@@ -12,18 +12,43 @@ in
 {
   options.solarsystem.modules.server.nginx = lib.mkEnableOption "enable nginx on server";
 
+  # Every vhost only answers LAN + tailnet clients unless it sets `tailnetOnly = false`
+  options.services.nginx.virtualHosts = lib.mkOption {
+    type = lib.types.attrsOf (
+      lib.types.submodule (
+        { config, ... }:
+        {
+          options.tailnetOnly = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Only allow LAN and tailnet clients to reach this vhost.";
+          };
+          config.extraConfig = lib.mkIf config.tailnetOnly ''
+            allow 127.0.0.1;
+            allow ::1;
+            allow 192.168.0.0/24;
+            allow 100.64.0.0/10;
+            allow fd7a:115c:a1e0::/48;
+            deny all;
+          '';
+        }
+      )
+    );
+  };
+
   config = lib.mkIf config.solarsystem.modules.server.nginx {
 
     environment.systemPackages = with pkgs; [ lego ];
     networking.firewall.allowedTCPPorts = [
-      53
       80
       443
     ];
-    networking.firewall.allowedUDPPorts = [
-      53
-      41641
-    ];
+    networking.firewall.allowedUDPPorts = [ 41641 ];
+    # blocky DNS for LAN clients only; the tailnet reaches it through the trusted tailscale0
+    networking.firewall.interfaces.enp4s0 = {
+      allowedTCPPorts = [ 53 ];
+      allowedUDPPorts = [ 53 ];
+    };
 
     age.secrets.acme-api = {
       file = self + /secrets/server/acme.age;
@@ -115,6 +140,12 @@ in
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
 
+      # drop requests for unknown hostnames instead of serving whichever vhost sorts first
+      virtualHosts."_" = {
+        default = true;
+        rejectSSL = true;
+        locations."/".return = "444";
+      };
     };
   };
 }

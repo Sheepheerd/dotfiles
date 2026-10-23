@@ -26,7 +26,7 @@ in
       mediaDir = "/mnt/two-t-hdd/paperless/media";
       dataDir = "/mnt/two-t-hdd/paperless/data";
       port = servicePort;
-      address = "0.0.0.0";
+      address = "127.0.0.1";
       configureNginx = true;
 
       domain = serviceDomain;

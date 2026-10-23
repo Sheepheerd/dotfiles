@@ -63,6 +63,8 @@ in
     ];
     services.nginx = {
       virtualHosts."headscale.heerd.dev" = {
+        # the only vhost reachable from the internet (443 is port-forwarded)
+        tailnetOnly = false;
         enableACME = true;
         forceSSL = true;
         acmeRoot = null;
