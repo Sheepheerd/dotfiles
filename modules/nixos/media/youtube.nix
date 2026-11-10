@@ -40,6 +40,7 @@ in
       audacity
       godot
       blender
+      inputs.nxasahi.packages.aarch64-linux.default
       inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.default
       uv
       godot-ai

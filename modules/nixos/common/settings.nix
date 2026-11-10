@@ -62,7 +62,7 @@ in
     lib.recursiveUpdate {
 
       nix = {
-        package = pkgs.nixVersions.nix_2_31;
+        package = pkgs.nixVersions.nix_2_34;
         settings = {
           experimental-features = [
             "nix-command"

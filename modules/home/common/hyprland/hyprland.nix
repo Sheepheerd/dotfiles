@@ -22,7 +22,6 @@ in
       wf-recorder
       glib
       wayland
-      hyprland-qtutils
       wl-clipboard
       kdePackages.qtwayland
       polkit_gnome

@@ -19,7 +19,6 @@
       kernelPackages = lib.mkIf (!config.solarsystem.asahi) (lib.mkDefault pkgs.linuxPackages_latest);
 
       initrd.enable = true;
-      initrd.systemd.enable = true;
 
       consoleLogLevel = 3;
     };

@@ -68,8 +68,6 @@ in
 
       config = {
         dbtype = "pgsql";
-        adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
-        adminuser = "admin";
       };
       settings = {
         trusted_domains = [

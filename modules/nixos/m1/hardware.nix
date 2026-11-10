@@ -3,17 +3,19 @@
   config,
   inputs,
   pkgs,
-  self,
+  # self, # fairydust kernel, see below
   ...
 }:
 
-let
-  # See the nixpkgs-kernel input in flake.nix: a pinned nixpkgs so updating the
-  # system's nixpkgs does not recompile the kernel.
-  kernelPkgs = import inputs.nixpkgs-kernel {
-    inherit (pkgs.stdenv.hostPlatform) system;
-  };
-in
+# Fairydust kernel (disabled): uncomment this let block, the `self` argument
+# above, and the boot.kernelPackages block below to bring back DP alt-mode.
+# let
+#   # See the nixpkgs-kernel input in flake.nix: a pinned nixpkgs so updating the
+#   # system's nixpkgs does not recompile the kernel.
+#   kernelPkgs = import inputs.nixpkgs-kernel {
+#     inherit (pkgs.stdenv.hostPlatform) system;
+#   };
+# in
 {
 
   imports = [
@@ -34,6 +36,16 @@ in
         asahi = {
           setupAsahiSound = true;
           #extractPeripheralFirmware = false;
+
+          # Build the kernel and other Asahi packages with apple-silicon's own
+          # pinned nixpkgs rather than ours, so they match what upstream's CI
+          # tests and nixos-apple-silicon.cachix.org serves (no local compile).
+          pkgs = lib.mkForce (
+            import inputs.apple-silicon.inputs.nixpkgs {
+              inherit (pkgs.stdenv.hostPlatform) system;
+              overlays = [ config.hardware.asahi.overlay ];
+            }
+          );
 
           # Non-redistributable firmware the Asahi installer left on the ESP.
           # A fixed-output path rather than a flake input, so hosts without
@@ -57,17 +69,19 @@ in
       # on the Air). Version and source live in pkgs/linux-asahi. Drop this
       # block to go back to the stock kernel. Out-of-tree modules come from the
       # same pinned set, so they are built with the kernel's own compiler.
-      boot.kernelPackages = lib.mkForce (
-        kernelPkgs.linuxPackagesFor (
-          kernelPkgs.callPackage "${self}/pkgs/linux-asahi" {
-            _kernelPatches = config.boot.kernelPatches;
-          }
-        )
-      );
+      # Disabled: the stock apple-silicon kernel is used instead.
+      # boot.kernelPackages = lib.mkForce (
+      #   kernelPkgs.linuxPackagesFor (
+      #     kernelPkgs.callPackage "${self}/pkgs/linux-asahi" {
+      #       _kernelPatches = config.boot.kernelPatches;
+      #     }
+      #   )
+      # );
 
       # DP/HDMI audio is off by default in appledrm ("unstable"); without it
       # the DCP never starts its AV endpoint and no HDMI sound card appears.
-      boot.kernelParams = [ "appledrm.hdmi_audio=1" ];
+      # Only useful with the fairydust kernel above.
+      # boot.kernelParams = [ "appledrm.hdmi_audio=1" ];
 
       programs.x86-on-arm = {
         enable = true;

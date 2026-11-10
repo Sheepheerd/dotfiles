@@ -37,6 +37,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nxasahi = {
+      url = "github:Sheepheerd/nxasahi/main";
+
+    };
     stylix = {
       url = "https://flakehub.com/f/nix-community/stylix/0.1.1223.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,10 +87,9 @@
     };
     nixpkgs-openconnect-sso.url = "github:nixos/nixpkgs/46397778ef1f73414b03ed553a3368f0e7e33c2f";
 
-    apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Keeps its own pinned nixpkgs (no follows): hardware.asahi.pkgs in
+    # modules/nixos/m1 builds the kernel from it, matching upstream's cachix.
+    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
 
     claude-code = {
       url = "github:sadjow/claude-code-nix";
