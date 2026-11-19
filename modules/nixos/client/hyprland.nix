@@ -22,7 +22,7 @@
     #   enable = false;
     # };
     # Plain hyprland.desktop never reaches graphical-session.target, so the
-    # elephant and walker user services would silently not start.
+    # session-scoped user services (quickshell etc.) would silently not start.
     services.displayManager.defaultSession = lib.mkIf (!config.solarsystem.isDedicatedGaming) "hyprland-uwsm";
     services.displayManager.sddm = lib.mkIf (!config.solarsystem.isDedicatedGaming) {
       enable = true;

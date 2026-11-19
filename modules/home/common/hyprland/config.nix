@@ -301,9 +301,9 @@ in
         hl.bind("switch:on:Lid Switch", exec("hyprlock --immediate"))
         hl.bind("switch:off:Lid Switch", exec("hyprlock --immediate"))
 
-        hl.bind("SUPER + SHIFT + E", exec("$HOME/.scripts/walker-powermenu.sh"))
-        hl.bind("SUPER + SPACE", exec("walker"))
-        hl.bind("SUPER + V", exec("cliphist list | walker --dmenu | cliphist decode | wl-copy"))
+        hl.bind("SUPER + SHIFT + E", exec("$HOME/.scripts/powermenu.sh"))
+        hl.bind("SUPER + SPACE", exec("fuzzel"))
+        hl.bind("SUPER + V", exec("cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"))
 
         -- Window Management
         hl.bind("SUPER + Q", hl.dsp.window.close())
